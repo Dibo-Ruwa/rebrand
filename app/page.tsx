@@ -1,95 +1,131 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import HeroContainer from "@/component/shared/HeroContainer";
+import {
+  Container,
+  FaqAccordionList,
+  FaqSection,
+  ServiceList,
+  ServicesSection,
+  WhyChooseUsColored,
+  WhyChooseUsContent,
+  WhyChooseUsImage,
+  WhyChooseUsImageContainer,
+  WhyChooseUsSection,
+  WhyChooseUsText,
+  WhyChooseUsTitle,
+} from "./page.styles";
+import Button from "@/component/ui/button/Button";
+import { FiPhoneCall } from "react-icons/fi";
+import { accordionData, services } from "@/constants";
+import ServiceCard from "@/component/serviceCard/ServiceCard";
+import Image from "next/image";
+import { assets } from "@/public/assets";
+import Accordion from "@/component/ui/accordion/Accordion";
+import NewsletterForm from "@/component/NewsletterForm";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
+    <Container>
+      <HeroContainer bg="primary-20">
+        <div className="hero__text">
+          <div className="title">
+            Break free from mundane tasks that drains your time and energy
+          </div>
           <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora
+            animi quo totam, in voluptatem corporis esse illo quas ad repellat
+            quisquam repellendus optio harum ea eligendi quae sapiente commodi.
+            Tenetur?
           </p>
-        </a>
-      </div>
-    </main>
-  )
+
+          <div className="btn_grp">
+            <Button size="large" color="primary">
+              Get Started
+            </Button>
+            <div className="contact">
+              <button className="withIcon">
+                <FiPhoneCall />
+              </button>
+              <div className="content">
+                <span>Call us</span>
+                <span className="cell">+2348148918529</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="hero__image"></div>
+      </HeroContainer>
+
+      <ServicesSection>
+        <header>
+          <h3 className="title">Services</h3>
+          <p className="subtitle">
+            Reliable convenience, always at your service.
+          </p>
+        </header>
+        <ServiceList>
+          {services.map((service) => (
+            <div key={service.title}>
+              <ServiceCard
+                title={service.title}
+                content={service.content}
+                bg={service.bg}
+                imageSrc={service.image}
+                cta={service.cta}
+                ctaTextColor={service.color}
+              />
+            </div>
+          ))}{" "}
+          <div className="pattern">
+            <Image
+              src={assets.pattern1}
+              width={300}
+              height={300}
+              alt="line_patterns"
+            />
+          </div>
+        </ServiceList>
+      </ServicesSection>
+
+      <WhyChooseUsSection>
+        <WhyChooseUsImageContainer>
+          <WhyChooseUsImage>
+            <div className="ball blueBall"></div>
+            <div className="ball yellowBall"></div>
+            <div className="ball purpleBall"></div>
+          </WhyChooseUsImage>
+        </WhyChooseUsImageContainer>
+
+        <WhyChooseUsText>
+          <WhyChooseUsColored>Why Choose us?</WhyChooseUsColored>
+          <WhyChooseUsTitle>
+            Your Happiness is Our <br /> First Priority
+          </WhyChooseUsTitle>
+          <WhyChooseUsContent>
+            At Dibo Ruwa, we believe in making your life easier and more
+            enjoyable. Say goodbye to the mundane tasks that consume your time
+            and energy. We offer a range of services designed to transform your
+            daily routine and let you focus on what truly matters.
+          </WhyChooseUsContent>
+          <Button size="large" color="primary">
+              Get Started
+            </Button>
+        </WhyChooseUsText>
+      </WhyChooseUsSection>
+
+      <FaqSection>
+        <div className="container">
+          <NewsletterForm/>
+          <FaqAccordionList>
+            {accordionData.map((item, index) => (
+            <div className="accordion" key={index}>
+                 <Accordion title={item.title} content={item.content} />
+            </div>
+       
+      ))}
+        </FaqAccordionList>
+        </div>
+      </FaqSection>
+    </Container>
+  );
 }

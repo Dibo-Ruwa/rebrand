@@ -1,0 +1,78 @@
+import { CaretDownIcon } from "@radix-ui/react-icons";
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import Image from "next/image";
+import Link from "next/link";
+import { FC } from "react";
+
+interface Routes {
+  trigger?: string;
+  routes?: {
+    name: string;
+    path: string;
+    icon: string;
+  }[];
+}
+
+const ServiceMenu: FC<Routes> = ({ trigger, routes }) => {
+  return (
+    <NavigationMenu.Root>
+      <NavigationMenu.List
+        style={{
+          listStyle: "none",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <NavigationMenu.Item>
+          <NavigationMenu.Trigger
+            style={{
+              outline: "none",
+              border: "none",
+              background: "transparent",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              fontSize: "15px",
+              letterSpacing: "1px",
+              color: "#5b5959",
+            }}
+          >
+            {trigger}
+            <CaretDownIcon className="icon" aria-hidden />
+          </NavigationMenu.Trigger>
+          <NavigationMenu.Content
+            className="data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight"
+            style={{
+              position: "absolute",
+              top: "26px",
+              left: 0,
+              borderRadius: "12px",
+              background: "#fff",
+              padding: "15px",
+              width: "auto",
+              minWidth: "200px",
+              display: 'grid',
+              gridGap: "20px",
+
+
+            }}
+          >
+            {routes &&
+              routes.map((link, index) => (
+                <li key={index}>
+                  <Link className="link dropdown" href={link?.path}>
+                    <span>
+                      <Image src={link?.icon} width={50} height={50} alt="..." />
+                    </span>
+                    <span>{link.name}</span>
+                  </Link>
+                </li>
+              ))}
+          </NavigationMenu.Content>
+        </NavigationMenu.Item>
+      </NavigationMenu.List>
+    </NavigationMenu.Root>
+  );
+};
+
+export default ServiceMenu;
