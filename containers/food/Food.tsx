@@ -4,6 +4,7 @@ import {
   HWWCard,
   HWWList,
   HWWSecetion,
+  HeroImage,
   HeroImageContainer,
   HeroList,
   HeroListItem,
@@ -12,6 +13,8 @@ import {
   MenuTitle,
 } from "./Food.styles";
 import Button from "@/component/ui/button/Button";
+import MoreServices from "@/component/shared/MoreServices";
+import { assets } from "@/public/assets";
 
 const HWW = [
   {
@@ -63,7 +66,16 @@ const Food = () => {
           </Button>
         </div>
 
-        <HeroImageContainer></HeroImageContainer>
+        <HeroImageContainer>
+          <div className="image">
+            <HeroImage
+              src={assets.food_hero}
+              width={600}
+              height={400}
+              alt=".."
+            />
+          </div>
+        </HeroImageContainer>
       </HeroContainer>
 
       <HWWSecetion>
@@ -88,6 +100,8 @@ const Food = () => {
           <MenuContainer></MenuContainer>
         </MenuSection>
       </MenuSection>
+
+      <MoreServices />
     </Container>
   );
 };

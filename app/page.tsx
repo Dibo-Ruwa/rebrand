@@ -75,7 +75,7 @@ export default function Home() {
                 ctaTextColor={service.color}
               />
             </div>
-          ))}{" "}
+          ))}
           <div className="pattern">
             <Image
               src={assets.pattern1}

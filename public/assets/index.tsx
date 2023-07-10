@@ -18,6 +18,7 @@ import messageIcon from './message-notif.svg'
 import shieldIcon from './message-notif.svg'
 import sprayIcon from './message-notif.svg'
 import peopleIcon from './message-notif.svg'
+import food_hero from './food_hero.png'
 
 export const assets = {
   favicon,
@@ -38,5 +39,6 @@ export const assets = {
   messageIcon,
   sprayIcon,
   shieldIcon,
-  peopleIcon
+  peopleIcon,
+  food_hero
 };

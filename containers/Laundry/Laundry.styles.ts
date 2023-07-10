@@ -152,13 +152,17 @@ export const PlansSection = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  .text__container {
+  .text__container, .calc {
     flex: 1;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
   }
 
   .heading {
     .title {
-      font-size: 28px;
+      font-size: 38px;
       font-weight: bold;
       margin-bottom: 10px;
     }

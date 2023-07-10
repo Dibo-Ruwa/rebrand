@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Select from "./ui/select/Select";
 import { FiSend } from "react-icons/fi";
 import { FormEvent } from "react";
+import { motion } from "framer-motion";
 
 const Container = styled.div`
   flex: 1;
@@ -34,7 +35,7 @@ const Form = styled.form`
     gap: 15px;
   }
 `;
-const Input = styled.input`
+const Input = styled(motion.input)`
   outline: none;
   border: none;
   padding: 20px 15px;
@@ -49,7 +50,7 @@ const Input = styled.input`
   }
   background: var(--primary-20);
 `;
-const SendBtn = styled.button`
+const SendBtn = styled(motion.button)`
   width: 80px;
   height: 60px;
   border-radius: 10px;
@@ -92,7 +93,7 @@ const NewsletterForm = () => {
         We’ve got answers.
       </Heading>
       <Form onSubmit={onSubmit}>
-        <Input placeholder="Enter you email...." />
+        <Input placeholder="Enter you email...."  whileTap={{ scale: 0.95 }}/>
         <div className="grouped">
           <Select
             name="Location"
@@ -100,7 +101,7 @@ const NewsletterForm = () => {
             options={options}
             onChange={handleSelectChange}
           />
-          <SendBtn>
+          <SendBtn  whileTap={{ scale: 0.95 }}>
             <FiSend />
           </SendBtn>
         </div>

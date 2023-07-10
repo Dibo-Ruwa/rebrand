@@ -7,7 +7,7 @@ export const ServiceCardContainer = styled.div<{ bg: string }>`
   /* display: flex;
   flex-direction: column; */
 
-  padding: 5%;
+  padding: 20px;
   border-radius: 8px;
   background-color: ${(props) => `var(--${props.bg})`};
   width: 100%;

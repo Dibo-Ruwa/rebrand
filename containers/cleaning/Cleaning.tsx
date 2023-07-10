@@ -17,6 +17,7 @@ import { assets } from "@/public/assets";
 import WhatYouGetCard from "@/component/WhatYouGetCard";
 import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
+import MoreServices from "@/component/shared/MoreServices";
 
 const items = [
   {
@@ -157,6 +158,8 @@ const Cleaning = () => {
           ))}
         </SubscriptionList>
       </SubscriptionSection>
+
+      <MoreServices/>
     </Container>
   );
 };

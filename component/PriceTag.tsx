@@ -11,7 +11,7 @@ const PriceCardContainer = styled.div`
   overflow: hidden;
   z-index: 3;
   @media screen and (max-width: 768px) {
-    max-width: 80%;
+    max-width: 100%;
     margin: auto;
   }
 `;

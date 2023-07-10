@@ -26,7 +26,7 @@ const SelectContainer = styled.div`
   width: 100%;
 `;
 
-const Trigger = styled.button`
+const Trigger = styled(motion.button)`
   width: 100%;
   outline: none;
   border: none;
@@ -90,7 +90,7 @@ const Select: React.FC<SelectProps> = ({
 
   return (
     <SelectContainer>
-      <Trigger onClick={handleOpen}>
+      <Trigger onClick={handleOpen}  whileTap={{ scale: 0.95 }}>
         <p>{selectedValue.name !== "" ? value : "Select"}</p>
         <ChevronDownIcon className="w-14" />
       </Trigger>

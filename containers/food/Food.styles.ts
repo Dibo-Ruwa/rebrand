@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import styled from "styled-components";
 
 export const Container = styled.div``;
@@ -21,8 +22,18 @@ export const HeroListItem = styled.div`
     background: var(--primary);
   }
 `;
-export const HeroImageContainer = styled.div``;
-export const HeroImage = styled.div``;
+export const HeroImageContainer = styled.div`
+  .image {
+    width: 500px;
+    height: auto;
+    margin: auto;
+  }
+`;
+export const HeroImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
 
 export const HWWSecetion = styled.div`
   padding: 5% 8%;
@@ -70,13 +81,13 @@ export const HWWCard = styled.div`
 `;
 
 export const MenuSection = styled.div`
-padding: 5% 8%;
+  padding: 5% 8%;
 `;
 
 export const MenuTitle = styled.h3`
-text-align: center;
-font-size: 38px;
-font-weight: bold;
-margin-bottom: 10vh;
+  text-align: center;
+  font-size: 38px;
+  font-weight: bold;
+  margin-bottom: 10vh;
 `;
 export const MenuContainer = styled.div``;

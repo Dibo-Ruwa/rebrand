@@ -6,11 +6,13 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+
   border-radius: 2px;
   background: var(--primary-20);
   padding: 5%;
   border-radius: 20px;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const BagCountSection = styled.div`
@@ -82,7 +84,7 @@ const TotalDisplay = styled(motion.div)`
 
   sub {
     color: #605c5c;
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
   @media screen and (max-width: 768px) {
     font-size: 0.6rem;
