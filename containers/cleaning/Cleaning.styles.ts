@@ -17,9 +17,14 @@ export const HeroListItem = styled.div`
   font-size: 18px;
   .dot {
     width: 20px;
+    min-width: 20px;
     height: 20px;
     border-radius: 50%;
     background: var(--primary);
+  }
+
+  @media screen and (max-width: 768px) {
+    align-items: flex-start;
   }
 `;
 
@@ -42,7 +47,7 @@ export const HeroImage = styled.div`
 `;
 
 export const WYGSection = styled.div`
-  padding: 5% 8%;
+  padding:  8%;
   display: flex;
   gap: 30px;
 
@@ -52,10 +57,20 @@ export const WYGSection = styled.div`
 
   .heading {
     .title {
+      font-size: 38px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    @media screen and (max-width: 768px) {
+
+      
+        .title {
       font-size: 28px;
       font-weight: bold;
       margin-bottom: 30px;
     }
+    }
+  
   }
 
   p {
@@ -65,6 +80,7 @@ export const WYGSection = styled.div`
   @media screen and (max-width: 768px) {
     flex-direction: column;
     width: 100%;
+    
   }
 `;
 export const BenefitList = styled.div`

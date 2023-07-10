@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 interface HowItWorksData {
   image: string;
@@ -34,9 +35,9 @@ const ImageContainer = styled.div`
   margin-bottom: 1rem;
 `;
 
-const CardImage = styled.img`
-  width: 4rem;
-  height: 4rem;
+const CardImage = styled(Image)`
+  width: 50px;
+  height: 50px;
 `;
 
 const CardTitle = styled.h3`

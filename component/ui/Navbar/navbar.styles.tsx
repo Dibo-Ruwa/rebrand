@@ -1,8 +1,9 @@
+"use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import styled from "styled-components";
 
-export const NavbarContainer = styled.div<{ scrolled: boolean }>`
+export const NavbarContainer = styled.div<{ isScrolled: boolean }>`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -14,18 +15,11 @@ export const NavbarContainer = styled.div<{ scrolled: boolean }>`
   top: 0;
   z-index: 50;
   transition: all 200ms;
-  ${({ scrolled }) =>
-    scrolled
-      ? `
-
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.257);
-        height: 10vh;
-      `
-      : `
-        transition: all 100ms;
-        height: 15vh;
-      `}
+  ${({ isScrolled }) =>
+    isScrolled &&
+    `   backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.257);
+    height: 10vh;`}
 `;
 
 export const LogoImage = styled(Image)`
@@ -68,19 +62,20 @@ export const MenuList = styled(motion.ul)`
     font-size: 16px;
     letter-spacing: 1px;
 
-    .dropdown {
+    &.dropdown {
       display: flex;
       gap: 10px;
       align-items: center;
       padding: 10px;
 
       &:hover {
-        background: var(--primary);
+        background: var(--primary-20);
+        border-radius: 10px;
       }
 
-      .image {
-        width: 50px;
-        height: 50px;
+      .icon {
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         background: var(--primary-20);
         display: flex;

@@ -12,7 +12,7 @@ export const ServiceCardContainer = styled.div<{ bg: string }>`
   background-color: ${(props) => `var(--${props.bg})`};
   width: 100%;
 
-  max-width: 400px;
+  max-width: 350px;
   z-index: 5;
 
   @media (max-width: 900px) {

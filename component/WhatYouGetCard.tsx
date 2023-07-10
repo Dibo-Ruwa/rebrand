@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 interface WhatYouGetCardProps {
   icon: string;
-  title: string;
   description: string;
 }
 
@@ -34,15 +33,14 @@ const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
   background-color: var(--primary-20);
   border-radius: 0.5rem;
 `;
 
-const Title = styled.h3`
-  font-size: 14px;
-`;
+
 
 const Description = styled.p`
   color: #4b5563;
@@ -51,16 +49,16 @@ const Description = styled.p`
 
 const WhatYouGetCard: React.FC<WhatYouGetCardProps> = ({
   icon,
-  title,
+ 
   description,
 }) => {
   return (
     <CardWrapper>
       <IconWrapper>
-        <Image src={icon} alt={title} width={24} height={24} />
+        <Image src={icon} alt={description} width={24} height={24} />
       </IconWrapper>
       <div className="content">
-        <Title>{title}</Title>
+       
         <Description>{description}</Description>
       </div>
     </CardWrapper>

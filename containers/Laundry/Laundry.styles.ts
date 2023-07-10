@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import styled from "styled-components";
 
 export const Container = styled.div``;
@@ -15,13 +16,33 @@ export const HeroListItem = styled.div`
   font-size: 18px;
   .dot {
     width: 20px;
+    min-width: 20px;
     height: 20px;
     border-radius: 50%;
     background: var(--primary);
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+    align-items: baseline;
+  }
 `;
-export const HeroImageContainer = styled.div``;
-export const HeroImage = styled.div``;
+export const HeroImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const HeroImage = styled(Image)`
+  width: 70%;
+  height: 70%;
+  margin: auto;
+  z-index: 5;
+
+  @media screen and (max-width: 768px) {
+    /* display: none; */
+    width: 85%;
+  }
+`;
 export const Rectangle = styled.div`
   width: 400px;
   height: 100px;
@@ -31,14 +52,18 @@ export const Rectangle = styled.div`
   position: absolute;
   right: 0;
   top: 45%;
+  z-index: 3;
 
   @media screen and (max-width: 768px) {
-    display: none;
+    /* display: none; */
+    top: 75%;
+    width: 200px;
+    height: 100px;
   }
 `;
 
 export const HIWSection = styled.div`
-  padding:  8%;
+  padding: 8%;
 `;
 export const HIWTitle = styled.div`
   font-size: 30px;
@@ -122,7 +147,7 @@ export const PriceTagSection = styled.div`
 `;
 
 export const PlansSection = styled.div`
-  padding:  8%;
+  padding: 8%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -182,30 +207,28 @@ export const PlansSection = styled.div`
     }
 
     .heading {
-    .title {
-      font-size: 24px;
-     
-    }
+      .title {
+        font-size: 24px;
+      }
 
-    p {
-      font-size: 16px;
-      width: 100%;
-     
+      p {
+        font-size: 16px;
+        width: 100%;
+      }
     }
-  }
   }
 
   .benefit {
     .icon {
-        width: 20px;
-        height: auto;
-        padding: 5px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 999px;
-        background: var(--primary-20);
-        color: var(--primary);
-      }
+      width: 20px;
+      height: auto;
+      padding: 5px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 999px;
+      background: var(--primary-20);
+      color: var(--primary);
+    }
   }
 `;

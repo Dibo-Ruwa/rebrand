@@ -71,9 +71,9 @@ export const routes: Route[] = [
         path: "/services",
         icon: "🛠️",
         subroutes: [
-          { name: "Service 1", path: "/services/service1", icon: "" },
-          { name: "Service 2", path: "/services/service2", icon: "" },
-          { name: "Service 3", path: "/services/service3", icon: "" },
+          { name: "Laundry", path: "/laundry", icon: assets.soap },
+          { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
+          { name: "Food", path: "/food", icon: assets.food }
         ],
       },
       {

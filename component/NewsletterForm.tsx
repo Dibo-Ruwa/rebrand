@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import Select from "./ui/select/Select";
 import { FiSend } from "react-icons/fi";
+import { FormEvent } from "react";
 
 const Container = styled.div`
   flex: 1;
@@ -80,13 +81,17 @@ const NewsletterForm = () => {
     // Handle the change event here
     console.log(e.target.value);
   };
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault()
+  }
   return (
     <Container>
       <Heading>
         Got Questions ? <br />
         We’ve got answers.
       </Heading>
-      <Form>
+      <Form onSubmit={onSubmit}>
         <Input placeholder="Enter you email...." />
         <div className="grouped">
           <Select

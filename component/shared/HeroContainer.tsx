@@ -10,16 +10,22 @@ interface HeroProps {
 const Container = styled.div<{ background: string }>`
   width: 100%;
   background: ${({ background }) => `var(--${background})`};
-  padding: 15vh 8% 8%;
+  padding: 20vh 8% 8%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 30px;
+  }
 
   .hero__text {
     width: 50%;
 
     @media screen and (max-width: 900px) {
       width: 100%;
+      margin-bottom: 30px;
     }
 
     .title {

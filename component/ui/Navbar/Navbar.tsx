@@ -48,7 +48,7 @@ const Navbar = () => {
   const links = generateLinksByCategory("main");
 
   return (
-    <NavbarContainer scrolled={isScrolled}>
+    <NavbarContainer isScrolled={isScrolled}>
       <Link href="/" passHref>
         <span className="logo">
           <LogoImage src={assets.logo} width={110} height={35} alt="logo" />
@@ -94,16 +94,26 @@ const Navbar = () => {
               exit={{ right: "-100%", opacity: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <ServiceMenu />
-
               {links.map((link, index) => (
                 <li key={index}>
                   {link.subroutes ? (
                     <>
-                      <ServiceMenu trigger={link.name} routes={link?.subroutes} />
+                      <ServiceMenu
+                        toggle={() =>
+                          setToggle((prev) => (prev === true ? false : false))
+                        }
+                        trigger={link.name}
+                        routes={link?.subroutes}
+                      />
                     </>
                   ) : (
-                    <Link className="link" href={link.path}>
+                    <Link
+                      className="link"
+                      href={link.path}
+                      onClick={() =>
+                        setToggle((prev) => (prev === true ? false : false))
+                      }
+                    >
                       {link.name}
                     </Link>
                   )}

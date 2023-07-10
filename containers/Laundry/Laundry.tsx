@@ -4,6 +4,7 @@ import {
   HIWList,
   HIWSection,
   HIWTitle,
+  HeroImage,
   HeroImageContainer,
   HeroList,
   HeroListItem,
@@ -16,22 +17,23 @@ import HowItWorksCard from "@/component/howitworksCard/HiwCard";
 import PriceCard from "@/component/PriceTag";
 import LaundryCount from "@/component/LaundryCounter";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
+import { assets } from "@/public/assets";
 
 const howItWorksData = [
   {
-    image: "path/to/image1.png",
+    image: assets.snpImg,
     title: "Schedule and Pickup",
     content:
       "Contact Dibo Ruwa and schedule a pickup for your dirty clothes and beddings. Specify your preferred date and time for the pickup. On the scheduled day, a representative from Dibo Ruwa will come to your location to collect your laundry.",
   },
   {
-    image: "path/to/image2.png",
+    image: assets.washingmachine,
     title: "Professional Laundry Service",
     content:
       "Dibo Ruwa's experienced partners will handle the cleaning process for your clothes. They will wash, dry-clean, and iron all the items using high-quality detergents and following proper cleaning techniques. They take care of your clothes to ensure they are properly cleaned and maintained.",
   },
   {
-    image: "path/to/image3.png",
+    image: assets.cleaningTowel,
     title: "Quality Check and Delivery",
     content:
       "After the laundry process is completed, Dibo Ruwa's team performs a thorough quality check. They inspect each item to ensure they are clean, intact, and perfectly laundered. Once the quality control is done, Dibo Ruwa will deliver your clean clothes back to you, aiming to complete the entire process within 48 hours.",
@@ -61,6 +63,7 @@ const Laundry = () => {
               We deliver your clean clothes, within 48 hours.
             </HeroListItem>
           </HeroList>
+
           <Button size="large" color="primary">
             Get Started
           </Button>
@@ -68,6 +71,12 @@ const Laundry = () => {
 
         <HeroImageContainer>
           <Rectangle />
+          <HeroImage
+            src={assets.laundry_basket}
+            width={600}
+            height={200}
+            alt="...."
+          />
         </HeroImageContainer>
       </HeroContainer>
 

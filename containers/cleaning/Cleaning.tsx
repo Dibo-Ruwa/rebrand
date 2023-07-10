@@ -20,24 +20,20 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 
 const items = [
   {
-    icon: "/path/to/icon1.png",
-    title: "Title 1",
-    description: "Description 1",
+    icon: assets.peopleIcon,
+    description: "highly experienced cleaning team",
   },
   {
-    icon: "/path/to/icon2.png",
-    title: "Title 2",
-    description: "Description 2",
+    icon: assets.sprayIcon,
+    description: "All equipment and chemicals provided",
   },
   {
-    icon: "/path/to/icon3.png",
-    title: "Title 3",
-    description: "Description 3",
+    icon: assets.shieldIcon,
+    description: "Insured services against damage.",
   },
   {
-    icon: "/path/to/icon4.png",
-    title: "Title 4",
-    description: "Description 4",
+    icon: assets.messageIcon,
+    description: "Unlimited, responsive customer service",
   },
 ];
 
@@ -134,7 +130,6 @@ const Cleaning = () => {
             <div className="card" key={index}>
               <WhatYouGetCard
                 icon={item.icon}
-                title={item.title}
                 description={item.description}
               />
             </div>

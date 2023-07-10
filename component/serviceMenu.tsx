@@ -6,6 +6,7 @@ import { FC } from "react";
 
 interface Routes {
   trigger?: string;
+  toggle?: () => void;
   routes?: {
     name: string;
     path: string;
@@ -13,7 +14,7 @@ interface Routes {
   }[];
 }
 
-const ServiceMenu: FC<Routes> = ({ trigger, routes }) => {
+const ServiceMenu: FC<Routes> = ({ trigger, routes, toggle }) => {
   return (
     <NavigationMenu.Root>
       <NavigationMenu.List
@@ -51,18 +52,21 @@ const ServiceMenu: FC<Routes> = ({ trigger, routes }) => {
               padding: "15px",
               width: "auto",
               minWidth: "200px",
-              display: 'grid',
+              display: "grid",
               gridGap: "20px",
-
-
             }}
           >
             {routes &&
               routes.map((link, index) => (
-                <li key={index}>
+                <li key={index} onClick={toggle}>
                   <Link className="link dropdown" href={link?.path}>
-                    <span>
-                      <Image src={link?.icon} width={50} height={50} alt="..." />
+                    <span className="icon">
+                      <Image
+                        src={link?.icon}
+                        width={17}
+                        height={17}
+                        alt="..."
+                      />
                     </span>
                     <span>{link.name}</span>
                   </Link>

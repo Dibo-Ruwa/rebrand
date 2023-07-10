@@ -14,7 +14,7 @@ type ButtonProps = {
 
 const ButtonContainer = styled(motion.button)<{color?: string,size?: "small" | "medium" | "large"}>`
   padding: ${(props) => getSize(props.size)};
-  background-color: ${(props) => `var(--${props.color}` || "blue"};
+  background-color: ${(props) => `var(--${props.color})` || "blue"};
   color: white;
   border: none;
   border-radius: 8px;

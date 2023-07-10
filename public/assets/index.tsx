@@ -7,8 +7,20 @@ import pattern1 from "./pattern1.svg";
 import pattern2 from "./patten2.svg";
 import testimonial from "./testimonial-placeholder.png";
 import cleaningImg from "./cleaning_hero.png";
+import favicon from "./FAVICON.png";
+import laundry_equipment from "./cleaning-cleaning-equipment-removebg-preview.png";
+import snpImg from './Component 19.svg'
+import washingmachine from './washing-machine-4-svgrepo-com (1) 2.svg'
+import cleaningTowel from './clean-cleaning-towels-svgrepo-com 2.svg'
+import laundry_basket from './A3 1.svg'
+
+import messageIcon from './message-notif.svg'
+import shieldIcon from './message-notif.svg'
+import sprayIcon from './message-notif.svg'
+import peopleIcon from './message-notif.svg'
 
 export const assets = {
+  favicon,
   logo,
   broom,
   chefHat,
@@ -17,5 +29,14 @@ export const assets = {
   pattern1,
   pattern2,
   testimonial,
-  cleaningImg
+  cleaningImg,
+  laundry_equipment,
+  laundry_basket,
+  cleaningTowel,
+  snpImg,
+  washingmachine,
+  messageIcon,
+  sprayIcon,
+  shieldIcon,
+  peopleIcon
 };
