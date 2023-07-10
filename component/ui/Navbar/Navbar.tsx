@@ -49,11 +49,12 @@ const Navbar = () => {
 
   return (
     <NavbarContainer isScrolled={isScrolled}>
-      <Link href="/" passHref>
-        <span className="logo">
-          <LogoImage src={assets.logo} width={110} height={35} alt="logo" />
-        </span>
-      </Link>
+      <span className="logo">
+       
+        <Link href="/" passHref>
+          <LogoImage src={assets.logo} width={70} height={25} alt="logo" />
+        </Link>{" "}
+      </span>
 
       <Toggle onClick={() => setToggle((prev) => !prev)}>
         {toggle ? <VscClose /> : <HiBars3 />}

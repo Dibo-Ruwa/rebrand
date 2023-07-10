@@ -1,11 +1,11 @@
 :root {
-  --primary: #48DB45;
-  --color2: #FFD335;
-  --color3: #925DEA;
-  --color4: #53CEF4;
-  --primary-20: hsla(119, 68%, 56%, 0.2);
+  --primary: #71f76f;
+  --color2: #f7d86a;
+  --color3: #b388f9;
+  --color4: #82daf5;
+  --primary-20: hsla(119, 68%, 56%, 0.06);
 
---color2-20: hsla(47, 100%, 60%, 0.2);
+--color2-20: hsla(47, 100%, 60%, 0.06);
 
 --color3-20: hsla(263, 77%, 64%, 0.2);
 

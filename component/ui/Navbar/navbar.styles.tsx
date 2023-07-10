@@ -17,17 +17,20 @@ export const NavbarContainer = styled.div<{ isScrolled: boolean }>`
   transition: all 200ms;
   ${({ isScrolled }) =>
     isScrolled &&
-    `   backdrop-filter: blur(20px);
+    `  
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.663);
     border-bottom: 1px solid rgba(255, 255, 255, 0.257);
-    height: 10vh;`}
+    height: 10vh;
+    `}
 `;
 
 export const LogoImage = styled(Image)`
-  img {
+  
     width: 100%;
-  }
   @media screen and (max-width: 768px) {
-    width: 80%;
+    width: 100%;
+    height: 100%;
   }
 `;
 

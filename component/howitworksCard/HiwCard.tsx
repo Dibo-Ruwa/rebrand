@@ -20,7 +20,7 @@ const CardContainer = styled(motion.div)`
   background-color: var(--primary-20);
   padding: 1.5rem;
   border-radius: 16px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
   width: 100%;
 `;
 
@@ -47,7 +47,7 @@ const CardTitle = styled.h3`
 `;
 
 const CardContent = styled.p`
-  color: #4b5563;
+  color: rgba(143, 143, 143, 0.663);
   line-height: 130%;
 `;
 

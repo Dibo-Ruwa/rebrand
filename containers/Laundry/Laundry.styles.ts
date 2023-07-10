@@ -157,6 +157,7 @@ export const PlansSection = styled.div`
 
     @media screen and (max-width: 768px) {
       width: 100%;
+      margin-bottom: 10vh;
     }
   }
 
@@ -203,7 +204,7 @@ export const PlansSection = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
-    gap: 30px;
+    
 
     .benefits {
       width: 100%;

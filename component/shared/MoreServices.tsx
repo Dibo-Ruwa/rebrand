@@ -11,6 +11,10 @@ const Title = styled.h3`
   font-size: 38px;
   font-weight: bold;
   margin-bottom: 30px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 28px;
+  }
 `;
 const ServiceList = styled.div`
   display: flex;

@@ -10,7 +10,7 @@ interface HeroProps {
 const Container = styled.div<{ background: string }>`
   width: 100%;
   background: ${({ background }) => `var(--${background})`};
-  padding: 20vh 8% 8%;
+  padding: 17vh 8% 8%;
   display: flex;
   align-items: center;
   justify-content: space-between;
