@@ -104,15 +104,31 @@ export const generateLinksByCategory = (category: string) => {
   }
 };
 
-export const heroContent = {
-  title: "Break free from mundane \n tasks that drain your time and energy",
-  subtitle:
-    "we're committed to simplifying your life and bringing joy back into your daily routine. Discover a world where laundry, cleaning, meals, and culinary skills are no longer a source of stress but a pathway to a more fulfilling life",
-};
+export const HWW = [
+  {
+    image: "h",
+    title: "Choose your plan",
+    content:
+      "Choose a meal schedule that works for you; when you want it, how you want it. It takes less than 5 minutes.",
+  },
+  {
+    image: "h",
+    title: "We Cook and Deliver",
+    content:
+      "We cook up your picks from our rich menu and deliver them to you on schedule. At no extra delivery costs.",
+  },
+  {
+    image: "h",
+    title: "You Heat and Eat",
+    content:
+      "With Just 5 Minutes of Heating, Your Meal Is Good to Go, or Refrigerate It for a Later Tasty Treat",
+  },
+];
 
 export const services = [
   {
     title: "Home Cleaning",
+    category: 'cleaning',
     image: assets.broom,
     color: 'primary',
     bg: 'primary-20',
@@ -125,6 +141,7 @@ export const services = [
   },
   {
     title: "Laundry",
+    category: 'laundry',
     image: assets.soap,
     color: "color2",
     bg: "color2-20",
@@ -137,6 +154,7 @@ export const services = [
   },
   {
     title: "Food",
+    category: 'food',
     image: assets.food,
     color: "color3",
     bg: "color3-20",
@@ -149,6 +167,7 @@ export const services = [
   },
   {
     title: "Training",
+    category: 'training',
     image: assets.chefHat,
     color: "color4",
     bg: "color4-20",
@@ -174,5 +193,34 @@ export const accordionData = [
   {
     title: "Accordion Item 3",
     content: "Content for Accordion Item 3",
+  },
+];
+
+// Array of sublinks
+export const sublinks = [
+  {
+    title: "Company",
+    links: [
+      { name: "About Us", path: "/sublink1" },
+      { name: "Pricing", path: "/sublink2" },
+    
+    ],
+  },
+  {
+    title: "Services",
+    links: [
+      { name: "Food", path: "/sublink4" },
+      { name: "Laundry", path: "/sublink5" },
+      { name: "Cleaning", path: "/sublink6" },
+    ],
+  },
+  {
+    title: "Other",
+    links: [
+      { name: "Blog", path: "/sublink7" },
+      { name: "Contact Us", path: "/sublink8" },
+      { name: "Privacy Policy", path: "/sublink8" },
+      { name: "Terma & Condition", path: "/sublink9" },
+    ],
   },
 ];

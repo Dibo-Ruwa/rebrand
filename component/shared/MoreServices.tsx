@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 
 const Container = styled.div`
   padding: 8%;
+
+  /* @media */
 `;
 const Title = styled.h3`
   font-size: 38px;
@@ -27,12 +29,19 @@ const ServiceList = styled.div`
 const MoreServices = () => {
   const pathName = usePathname();
 
-  console.log(pathName);
+  const trimedPath = pathName.replace("/", "");
+
+  const otherServices = services.filter(
+    (service) => service.category !== trimedPath
+  );
+
+
+
   return (
     <Container>
       <Title>More of our services ?</Title>
       <ServiceList>
-        {services.map((service) => (
+        {otherServices.map((service) => (
           <div key={service.title}>
             <ServiceCard
               title={service.title}

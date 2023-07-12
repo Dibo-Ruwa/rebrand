@@ -15,27 +15,8 @@ import {
 import Button from "@/component/ui/button/Button";
 import MoreServices from "@/component/shared/MoreServices";
 import { assets } from "@/public/assets";
+import { HWW } from "@/constants";
 
-const HWW = [
-  {
-    image: "h",
-    title: "Choose your plan",
-    content:
-      "Choose a meal schedule that works for you; when you want it, how you want it. It takes less than 5 minutes.",
-  },
-  {
-    image: "h",
-    title: "We Cook and Deliver",
-    content:
-      "We cook up your picks from our rich menu and deliver them to you on schedule. At no extra delivery costs.",
-  },
-  {
-    image: "h",
-    title: "You Heat and Eat",
-    content:
-      "With Just 5 Minutes of Heating, Your Meal Is Good to Go, or Refrigerate It for a Later Tasty Treat",
-  },
-];
 
 const Food = () => {
   return (

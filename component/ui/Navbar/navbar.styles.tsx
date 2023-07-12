@@ -26,20 +26,19 @@ export const NavbarContainer = styled.div<{ isScrolled: boolean }>`
 `;
 
 export const LogoImage = styled(Image)`
-  
-    width: 100%;
+  width: 100%;
+
   @media screen and (max-width: 768px) {
-    width: 100%;
+    width: 80%;
     height: 100%;
   }
 `;
 
 export const Toggle = styled.div`
   display: none;
-  width: 8px;
-  height: 8px;
   font-size: 24px;
   color: #48db45;
+
   z-index: 10;
 
   @media screen and (max-width: 768px) {

@@ -2,11 +2,9 @@
 
 import styled from "styled-components";
 
-export const Container = styled.div`
-
-`;
+export const Container = styled.div``;
 export const ServicesSection = styled.div`
-  padding:  8%;
+  padding: 8%;
 
   header {
     margin: auto;
@@ -16,10 +14,12 @@ export const ServicesSection = styled.div`
       font-size: 38px;
       font-weight: bold;
       margin-bottom: 10px;
+    
     }
 
     .subtitle {
       font-size: 20px;
+      color: var(--content);
     }
   }
   @media (max-width: 900px) {
@@ -171,5 +171,4 @@ export const FaqAccordionList = styled.div`
     width: 100%;
   }
   gap: 15px;
-
 `;

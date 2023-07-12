@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -37,12 +37,17 @@ const CounterContainer = styled.div`
 `;
 
 const CounterButton = styled.button`
+  width: 40px;
+  height: 40px;
   background-color: var(--primary-20);
   color: white;
   border: none;
   border-radius: 10px;
-  padding: 0.5rem 1rem;
-  font-size: 1.5rem;
+  /* padding: 0.5rem 1rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
   cursor: pointer;
 
   &:hover {
@@ -96,10 +101,23 @@ const LaundryCount: React.FC = () => {
   const [selectedPlan, setSelectedPlan] = useState("monthly");
   const [total, setTotal] = useState(13000);
 
-  const handleIncrement = () => {
+  const calculateTotal = useCallback(
+    (count: number) => {
+      if (selectedPlan === "weekly") {
+        setTotal(13000 * count * 4);
+      } else if (selectedPlan === "twiceWeekly") {
+        setTotal(13000 * count * 2);
+      } else {
+        setTotal(13000 * count);
+      }
+    },
+    [selectedPlan, setTotal]
+  );
+
+  const handleIncrement = useCallback(() => {
     setBagCount((prevCount) => prevCount + 1);
     calculateTotal(bagCount + 1);
-  };
+  }, [setBagCount, bagCount, calculateTotal]);
 
   const handleDecrement = () => {
     if (bagCount > 0) {
@@ -108,20 +126,13 @@ const LaundryCount: React.FC = () => {
     }
   };
 
-  const calculateTotal = (count: number) => {
-    if (selectedPlan === "weekly") {
-      setTotal(13000 * count * 4);
-    } else if (selectedPlan === "twiceWeekly") {
-      setTotal(13000 * count * 2);
-    } else {
-      setTotal(13000 * count);
-    }
-  };
-
-  const handlePlanSelect = (plan: string) => {
-    setSelectedPlan(plan);
-    calculateTotal(bagCount);
-  };
+  const handlePlanSelect = useCallback(
+    (plan: string) => {
+      setSelectedPlan(plan);
+      calculateTotal(bagCount);
+    },
+    [setSelectedPlan, calculateTotal, bagCount]
+  );
 
   return (
     <Container>

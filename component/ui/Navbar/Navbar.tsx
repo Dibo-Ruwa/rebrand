@@ -45,14 +45,17 @@ const Navbar = () => {
     };
   }, []);
 
-  const links = generateLinksByCategory("main");
+  const trimedPath = pathname.replace("/", "");
+
+  const links = generateLinksByCategory(
+    trimedPath === "" ? "main" : trimedPath
+  );
 
   return (
     <NavbarContainer isScrolled={isScrolled}>
       <span className="logo">
-       
         <Link href="/" passHref>
-          <LogoImage src={assets.logo} width={70} height={25} alt="logo" />
+          <LogoImage src={assets.logo} width={75} height={20} alt="logo" />
         </Link>{" "}
       </span>
 

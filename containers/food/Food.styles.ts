@@ -12,11 +12,12 @@ export const HeroList = styled.div`
 `;
 export const HeroListItem = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   font-size: 18px;
   .dot {
     width: 20px;
+    min-width: 20px;
     height: 20px;
     border-radius: 50%;
     background: var(--primary);
@@ -45,16 +46,26 @@ export const HWWSecetion = styled.div`
   }
 `;
 export const HWWList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 30px;
   justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
+ 
 `;
 export const HWWCard = styled.div`
   width: 300px;
   padding: 15px;
   border-radius: 10px;
   background: var(--primary-20);
+
+  @media screen and (max-width: 768px) {
+    width: 100%
+  }
 
   .image {
     width: 60px;

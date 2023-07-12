@@ -3,34 +3,11 @@ import React from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
 import styled from "styled-components";
-
-// Array of sublinks
-const sublinks = [
-  {
-    title: "Column 2",
-    links: [
-      { name: "Sub Link 1", path: "/sublink1" },
-      { name: "Sub Link 2", path: "/sublink2" },
-      { name: "Sub Link 3", path: "/sublink3" },
-    ],
-  },
-  {
-    title: "Column 3",
-    links: [
-      { name: "Sub Link 4", path: "/sublink4" },
-      { name: "Sub Link 5", path: "/sublink5" },
-      { name: "Sub Link 6", path: "/sublink6" },
-    ],
-  },
-  {
-    title: "Column 4",
-    links: [
-      { name: "Sub Link 7", path: "/sublink7" },
-      { name: "Sub Link 8", path: "/sublink8" },
-      { name: "Sub Link 9", path: "/sublink9" },
-    ],
-  },
-];
+import { sublinks } from "@/constants";
+import { assets } from "@/public/assets";
+import Image from "next/image";
+import { FiFacebook } from "react-icons/fi";
+import Link from "next/link";
 
 const FooterContainer = styled.footer`
   background-color: #ffffff;
@@ -48,18 +25,19 @@ const FooterGrid = styled.div`
 
 const Column = styled.div`
   margin-bottom: 24px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
-const Logo = styled.img`
-  height: 32px;
-  width: 32px;
-  margin-right: 8px;
-`;
+const Logo = styled(Image)``;
 
 const Title = styled.h3`
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 16px;
+  color: var(--primary);
 `;
 
 const SublinkList = styled.ul`
@@ -70,6 +48,7 @@ const SublinkList = styled.ul`
 
 const Sublink = styled.li`
   margin-bottom: 8px;
+  color: var(--content);
 `;
 const SubRoutes = styled.div`
   display: flex;
@@ -97,50 +76,45 @@ const Footer = () => {
             <div
               style={{
                 display: "flex",
-                alignItems: "center",
+
+                flexDirection: "column",
                 marginBottom: "16px",
               }}
             >
-              <Logo src="/logo.png" alt="Logo" />
-              <span style={{ fontSize: "18px", fontWeight: "bold" }}>
-                Company Name
-              </span>
+              <Logo src={assets.logo} width={100} height={35} alt="Logo" />
             </div>
             <p style={{ color: "#ccc", marginBottom: "16px" }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              10x-ing the quality of lifeon the continent.
             </p>
             <div style={{ display: "flex", gap: "8px" }}>
-              <a href="#" style={{ color: "#fff" }}>
-                <FaFacebook size={24} />
-              </a>
-              <a href="#" style={{ color: "#fff" }}>
-                <FaTwitter size={24} />
-              </a>
-              <a href="#" style={{ color: "#fff" }}>
-                <FaInstagram size={24} />
-              </a>
-              <a href="#" style={{ color: "#fff" }}>
-                <FaLinkedin size={24} />
-              </a>
+              <Link href="#" style={{ color: "#fff" }}>
+                <FiFacebook />
+              </Link>
+              <Link href="#" style={{ color: "#fff" }}>
+                <FaTwitter />
+              </Link>
+              <Link href="#" style={{ color: "#fff" }}>
+                <FaInstagram />
+              </Link>
+              <Link href="#" style={{ color: "#fff" }}>
+                <FaLinkedin />
+              </Link>
             </div>
           </Column>
 
-          {/* Map sublinks */}
           {/* <SubRoutes> */}
-            {sublinks.map((column, index) => (
-              <Column key={index}>
-                <Title>{column.title}</Title>
-                <SublinkList>
-                  {column.links.map((link, index) => (
-                    <Sublink key={index}>
-                      <SublinkAnchor href={link.path}>
-                        {link.name}
-                      </SublinkAnchor>
-                    </Sublink>
-                  ))}
-                </SublinkList>
-              </Column>
-            ))}
+          {sublinks.map((column, index) => (
+            <Column key={index}>
+              <Title>{column.title}</Title>
+              <SublinkList>
+                {column.links.map((link, index) => (
+                  <Sublink key={index}>
+                    <SublinkAnchor href={link.path}>{link.name}</SublinkAnchor>
+                  </Sublink>
+                ))}
+              </SublinkList>
+            </Column>
+          ))}
           {/* </SubRoutes> */}
         </FooterGrid>
 

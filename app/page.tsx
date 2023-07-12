@@ -1,3 +1,4 @@
+"use client";
 import HeroContainer from "@/component/shared/HeroContainer";
 import {
   Container,
@@ -21,16 +22,46 @@ import Image from "next/image";
 import { assets } from "@/public/assets";
 import Accordion from "@/component/ui/accordion/Accordion";
 import NewsletterForm from "@/component/NewsletterForm";
+import { motion } from "framer-motion";
+
+const ContainerVariant = {
+  hidden: {
+    x: "-100",
+    opacity: 0,
+  },
+  show: {
+    x: 0,
+    opacity: 1,
+    transition: [0.3, 0.4, 0.9, 0.2],
+  },
+};
+
+const contentVariant = {
+  hidden: {
+    x: "-100",
+    opacity: 0,
+  },
+  show: {
+    x: 0,
+    opacity: 1,
+    transition: [0.3, 0.4, 0.9, 0.2],
+  },
+};
 
 export default function Home() {
   return (
     <Container>
       <HeroContainer bg="primary-20">
-        <div className="hero__text">
+        <motion.div
+          className="hero__text"
+          variants={ContainerVariant}
+          initial="hidden"
+          animate="show"
+        >
           <div className="title">
             Break free from mundane tasks that drains your time and energy
           </div>
-          <p>
+          <p className="subtitle">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora
             animi quo totam, in voluptatem corporis esse illo quas ad repellat
             quisquam repellendus optio harum ea eligendi quae sapiente commodi.
@@ -51,7 +82,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         <div className="hero__image"></div>
       </HeroContainer>
@@ -108,22 +139,21 @@ export default function Home() {
             daily routine and let you focus on what truly matters.
           </WhyChooseUsContent>
           <Button size="large" color="primary">
-              Get Started
-            </Button>
+            Get Started
+          </Button>
         </WhyChooseUsText>
       </WhyChooseUsSection>
 
       <FaqSection>
         <div className="container">
-          <NewsletterForm/>
+          <NewsletterForm />
           <FaqAccordionList>
             {accordionData.map((item, index) => (
-            <div className="accordion" key={index}>
-                 <Accordion title={item.title} content={item.content} />
-            </div>
-       
-      ))}
-        </FaqAccordionList>
+              <div className="accordion" key={index}>
+                <Accordion title={item.title} content={item.content} />
+              </div>
+            ))}
+          </FaqAccordionList>
         </div>
       </FaqSection>
     </Container>

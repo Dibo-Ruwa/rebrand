@@ -18,6 +18,7 @@ const Container = styled.div<{ background: string }>`
   @media screen and (max-width: 900px) {
     flex-direction: column;
     gap: 30px;
+ 
   }
 
   .hero__text {
