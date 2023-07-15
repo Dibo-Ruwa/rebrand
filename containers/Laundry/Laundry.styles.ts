@@ -187,6 +187,7 @@ export const PlansSection = styled.div`
       align-items: flex-start;
       gap: 10px;
       height: auto;
+      color: var(--content);
 
       .icon {
         width: 30px;

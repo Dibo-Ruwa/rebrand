@@ -119,6 +119,11 @@ export const SubscriptionCard = styled.div`
   border-radius: 15px;
   padding: 20px;
   background: #fff;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+
+  
   .image {
     width: 60px;
     height: 60px;
@@ -137,6 +142,29 @@ export const SubscriptionCard = styled.div`
   p {
     font-size: 16px;
     margin: 10px 0 20px;
+    color: var(--content);
+  }
+
+  .features {
+    list-style: none;
+    display: grid;
+    grid-gap: 10px;
+    margin: 20px 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--content);
+      
+      .dot {
+      width: 10px;
+      height: 10px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+    }
+   
   }
 
   .cta {
@@ -155,6 +183,10 @@ export const SubscriptionCard = styled.div`
         display: block;
       }
     }
+  }
+
+  button {
+    margin-top: auto;
   }
 
   @media screen and (max-width: 768px) {

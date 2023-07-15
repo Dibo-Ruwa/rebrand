@@ -19,8 +19,8 @@ export const NavbarContainer = styled.div<{ isScrolled: boolean }>`
     isScrolled &&
     `  
     backdrop-filter: blur(20px);
-    background: rgba(255, 255, 255, 0.663);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.257);
+    background: rgb(255, 255, 255);
+    border-bottom: 1px solid var(--primary-20);
     height: 10vh;
     `}
 `;
@@ -89,6 +89,8 @@ export const MenuList = styled(motion.ul)`
   }
   @media (max-width: 640px) {
     display: none;
+
+    .dropdown 
   }
 `;
 

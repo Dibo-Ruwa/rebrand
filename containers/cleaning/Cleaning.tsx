@@ -18,57 +18,7 @@ import WhatYouGetCard from "@/component/WhatYouGetCard";
 import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import MoreServices from "@/component/shared/MoreServices";
-
-const items = [
-  {
-    icon: assets.peopleIcon,
-    description: "highly experienced cleaning team",
-  },
-  {
-    icon: assets.sprayIcon,
-    description: "All equipment and chemicals provided",
-  },
-  {
-    icon: assets.shieldIcon,
-    description: "Insured services against damage.",
-  },
-  {
-    icon: assets.messageIcon,
-    description: "Unlimited, responsive customer service",
-  },
-];
-
-const subscriptionPlans = [
-  {
-    image: "/path/to/standart-image.png",
-    title: "Standard Plan",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    cta: {
-      label: "Subscribe Now",
-      path: "/subscribe/standard",
-    },
-  },
-  {
-    image: "/path/to/deep-image.png",
-    title: "Deep Plan",
-    content:
-      "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    cta: {
-      label: "Subscribe Now",
-      path: "/subscribe/deep",
-    },
-  },
-  {
-    image: "/path/to/moving-image.png",
-    title: "Moving Plan",
-    content:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    cta: {
-      label: "Subscribe Now",
-      path: "/subscribe/moving",
-    },
-  },
-];
+import { Wyg, subscriptionPlans } from "@/constants";
 
 const Cleaning = () => {
   return (
@@ -127,12 +77,9 @@ const Cleaning = () => {
         </div>
 
         <BenefitList>
-          {items.map((item, index) => (
+          {Wyg.map((item, index) => (
             <div className="card" key={index}>
-              <WhatYouGetCard
-                icon={item.icon}
-                description={item.description}
-              />
+              <WhatYouGetCard icon={item.icon} description={item.description} />
             </div>
           ))}
         </BenefitList>
@@ -146,6 +93,15 @@ const Cleaning = () => {
                 <div className="image"> {plan.image} </div>
                 <h3 className="title">{plan.title} </h3>
                 <p> {plan.content}</p>
+                <ul className="features">
+                  {plan?.features &&
+                    plan?.features.map((feature, index) => (
+                      <li key={index}>
+                        <div className="dot" />
+                        {feature}
+                      </li>
+                    ))}
+                </ul>
                 <Link href={plan.cta.path} className="cta">
                   <span> {plan.cta.label}</span>
 
@@ -156,10 +112,19 @@ const Cleaning = () => {
               </SubscriptionCard>
             </div>
           ))}
+          <SubscriptionCard>
+            <div className="image"> .. </div>
+            <h3 className="title">Moving </h3>
+            <p> Contact us today to make it the easiest move of your life.</p>
+
+            <Button size="large" color="primary">
+              Contact Us
+            </Button>
+          </SubscriptionCard>
         </SubscriptionList>
       </SubscriptionSection>
 
-      <MoreServices/>
+      <MoreServices />
     </Container>
   );
 };

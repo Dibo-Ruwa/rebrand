@@ -73,7 +73,7 @@ export const routes: Route[] = [
         subroutes: [
           { name: "Laundry", path: "/laundry", icon: assets.soap },
           { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
-          { name: "Food", path: "/food", icon: assets.food }
+          { name: "Food", path: "/food", icon: assets.food },
         ],
       },
       {
@@ -128,10 +128,10 @@ export const HWW = [
 export const services = [
   {
     title: "Home Cleaning",
-    category: 'cleaning',
+    category: "cleaning",
     image: assets.broom,
-    color: 'primary',
-    bg: 'primary-20',
+    color: "primary",
+    bg: "primary-20",
     content:
       "Fresh and on schedule Delight in chef-cooked meals delivered to your doorstep.",
     cta: {
@@ -141,7 +141,7 @@ export const services = [
   },
   {
     title: "Laundry",
-    category: 'laundry',
+    category: "laundry",
     image: assets.soap,
     color: "color2",
     bg: "color2-20",
@@ -154,7 +154,7 @@ export const services = [
   },
   {
     title: "Food",
-    category: 'food',
+    category: "food",
     image: assets.food,
     color: "color3",
     bg: "color3-20",
@@ -167,19 +167,18 @@ export const services = [
   },
   {
     title: "Training",
-    category: 'training',
+    category: "training",
     image: assets.chefHat,
     color: "color4",
     bg: "color4-20",
     content:
       "Fresh and on schedule Delight in chef-cooked meals delivered to your doorstep.",
-   cta: {
+    cta: {
       label: "Order Now",
       path: "/trainning",
     },
   },
 ];
-
 
 export const accordionData = [
   {
@@ -203,7 +202,6 @@ export const sublinks = [
     links: [
       { name: "About Us", path: "/sublink1" },
       { name: "Pricing", path: "/sublink2" },
-    
     ],
   },
   {
@@ -223,4 +221,62 @@ export const sublinks = [
       { name: "Terma & Condition", path: "/sublink9" },
     ],
   },
+];
+
+export const Wyg = [
+  {
+    icon: assets.peopleIcon,
+    description: "highly experienced cleaning team",
+  },
+  {
+    icon: assets.sprayIcon,
+    description: "All equipment and chemicals provided",
+  },
+  {
+    icon: assets.shieldIcon,
+    description: "Insured services against damage.",
+  },
+  {
+    icon: assets.messageIcon,
+    description: "Unlimited, responsive customer service",
+  },
+];
+
+export const subscriptionPlans = [
+  {
+    image: "/path/to/standart-image.png",
+    title: "Standard Plan",
+    content: "Impress your guest and experience the joys of living in a clean home.",
+    features: [
+      "1 Bedrooms",
+      "1 Living Rooms/ Dining Areas",
+      "1 toilet/bathrooms",
+      "1 kitchen",
+      "1 Study/Store",
+      "1 Outdoor/Balcony",
+    ],
+    cta: {
+      label: "Subscribe Now",
+      path: "/subscribe/standard",
+    },
+  },
+  {
+    image: "/path/to/deep-image.png",
+    title: "Deep Plan",
+    content:
+      "Get a top-to-bottom clean for your whole home.",
+      features: [
+        "3 Bedrooms",
+        "2 Living Rooms/ Dining Areas",
+        "3 toilet/bathrooms",
+        "2 kitchen",
+        "2 Study/Store",
+        "2 Outdoor/Balcony",
+      ],
+    cta: {
+      label: "Subscribe Now",
+      path: "/subscribe/deep",
+    },
+  },
+ 
 ];

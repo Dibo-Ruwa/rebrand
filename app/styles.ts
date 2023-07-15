@@ -13,6 +13,7 @@ export const GlobalStyles = createGlobalStyle`
   --color2: #FFD335;
   --color3: #925DEA;
   --color4: #53CEF4;
+  --content: #787878;
   --primary-20: hsla(119, 68%, 56%, 0.2);
   --color2-20: hsla(47, 100%, 60%, 0.2);
   --color3-20: hsla(263, 77%, 64%, 0.2);
