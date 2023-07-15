@@ -23,7 +23,7 @@ export const Container = styled.div`
 `;
 
 export const LoadingImg = styled(Image)`
-width: 50px;
-height: 50px;
+  width: 50px;
+  height: 50px;
   animation: ${spinAnimation} 2s linear infinite;
 `;
