@@ -16,8 +16,11 @@ export const Title = styled.h3`
 
 export const ProductListing = styled.ul`
 margin-top: 30px;
-display: flex;
+/* display: flex;
 gap: 20px;
-flex-wrap: wrap;
+flex-wrap: wrap; */
 list-style: none;
+
+display: grid;
+grid-template-columns: repeat( auto-fit, minmax(150px, 1fr) );
 `;

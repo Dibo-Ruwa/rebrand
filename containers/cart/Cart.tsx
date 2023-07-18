@@ -11,6 +11,10 @@ const CartPageContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
+  @media screen and (max-width: 768px) {
+          flex-direction: column;
+  }
+
   .cart__items, .payment {
     flex: 1;
   }

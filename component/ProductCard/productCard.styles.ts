@@ -44,6 +44,10 @@ export const ImageContainer = styled.div`
   overflow: hidden;
   transition: all 0.3s ease;
 
+  @media screen and (max-width: 768px) {
+          width: 100%;
+  }
+
   &:hover {
     ${CartOverlay} {
       display: flex;
