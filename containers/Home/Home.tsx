@@ -4,6 +4,7 @@ import {
   Container,
   FaqAccordionList,
   FaqSection,
+  FeedBackSection,
   ServiceList,
   ServicesSection,
   WhyChooseUsColored,
@@ -18,11 +19,13 @@ import Button from "@/component/ui/button/Button";
 import { FiPhoneCall } from "react-icons/fi";
 import { accordionData, services } from "@/constants";
 import ServiceCard from "@/component/serviceCard/ServiceCard";
-import Image from "next/image";
+// import Image from "next/image";
 import { assets } from "@/public/assets";
 import Accordion from "@/component/ui/accordion/Accordion";
 import NewsletterForm from "@/component/NewsletterForm";
 import { motion } from "framer-motion";
+import FeedbackCarousel from "@/component/feedBacksCarousel/FeedBacks";
+import Image from "next/image";
 
 const ContainerVariant = {
   hidden: {
@@ -143,6 +146,28 @@ export default function Home() {
           </Button>
         </WhyChooseUsText>
       </WhyChooseUsSection>
+
+      {/* feedbacksection */}
+
+      <FeedBackSection>
+        <h3 className="title">
+          What our Customers <br /> Say about us
+        </h3>
+
+        <div className="content">
+          <div className="image">
+            <Image
+              src={assets.testimonial}
+             
+              alt="...."
+            />
+          </div>
+
+          <div className="carousel">
+            <FeedbackCarousel />
+          </div>
+        </div>
+      </FeedBackSection>
 
       <FaqSection>
         <div className="container">

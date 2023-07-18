@@ -7,12 +7,14 @@ import { motion } from "framer-motion";
 type ButtonProps = {
   color?: string;
   size?: "small" | "medium" | "large";
-
+  onChange?: () => void;
   children: React.ReactNode;
 };
 
-
-const ButtonContainer = styled(motion.button)<{color?: string,size?: "small" | "medium" | "large"}>`
+const ButtonContainer = styled(motion.button)<{
+  color?: string;
+  size?: "small" | "medium" | "large";
+}>`
   padding: ${(props) => getSize(props.size)};
   background-color: ${(props) => `var(--${props.color})` || "blue"};
   color: white;
@@ -21,7 +23,6 @@ const ButtonContainer = styled(motion.button)<{color?: string,size?: "small" | "
   font-size: 1rem;
   cursor: pointer;
   outline: none;
-  
 
   @media (max-width: 768px) {
     font-size: 0.875rem;
@@ -45,17 +46,12 @@ const getSize = (size?: "small" | "medium" | "large"): string => {
   }
 };
 
-const Button: React.FC<ButtonProps> = ({
-  color,
-  size,
- 
-  children,
-}) => {
+const Button: React.FC<ButtonProps> = ({ color, size, onChange, children }) => {
   return (
     <ButtonContainer
       color={color}
       size={size}
-    
+      onClick={onChange}
       whileTap={{ scale: 0.95 }}
     >
       {children}

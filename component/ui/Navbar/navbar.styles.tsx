@@ -11,6 +11,7 @@ export const NavbarContainer = styled.div<{ isScrolled: boolean }>`
   height: 15vh;
   padding: 0 8%;
   position: fixed;
+  gap: 20px;
   left: 0;
   top: 0;
   z-index: 50;
@@ -43,6 +44,7 @@ export const Toggle = styled.div`
 
   @media screen and (max-width: 768px) {
     display: block;
+    margin-left: auto;
   }
 `;
 
@@ -52,6 +54,8 @@ export const MenuList = styled(motion.ul)`
   align-items: center;
 
   list-style: none;
+  margin-left: auto;
+  
 
   .menu {
     display: flex;
@@ -87,10 +91,10 @@ export const MenuList = styled(motion.ul)`
       }
     }
   }
-  @media (max-width: 640px) {
+  @media screen and (max-width: 768px) {
     display: none;
 
-    .dropdown 
+  
   }
 `;
 

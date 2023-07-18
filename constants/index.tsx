@@ -26,6 +26,16 @@ export const routes: Route[] = [
     name: "Food",
     icon: "🍔",
     paths: [
+      {
+        name: "Services",
+        path: "/services",
+        icon: "🛠️",
+        subroutes: [
+          { name: "Laundry", path: "/laundry", icon: assets.soap },
+          { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
+          { name: "Food", path: "/food", icon: assets.food },
+        ],
+      },
       { name: "Restaurants", path: "/restaurants", icon: "🏪" },
       { name: "Recipes", path: "/recipes", icon: "📚" },
       { name: "Delivery", path: "/delivery", icon: "🚚" },
@@ -36,6 +46,16 @@ export const routes: Route[] = [
     name: "Laundry",
     icon: "🧺",
     paths: [
+      {
+        name: "Services",
+        path: "/services",
+        icon: "🛠️",
+        subroutes: [
+          { name: "Laundry", path: "/laundry", icon: assets.soap },
+          { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
+          { name: "Food", path: "/food", icon: assets.food },
+        ],
+      },
       { name: "Schedule", path: "/schedule", icon: "📅" },
       { name: "Pricing", path: "/pricing", icon: "💰" },
       { name: "Services", path: "/services", icon: "👚" },
@@ -46,6 +66,16 @@ export const routes: Route[] = [
     name: "Logged In User",
     icon: "👤",
     paths: [
+      {
+        name: "Services",
+        path: "/services",
+        icon: "🛠️",
+        subroutes: [
+          { name: "Laundry", path: "/laundry", icon: assets.soap },
+          { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
+          { name: "Food", path: "/food", icon: assets.food },
+        ],
+      },
       { name: "Profile", path: "/profile", icon: "👨‍💼" },
       { name: "Settings", path: "/settings", icon: "⚙️" },
       { name: "Orders", path: "/orders", icon: "📦" },
@@ -56,7 +86,16 @@ export const routes: Route[] = [
     name: "Cleaning",
     icon: "🧹",
     paths: [
-      { name: "Services", path: "/services", icon: "🧽" },
+      {
+        name: "Services",
+        path: "/services",
+        icon: "🛠️",
+        subroutes: [
+          { name: "Laundry", path: "/laundry", icon: assets.soap },
+          { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
+          { name: "Food", path: "/food", icon: assets.food },
+        ],
+      },
       { name: "Pricing", path: "/pricing", icon: "💰" },
       { name: "Schedule", path: "/schedule", icon: "📅" },
     ],
@@ -280,3 +319,27 @@ export const subscriptionPlans = [
   },
  
 ];
+
+
+export const DashboradServices = [
+  {
+    title: 'Order Food',
+    image: assets.food,
+    url: '/food'
+  },
+  {
+    title: 'Schedule Cleaning',
+    image: assets.broom,
+    url: '/cleaning'
+  },
+  {
+    title: 'Laundry Pickup',
+    image: assets.soap,
+    url: '/laundry'
+  },
+  {
+    title: 'Order History',
+    image: assets.food,
+    url: '/'
+  },
+]

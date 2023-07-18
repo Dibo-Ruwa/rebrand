@@ -48,7 +48,7 @@ export const ServiceCardTitle = styled.h3`
 
 export const ServiceCardContent = styled.p`
   font-size: 18px;
-  color: #ccc;
+  color: var(--content);
 `;
 
 export const ServiceCardCTA = styled(Link)<{

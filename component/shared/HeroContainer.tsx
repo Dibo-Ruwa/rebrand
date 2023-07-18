@@ -27,6 +27,8 @@ const Container = styled.div<{ background: string }>`
     @media screen and (max-width: 900px) {
       width: 100%;
       margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
     }
 
     .title {

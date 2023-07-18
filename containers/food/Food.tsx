@@ -16,7 +16,7 @@ import Button from "@/component/ui/button/Button";
 import MoreServices from "@/component/shared/MoreServices";
 import { assets } from "@/public/assets";
 import { HWW } from "@/constants";
-
+import ProductList from "@/component/ProductList/ProductList";
 
 const Food = () => {
   return (
@@ -76,10 +76,7 @@ const Food = () => {
       </HWWSecetion>
 
       <MenuSection>
-        <MenuSection>
-          <MenuTitle>Current Menu</MenuTitle>
-          <MenuContainer></MenuContainer>
-        </MenuSection>
+        <ProductList />
       </MenuSection>
 
       <MoreServices />

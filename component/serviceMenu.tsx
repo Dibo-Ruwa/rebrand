@@ -2,15 +2,15 @@ import { CaretDownIcon } from "@radix-ui/react-icons";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
 interface Routes {
-  trigger?: string;
+  trigger?: string | ReactNode;
   toggle?: () => void;
   routes?: {
     name: string;
     path: string;
-    icon: string;
+    icon?: string;
   }[];
 }
 
@@ -45,8 +45,8 @@ const ServiceMenu: FC<Routes> = ({ trigger, routes, toggle }) => {
             className="data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight"
             style={{
               position: "absolute",
-              top: "26px",
-              left: 0,
+              top: "110%",
+              right: 0,
               borderRadius: "12px",
               background: "#fff",
               padding: "15px",
@@ -54,21 +54,31 @@ const ServiceMenu: FC<Routes> = ({ trigger, routes, toggle }) => {
               minWidth: "200px",
               display: "grid",
               gridGap: "20px",
-            
             }}
           >
             {routes &&
               routes.map((link, index) => (
                 <li key={index} onClick={toggle}>
-                  <Link className="link dropdown" href={link?.path}>
-                    <span className="icon">
-                      <Image
-                        src={link?.icon}
-                        width={17}
-                        height={17}
-                        alt="..."
-                      />
-                    </span>
+                  <Link
+                    className="link dropdown"
+                    href={link?.path}
+                    style={{
+                      textDecoration: "none",
+                      display: "flex",
+                      gap: "10px",
+                    }}
+                  >
+                    {link?.icon && (
+                      <span className="icon">
+                        <Image
+                          src={link?.icon}
+                          width={17}
+                          height={17}
+                          alt="..."
+                        />
+                      </span>
+                    )}
+
                     <span>{link.name}</span>
                   </Link>
                 </li>

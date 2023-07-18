@@ -20,6 +20,8 @@ import {
   NavbarContainer,
   Toggle,
 } from "./navbar.styles";
+import UserDropdown from "@/component/userDropdown/UserDropdown";
+import { FiShoppingCart } from "react-icons/fi";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -51,6 +53,8 @@ const Navbar = () => {
     trimedPath === "" ? "main" : trimedPath
   );
 
+  const user = true;
+
   return (
     <NavbarContainer isScrolled={isScrolled}>
       <span className="logo">
@@ -78,6 +82,11 @@ const Navbar = () => {
               )}
             </li>
           ))}
+          {user && (
+            <Link href="/cart">
+              <FiShoppingCart />
+            </Link>
+          )}
         </MenuList>
       </MenuList>
 
@@ -127,6 +136,8 @@ const Navbar = () => {
           </>
         )}
       </AnimatePresence>
+
+      <UserDropdown />
     </NavbarContainer>
   );
 };

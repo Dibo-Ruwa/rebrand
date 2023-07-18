@@ -14,7 +14,6 @@ export const ServicesSection = styled.div`
       font-size: 38px;
       font-weight: bold;
       margin-bottom: 10px;
-    
     }
 
     .subtitle {
@@ -140,6 +139,49 @@ export const WhyChooseUsContent = styled.p`
 
   @media screen and (max-width: 768px) {
     font-size: 16px;
+  }
+`;
+export const FeedBackSection = styled.div`
+  padding: 5% 8%;
+  .title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10vh;
+    @media screen and (max-width: 900px) {
+      font-size: 30px;
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+
+    .image {
+      flex: 1;
+
+      img {
+        width: 90%;
+        height: 100%;
+        @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+      }
+    }
+
+    .carousel {
+      flex: 1;
+
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width: 900px) {
+      flex-direction: column;
+      gap: 30px;
+    }
   }
 `;
 
