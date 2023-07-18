@@ -1,144 +1,85 @@
-'use client'
-import styled from "styled-components";
 import { motion } from "framer-motion";
-import Slider from "react-slick";
-import bg from "../../../assets/feedbackBg.png";
+import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
   position: relative;
-  padding: 5%;
-  height: 90vh;
-  background: url(${bg});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 `;
 
-export const Header = styled.div`
+export const CarouselContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 40%;
-  margin-bottom: 20px;
+  position: relative;
+  min-width: 100%;
+  height: 300px;
+  /* min-width: 600px; */
+  overflow: hidden;
   @media screen and (max-width: 900px) {
-    width: 60%;
+    min-height: 400px;
   }
 `;
 
-export const Title = styled.h2`
-  font-size: 24px;
-  font-weight: 400;
-  color: var(--primary);
-  margin-bottom: 10px;
-  @media screen and (max-width: 900px) {
-    font-size: 15px;
-  }
+export const Carousel = styled(motion.div)`
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 `;
-export const SubTitle = styled.h2`
-  font-size: 40px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  @media screen and (max-width: 900px) {
-    font-size: 20px;
-  }
+
+export const Slide = styled(motion.div)`
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
 `;
 
 export const Navigation = styled.div`
   display: flex;
-`;
-
-export const NavButton = styled.button`
-  border: none;
-  background-color: transparent;
-  font-size: 24px;
-  color: #555;
-  margin: 0 10px;
-  cursor: pointer;
-  outline: none;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.025);
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: #fff;
+  justify-content: center;
+  margin-top: 16px;
   position: absolute;
-  top: -150px;
-  right: 5%;
-
-  &.left {
-    right: 15%;
-  }
-
-  @media screen and (max-width: 900px) {
-    width: 34px;
-    height: 34px;
-    font-size: 15px;
-    top: -80px;
-
-    &.left {
-      right: 15%;
-    }
-
-    &.right {
-      right: 0;
-    }
-  }
-
-  &:disabled {
-    color: #ccc;
-    cursor: not-allowed;
-  }
+  top: 0;
+  right: 0;
 `;
 
-export const SliderWrapper = styled.div`
- 
-`;
-
-
-export const Carousel = styled(Slider)`
-  width: 100%;
-  position: relative;
-
-   .slick-slide > div {
-    margin: 0 20px;
-  }
- /* .slick-list {
-    margin: 0 -10px;
-  } */
-`;
-
-export const Item = styled(motion.div)`
-  padding: 30px;
-
-  background: #fff;
-  border-radius: 20px;
-
-  img {
-    width: 50px;
-    margin-bottom: 20px;
-  }
-
-  
-  @media screen and (max-width: 900px) {
-        width: 300px;
-}
-`;
-
-export const ItemContent = styled.div`
+export const Button = styled.button`
+  margin: 0 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  background-color: var(--primary);
+  color: white;
+  cursor: pointer;
 `;
 
-export const ItemAuthor = styled.p`
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--primary);
-  letter-spacing: 1px;
+export const Pagination = styled.ul`
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+  position: absolute;
+  top: 3%;
+  left: 0;
 `;
 
-export const ItemText = styled.p`
-  font-size: 16px;
-  color: var(--sub-text);
-  margin: 0;
+export const PaginationItem = styled.li<{ isActive: boolean }>`
+  margin: 0 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: ${({ isActive }) => (isActive ? "var(--primary)" : "gray")};
+  cursor: pointer;
 `;
