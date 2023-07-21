@@ -22,9 +22,13 @@ import {
 } from "./navbar.styles";
 import UserDropdown from "@/component/userDropdown/UserDropdown";
 import { FiShoppingCart } from "react-icons/fi";
+import { NodeNextRequest } from "next/dist/server/base-http/node";
+import { useCart } from "@/hooks/useCart";
 
 const Navbar = () => {
   const pathname = usePathname();
+  
+  const { cartData, totalQuantity } = useCart();
   const [toggle, setToggle] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -82,14 +86,19 @@ const Navbar = () => {
               )}
             </li>
           ))}
-          {user && (
-            <Link href="/cart">
-              <FiShoppingCart />
-            </Link>
-          )}
         </MenuList>
       </MenuList>
-
+      {user &&  (
+        <div className="cart">
+          <div className="badge" >{ totalQuantity}</div>
+          <Link
+            href="/cart"
+            style={{ textDecoration: "none", color: "var(--primary)" }}
+          >
+            <FiShoppingCart />
+          </Link>
+        </div>
+      )}
       <AnimatePresence>
         {toggle && (
           <>

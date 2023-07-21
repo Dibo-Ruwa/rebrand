@@ -24,6 +24,32 @@ export const NavbarContainer = styled.div<{ isScrolled: boolean }>`
     border-bottom: 1px solid var(--primary-20);
     height: 10vh;
     `}
+
+  .cart {
+  
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    position: relative;
+
+    .badge {
+      width: 10px;
+      height: 10px;
+      background: var(--color2);
+      position: absolute;
+      border-radius: 50%;
+      top: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 7px;
+    }
+  }
 `;
 
 export const LogoImage = styled(Image)`
@@ -55,7 +81,6 @@ export const MenuList = styled(motion.ul)`
 
   list-style: none;
   margin-left: auto;
-  
 
   .menu {
     display: flex;
@@ -93,8 +118,6 @@ export const MenuList = styled(motion.ul)`
   }
   @media screen and (max-width: 768px) {
     display: none;
-
-  
   }
 `;
 

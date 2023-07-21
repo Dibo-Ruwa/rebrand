@@ -115,12 +115,12 @@ const ProductList = () => {
   const handleCategorySelection = useCallback(
     (category: string) => {
       setSelectedCategory(category);
-      setProductsToShow(initialProductsToShow); // Reset the number of products to display when a category is selected
+      setProductsToShow(initialProductsToShow);
     },
     [initialProductsToShow]
   );
 
-  // Filter products based on the selected category
+ 
   const filteredProducts = selectedCategory
     ? products.filter((product) => product.category === selectedCategory)
     : products;

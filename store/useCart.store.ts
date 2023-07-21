@@ -57,14 +57,14 @@ const items: CartItem[] = [
 
 type CartState = {
   cartItems: CartItem[];
-  addToCart: (item: CartItem) => void;
+  addToCart: (item: Product) => void;
   removeFromCart: (itemId: number) => void;
   updateQuantity: (id: number, action: "increase" | "decrease") => void;
   clearCart: () => void;
 };
 
 const useCartStore = create<CartState>((set) => ({
-  cartItems: items,
+  cartItems: [],
   addToCart: (productObj) =>
     set((state) => addCartItem(state.cartItems, productObj)),
   removeFromCart: (id) => set((state) => removeCartItem(state.cartItems, id)),
@@ -74,9 +74,10 @@ const useCartStore = create<CartState>((set) => ({
 }));
 
 /* ===== Cart Store Util Functions ===== */
-function addCartItem(state: CartItem[], bookObj: CartItem) {
-  const cartArray = state.filter((item) => item.id !== bookObj.id);
-  const newItem = { ...bookObj, timestamp: Date.now() };
+function addCartItem(state: CartItem[], product: Product) {
+  const cartArray = state.filter((item) => item.id !== product.id);
+
+  const newItem = { ...product, quantity: 1, total: product.price };
   return { cartItems: [...cartArray, newItem] };
 }
 
