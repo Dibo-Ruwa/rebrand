@@ -20,12 +20,11 @@ export const CounterBtn = styled.button`
   border-radius: 5px;
   background: var(--primary-20);
   color: #fff;
-  opacity: 0.3;
+  border: 1px solid var(--primary);
   transition: all 0.5s ease;
 
   &:hover {
     background: var(--primary);
-    opacity: 1;
   }
 `;
 export const CounterValue = styled.div``;

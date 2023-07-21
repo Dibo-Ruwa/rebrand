@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Counter from "../counter/Counter";
 import Image from "next/image";
 import { TrashIcon } from "@radix-ui/react-icons";
+import useCartStore from "@/store/useCart.store";
 
 const CartItemContainer = styled.div`
   display: flex;
@@ -62,9 +63,9 @@ const DelButton = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  background: rgba(255, 0, 0, 0.437);
+  background: rgba(255, 0, 0, 0.93);
   color: #fff;
-  opacity: 0.3;
+  opacity: 0.6;
   transition: all 0.5s ease;
 
   &:hover {
@@ -88,6 +89,7 @@ type CartItemProps = {
 };
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
+  const { cartItems, removeFromCart, updateQuantity } = useCartStore();
   const { title, price, quantity, total, imgUrl } = item;
   const handleQuantityChange = (value: number) => {};
 
@@ -104,9 +106,13 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           <ItemPrice> ${price}</ItemPrice>
         </div>
       </ItemInfo>
-      <Counter id="h" value={6} />
+      <Counter id={item.id} value={item.quantity} />
       <TotalPrice>Total: ${totalPrice}</TotalPrice>
-      <DelButton>
+      <DelButton
+        title="Remove"
+        type="button"
+        onClick={() => removeFromCart(item.id)}
+      >
         <TrashIcon />
       </DelButton>
     </CartItemContainer>

@@ -13,6 +13,7 @@ const Container = styled.div`
   border-radius: 20px;
   width: 100%;
   margin: 0 auto;
+  max-width: 600px;
 `;
 
 const BagCountSection = styled.div`
@@ -49,9 +50,10 @@ const CounterButton = styled.button`
   align-items: center;
   font-size: 35px;
   cursor: pointer;
+  transition: all .5s ease;
 
   &:hover {
-    background-color: ${({ theme }) => theme.primaryHoverColor};
+    background-color: var(--primary);
   }
 
   @media screen and (max-width: 768px) {
@@ -71,6 +73,7 @@ const PlanButton = styled.button<{ selected: boolean }>`
   font-size: 1rem;
   margin-right: 0.5rem;
   cursor: pointer;
+  transition: all .5s ease;
 
   @media screen and (max-width: 768px) {
     font-size: 0.6rem;
@@ -79,7 +82,7 @@ const PlanButton = styled.button<{ selected: boolean }>`
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.primaryHoverColor};
+    background-color: var(--primary);
   }
 `;
 

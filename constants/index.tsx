@@ -36,9 +36,6 @@ export const routes: Route[] = [
           { name: "Food", path: "/food", icon: assets.food },
         ],
       },
-      { name: "Restaurants", path: "/restaurants", icon: "🏪" },
-      { name: "Recipes", path: "/recipes", icon: "📚" },
-      { name: "Delivery", path: "/delivery", icon: "🚚" },
     ],
   },
   {
@@ -56,9 +53,6 @@ export const routes: Route[] = [
           { name: "Food", path: "/food", icon: assets.food },
         ],
       },
-      { name: "Schedule", path: "/schedule", icon: "📅" },
-      { name: "Pricing", path: "/pricing", icon: "💰" },
-      { name: "Services", path: "/services", icon: "👚" },
     ],
   },
   {
@@ -96,8 +90,6 @@ export const routes: Route[] = [
           { name: "Food", path: "/food", icon: assets.food },
         ],
       },
-      { name: "Pricing", path: "/pricing", icon: "💰" },
-      { name: "Schedule", path: "/schedule", icon: "📅" },
     ],
   },
   {
@@ -239,25 +231,25 @@ export const sublinks = [
   {
     title: "Company",
     links: [
-      { name: "About Us", path: "/sublink1" },
-      { name: "Pricing", path: "/sublink2" },
+      { name: "About Us", path: "/aboutUs" },
+      { name: "Pricing", path: "/" },
     ],
   },
   {
     title: "Services",
     links: [
-      { name: "Food", path: "/sublink4" },
-      { name: "Laundry", path: "/sublink5" },
-      { name: "Cleaning", path: "/sublink6" },
+      { name: "Food", path: "/food" },
+      { name: "Laundry", path: "/laundry" },
+      { name: "Cleaning", path: "/cleaning" },
     ],
   },
   {
     title: "Other",
     links: [
-      { name: "Blog", path: "/sublink7" },
-      { name: "Contact Us", path: "/sublink8" },
-      { name: "Privacy Policy", path: "/sublink8" },
-      { name: "Terma & Condition", path: "/sublink9" },
+      { name: "Blog", path: "/comingsoon" },
+      { name: "Contact Us", path: "/comingsoon" },
+      { name: "Privacy Policy", path: "/comingsoon" },
+      { name: "Terma & Condition", path: "/comingsoon" },
     ],
   },
 ];
@@ -285,7 +277,8 @@ export const subscriptionPlans = [
   {
     image: "/path/to/standart-image.png",
     title: "Standard Plan",
-    content: "Impress your guest and experience the joys of living in a clean home.",
+    content:
+      "Impress your guest and experience the joys of living in a clean home.",
     features: [
       "1 Bedrooms",
       "1 Living Rooms/ Dining Areas",
@@ -302,44 +295,41 @@ export const subscriptionPlans = [
   {
     image: "/path/to/deep-image.png",
     title: "Deep Plan",
-    content:
-      "Get a top-to-bottom clean for your whole home.",
-      features: [
-        "3 Bedrooms",
-        "2 Living Rooms/ Dining Areas",
-        "3 toilet/bathrooms",
-        "2 kitchen",
-        "2 Study/Store",
-        "2 Outdoor/Balcony",
-      ],
+    content: "Get a top-to-bottom clean for your whole home.",
+    features: [
+      "3 Bedrooms",
+      "2 Living Rooms/ Dining Areas",
+      "3 toilet/bathrooms",
+      "2 kitchen",
+      "2 Study/Store",
+      "2 Outdoor/Balcony",
+    ],
     cta: {
       label: "Subscribe Now",
       path: "/subscribe/deep",
     },
   },
- 
 ];
-
 
 export const DashboradServices = [
   {
-    title: 'Order Food',
+    title: "Order Food",
     image: assets.food,
-    url: '/food'
+    url: "/food",
   },
   {
-    title: 'Schedule Cleaning',
+    title: "Schedule Cleaning",
     image: assets.broom,
-    url: '/cleaning'
+    url: "/cleaning",
   },
   {
-    title: 'Laundry Pickup',
+    title: "Laundry Pickup",
     image: assets.soap,
-    url: '/laundry'
+    url: "/laundry",
   },
   {
-    title: 'Order History',
+    title: "Order History",
     image: assets.food,
-    url: '/'
+    url: "/",
   },
-]
+];

@@ -1,32 +1,37 @@
 "use client";
+import EmptyCart from "@/component/EmptyCart";
+import Payment from "@/component/Payment/Payment";
 // CartPage.tsx
 
 import CartItem from "@/component/cartItem/CartItem";
-import useCartStore from "@/states/useCart.store";
+import Loader from "@/component/ui/loader/Loader";
+import { useCart } from "@/hooks/useCart";
+import { useMounted } from "@/hooks/useMounted";
+import useCartStore from "@/store/useCart.store";
 import React from "react";
 import styled from "styled-components";
 
 const CartPageContainer = styled.div`
-
   display: flex;
   justify-content: space-between;
+  gap: 30px;
 
   @media screen and (max-width: 768px) {
-          flex-direction: column;
+    flex-direction: column;
   }
 
-  .cart__items, .payment {
+  .cart__items,
+  .payment {
     flex: 1;
   }
   padding: 15vh 8% 5%;
-
 `;
 
 const CartItemsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin: 30px 0;
+  /* margin: 30px 0; */
 `;
 
 const ClearCartButton = styled.button`
@@ -40,43 +45,45 @@ const ClearCartButton = styled.button`
   color: #fff;
 `;
 
-const PayButton = styled.button`
-  padding: 12px 25px;
-  border: none;
-  background-color: lightgray;
-  cursor: pointer;
-  outline: none;
-  border-radius: 5px;
-  background: var(--primary);
-  color: #fff;
-  cursor: pointer;
-`;
-
 const Cart: React.FC = () => {
-  const cartItems = useCartStore((state) => state.cartItems);
-  const clearCart = useCartStore((state) => state.clearCart);
+  const { clearCart } = useCartStore();
 
+  const { cartData } = useCart();
+
+  const mounted = useMounted();
   const handlePay = () => {
     // Perform payment logic here
   };
 
   return (
     <CartPageContainer>
-      <div className="cart__items">
-        <h1>Cart</h1>
-        <CartItemsContainer>
-          {cartItems.map((item) => (
-            <CartItem key={item.id} item={item} />
-          ))}
-        </CartItemsContainer>
-        <div className="btn">
-          <ClearCartButton onClick={clearCart}>Clear Cart</ClearCartButton>
-          {/* <PayButton onClick={handlePay}>Pay</PayButton> */}
-        </div>
-                      </div>
-                      <div className="payment">
-                                
-                      </div>
+      {mounted ? (
+        cartData.length > 0 ? (
+          <>
+            <div className="cart__items">
+              <CartItemsContainer>
+                {cartData?.map((item: any) => (
+                  <div key={item.id}>
+                    <CartItem item={item} />
+                  </div>
+                ))}
+              </CartItemsContainer>
+              <div className="btn">
+                <ClearCartButton onClick={clearCart}>
+                  Clear Cart
+                </ClearCartButton>
+              </div>
+            </div>
+            <div className="payment">
+              <Payment />
+            </div>
+          </>
+        ) : (
+          <EmptyCart />
+        )
+      ) : (
+        <Loader />
+      )}
     </CartPageContainer>
   );
 };

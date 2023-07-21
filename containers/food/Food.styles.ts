@@ -46,9 +46,9 @@ export const HWWSecetion = styled.div`
   }
 `;
 export const HWWList = styled.div`
-  display: flex;
+  display: grid;
   flex-wrap: wrap;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-gap: 30px;
   justify-content: space-between;
 
@@ -58,14 +58,13 @@ export const HWWList = styled.div`
  
 `;
 export const HWWCard = styled.div`
-  width: 300px;
+  width: 100%;
+  /* max-width: 370px; */
   padding: 15px;
   border-radius: 10px;
   background: var(--primary-20);
 
-  @media screen and (max-width: 768px) {
-    width: 100%
-  }
+ 
 
   .image {
     width: 60px;
@@ -79,15 +78,36 @@ export const HWWCard = styled.div`
   }
 
   .title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+
+  p {
     font-size: 18px;
+    line-height: 130%;
+    color: #333;
+  }
+
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    .image {
+    width: 80px;
+    height: 80px;
+ 
+  }
+
+  .title {
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 12px;
   }
 
   p {
     font-size: 16px;
-    line-height: 130%;
-    color: #333;
+  
+  }
   }
 `;
 

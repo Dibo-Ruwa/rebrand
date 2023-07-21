@@ -13,6 +13,7 @@ import {
   ProductName,
   ProductPrice,
 } from "./productCard.styles";
+import useCartStore from "@/store/useCart.store";
 
 interface Product {
   id: number;
@@ -27,12 +28,13 @@ interface ProductCardProps {
 }
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
+  const { addToCart } = useCartStore();
   return (
     <Container>
       <ImageContainer>
         {/* <ProductImage src={product.imgUrl} alt="...." /> */}
         <CartOverlay>
-          <CartBtn>
+          <CartBtn onClick={() => addToCart(product)}>
             <HiShoppingBag />
           </CartBtn>
         </CartOverlay>

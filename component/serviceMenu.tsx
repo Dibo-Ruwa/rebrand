@@ -66,6 +66,7 @@ const ServiceMenu: FC<Routes> = ({ trigger, routes, toggle }) => {
                       textDecoration: "none",
                       display: "flex",
                       gap: "10px",
+                      color: "var(--content)"
                     }}
                   >
                     {link?.icon && (
