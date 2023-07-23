@@ -334,7 +334,7 @@ export const DashboradServices = [
   },
 ];
 
-export const AbousUsContent = [
+export const PrivacyContent = [
   {
     header: "Information We Collect",
     text: "",

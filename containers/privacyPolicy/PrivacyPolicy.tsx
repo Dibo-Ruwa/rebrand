@@ -9,7 +9,7 @@ import {
   SectionHeader,
   SectionText,
 } from "./privacyPolicy.styles";
-import { AbousUsContent } from "@/constants";
+import { PrivacyContent } from "@/constants";
 
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 
@@ -27,7 +27,7 @@ const PrivacyPolicy = () => {
         Privacy Policy.
       </SectionText>
 
-      {AbousUsContent.map((section, index) => (
+      {PrivacyContent.map((section, index) => (
         <Section key={index}>
           <SectionHeader>{section.header}</SectionHeader>
           {section.text && <SectionText>{section.text}</SectionText>}

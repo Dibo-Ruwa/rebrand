@@ -9,7 +9,7 @@ import {
   SectionHeader,
   SectionText,
 } from "./aboutus.styles";
-import { AbousUsContent } from "@/constants";
+// import { AbousUsContent } from "@/constants";
 import { Fragment } from "react";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 
@@ -26,7 +26,7 @@ const AboutUs = () => {
     <Container>
       <SectionHeader className="main">About Us</SectionHeader>
 
-      {AbousUsContent.map((section, index) => (
+      {/* {AbousUsContent.map((section, index) => (
         <Section key={index}>
           <SectionHeader>{section.header}</SectionHeader>
           <SectionText>{section.text}</SectionText>
@@ -44,7 +44,7 @@ const AboutUs = () => {
             </BulletList>
           )}
         </Section>
-      ))}
+      ))} */}
     </Container>
   );
 };
