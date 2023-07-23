@@ -4,20 +4,24 @@ import Image from "next/image";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 30px 20px;
+  padding: 20px 20px;
   background: var(--primary-20);
   border-radius: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  width: 100%;
+  /* width: 100%; */
   transition: all 0.3s ease;
 
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 1px 2px 2px rgba(76, 150, 132, 0.086);
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 `;
 export const Title = styled.h3`

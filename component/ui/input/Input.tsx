@@ -8,6 +8,7 @@ interface InputProps {
   name: string;
   type: string;
   id: string;
+  readOnly?: boolean;
   required?: boolean;
   value: string;
   placeHolder?: string;
@@ -19,6 +20,7 @@ interface InputProps {
 
 const InputContainer = styled.div`
   /* margin-bottom: 1rem; */
+  width: 100%;
 `;
 
 const Label = styled.label`
@@ -35,11 +37,16 @@ const InputWrapper = styled.div<{ className?: string }>`
 `;
 
 const StyledInput = styled.input`
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid var(--primary-20);
   outline: none;
   border-radius: 0.45rem;
   padding: 0.6rem;
   width: 100%;
+  transition: all 0.3s ease;
+
+  &:focus {
+    border: 1px solid var(--primary);
+  }
 `;
 
 const PasswordToggleButton = styled.button`
@@ -66,6 +73,7 @@ const Input: React.FC<InputProps> = ({
   required = false,
   value,
   onChange,
+  readOnly = false,
   placeHolder,
   className,
   error,
@@ -88,12 +96,10 @@ const Input: React.FC<InputProps> = ({
           placeholder={placeHolder}
           value={value}
           onChange={onChange}
+          disabled={readOnly}
         />
         {showPasswordToggle && type === "password" && (
-          <PasswordToggleButton
-            type="button"
-            onClick={handleShowPassword}
-          >
+          <PasswordToggleButton type="button" onClick={handleShowPassword}>
             {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
           </PasswordToggleButton>
         )}

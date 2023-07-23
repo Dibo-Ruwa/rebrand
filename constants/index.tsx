@@ -231,7 +231,7 @@ export const sublinks = [
   {
     title: "Company",
     links: [
-      { name: "About Us", path: "/aboutUs" },
+      { name: "About Us", path: "/aboutus" },
       { name: "Pricing", path: "/" },
     ],
   },
@@ -246,10 +246,10 @@ export const sublinks = [
   {
     title: "Other",
     links: [
-      { name: "Blog", path: "/comingsoon" },
-      { name: "Contact Us", path: "/comingsoon" },
-      { name: "Privacy Policy", path: "/comingsoon" },
-      { name: "Terma & Condition", path: "/comingsoon" },
+      // { name: "Blog", path: "/comingsoon" },
+      // { name: "Contact Us", path: "/comingsoon" },
+      { name: "Privacy Policy", path: "/privacy-policy" },
+      { name: "Terma & Condition", path: "/terms" },
     ],
   },
 ];
@@ -331,5 +331,157 @@ export const DashboradServices = [
     title: "Order History",
     image: assets.food,
     url: "/",
+  },
+];
+
+export const AbousUsContent = [
+  {
+    header: "Information We Collect",
+    text: "",
+    bulletList: [
+      {
+        header: "Personal Information",
+        text: "When you access our website or use our services, we may collect personal information that you provide voluntarily. This information may include, but is not limited to, your name, email address, phone number, and residential address",
+      },
+      {
+        header: "Usage Data",
+        text: " We may also automatically collect certain information when you interact with our website, such as your IP address, device information, browser type, and pages visited. This data is collected using cookies and similar tracking technologies and helps us enhance your browsing experience and improve our services",
+      },
+    ],
+  },
+  {
+    header: "How We Use Your Information",
+    bulletList: [
+      {
+        header: "Service Provision",
+        text: "We use your personal information to fulfill your service requests, process transactions, and provide you with the services you have requested from Dibo Ruwa. ",
+      },
+      {
+        header: "Communication",
+        text: "We may use your contact information to communicate with you regarding your service orders, updates, promotions, and other relevant information related to Dibo Ruwa.",
+      },
+      {
+        header: "Improving Our Services",
+        text: "Your usage data and feedback may be used to analyze and improve our website and services, ensuring a more user-friendly and efficient experience for you.",
+      },
+    ],
+  },
+  {
+    header: "Disclosure of Your Information",
+    text: "",
+    bulletList: [
+      {
+        header: "Service Providers",
+        text: "We may share your personal information with trusted third-party service providers who assist us in delivering our services. These service providers are required to keep your information confidential and are prohibited from using it for any other purposes. ",
+      },
+      {
+        header: "Legal Compliance",
+        text: "We may disclose your personal information when required by law, such as in response to a valid court order or government request.",
+      },
+    ],
+  },
+  {
+    header: "Data Security",
+    text: " We take appropriate measures to safeguard your personal information and protect it from unauthorized access, disclosure, alteration, or destruction. We use industry-standard security protocols and technologies to maintain the security of your data.",
+  },
+  {
+    header: ". Your Choices and Rights",
+
+    bulletList: [
+      {
+        header: "Access and Update",
+        text: "You have the right to access, update, or correct your personal information stored with us. If you wish to do so, please contact us at info@diboruwa.com ",
+      },
+      {
+        header: "Marketing Communication",
+        text: "If you no longer wish to receive marketing communications from us, you can opt-out by following the unsubscribe instructions provided in our emails or by contacting us directly",
+      },
+    ],
+  },
+  {
+    header: "Children's Privacy",
+    text: "Our website and services are not intended for children under the age of 13. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided personal information to us, please contact us, and we will take appropriate steps to remove the information from our records",
+  },
+  {
+    header: "Changes to this Privacy Policy",
+    text: "We may update this Privacy Policy from time to time to reflect changes in our practices or for legal, operational, or regulatory reasons. Any changes will be effective immediately upon posting on this page. We encourage you to review this Privacy Policy periodically to stay informed about how we are protecting your information.",
+  },
+  {
+    header: "Contact Us",
+    text: "If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at [email address].",
+  },
+];
+export const TermsContent = [
+  {
+    header: "Use of the Website",
+  
+    bulletList: [
+      {
+        header: "License",
+        text: "Dibo Ruwa grants you a limited, non-exclusive, non-transferable, and revocable license to access and use our website for personal and non-commercial purposes.",
+      },
+      {
+        header: "Prohibited Conduct",
+        text: " You agree not to use our website in a manner that violates any applicable laws, infringes on the rights of others, or interferes with the proper functioning of the website. Prohibited conduct includes but is not limited to unauthorized access, transmitting harmful code, and engaging in any activity that may disrupt or impede our services.",
+      },
+    ],
+  },
+  {
+    header: "Intellectual Property",
+    bulletList: [
+      {
+        header: "Ownership",
+        text: "All content, trademarks, logos, and intellectual property displayed on our website are the sole property of Dibo Ruwa or its licensors and are protected by copyright and other intellectual property laws ",
+      },
+      {
+        header: "Use of Content",
+        text: "You may not copy, reproduce, modify, distribute, or otherwise use any content from our website without obtaining prior written consent from Dibo Ruwa",
+      },
+  
+    ],
+  },
+  {
+    header: "Service Orders and Payments    ",
+ 
+    bulletList: [
+      {
+        header: "Service Providers",
+        text: "By placing an order for our services, you agree to pay the specified fees for the selected services. All service orders are subject to availability and acceptance by Dibo Ruwa. ",
+      },
+      {
+        header: "Payment",
+        text: "You must provide accurate and complete payment information when placing service orders. Payment can be made through the accepted payment methods on our website.",
+      },
+    ],
+  },
+  {
+    header: "Data Security",
+    text: " We take appropriate measures to safeguard your personal information and protect it from unauthorized access, disclosure, alteration, or destruction. We use industry-standard security protocols and technologies to maintain the security of your data.",
+  },
+  {
+    header: ". Your Choices and Rights",
+
+    bulletList: [
+      {
+        header: "Access and Update",
+        text: "You have the right to access, update, or correct your personal information stored with us. If you wish to do so, please contact us at info@diboruwa.com ",
+      },
+      {
+        header: "Marketing Communication",
+        text: "If you no longer wish to receive marketing communications from us, you can opt-out by following the unsubscribe instructions provided in our emails or by contacting us directly",
+      },
+    ],
+  },
+  {
+    header: "Children's Privacy",
+    text: "Our website and services are not intended for children under the age of 13. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided personal information to us, please contact us, and we will take appropriate steps to remove the information from our records",
+  },
+  {
+    header: "Changes to this Privacy Policy",
+    text: "We may update this Privacy Policy from time to time to reflect changes in our practices or for legal, operational, or regulatory reasons. Any changes will be effective immediately upon posting on this page. We encourage you to review this Privacy Policy periodically to stay informed about how we are protecting your information.",
+  },
+  {
+    header: "Contact Us",
+    text: "If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at [email address].",
   },
 ];

@@ -7,13 +7,13 @@ const Client = () => {
     <Container>
       <Services>
         {DashboradServices.map((service, index) => (
-          <div key={index}>
+          <span key={index} style={{width: "100%"}}>
             <Card
               title={service.title}
               image={service.image}
               url={service.url}
             />
-          </div>
+          </span>
         ))}
       </Services>
 

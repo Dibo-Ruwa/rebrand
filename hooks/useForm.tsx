@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 interface FormState {
-  [key: string]: string;
+  [key: string]: string ;
 }
 
 interface FormErrors {

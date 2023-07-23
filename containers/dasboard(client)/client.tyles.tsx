@@ -4,10 +4,20 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   padding: 15vh 8% 5%;
+  width: 100%;
 `;
 export const Services = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap:30px;
+
+  @media screen and (max-width: 900px) {
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+  }
 `;
 export const EmptyServices = styled.div`
   display: flex;

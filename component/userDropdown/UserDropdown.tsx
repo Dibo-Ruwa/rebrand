@@ -1,7 +1,7 @@
 import { assets } from "@/public/assets";
 import ServiceMenu from "../serviceMenu";
 import Avatar from "../ui/avatar/Avatar";
-import { Container, Overlay, Trigger } from "./userDropdown.styles";
+import { Container } from "./userDropdown.styles";
 
 const UserDropdown = () => {
   return (
@@ -9,8 +9,8 @@ const UserDropdown = () => {
       <ServiceMenu
         trigger={<Avatar initials="ph" />}
         routes={[
-          { name: "profile", path: "/" },
-          { name: "Dashboard", path: "/" },
+          { name: "Profile", path: "/profile" },
+          { name: "Dashboard", path: "/dashboard" },
           { name: "signOut", path: "/" },
         ]}
       />
