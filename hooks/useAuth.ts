@@ -30,7 +30,7 @@ const useAuth = (): AuthHook => {
 
     try {
       // Perform signup logic using axios
-      await interceptor.post("auth/signup", formData);
+      await interceptor.post("/api/auth/signup", formData);
       setLoading(false);
       setError(null);
       toast.success("Signup successful!");
