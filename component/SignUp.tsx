@@ -1,4 +1,5 @@
 "use client";
+import useAuth from "@/hooks/useAuth";
 import AuthForm, { AuthField } from "./AuthForm";
 import Modal from "./Modal";
 import { useRouter } from "next/navigation";
@@ -9,8 +10,13 @@ interface SignUpPageProps {
 
 const signUpFields: AuthField[] = [
   {
-    name: "fullName",
-    label: "Full Name",
+    name: "firstName",
+    label: "First Name",
+    type: "text",
+  },
+  {
+    name: "lastName",
+    label: "Last Name",
     type: "text",
   },
   {
@@ -32,9 +38,11 @@ const signUpFields: AuthField[] = [
 
 const SignUp: React.FC<SignUpPageProps> = ({ isModal = false }) => {
   const router = useRouter();
-  const handleSignIn = (formData: { [key: string]: string }) => {
+  const { signup } = useAuth();
+  const handleSignIn = async (formData: { [key: string]: string }) => {
     console.log("Sign Up", formData);
-    router.back();
+    await signup(formData);
+    // router.back();
   };
 
   return (

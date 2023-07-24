@@ -107,16 +107,7 @@ export const routes: Route[] = [
           { name: "Food", path: "/food", icon: assets.food },
         ],
       },
-      {
-        name: "Sign up",
-        path: "/signup",
-        icon: "🛠️",
-      },
-      {
-        name: "Sign in",
-        path: "/signin",
-        icon: "🛠️",
-      },
+     
     ],
   },
 ];
@@ -414,7 +405,7 @@ export const PrivacyContent = [
 export const TermsContent = [
   {
     header: "Use of the Website",
-  
+
     bulletList: [
       {
         header: "License",
@@ -437,12 +428,11 @@ export const TermsContent = [
         header: "Use of Content",
         text: "You may not copy, reproduce, modify, distribute, or otherwise use any content from our website without obtaining prior written consent from Dibo Ruwa",
       },
-  
     ],
   },
   {
     header: "Service Orders and Payments    ",
- 
+
     bulletList: [
       {
         header: "Service Providers",
@@ -455,33 +445,47 @@ export const TermsContent = [
     ],
   },
   {
-    header: "Data Security",
-    text: " We take appropriate measures to safeguard your personal information and protect it from unauthorized access, disclosure, alteration, or destruction. We use industry-standard security protocols and technologies to maintain the security of your data.",
-  },
-  {
-    header: ". Your Choices and Rights",
+    header: "Disclaimer of Warranties",
 
     bulletList: [
       {
-        header: "Access and Update",
-        text: "You have the right to access, update, or correct your personal information stored with us. If you wish to do so, please contact us at info@diboruwa.com ",
+        header: "",
+        text: 'Our website and services are provided on an "as is" and "as available" basis. Dibo Ruwa makes no warranties or representations of any kind, whether express or implied, regarding the accuracy, reliability, or suitability of our website or services for your specific needs.',
       },
       {
-        header: "Marketing Communication",
-        text: "If you no longer wish to receive marketing communications from us, you can opt-out by following the unsubscribe instructions provided in our emails or by contacting us directly",
+        header: "",
+        text: "Dibo Ruwa does not guarantee that our website will be error-free, uninterrupted, or free from harmful code. We disclaim any liability arising from any technical issues, errors, or interruptions in the functioning of our website.",
       },
     ],
   },
   {
-    header: "Children's Privacy",
-    text: "Our website and services are not intended for children under the age of 13. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided personal information to us, please contact us, and we will take appropriate steps to remove the information from our records",
+    header: "Limitation of Liability",
+
+    bulletList: [
+      {
+        header: "",
+        text: ". In no event shall Dibo Ruwa, its officers, directors, employees, or agents be liable for any direct, indirect, incidental, special, or consequential damages resulting from your use of our website or services. ",
+      },
+      {
+        header: "",
+        text: "Dibo Ruwa's total liability to you for any claims arising out of your use of our website or services shall not exceed the amount paid by you for the specific services in question. ",
+      },
+    ],
   },
   {
-    header: "Changes to this Privacy Policy",
-    text: "We may update this Privacy Policy from time to time to reflect changes in our practices or for legal, operational, or regulatory reasons. Any changes will be effective immediately upon posting on this page. We encourage you to review this Privacy Policy periodically to stay informed about how we are protecting your information.",
+    header: "Indemnification",
+    text: "You agree to indemnify and hold Dibo Ruwa and its affiliates, employees, and agents harmless from any claims, losses, damages, liabilities, and expenses, including legal fees, arising out of your use of our website or services or any violation of these Terms and Conditions",
+  },
+  {
+    header: "Governing Law and Jurisdiction",
+    text: "These Terms and Conditions shall be governed by and construed in accordance with the laws of Nigeria. Any dispute arising out of or in connection with these terms shall be subject to the exclusive jurisdiction of the courts in Nigeria",
+  },
+  {
+    header: "Changes to Terms and Conditions",
+    text: "Dibo Ruwa reserves the right to modify or update these Terms and Conditions at any time without prior notice. Any changes will be effective immediately upon posting on this page. We encourage you to review these terms periodically to stay informed about any updates.",
   },
   {
     header: "Contact Us",
-    text: "If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at [email address].",
+    text: "If you have any questions or concerns about these Terms and Conditions or our website, please contact us at [email address].",
   },
 ];

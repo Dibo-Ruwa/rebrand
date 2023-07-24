@@ -6,6 +6,7 @@ import {
   EditBtn,
   Form,
   FormControl,
+  SaveButton,
 } from "./profile.styles";
 import Input from "@/component/ui/input/Input";
 import useForm from "@/hooks/useForm";
@@ -13,22 +14,58 @@ import Button from "@/component/ui/button/Button";
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { Pencil1Icon } from "@radix-ui/react-icons";
+import useAuth from "@/hooks/useAuth";
+import { updateProfile } from "@/utils/helpers/updateUser";
+import { toast } from "react-hot-toast";
 
 const Profile = () => {
   const [isEditable, setIsEditable] = useState(false);
-  const onSubmit = (formData: { [key: string]: string }) => {
-    console.log("Sign Up", formData);
+  const { session } = useAuth();
+
+  const onSubmit = async (formData: { [key: string]: string }) => {
+    try {
+      // Call the updateProfile function from the service to update the profile
+      const response = await updateProfile(
+        session?.user._id as string,
+        formData
+      );
+
+      if (response.success) {
+        // Show success toast message
+        toast.success("Profile updated successfully!", {
+          duration: 3000,
+          position: "bottom-right",
+        });
+        setIsEditable(false)
+        // Redirect to a success page or do something else after successful update
+      } else {
+        // Show error toast message
+        toast.error("Failed to update profile: " + response.message, {
+          duration: 5000,
+          position: "bottom-right",
+        });
+        // Handle the error or display an error message
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      // Show error toast message
+      toast.error("An error occurred while updating the profile", {
+        duration: 5000,
+        position: "top-right",
+      });
+      // Handle the error or display an error message
+    }
   };
 
   const { formData, handleChange, handleSubmit, resetForm, errors } = useForm(
     {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      address: "",
-      city: "",
-      state: "",
+      firstName: session ? session?.user.firstName : "",
+      lastName: session ? session?.user.lastName : "",
+      email: session ? session?.user.email : "",
+      phone: session ? session?.user.phone : "",
+      address: session ? session?.user.address : "",
+      city: session ? session?.user?.city : "",
+      state: session ? session.user?.state : "",
     },
     onSubmit
   );
@@ -39,9 +76,9 @@ const Profile = () => {
         <BackButton />
       </BackBtn>
 
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <h2>Profile</h2>
-        <EditBtn onClick={() => setIsEditable((prev) => !prev)}>
+        <EditBtn type="button" onClick={() => setIsEditable((prev) => !prev)}>
           <Pencil1Icon />
         </EditBtn>
         <FormControl>
@@ -111,16 +148,12 @@ const Profile = () => {
             type="text"
             id="id"
             readOnly={!isEditable}
-            value={formData.phone}
+            value={formData.city}
             onChange={(e) => handleChange(e, e.target.name)}
           />
         </FormControl>
 
-        {isEditable && (
-          <Button size="medium" color="primary">
-            save
-          </Button>
-        )}
+        {isEditable && <SaveButton type="submit">Save</SaveButton>}
       </Form>
     </Container>
   );

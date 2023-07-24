@@ -1,4 +1,5 @@
 "use client";
+import useAuth from "@/hooks/useAuth";
 import AuthForm, { AuthField } from "./AuthForm";
 import Modal from "./Modal";
 import { useRouter } from "next/navigation";
@@ -24,8 +25,10 @@ const signInFields: AuthField[] = [
 
 const SignIn: React.FC<SignInPageProps> = ({ isModal = false }) => {
   const router = useRouter();
-  const handleSignIn = (formData: { [key: string]: string }) => {
+  const { signin } = useAuth();
+  const handleSignIn = async (formData: { [key: string]: string }) => {
     console.log("Sign In", formData);
+    await signin(formData);
     // router.back();
   };
 

@@ -1,5 +1,6 @@
 import { CaretDownIcon } from "@radix-ui/react-icons";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, ReactNode } from "react";
@@ -66,7 +67,10 @@ const ServiceMenu: FC<Routes> = ({ trigger, routes, toggle }) => {
                       textDecoration: "none",
                       display: "flex",
                       gap: "10px",
-                      color: "var(--content)"
+                      color: "var(--content)",
+                    }}
+                    onClick={() => {
+                      link.name === "signOut" ? signOut() : "";
                     }}
                   >
                     {link?.icon && (

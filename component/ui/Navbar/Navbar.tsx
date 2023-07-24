@@ -11,6 +11,7 @@ import { HiBars3 } from "react-icons/hi2";
 import { VscClose } from "react-icons/vsc";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { CaretDownIcon } from "@radix-ui/react-icons";
+
 import ServiceMenu from "@/component/serviceMenu";
 import {
   LogoImage,
@@ -22,12 +23,25 @@ import {
 } from "./navbar.styles";
 import UserDropdown from "@/component/userDropdown/UserDropdown";
 import { FiShoppingCart } from "react-icons/fi";
-import { NodeNextRequest } from "next/dist/server/base-http/node";
 import { useCart } from "@/hooks/useCart";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const { data: session, status } = useSession({
+    required: false,
+  });
+
+  console.log(session?.user);
+
+  //get partName to render route types
   const pathname = usePathname();
-  
+
+  const trimedPath = pathname.replace("/", "");
+
+  const links = generateLinksByCategory(
+    trimedPath === "" ? "main" : trimedPath
+  );
+
   const { cartData, totalQuantity } = useCart();
   const [toggle, setToggle] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,20 +65,12 @@ const Navbar = () => {
     };
   }, []);
 
-  const trimedPath = pathname.replace("/", "");
-
-  const links = generateLinksByCategory(
-    trimedPath === "" ? "main" : trimedPath
-  );
-
-  const user = true;
-
   return (
     <NavbarContainer isScrolled={isScrolled}>
       <span className="logo">
         <Link href="/" passHref>
           <LogoImage src={assets.logo} width={75} height={20} alt="logo" />
-        </Link>{" "}
+        </Link>
       </span>
 
       <Toggle onClick={() => setToggle((prev) => !prev)}>
@@ -72,25 +78,38 @@ const Navbar = () => {
       </Toggle>
 
       <MenuList className="menu">
-        <MenuList className="menu">
-          {links.map((link, index) => (
-            <li key={index}>
-              {link.subroutes ? (
-                <>
-                  <ServiceMenu trigger={link.name} routes={link?.subroutes} />
-                </>
-              ) : (
-                <Link className="link" href={link.path}>
-                  {link.name}
-                </Link>
-              )}
-            </li>
-          ))}
-        </MenuList>
+        {links.map((link, index) => (
+          <li key={index}>
+            {link.subroutes ? (
+              <>
+                <ServiceMenu trigger={link.name} routes={link?.subroutes} />
+              </>
+            ) : (
+              <Link className="link" href={link.path}>
+                {link.name}
+              </Link>
+            )}
+          </li>
+        ))}
+        {!session && (
+          <li>
+            <Link className="link" href="/signin">
+              Sign In
+            </Link>
+          </li>
+        )}
+        {!session && (
+          <li>
+            <Link className="link" href="/signup">
+              Sign Up
+            </Link>
+          </li>
+        )}
       </MenuList>
-      {user &&  (
+
+      {session && (
         <div className="cart">
-          <div className="badge" >{ totalQuantity}</div>
+          <div className="badge">{totalQuantity}</div>
           <Link
             href="/cart"
             style={{ textDecoration: "none", color: "var(--primary)" }}
@@ -141,12 +160,25 @@ const Navbar = () => {
                   )}
                 </li>
               ))}
+              {!session && (
+                <li>
+                  <Link className="link" href="/signin">
+                    Sign In
+                  </Link>
+                </li>
+              )}
+              {!session && (
+                <li>
+                  <Link className="link" href="/signup">
+                    Sign Up
+                  </Link>
+                </li>
+              )}
             </MobileMenu>
           </>
         )}
       </AnimatePresence>
-
-      <UserDropdown />
+      {session && <UserDropdown />}
     </NavbarContainer>
   );
 };

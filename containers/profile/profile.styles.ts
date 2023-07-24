@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 export const BackBtn = styled.div``;
 
-export const Form = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -43,3 +43,13 @@ export const EditBtn = styled.button`
     background: var(--primary);
   }
 `;
+
+
+export const SaveButton = styled.button`
+outline: none;
+padding: 15px;
+border-radius: 8px;
+background: var(--primary);
+color: white;
+border: none;
+`

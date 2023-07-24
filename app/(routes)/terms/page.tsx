@@ -1,9 +1,11 @@
+import TermsCondition from "@/containers/terms/TermsCondition";
+
 const page = () => {
-          return (
-                    <div>
-                              Enter
-                    </div>
-          );
-}
+  return (
+    <div>
+      <TermsCondition />
+    </div>
+  );
+};
 
 export default page;
