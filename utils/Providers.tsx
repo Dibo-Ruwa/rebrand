@@ -9,7 +9,6 @@ const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <SessionProvider>
       <StyledComponentsRegistry>
-      
         <Guard>
           {children} <Toaster />
         </Guard>
