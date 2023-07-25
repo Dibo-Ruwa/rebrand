@@ -1,4 +1,4 @@
-type UploadFormState = {
+export type UploadFormState = {
   image: any;
   name: string;
   price: number | null;
@@ -6,27 +6,20 @@ type UploadFormState = {
   tags: string;
 };
 
-type Product = {
-  _id: any;
-  name: string;
-  price: number;
-  weight: number;
-  tags: Array;
-  imageUrl: string;
-};
 
-type ModalProps = {
+
+export type ModalProps = {
   open: boolean;
   onClose: MouseEventHandler<HTMLButtonElement | HTMLDivElement>;
   children?: React.ReactNode;
 };
 
-type ImageSliderProps = {
+export type ImageSliderProps = {
   onClick: MouseEventHandler<HTMLDivElement>;
   visibleEl: number;
 };
 
-type UserType = {
+export type UserType = {
   _id: string;
   firstName: string;
   lastName: string;
@@ -39,7 +32,46 @@ type UserType = {
   accessToken: string;
 };
 
-type LoginUserParams = {
+export type LoginUserParams = {
   email: string;
   password: string;
+};
+
+
+
+export type Product = {
+  id: string;
+  title: string;
+  price: number;
+  imgUrl: string;
+  category: string;
+};
+
+interface Subscription {
+  id: string | undefined;
+   type: string;
+  plan:
+    | {
+        bagCount: number;
+        regularity: string;
+        total: number;
+      }
+    | string;
+}
+
+export type CartItem = Product & {
+  
+  quantity: number;
+  total: number;
+};
+
+export type CartState = {
+  cartItems: CartItem[];
+  subscriptions: Subscription[];
+  addSubscription: (item: Subscription) => void;
+  removeSubscription: (itemId: string) => void;
+  addToCart: (item: Product) => void;
+  removeFromCart: (itemId: string) => void;
+  updateQuantity: (id: string, action: "increase" | "decrease") => void;
+  clearCart: () => void;
 };

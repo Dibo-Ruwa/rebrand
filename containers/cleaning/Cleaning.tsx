@@ -1,3 +1,4 @@
+"use client";
 import HeroContainer from "@/component/shared/HeroContainer";
 import {
   BenefitList,
@@ -23,14 +24,13 @@ import { v4 as uuidv4 } from "uuid";
 import useCartStore from "@/store/useCart.store";
 
 const Cleaning = () => {
-
   const { addSubscription, subscriptions } = useCartStore();
 
   const ChoosePlan = (plan: string) => {
     const data = {
       id: uuidv4(),
       type: "cleaning",
-      plan
+      plan,
     };
 
     addSubscription(data);

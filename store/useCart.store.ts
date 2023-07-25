@@ -1,57 +1,43 @@
 "use client";
 import { create } from "zustand";
+import {
+  persist,
+  createJSONStorage,
+  devtools,
+  StateStorage,
+} from "zustand/middleware";
 import { v4 as uuidv4 } from "uuid";
+import {
+  CartItem,
+  CartState,
+  Product,
+  Subscription,
+} from "@/utils/types/types";
 
-type Product = {
-  id: string;
-  title: string;
-  price: number;
-  imgUrl: string;
-  category: string;
-};
-
-interface Subscription {
-  id?: string;
-  type: string;
-  plan:
-    | {
-        bagCount: number;
-        regularity: string;
-        total: number;
+const useCartStore = create<CartState>()(
+  devtools(
+    persist(
+      (set) => ({
+        cartItems: [],
+        subscriptions: [],
+        addSubscription: (subscription) =>
+          set((state) => addSubscription(state.subscriptions, subscription)),
+        removeSubscription: (id) =>
+          set((state) => removeSubscription(state.subscriptions, id)),
+        addToCart: (productObj) =>
+          set((state) => addCartItem(state.cartItems, productObj)),
+        removeFromCart: (id) =>
+          set((state) => removeCartItem(state.cartItems, id)),
+        updateQuantity: (id, action) =>
+          set((state) => updateItemQuantity(state.cartItems, id, action)),
+        clearCart: () => set(() => ({ cartItems: [] })),
+      }),
+      {
+        name: "cart-storage",
       }
-    | string;
-}
-
-type CartItem = Product & {
-  quantity: number;
-  total: number;
-};
-
-type CartState = {
-  cartItems: CartItem[];
-  subscriptions: Subscription[];
-  addSubscription: (item: Subscription) => void;
-  removeSubscription: (itemId: string) => void;
-  addToCart: (item: Product) => void;
-  removeFromCart: (itemId: string) => void;
-  updateQuantity: (id: string, action: "increase" | "decrease") => void;
-  clearCart: () => void;
-};
-
-const useCartStore = create<CartState>((set) => ({
-  cartItems: [],
-  subscriptions: [],
-  addSubscription: (subscription) =>
-    set((state) => addSubscription(state.subscriptions, subscription)),
-  removeSubscription: (id) =>
-    set((state) => removeSubscription(state.subscriptions, id)),
-  addToCart: (productObj) =>
-    set((state) => addCartItem(state.cartItems, productObj)),
-  removeFromCart: (id) => set((state) => removeCartItem(state.cartItems, id)),
-  updateQuantity: (id, action) =>
-    set((state) => updateItemQuantity(state.cartItems, id, action)),
-  clearCart: () => set(() => ({ cartItems: [] })),
-}));
+    )
+  )
+);
 
 /* ===== Subscription Store Util Functions ===== */
 function addSubscription(state: Subscription[], product: Subscription) {

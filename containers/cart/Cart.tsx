@@ -1,9 +1,8 @@
 "use client";
 import EmptyCart from "@/component/EmptyCart";
 import Payment from "@/component/Payment/Payment";
-// CartPage.tsx
-
 import CartItem from "@/component/cartItem/CartItem";
+import CartSubscription from "@/component/subscriptionCardCart/SubscriptionCardCart";
 import Loader from "@/component/ui/loader/Loader";
 import { useCart } from "@/hooks/useCart";
 import { useMounted } from "@/hooks/useMounted";
@@ -46,8 +45,8 @@ const ClearCartButton = styled.button`
 `;
 
 const Cart: React.FC = () => {
-  const { clearCart } = useCartStore();
-
+  const { clearCart, subscriptions } = useCartStore();
+  console.log(subscriptions);
   const { cartData } = useCart();
 
   const mounted = useMounted();
@@ -55,10 +54,12 @@ const Cart: React.FC = () => {
     // Perform payment logic here
   };
 
+  const handleDelete = (id: string) => {};
+
   return (
     <CartPageContainer>
       {mounted ? (
-        cartData.length > 0 ? (
+        cartData.length > 0 || subscriptions.length > 0 ? (
           <>
             <div className="cart__items">
               <CartItemsContainer>
@@ -77,6 +78,13 @@ const Cart: React.FC = () => {
             <div className="payment">
               <Payment />
             </div>
+            {subscriptions.map((subscription) => (
+              <CartSubscription
+                key={subscription.id}
+                subscription={subscription}
+                // onDelete={() => }
+              />
+            ))}
           </>
         ) : (
           <EmptyCart />
