@@ -57,21 +57,21 @@ function addCartItem(state: CartItem[], product: Product) {
 
   const newItem = {
     ...product,
-    id: uuidv4(),
+   
     quantity: 1,
     total: product.price,
   };
   return { cartItems: [...cartArray, newItem] };
 }
 
-function removeCartItem(state: CartItem[], id: string) {
+function removeCartItem(state: CartItem[], id: number) {
   const removedCart = state.filter((item) => item.id !== id);
   return { cartItems: [...removedCart] };
 }
 
 function updateItemQuantity(
   state: CartItem[],
-  id: string,
+  id: index,
   action: "increase" | "decrease"
 ) {
   const objIndex = state.findIndex((obj) => obj.id == id);

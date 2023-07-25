@@ -90,7 +90,7 @@ type CartItemProps = {
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const { cartItems, removeFromCart, updateQuantity } = useCartStore();
-  const { title, price, quantity, total, imgUrl } = item;
+  const {id, title, price, quantity, total, imgUrl } = item;
   const handleQuantityChange = (value: number) => {};
 
   const totalPrice = price * quantity;
@@ -106,12 +106,12 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           <ItemPrice> ${price}</ItemPrice>
         </div>
       </ItemInfo>
-      <Counter id={item.id} value={item.quantity} />
+      <Counter id={id} value={item.quantity} />
       <TotalPrice>Total: ${totalPrice}</TotalPrice>
       <DelButton
         title="Remove"
         type="button"
-        onClick={() => removeFromCart(item.id)}
+        onClick={() => removeFromCart(id)}
       >
         <TrashIcon />
       </DelButton>

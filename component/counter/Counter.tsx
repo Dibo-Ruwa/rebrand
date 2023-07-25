@@ -6,7 +6,7 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import useCartStore from "@/store/useCart.store";
 
 interface CounterProp {
-  id: string;
+  id: number;
   value: number;
 }
 

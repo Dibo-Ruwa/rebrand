@@ -6,8 +6,6 @@ export type UploadFormState = {
   tags: string;
 };
 
-
-
 export type ModalProps = {
   open: boolean;
   onClose: MouseEventHandler<HTMLButtonElement | HTMLDivElement>;
@@ -37,10 +35,8 @@ export type LoginUserParams = {
   password: string;
 };
 
-
-
 export type Product = {
-  id: string;
+  id: number;
   title: string;
   price: number;
   imgUrl: string;
@@ -49,7 +45,7 @@ export type Product = {
 
 interface Subscription {
   id: string | undefined;
-   type: string;
+  type: string;
   plan:
     | {
         bagCount: number;
@@ -60,7 +56,6 @@ interface Subscription {
 }
 
 export type CartItem = Product & {
-  
   quantity: number;
   total: number;
 };
@@ -71,7 +66,7 @@ export type CartState = {
   addSubscription: (item: Subscription) => void;
   removeSubscription: (itemId: string) => void;
   addToCart: (item: Product) => void;
-  removeFromCart: (itemId: string) => void;
-  updateQuantity: (id: string, action: "increase" | "decrease") => void;
+  removeFromCart: (itemId: number) => void;
+  updateQuantity: (id: number, action: "increase" | "decrease") => void;
   clearCart: () => void;
 };
