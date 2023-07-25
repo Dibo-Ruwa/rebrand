@@ -71,7 +71,7 @@ function removeCartItem(state: CartItem[], id: number) {
 
 function updateItemQuantity(
   state: CartItem[],
-  id: index,
+  id: number,
   action: "increase" | "decrease"
 ) {
   const objIndex = state.findIndex((obj) => obj.id == id);
