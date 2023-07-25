@@ -39,6 +39,10 @@ const ItemInfo = styled.div`
 const ItemName = styled.span`
   font-size: 18px;
   font-weight: bold;
+
+  @media screen and (max-width:768px) {
+    font-size: 15px;
+  }
 `;
 
 const ItemPrice = styled.span`
@@ -49,6 +53,9 @@ const ItemPrice = styled.span`
 const TotalPrice = styled.span`
   font-weight: bold;
   margin-left: auto;
+  @media screen and (max-width:768px) {
+    font-size: 10px;
+  }
 `;
 const DelButton = styled.button`
   position: absolute;
@@ -89,7 +96,7 @@ type CartItemProps = {
 };
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
-  const { cartItems, removeFromCart, updateQuantity } = useCartStore();
+  const {  removeFromCart, updateQuantity } = useCartStore();
   const {id, title, price, quantity, total, imgUrl } = item;
   const handleQuantityChange = (value: number) => {};
 
