@@ -15,7 +15,7 @@ import {
 import Button from "@/component/ui/button/Button";
 import HowItWorksCard from "@/component/howitworksCard/HiwCard";
 import PriceCard from "@/component/PriceTag";
-import LaundryCount from "@/component/LaundryCounter";
+import LaundryCount from "@/component/laundryCounter/LaundryCounter";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { assets } from "@/public/assets";
 import MoreServices from "@/component/shared/MoreServices";

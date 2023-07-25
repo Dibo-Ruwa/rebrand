@@ -19,8 +19,23 @@ import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import MoreServices from "@/component/shared/MoreServices";
 import { Wyg, subscriptionPlans } from "@/constants";
+import { v4 as uuidv4 } from "uuid";
+import useCartStore from "@/store/useCart.store";
 
 const Cleaning = () => {
+
+  const { addSubscription, subscriptions } = useCartStore();
+
+  const ChoosePlan = (plan: string) => {
+    const data = {
+      id: uuidv4(),
+      type: "cleaning",
+      plan
+    };
+
+    addSubscription(data);
+  };
+
   return (
     <Container>
       <HeroContainer bg="primary-20">

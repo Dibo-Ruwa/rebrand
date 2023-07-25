@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 type ButtonProps = {
   color?: string;
   size?: "small" | "medium" | "large";
-  onChange?: () => void;
+  onClick?: () => void;
   children: React.ReactNode;
 };
 
@@ -46,12 +46,12 @@ const getSize = (size?: "small" | "medium" | "large"): string => {
   }
 };
 
-const Button: React.FC<ButtonProps> = ({ color, size, onChange, children }) => {
+const Button: React.FC<ButtonProps> = ({ color, size, onClick, children }) => {
   return (
     <ButtonContainer
       color={color}
       size={size}
-      onClick={onChange}
+      onClick={onClick}
       whileTap={{ scale: 0.95 }}
     >
       {children}

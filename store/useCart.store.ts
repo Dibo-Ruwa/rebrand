@@ -1,70 +1,50 @@
 "use client";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { v4 as uuidv4 } from "uuid";
 
 type Product = {
-  id: number;
+  id: string;
   title: string;
   price: number;
   imgUrl: string;
   category: string;
 };
 
+interface Subscription {
+  id?: string;
+  type: string;
+  plan:
+    | {
+        bagCount: number;
+        regularity: string;
+        total: number;
+      }
+    | string;
+}
+
 type CartItem = Product & {
   quantity: number;
   total: number;
 };
 
-const items: CartItem[] = [
-  {
-    id: 1,
-    title: "Product 1",
-    price: 29.99,
-    imgUrl: "https://example.com/product1.jpg",
-    category: "Electronics",
-    quantity: 2,
-    total: 59.98,
-  },
-  {
-    id: 4,
-    title: "Product 4",
-    price: 29.99,
-    imgUrl: "https://example.com/product1.jpg",
-    category: "Electronics",
-    quantity: 4,
-    total: 59.98,
-  },
-  {
-    id: 8,
-    title: "Product 7",
-    price: 29.99,
-    imgUrl: "https://example.com/product1.jpg",
-    category: "Electronics",
-    quantity: 2,
-    total: 59.98,
-  },
-  {
-    id: 2,
-    title: "Product 2",
-    price: 49.99,
-    imgUrl: "https://example.com/product2.jpg",
-    category: "Clothing",
-    quantity: 1,
-    total: 49.99,
-  },
-  // Add more items here...
-];
-
 type CartState = {
   cartItems: CartItem[];
+  subscriptions: Subscription[];
+  addSubscription: (item: Subscription) => void;
+  removeSubscription: (itemId: string) => void;
   addToCart: (item: Product) => void;
-  removeFromCart: (itemId: number) => void;
-  updateQuantity: (id: number, action: "increase" | "decrease") => void;
+  removeFromCart: (itemId: string) => void;
+  updateQuantity: (id: string, action: "increase" | "decrease") => void;
   clearCart: () => void;
 };
 
 const useCartStore = create<CartState>((set) => ({
   cartItems: [],
+  subscriptions: [],
+  addSubscription: (subscription) =>
+    set((state) => addSubscription(state.subscriptions, subscription)),
+  removeSubscription: (id) =>
+    set((state) => removeSubscription(state.subscriptions, id)),
   addToCart: (productObj) =>
     set((state) => addCartItem(state.cartItems, productObj)),
   removeFromCart: (id) => set((state) => removeCartItem(state.cartItems, id)),
@@ -73,22 +53,39 @@ const useCartStore = create<CartState>((set) => ({
   clearCart: () => set(() => ({ cartItems: [] })),
 }));
 
+/* ===== Subscription Store Util Functions ===== */
+function addSubscription(state: Subscription[], product: Subscription) {
+  const subscriptionArray = state.filter((item) => item.id !== product.id);
+
+  const newItem = { ...product, id: uuidv4() };
+  return { subscriptions: [...subscriptionArray, newItem] };
+}
+
+function removeSubscription(state: Subscription[], id: string) {
+  const removedCart = state.filter((item) => item.id !== id);
+  return { subscriptions: [...removedCart] };
+}
 /* ===== Cart Store Util Functions ===== */
 function addCartItem(state: CartItem[], product: Product) {
   const cartArray = state.filter((item) => item.id !== product.id);
 
-  const newItem = { ...product, quantity: 1, total: product.price };
+  const newItem = {
+    ...product,
+    id: uuidv4(),
+    quantity: 1,
+    total: product.price,
+  };
   return { cartItems: [...cartArray, newItem] };
 }
 
-function removeCartItem(state: CartItem[], id: number) {
+function removeCartItem(state: CartItem[], id: string) {
   const removedCart = state.filter((item) => item.id !== id);
   return { cartItems: [...removedCart] };
 }
 
 function updateItemQuantity(
   state: CartItem[],
-  id: number,
+  id: string,
   action: "increase" | "decrease"
 ) {
   const objIndex = state.findIndex((obj) => obj.id == id);
