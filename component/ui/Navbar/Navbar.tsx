@@ -31,7 +31,6 @@ const Navbar = () => {
     required: false,
   });
 
-
   //get partName to render route types
   const pathname = usePathname();
 
@@ -65,7 +64,18 @@ const Navbar = () => {
   }, []);
 
   return (
-    <NavbarContainer isScrolled={isScrolled}>
+    <NavbarContainer
+      style={
+        isScrolled
+          ? {
+              backdropFilter: "blur(20px)",
+              background: "rgb(255, 255, 255)",
+              borderBottom: "1px solid var(--primary-20)",
+              height: "10vh",
+            }
+          : {}
+      }
+    >
       <span className="logo">
         <Link href="/" passHref>
           <LogoImage src={assets.logo} width={75} height={20} alt="logo" />
@@ -121,7 +131,7 @@ const Navbar = () => {
         {toggle && (
           <>
             <MobileMenuBackdrop
-              show={true}
+            
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

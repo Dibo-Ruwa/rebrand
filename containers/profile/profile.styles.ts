@@ -6,7 +6,9 @@ export const Container = styled.div`
   padding: 15vh 8% 5%;
   position: relative;
 `;
-export const BackBtn = styled.div``;
+export const BackBtn = styled.div`
+margin-bottom: 30px;
+`;
 
 export const Form = styled.form`
   display: flex;
@@ -18,12 +20,21 @@ export const Form = styled.form`
   padding: 50px;
   border: 1px solid var(--primary-20);
   border-radius: 20px;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding: 30px 20px;
+  }
 `;
 export const FormControl = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 30px;
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 export const EditBtn = styled.button`
@@ -44,12 +55,11 @@ export const EditBtn = styled.button`
   }
 `;
 
-
 export const SaveButton = styled.button`
-outline: none;
-padding: 15px;
-border-radius: 8px;
-background: var(--primary);
-color: white;
-border: none;
-`
+  outline: none;
+  padding: 15px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  border: none;
+`;

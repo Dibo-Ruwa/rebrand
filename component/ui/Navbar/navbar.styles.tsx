@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import styled from "styled-components";
 
-export const NavbarContainer = styled.div<{ isScrolled: boolean }>`
+export const NavbarContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -16,14 +16,7 @@ export const NavbarContainer = styled.div<{ isScrolled: boolean }>`
   top: 0;
   z-index: 50;
   transition: all 200ms;
-  ${({ isScrolled }) =>
-    isScrolled &&
-    `  
-    backdrop-filter: blur(20px);
-    background: rgb(255, 255, 255);
-    border-bottom: 1px solid var(--primary-20);
-    height: 10vh;
-    `}
+
 
   .cart {
   
@@ -121,8 +114,8 @@ export const MenuList = styled(motion.ul)`
   }
 `;
 
-export const MobileMenuBackdrop = styled(motion.div)<{ show: boolean }>`
-  display: ${(props) => (props.show ? "flex" : "none")};
+export const MobileMenuBackdrop = styled(motion.div)`
+  display: flex;
   flex-direction: column;
   position: absolute;
   top: 0;
@@ -134,6 +127,7 @@ export const MobileMenuBackdrop = styled(motion.div)<{ show: boolean }>`
   font-size: 16px;
   background: var(--primary-20);
   backdrop-filter: blur(5px);
+  z-index: 20;
 `;
 
 export const MobileMenu = styled(motion.ul)`
