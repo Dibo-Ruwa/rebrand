@@ -14,14 +14,8 @@ import {
   ProductPrice,
 } from "./productCard.styles";
 import useCartStore from "@/store/useCart.store";
+import { Product } from "@/utils/types/types";
 
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  imgUrl: string;
-  category: string;
-}
 
 interface ProductCardProps {
   product: Product;
