@@ -59,7 +59,6 @@ const LaundryCount: React.FC = () => {
 
   const ChoosePlan = () => {
     const data = {
-      id: uuidv4(),
       type: "laundry",
       plan: {
         bagCount,

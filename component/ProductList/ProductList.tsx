@@ -8,91 +8,91 @@ import { Product } from "@/utils/types/types";
 
 const products: Product[] = [
   {
-    id: 1,
+    id: "1",
     title: "Product 1",
     price: 29.99,
     imgUrl: "https://example.com/product1.jpg",
     category: "Electronics",
   },
   {
-    id: 2,
+    id: "2",
     title: "Product 2",
     price: 49.99,
     imgUrl: "https://example.com/product2.jpg",
     category: "Clothing",
   },
   {
-    id: 3,
+    id: "3",
     title: "Product 3",
     price: 14.99,
     imgUrl: "https://example.com/product3.jpg",
     category: "Home & Kitchen",
   },
   {
-    id: 4,
+    id: "4",
     title: "Banana",
     price: 0.99,
     imgUrl: "https://example.com/banana.jpg",
     category: "Fruits",
   },
   {
-    id: 5,
+    id: "5",
     title: "Chocolate Bar",
     price: 2.49,
     imgUrl: "https://example.com/chocolate.jpg",
     category: "Snacks",
   },
   {
-    id: 6,
+    id: "6",
     title: "Cereal",
     price: 3.99,
     imgUrl: "https://example.com/cereal.jpg",
     category: "Breakfast",
   },
   {
-    id: 7,
+    id: "7",
     title: "Yogurt",
     price: 1.25,
     imgUrl: "https://example.com/yogurt.jpg",
     category: "Dairy",
   },
   {
-    id: 8,
+    id: "8",
     title: "Headphones",
     price: 59.99,
     imgUrl: "https://example.com/headphones.jpg",
     category: "Electronics",
   },
   {
-    id: 9,
+    id: "9",
     title: "T-Shirt",
     price: 19.99,
     imgUrl: "https://example.com/tshirt.jpg",
     category: "Clothing",
   },
   {
-    id: 10,
+    id: "10",
     title: "Toaster",
     price: 34.99,
     imgUrl: "https://example.com/toaster.jpg",
     category: "Home & Kitchen",
   },
   {
-    id: 11,
+    id: "11",
     title: "Apple",
     price: 1.49,
     imgUrl: "https://example.com/apple.jpg",
     category: "Fruits",
   },
   {
-    id: 12,
+    id: "12",
     title: "Chips",
     price: 1.99,
     imgUrl: "https://example.com/chips.jpg",
     category: "hijikjikjnkl",
   },
   {
-    id: 13,
+    id: "13",
     title: "Milk",
     price: 2.75,
     imgUrl: "https://example.com/milk.jpg",
@@ -121,7 +121,6 @@ const ProductList = () => {
     [initialProductsToShow]
   );
 
- 
   const filteredProducts = selectedCategory
     ? products.filter((product) => product.category === selectedCategory)
     : products;
@@ -141,6 +140,7 @@ const ProductList = () => {
       <ProductListing>
         {filteredProducts.slice(0, productsToShow).map((product) => (
           <li key={product.id}>
+            {" "}
             <ProductCard product={product} />
           </li>
         ))}

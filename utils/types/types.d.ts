@@ -36,7 +36,7 @@ export type LoginUserParams = {
 };
 
 export type Product = {
-  id: number;
+  id: string;
   title: string;
   price: number;
   imgUrl: string;
@@ -44,7 +44,7 @@ export type Product = {
 };
 
 interface Subscription {
-  id: string | undefined;
+  _id?: string;
   type: string;
   plan:
     | {
@@ -63,10 +63,12 @@ export type CartItem = Product & {
 export type CartState = {
   cartItems: CartItem[];
   subscriptions: Subscription[];
+  getCart: () => void;
+  getSubscriptions: () => void;
   addSubscription: (item: Subscription) => void;
-  removeSubscription: (itemId: string) => void;
+  removeSubscription: (itemId: string | undefined) => void;
   addToCart: (item: Product) => void;
-  removeFromCart: (itemId: number) => void;
-  updateQuantity: (id: number, action: "increase" | "decrease") => void;
+  removeFromCart: (itemId: string) => void;
+  updateQuantity: (id: string, action: "increase" | "decrease") => void;
   clearCart: () => void;
 };

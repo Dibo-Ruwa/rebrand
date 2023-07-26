@@ -7,6 +7,7 @@ import Loader from "@/component/ui/loader/Loader";
 import { useCart } from "@/hooks/useCart";
 import { useMounted } from "@/hooks/useMounted";
 import useCartStore from "@/store/useCart.store";
+import { Subscription } from "@/utils/types/types";
 import React from "react";
 import styled from "styled-components";
 
@@ -45,8 +46,8 @@ const ClearCartButton = styled.button`
 `;
 
 const Cart: React.FC = () => {
-  const { clearCart, subscriptions } = useCartStore();
-  console.log(subscriptions);
+  const { clearCart, subscriptions, removeSubscription } = useCartStore();
+
   const { cartData } = useCart();
 
   const mounted = useMounted();
@@ -65,9 +66,18 @@ const Cart: React.FC = () => {
               <CartItemsContainer>
                 {cartData?.map((item: any) => (
                   <div key={item.id}>
+                    {item.id}
                     <CartItem item={item} />
                   </div>
                 ))}
+                {subscriptions.length > 0 &&
+                  subscriptions.map((subscription: Subscription) => (
+                    <CartSubscription
+                      key={subscription._id}
+                      subscription={subscription}
+                      onDelete={() => removeSubscription(subscription._id)}
+                    />
+                  ))}
               </CartItemsContainer>
               <div className="btn">
                 <ClearCartButton onClick={clearCart}>
@@ -75,16 +85,10 @@ const Cart: React.FC = () => {
                 </ClearCartButton>
               </div>
             </div>
+
             <div className="payment">
               <Payment />
             </div>
-            {subscriptions.map((subscription) => (
-              <CartSubscription
-                key={subscription.id}
-                subscription={subscription}
-                // onDelete={() => }
-              />
-            ))}
           </>
         ) : (
           <EmptyCart />

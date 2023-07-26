@@ -13,6 +13,17 @@ import {
   Product,
   Subscription,
 } from "@/utils/types/types";
+import {
+  addCartItemAPI,
+  getCartAPI,
+  removeCartItemAPI,
+  updateItemQuantityAPI,
+} from "@/utils/services/cart";
+import {
+  addSubscriptionAPI,
+  getSubscriptionsAPI,
+  removeSubscriptionAPI,
+} from "@/utils/services/subscriptions";
 
 const useCartStore = create<CartState>()(
   devtools(
@@ -20,16 +31,73 @@ const useCartStore = create<CartState>()(
       (set) => ({
         cartItems: [],
         subscriptions: [],
-        addSubscription: (subscription) =>
-          set((state) => addSubscription(state.subscriptions, subscription)),
-        removeSubscription: (id) =>
-          set((state) => removeSubscription(state.subscriptions, id)),
-        addToCart: (productObj) =>
-          set((state) => addCartItem(state.cartItems, productObj)),
-        removeFromCart: (id) =>
-          set((state) => removeCartItem(state.cartItems, id)),
-        updateQuantity: (id, action) =>
-          set((state) => updateItemQuantity(state.cartItems, id, action)),
+        getCart: async () => {
+          try {
+            const response = await getCartAPI(); // Call the API function to fetch the cart
+            set({ cartItems: response.data.cart.cartItems });
+          } catch (error) {
+            console.log(error);
+          }
+        },
+        getSubscriptions: async () => {
+          try {
+            const response = await getSubscriptionsAPI(); // Call the API function to fetch the cart
+            set({ subscriptions: response.data.subscriptions });
+          } catch (error) {
+            console.log(error);
+          }
+        },
+        addSubscription: async (subscription) => {
+          try {
+            const response = await addSubscriptionAPI(subscription);
+            set((state) => ({
+              subscriptions: [...response.data.subscriptions],
+            }));
+          } catch (error) {
+            console.log(error);
+          }
+        },
+        removeSubscription: async (id) => {
+          const response = await removeSubscriptionAPI(id);
+          set((state) => ({
+            subscriptions: [...response.data.subscriptions],
+          }));
+        },
+
+        addToCart: async (productObj) => {
+          try {
+            const response = await addCartItemAPI(productObj);
+
+            set((state) => ({
+              cartItems: [...state.cartItems, ...response.data.cart.cartItems],
+            }));
+          } catch (error) {
+            console.log(error);
+          }
+        },
+        removeFromCart: async (id) => {
+          try {
+            const response = await removeCartItemAPI(id);
+
+            set((state) => ({
+              cartItems: [...response.data.cart.cartItems],
+            }));
+          } catch (error) {
+            console.log(error);
+          }
+        },
+        updateQuantity: async (id, action) => {
+          // Call the API to update the quantity of the cart item
+          try {
+            const response = await updateItemQuantityAPI(id, action);
+            // If the API call is successful, update the local state with the updated quantity
+            set((state) => ({
+              cartItems: [...response.data.cart.cartItems],
+            }));
+          } catch (error) {
+            // Handle errors if needed
+          }
+        },
         clearCart: () => set(() => ({ cartItems: [] })),
       }),
       {
@@ -38,52 +106,5 @@ const useCartStore = create<CartState>()(
     )
   )
 );
-
-/* ===== Subscription Store Util Functions ===== */
-function addSubscription(state: Subscription[], product: Subscription) {
-  const subscriptionArray = state.filter((item) => item.id !== product.id);
-
-  const newItem = { ...product, id: uuidv4() };
-  return { subscriptions: [...subscriptionArray, newItem] };
-}
-
-function removeSubscription(state: Subscription[], id: string) {
-  const removedCart = state.filter((item) => item.id !== id);
-  return { subscriptions: [...removedCart] };
-}
-/* ===== Cart Store Util Functions ===== */
-function addCartItem(state: CartItem[], product: Product) {
-  const cartArray = state.filter((item) => item.id !== product.id);
-
-  const newItem = {
-    ...product,
-   
-    quantity: 1,
-    total: product.price,
-  };
-  return { cartItems: [...cartArray, newItem] };
-}
-
-function removeCartItem(state: CartItem[], id: number) {
-  const removedCart = state.filter((item) => item.id !== id);
-  return { cartItems: [...removedCart] };
-}
-
-function updateItemQuantity(
-  state: CartItem[],
-  id: number,
-  action: "increase" | "decrease"
-) {
-  const objIndex = state.findIndex((obj) => obj.id == id);
-
-  if (action === "increase") {
-    state[objIndex].quantity = state[objIndex].quantity + 1;
-  } else if (action === "decrease") {
-    state[objIndex].quantity =
-      state[objIndex].quantity - (state[objIndex].quantity > 1 ? 1 : 0);
-  }
-
-  return { cartItems: [...state] };
-}
 
 export default useCartStore;

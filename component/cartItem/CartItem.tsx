@@ -40,7 +40,7 @@ const ItemName = styled.span`
   font-size: 18px;
   font-weight: bold;
 
-  @media screen and (max-width:768px) {
+  @media screen and (max-width: 768px) {
     font-size: 15px;
   }
 `;
@@ -53,7 +53,7 @@ const ItemPrice = styled.span`
 const TotalPrice = styled.span`
   font-weight: bold;
   margin-left: auto;
-  @media screen and (max-width:768px) {
+  @media screen and (max-width: 768px) {
     font-size: 10px;
   }
 `;
@@ -82,7 +82,7 @@ const DelButton = styled.button`
 `;
 
 type Item = {
-  id: number;
+  id: string;
   title: string;
   price: number;
   imgUrl: string;
@@ -96,8 +96,10 @@ type CartItemProps = {
 };
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
-  const {  removeFromCart, updateQuantity } = useCartStore();
-  const {id, title, price, quantity, total, imgUrl } = item;
+  const { removeFromCart, updateQuantity } = useCartStore();
+  const { title, price, quantity, total, imgUrl } = item;
+
+  // console.log(item);
   const handleQuantityChange = (value: number) => {};
 
   const totalPrice = price * quantity;
@@ -113,12 +115,12 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           <ItemPrice> ${price}</ItemPrice>
         </div>
       </ItemInfo>
-      <Counter id={id} value={item.quantity} />
+      <Counter id={item?.id} value={item.quantity} />
       <TotalPrice>Total: ${totalPrice}</TotalPrice>
       <DelButton
         title="Remove"
         type="button"
-        onClick={() => removeFromCart(id)}
+        onClick={() => removeFromCart(item?.id)}
       >
         <TrashIcon />
       </DelButton>

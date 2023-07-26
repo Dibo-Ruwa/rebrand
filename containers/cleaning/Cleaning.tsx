@@ -28,7 +28,6 @@ const Cleaning = () => {
 
   const ChoosePlan = (plan: string) => {
     const data = {
-      id: uuidv4(),
       type: "cleaning",
       plan,
     };
@@ -117,13 +116,13 @@ const Cleaning = () => {
                       </li>
                     ))}
                 </ul>
-                <Link href={plan.cta.path} className="cta">
+                <div className="cta" onClick={() => ChoosePlan(plan.title)}>
                   <span> {plan.cta.label}</span>
 
                   <span className="icon">
                     <ArrowRightIcon />
                   </span>
-                </Link>
+                </div>
               </SubscriptionCard>
             </div>
           ))}
