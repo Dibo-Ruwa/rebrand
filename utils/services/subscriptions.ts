@@ -14,5 +14,5 @@ export function addSubscriptionAPI(sub: Subscription) {
 
 // Remove a subscription
 export function removeSubscriptionAPI(id: string | undefined) {
-  return axios.delete(`${BASE_URL}/subscriptions/${id}`);
+  return axios.delete(`${BASE_URL}/${id}`);
 }

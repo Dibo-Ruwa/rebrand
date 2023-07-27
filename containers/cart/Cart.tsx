@@ -64,7 +64,7 @@ const Cart: React.FC = () => {
           <>
             <div className="cart__items">
               <CartItemsContainer>
-                {cartData?.map((item: any) => (
+                {cartData.length > 0 && cartData.map((item: any) => (
                   <div key={item.id}>
                     <CartItem item={item} />
                   </div>

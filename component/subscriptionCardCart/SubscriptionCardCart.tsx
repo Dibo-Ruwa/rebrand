@@ -18,6 +18,10 @@ const Card = styled.div`
   max-width: 300px;
   position: relative;
 
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+
   h3 {
     font-size: 18px;
     margin-bottom: 7px;
