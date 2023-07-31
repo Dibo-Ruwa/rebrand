@@ -53,7 +53,8 @@ export async function POST(req: Request, res: Response) {
       if (existingCartItem) {
         // If the item already exists, increase the quantity by 1 and update the total
         existingCartItem.quantity++;
-        existingCartItem.total = existingCartItem.price * existingCartItem.quantity;
+        existingCartItem.total =
+          existingCartItem.price * existingCartItem.quantity;
       } else {
         // If the item does not exist, add it to the cart
         existingCart.cartItems.push({
@@ -75,7 +76,10 @@ export async function POST(req: Request, res: Response) {
       await existingCart.save();
     }
 
-    return NextResponse.json({ cart: existingCart, success: true }, { status: 201 });
+    return NextResponse.json(
+      { cart: existingCart, success: true },
+      { status: 201 }
+    );
   } catch (err) {
     console.error(err);
     NextResponse.json({ error: "An error occurred" }, { status: 500 });
@@ -83,8 +87,6 @@ export async function POST(req: Request, res: Response) {
     await closeDB();
   }
 }
-
-
 
 export async function GET(req: Request, res: Response) {
   try {
@@ -105,6 +107,39 @@ export async function GET(req: Request, res: Response) {
     if (!cart) {
       return NextResponse.json({ message: "Cart is empty" });
     }
+
+    return NextResponse.json({ cart, success: true });
+  } catch (err) {
+    console.error(err);
+    NextResponse.json({ error: "An error occurred" }, { status: 500 });
+  } finally {
+    await closeDB();
+  }
+}
+
+export async function DELETE(req: Request, res: Response) {
+  try {
+    await connectDB();
+
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      return NextResponse.json({ message: "You are not logged in" });
+    }
+
+    const user = await User.findById(session.user._id);
+    if (!user) {
+      return NextResponse.json({ message: "User does not exist" });
+    }
+
+    const cart = await Cart.findOne({ user: user._id });
+
+    if (!cart) {
+      return NextResponse.json({ message: "Cart is empty" });
+    }
+    cart.cartItems = [];
+    cart.total = 0
+
+    await cart.save();
 
     return NextResponse.json({ cart, success: true });
   } catch (err) {

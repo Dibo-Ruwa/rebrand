@@ -18,7 +18,10 @@ export const Container = styled.div`
     transform: translateY(-10px);
     box-shadow: 0 1px 2px 2px rgba(76, 150, 132, 0.086);
     cursor: pointer;
+    color: var(--color4);
   }
+
+  
 
   @media screen and (max-width: 768px) {
     width: 100%;

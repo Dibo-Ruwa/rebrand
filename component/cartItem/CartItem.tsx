@@ -14,7 +14,7 @@ const CartItemContainer = styled.div`
   background: var(--primary-20);
   border-radius: 12px;
   border: 1px solid var(--primary);
-  padding: 12px;
+  padding: 15px 12px;
   position: relative;
   max-width: 100%;
 `;

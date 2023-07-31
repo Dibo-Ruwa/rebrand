@@ -47,7 +47,7 @@ export const HeroImage = styled.div`
 `;
 
 export const WYGSection = styled.div`
-  padding:  8%;
+  padding: 8%;
   display: flex;
   gap: 30px;
 
@@ -62,15 +62,12 @@ export const WYGSection = styled.div`
       margin-bottom: 30px;
     }
     @media screen and (max-width: 768px) {
-
-      
-        .title {
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 30px;
+      .title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
     }
-    }
-  
   }
 
   p {
@@ -80,7 +77,6 @@ export const WYGSection = styled.div`
   @media screen and (max-width: 768px) {
     flex-direction: column;
     width: 100%;
-    
   }
 `;
 export const BenefitList = styled.div`
@@ -123,7 +119,6 @@ export const SubscriptionCard = styled.div`
   display: flex;
   flex-direction: column;
 
-  
   .image {
     width: 60px;
     height: 60px;
@@ -156,20 +151,20 @@ export const SubscriptionCard = styled.div`
       align-items: center;
       gap: 10px;
       color: var(--content);
-      
+
       .dot {
-      width: 10px;
-      height: 10px;
-      background: var(--primary);
-      border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        background: var(--primary);
+        border-radius: 50%;
+      }
     }
-    }
-   
   }
 
   .cta {
     display: flex;
-    color: var(--primary);
+    background: var(--primary);
+    color: white;
     text-decoration: none;
     align-items: center;
     gap: 10px;

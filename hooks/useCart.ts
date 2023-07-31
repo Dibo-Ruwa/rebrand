@@ -15,7 +15,7 @@ export const useCart = () => {
     cartItems.length > 0 &&
     cartItems.map((item: any) => {
       const { title, total, price, imgUrl, quantity } = item;
-      console.log(item);
+   
       return {
         id: item?._id,
         title,

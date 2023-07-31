@@ -1,15 +1,35 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
-export interface IOrder extends Document {
-  orderNumber: string;
-  amount: number;
-  paid: boolean;
-}
+const orderSchema = new Schema(
+  {
+    orderItems: {
+      type: Schema.Types.Mixed,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+    paymentId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    user: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
-const OrderSchema: Schema = new Schema({
-  orderNumber: { type: String, required: true },
-  amount: { type: Number, required: true },
-  paid: { type: Boolean, default: false },
-});
-
-export default mongoose.model<IOrder>("Order", OrderSchema);
+export const Order = models.Order || model("Order", orderSchema);

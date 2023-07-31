@@ -2,24 +2,18 @@
 import { useCart } from "@/hooks/useCart";
 import { Column, Container, PayButton } from "./payment.styles";
 import useOrder from "@/hooks/useOrder";
-import useCartStore from "@/store/useCart.store";
+import useCartStore, { getTotalQuantityAndPrice } from "@/store/useCart.store";
 
 const Payment = () => {
-  const { cartItems } = useCartStore();
+  const { cartItems, subscriptions } = useCartStore();
+  const { totalPrice } = getTotalQuantityAndPrice(cartItems, subscriptions);
   const { isSubmitting, isError, isSuccess, handleCartOrderSubmit } =
     useOrder();
   const handleCartOrder = () => {
-    const cartOrderData = {
-      cartItems,
-      userDetails: {
-        // Populate the user details data here
-      },
-    };
-
-    handleCartOrderSubmit(cartOrderData);
+    handleCartOrderSubmit(totalPrice);
   };
 
-  const { totalPrice, totalQuantity } = useCart();
+  const { totalQuantity } = useCart();
   return (
     <Container>
       <Column>

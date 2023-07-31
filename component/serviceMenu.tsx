@@ -54,7 +54,7 @@ const ServiceMenu: FC<Routes> = ({ trigger, routes, toggle }) => {
               width: "auto",
               minWidth: "200px",
               display: "grid",
-              gridGap: "20px",
+              gridGap: "10px",
             }}
           >
             {routes &&
@@ -63,12 +63,21 @@ const ServiceMenu: FC<Routes> = ({ trigger, routes, toggle }) => {
                   <Link
                     className="link dropdown"
                     href={link?.path}
-                    style={{
-                      textDecoration: "none",
-                      display: "flex",
-                      gap: "10px",
-                      color: "var(--content)",
-                    }}
+                    style={
+                      link.name === "signOut"
+                        ? {
+                            padding: "5px",
+                            borderRadius: "8px",
+                            background: "rgba(238, 51, 116, 0.238)",
+                            color: "white",
+                          }
+                        : {
+                            textDecoration: "none",
+                            display: "flex",
+                            gap: "10px",
+                            color: "var(--content)",
+                          }
+                    }
                     onClick={() => {
                       link.name === "signOut" ? signOut() : "";
                     }}

@@ -22,6 +22,10 @@ export function addCartItemAPI(product: Product) {
 export function removeCartItemAPI(id: string) {
   return axios.delete(`${BASE_URL}/${id}`);
 }
+// Clear cart
+export function clearCartAPI() {
+  return axios.delete(`${BASE_URL}`);
+}
 
 // Update item quantity
 export function updateItemQuantityAPI(id: string, action: string) {

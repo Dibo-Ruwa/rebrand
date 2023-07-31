@@ -9,17 +9,11 @@ import {
   SectionHeader,
   SectionText,
 } from "./aboutus.styles";
-// import { AbousUsContent } from "@/constants";
+import { AboutUsContent } from "@/constants";
 import { Fragment } from "react";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 
-interface AboutUsProps {
-  section: {
-    header: string;
-    text: string;
-    bulletList?: string[];
-  };
-}
+
 
 const AboutUs = () => {
   return (

@@ -116,13 +116,12 @@ const Cleaning = () => {
                       </li>
                     ))}
                 </ul>
-                <div className="cta" onClick={() => ChoosePlan(plan.title)}>
+                <Button size="medium"
+                color="primary" onClick={() => ChoosePlan(plan.title)}>
                   <span> {plan.cta.label}</span>
 
-                  <span className="icon">
-                    <ArrowRightIcon />
-                  </span>
-                </div>
+                 
+                </Button>
               </SubscriptionCard>
             </div>
           ))}
@@ -131,7 +130,7 @@ const Cleaning = () => {
             <h3 className="title">Moving </h3>
             <p> Contact us today to make it the easiest move of your life.</p>
 
-            <Button size="large" color="primary">
+            <Button size="medium" color="primary">
               Contact Us
             </Button>
           </SubscriptionCard>

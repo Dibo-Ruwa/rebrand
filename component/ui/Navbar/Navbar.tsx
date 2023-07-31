@@ -25,6 +25,7 @@ import UserDropdown from "@/component/userDropdown/UserDropdown";
 import { FiShoppingCart } from "react-icons/fi";
 import { useCart } from "@/hooks/useCart";
 import { useSession } from "next-auth/react";
+import useCartStore, { getTotalQuantityAndPrice } from "@/store/useCart.store";
 
 const Navbar = () => {
   const { data: session, status } = useSession({
@@ -62,6 +63,13 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const { cartItems, subscriptions } = useCartStore();
+
+  const { totalQuantities, totalPrice } = getTotalQuantityAndPrice(
+    cartItems,
+    subscriptions
+  );
 
   return (
     <NavbarContainer
@@ -118,7 +126,7 @@ const Navbar = () => {
 
       {session && (
         <div className="cart">
-          <div className="badge">{totalQuantity}</div>
+          <div className="badge">{totalQuantities }</div>
           <Link
             href="/cart"
             style={{ textDecoration: "none", color: "var(--primary)" }}
@@ -131,7 +139,6 @@ const Navbar = () => {
         {toggle && (
           <>
             <MobileMenuBackdrop
-            
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

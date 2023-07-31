@@ -43,7 +43,7 @@ export type Product = {
   category: string;
 };
 
-interface Subscription {
+export interface Subscription {
   _id?: string;
   type: string;
   plan:
@@ -56,6 +56,7 @@ interface Subscription {
 }
 
 export type CartItem = Product & {
+  _id?: string;
   quantity: number;
   total: number;
 };

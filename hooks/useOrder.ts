@@ -2,19 +2,21 @@
 import { useState } from "react";
 
 import axios from "axios";
-import { Product, Subscription } from "@/utils/types/types";
+import { CartItem, Subscription } from "@/utils/types/types";
 import { useSession } from "next-auth/react";
 import useCartStore from "@/store/useCart.store";
 import { toast } from "react-hot-toast";
+import { User } from "next-auth";
+import { usePaystackPayment } from "react-paystack";
 
 interface CartOrderData {
-  cartItems: Product[];
-  userDetails: any;
+  cartItems: CartItem[];
+  user: User;
 }
 
 interface SubscriptionOrderData {
   subscription: Subscription;
-  userDetails: any;
+  user: User;
 }
 
 const useOrder = () => {
@@ -23,20 +25,36 @@ const useOrder = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const { data: session } = useSession();
 
-  const handleCartOrderSubmit = async (cartOrderData: CartOrderData) => {
+  const onSuccess = (reference: string) => {
+    console.log(reference);
+  };
+
+  const onClose = () => {
+    console.log("closed");
+  };
+
+  // const initializeCartPayment = usePaystackPayment(onSuccess, onClose)
+
+  const handleCartOrderSubmit = async (amount: number) => {
     setIsSubmitting(true);
     setIsError(false);
     setIsSuccess(false);
 
-    try {
-      const { cartItems, userDetails } = cartOrderData;
+    const publicKey = "";
 
-      await axios.post("/order/cart", {
-        cartItems,
-        userDetails,
+    const config = {
+      reference: new Date().getTime().toString(),
+      email: session?.user.email,
+      amount,
+      publicKey,
+    };
+
+    try {
+      await axios.post("/api/order/cart", {
+        data: "hhhh",
       });
 
-      useCartStore.getState().clearCart();
+      // useCartStore.getState().clearCart();
 
       setIsSuccess(true);
       toast.success("Cart order submitted successfully!"); // Show success toast
@@ -56,11 +74,10 @@ const useOrder = () => {
     setIsSuccess(false);
 
     try {
-      const { subscription, userDetails } = subscriptionOrderData;
+      const { subscription } = subscriptionOrderData;
 
       await axios.post("/order/subscription", {
         subscription,
-        userDetails,
       });
 
       setIsSuccess(true);

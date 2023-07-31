@@ -325,6 +325,14 @@ export const DashboradServices = [
   },
 ];
 
+export const AboutUsContent = {
+  introduction: {
+    heading: "",
+    content: ""
+  }
+ 
+}
+
 export const PrivacyContent = [
   {
     header: "Information We Collect",

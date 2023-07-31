@@ -17,10 +17,11 @@ import { Pencil1Icon } from "@radix-ui/react-icons";
 import useAuth from "@/hooks/useAuth";
 import { updateProfile } from "@/utils/helpers/updateUser";
 import { toast } from "react-hot-toast";
+import Loader from "@/component/ui/loader/Loader";
 
 const Profile = () => {
   const [isEditable, setIsEditable] = useState(false);
-  const { session } = useAuth();
+  const { session, status } = useAuth();
 
   const onSubmit = async (formData: { [key: string]: string }) => {
     try {
@@ -36,7 +37,7 @@ const Profile = () => {
           duration: 3000,
           position: "bottom-right",
         });
-        setIsEditable(false)
+        setIsEditable(false);
         // Redirect to a success page or do something else after successful update
       } else {
         // Show error toast message
@@ -69,6 +70,9 @@ const Profile = () => {
     },
     onSubmit
   );
+ 
+
+  if (status === "loading") return <Loader />;
 
   return (
     <Container>
