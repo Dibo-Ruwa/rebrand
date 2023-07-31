@@ -38,18 +38,15 @@ export async function POST(req: Request, res: Response) {
         phone: user.phone,
         address: user.address,
         user,
-        paymentId: "kkooikkooi",
+        paymentId: body.referenceId,
       });
 
       await order.save();
 
-
       existingCart.cartItems = [];
       existingCart.total = 0;
-      await existingCart.save()
+      await existingCart.save();
     }
-
-   
 
     return NextResponse.json({ order, success: true }, { status: 201 });
   } catch (err) {

@@ -1,9 +1,12 @@
 "use client";
 import useOrder from "@/hooks/useOrder";
 import { Subscription } from "@/utils/types/types";
+import { useSession } from "next-auth/react";
 import React from "react";
 import { VscClose } from "react-icons/vsc";
 import styled from "styled-components";
+
+const publicKey = "";
 
 interface CartSubscriptionProps {
   subscription: Subscription;
@@ -80,9 +83,11 @@ const CartSubscription: React.FC<CartSubscriptionProps> = ({
   subscription,
   onDelete,
 }) => {
+  const {data: session} = useSession()
   const { isSubmitting, isError, isSuccess, handleSubscriptionOrderSubmit } =
     useOrder();
   const { type, plan } = subscription;
+
 
   return (
     <Card>

@@ -8,6 +8,7 @@ import useCartStore from "@/store/useCart.store";
 import { toast } from "react-hot-toast";
 import { User } from "next-auth";
 import { usePaystackPayment } from "react-paystack";
+import { PaystackProps } from "react-paystack/dist/types";
 
 interface CartOrderData {
   cartItems: CartItem[];
@@ -24,33 +25,14 @@ const useOrder = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const { data: session } = useSession();
 
-  const onSuccess = (reference: string) => {
-    console.log(reference);
-  };
-
-  const onClose = () => {
-    console.log("closed");
-  };
-
-  // const initializeCartPayment = usePaystackPayment(onSuccess, onClose)
-
-  const handleCartOrderSubmit = async (amount: number) => {
+  const handleCartOrderSubmit = async (referenceId: string, amount: number) => {
     setIsSubmitting(true);
     setIsError(false);
     setIsSuccess(false);
 
-    const publicKey = "";
-
-    const config = {
-      reference: new Date().getTime().toString(),
-      email: session?.user.email,
-      amount,
-      publicKey,
-    };
-
     try {
       await axios.post("/api/order/cart", {
-        data: "hhhh",
+        referenceId,
       });
 
       useCartStore.getState().getCart();
@@ -80,7 +62,6 @@ const useOrder = () => {
       });
 
       useCartStore.getState().getSubscriptions();
-
 
       setIsSuccess(true);
       toast.success("Subscription order submitted successfully!"); // Show success toast
