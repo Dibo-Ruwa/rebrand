@@ -6,7 +6,7 @@ import useCartStore, { getTotalQuantityAndPrice } from "@/store/useCart.store";
 import { useSession } from "next-auth/react";
 import { PaystackConsumer, usePaystackPayment } from "react-paystack";
 import {v4 as uuidv4} from 'uuid'
-const publicKey = "";
+const publicKey = "sk_test_e646591352b00a164d81ae119410f4f26dd6bb3d";
 
 const Payment = () => {
   const { data: session } = useSession();

@@ -11,10 +11,7 @@ export async function GET(req: Request, res: Response) {
   try {
     await connectDB();
 
-    if (!req.body)
-      return NextResponse.json({ error: "Data is missing" }, { status: 400 });
-
-    const body = await req.json();
+    
     const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ message: "you are not loggedIn" });
