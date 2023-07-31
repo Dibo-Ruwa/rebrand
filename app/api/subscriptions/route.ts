@@ -25,6 +25,11 @@ export async function POST(req: Request, res: Response) {
       return NextResponse.json({ message: "user does not exist" });
     }
 
+    const start = new Date();
+    const due = new Date();
+
+    due.setMonth(due.getMonth() + 1);
+
     // Check if a subscription already exists for the user
     const existingSubscription = await Subscription.findOne({
       user,
@@ -39,6 +44,8 @@ export async function POST(req: Request, res: Response) {
       const newSubscription = new Subscription({
         ...body,
         user,
+        start,
+        due,
       });
 
       // Save the new subscription to the database
@@ -93,7 +100,7 @@ export async function GET(req: Request, res: Response) {
       return NextResponse.json({ message: "User does not exist" });
     }
 
-    const subscriptions = await Subscription.find({ user: user._id });
+    const subscriptions = await Subscription.find({ user: user._id, isPaid: false });
 
     if (!subscriptions) {
       return NextResponse.json({ message: "Cart is empty" });

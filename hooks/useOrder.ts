@@ -16,7 +16,6 @@ interface CartOrderData {
 
 interface SubscriptionOrderData {
   subscription: Subscription;
-  user: User;
 }
 
 const useOrder = () => {
@@ -54,7 +53,7 @@ const useOrder = () => {
         data: "hhhh",
       });
 
-      // useCartStore.getState().clearCart();
+      useCartStore.getState().getCart();
 
       setIsSuccess(true);
       toast.success("Cart order submitted successfully!"); // Show success toast
@@ -76,9 +75,12 @@ const useOrder = () => {
     try {
       const { subscription } = subscriptionOrderData;
 
-      await axios.post("/order/subscription", {
+      await axios.put(`/api/order/subscription/${subscription?._id}`, {
         subscription,
       });
+
+      useCartStore.getState().getSubscriptions();
+
 
       setIsSuccess(true);
       toast.success("Subscription order submitted successfully!"); // Show success toast

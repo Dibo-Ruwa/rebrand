@@ -1,4 +1,5 @@
 "use client";
+import useOrder from "@/hooks/useOrder";
 import { Subscription } from "@/utils/types/types";
 import React from "react";
 import { VscClose } from "react-icons/vsc";
@@ -79,6 +80,8 @@ const CartSubscription: React.FC<CartSubscriptionProps> = ({
   subscription,
   onDelete,
 }) => {
+  const { isSubmitting, isError, isSuccess, handleSubscriptionOrderSubmit } =
+    useOrder();
   const { type, plan } = subscription;
 
   return (
@@ -99,7 +102,12 @@ const CartSubscription: React.FC<CartSubscriptionProps> = ({
           </p>
         </>
       )}
-      <button className="payBtn">Sudscribe</button>
+      <button
+        className="payBtn"
+        onClick={() => handleSubscriptionOrderSubmit({subscription})}
+      >
+        Sudscribe
+      </button>
       <button className="delBtn" onClick={onDelete}>
         <VscClose />
       </button>

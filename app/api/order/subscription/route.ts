@@ -6,60 +6,10 @@ import User from "@/utils/models/Users";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-export async function POST(req: Request, res: Response) {
-  try {
-    await connectDB();
-    let order;
-
-    if (!req.body)
-      return NextResponse.json({ error: "Data is missing" }, { status: 400 });
-
-    const body = await req.json();
-    const session = await getServerSession(authOptions);
-    if (!session) {
-      return NextResponse.json({ message: "you are not loggedIn" });
-    }
-
-    const user = await User.findById(session.user._id);
-    if (!user) {
-      return NextResponse.json({ message: "user does not exist" });
-    }
-
-    const existingSubscription = await Subscription.findOne({ user: user._id });
-
-    if (!existingSubscription) {
-      // If no existing Subscription,throw new error
-
-      return NextResponse.json({ error: "Data is missing" }, { status: 400 });
-    } else {
-      //     paystack.customer.create({})
-
-      // If an existing Subscription is found, check if the item exists
-      order = new Order({
-        orderItems: existingSubscription.SubscriptionItems,
-        email: user.email,
-        phone: user.phone,
-        address: user.address,
-        user,
-        paymentId: "kkooii",
-      });
-
-      await order.save();
-    }
-
-    return NextResponse.json({ order, success: true }, { status: 201 });
-  } catch (err) {
-    console.error(err);
-    NextResponse.json({ error: "An error occurred" }, { status: 500 });
-  } finally {
-    await closeDB();
-  }
-}
 
 export async function GET(req: Request, res: Response) {
   try {
     await connectDB();
-
 
     if (!req.body)
       return NextResponse.json({ error: "Data is missing" }, { status: 400 });

@@ -1,15 +1,20 @@
 import { closeDB, connectDB } from "@/utils/db";
 import { authOptions } from "@/utils/helpers/authOptions";
-import { Cart } from "@/utils/models/Cart";
+import { Subscription } from "@/utils/models/Subscription";
 import { Order } from "@/utils/models/Order";
 import User from "@/utils/models/Users";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-export async function POST(req: Request, res: Response) {
+export async function PUT(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
   try {
     await connectDB();
     let order;
+
+    const id = params.id;
 
     if (!req.body)
       return NextResponse.json({ error: "Data is missing" }, { status: 400 });
@@ -25,31 +30,30 @@ export async function POST(req: Request, res: Response) {
       return NextResponse.json({ message: "user does not exist" });
     }
 
-    const existingCart = await Cart.findOne({ user: user._id });
+    const subscription = await Subscription.findByIdAndUpdate(
+      id,
+      { isPaid: true },
+      { new: true }
+    );
 
-    if (!existingCart) {
-      // If no existing cart,throw new error
+    if (!subscription) {
+      // If no existing Subscription,throw new error
       return NextResponse.json({ error: "Data is missing" }, { status: 400 });
     } else {
-      // If an existing cart is found, load orderItems
+      //     paystack.customer.create({})
+
+      // If an existing Subscription is found, check if the item exists
       order = new Order({
-        orderItems: existingCart.cartItems,
+        orderItems: subscription,
         email: user.email,
         phone: user.phone,
         address: user.address,
         user,
-        paymentId: "kkooikkooi",
+        paymentId: "kkoohshoosii",
       });
 
       await order.save();
-
-
-      existingCart.cartItems = [];
-      existingCart.total = 0;
-      await existingCart.save()
     }
-
-   
 
     return NextResponse.json({ order, success: true }, { status: 201 });
   } catch (err) {

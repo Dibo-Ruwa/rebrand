@@ -1,4 +1,4 @@
-import mongoose, {  Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
 const subscriptionSchema = new Schema(
   {
@@ -10,11 +10,20 @@ const subscriptionSchema = new Schema(
       type: Schema.Types.Mixed,
       required: true,
     },
-    paid: {
+    isPaid: {
       type: Boolean,
       required: true,
       default: false,
     },
+    start: {
+      type: Date,
+      required: true,
+    },
+    due: {
+      type: Date,
+      required: true,
+    },
+
     user: {
       type: mongoose.Types.ObjectId,
       ref: "User",
