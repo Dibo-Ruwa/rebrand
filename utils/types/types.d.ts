@@ -50,9 +50,9 @@ export interface Subscription {
     | {
         bagCount: number;
         regularity: string;
-        total: number;
       }
     | string;
+  total: number;
 }
 
 export type CartItem = Product & {

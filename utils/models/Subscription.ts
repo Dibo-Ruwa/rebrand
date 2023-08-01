@@ -10,6 +10,10 @@ const subscriptionSchema = new Schema(
       type: Schema.Types.Mixed,
       required: true,
     },
+    total: {
+      type: Number,
+      required: true,
+    },
     isPaid: {
       type: Boolean,
       required: true,

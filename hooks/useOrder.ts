@@ -48,6 +48,7 @@ const useOrder = () => {
   };
 
   const handleSubscriptionOrderSubmit = async (
+    referenceId: string,
     subscriptionOrderData: SubscriptionOrderData
   ) => {
     setIsSubmitting(true);
@@ -58,7 +59,7 @@ const useOrder = () => {
       const { subscription } = subscriptionOrderData;
 
       await axios.put(`/api/order/subscription/${subscription?._id}`, {
-        subscription,
+        referenceId,
       });
 
       useCartStore.getState().getSubscriptions();

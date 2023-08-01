@@ -40,8 +40,6 @@ export async function PUT(
       // If no existing Subscription,throw new error
       return NextResponse.json({ error: "Data is missing" }, { status: 400 });
     } else {
-      //     paystack.customer.create({})
-
       // If an existing Subscription is found, check if the item exists
       order = new Order({
         orderItems: subscription,
@@ -49,7 +47,7 @@ export async function PUT(
         phone: user.phone,
         address: user.address,
         user,
-        paymentId: "kkoohshoosii",
+        paymentId: body.referenceId,
       });
 
       await order.save();

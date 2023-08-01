@@ -30,6 +30,7 @@ const Cleaning = () => {
     const data = {
       type: "cleaning",
       plan,
+      total: 5000,
     };
 
     addSubscription(data);
@@ -116,11 +117,12 @@ const Cleaning = () => {
                       </li>
                     ))}
                 </ul>
-                <Button size="medium"
-                color="primary" onClick={() => ChoosePlan(plan.title)}>
+                <Button
+                  size="medium"
+                  color="primary"
+                  onClick={() => ChoosePlan(plan.title)}
+                >
                   <span> {plan.cta.label}</span>
-
-                 
                 </Button>
               </SubscriptionCard>
             </div>

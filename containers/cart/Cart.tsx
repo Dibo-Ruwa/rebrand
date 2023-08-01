@@ -46,7 +46,8 @@ const ClearCartButton = styled.button`
 `;
 
 const Cart: React.FC = () => {
-  const { cartItems, clearCart, subscriptions, removeSubscription } = useCartStore();
+  const { cartItems, clearCart, subscriptions, removeSubscription } =
+    useCartStore();
   const { totalQuantities, totalPrice } = getTotalQuantityAndPrice(
     cartItems,
     subscriptions
@@ -67,11 +68,12 @@ const Cart: React.FC = () => {
           <>
             <div className="cart__items">
               <CartItemsContainer>
-                {cartData.length > 0 && cartData.map((item: any) => (
-                  <div key={item.id}>
-                    <CartItem item={item} />
-                  </div>
-                ))}
+                {cartData.length > 0 &&
+                  cartData.map((item: any) => (
+                    <div key={item.id}>
+                      <CartItem item={item} />
+                    </div>
+                  ))}
                 {subscriptions?.length > 0 &&
                   subscriptions.map((subscription: Subscription) => (
                     <CartSubscription
@@ -88,9 +90,11 @@ const Cart: React.FC = () => {
               </div>
             </div>
 
-            <div className="payment">
-              <Payment />
-            </div>
+            {cartItems.length > 0 && (
+              <div className="payment">
+                <Payment />
+              </div>
+            )}
           </>
         ) : (
           <EmptyCart />

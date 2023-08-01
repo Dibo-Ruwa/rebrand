@@ -63,8 +63,8 @@ const LaundryCount: React.FC = () => {
       plan: {
         bagCount,
         regularity,
-        total,
       },
+      total,
     };
 
     addSubscription(data);
@@ -82,10 +82,6 @@ const LaundryCount: React.FC = () => {
         setTotal(13000 * bagCount);
     }
   }, [bagCount, regularity]);
-
-
-
- 
 
   console.log(subscriptions);
 

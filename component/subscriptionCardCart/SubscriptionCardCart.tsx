@@ -5,95 +5,74 @@ import { useSession } from "next-auth/react";
 import React from "react";
 import { VscClose } from "react-icons/vsc";
 import styled from "styled-components";
-
-const publicKey = "";
+import { PayButton } from "../Payment/payment.styles";
+import { usePaystackPayment } from "react-paystack";
+import { v4 as uuidv4 } from "uuid";
+import { Card } from "./subscriptionCardCart.styles";
 
 interface CartSubscriptionProps {
   subscription: Subscription;
   onDelete?: () => void;
 }
 
-const Card = styled.div`
-  border: 1px solid var(--color2);
-  background: var(--color2-20);
-  border-radius: 8px;
-  padding: 16px;
-  margin: 16px 0;
-  max-width: 300px;
-  position: relative;
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-
-  h3 {
-    font-size: 18px;
-    margin-bottom: 7px;
-  }
-
-  p {
-    margin-bottom: 5px;
-    span {
-      font-weight: bold;
-      margin-left: 5px;
-    }
-  }
-
-  .delBtn {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    outline: none;
-    border: none;
-    background: rgba(241, 107, 107, 0.351);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: #f16b6b;
-    }
-  }
-
-  .payBtn {
-    border-radius: 8px;
-    padding: 10px 17px;
-    outline: none;
-    margin-top: 20px;
-    border: none;
-    background: var(--color2);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: #f16b6b;
-    }
-  }
-`;
-
 const CartSubscription: React.FC<CartSubscriptionProps> = ({
   subscription,
   onDelete,
 }) => {
-  const {data: session} = useSession()
+  const { data: session } = useSession();
   const { isSubmitting, isError, isSuccess, handleSubscriptionOrderSubmit } =
     useOrder();
   const { type, plan } = subscription;
 
+  const referenceId = uuidv4();
+
+  const onSuccess = () => {
+    handleSubscriptionOrderSubmit(referenceId, { subscription });
+  };
+
+  const onClose = () => {
+    console.log("closed");
+  };
+
+  const publicKey = "pk_test_aa151675a5dd4dcccede80346dd579becf26e6ef";
+
+  const config = {
+    reference: referenceId,
+    amount: subscription.total * 100,
+    email: session ? session?.user.email : "",
+    custom_fields: {
+      email: session ? session?.user.email : "",
+      phone_number: session ? session?.user.phone : "",
+      name: session
+        ? `${session?.user.firstName} ${session?.user.lastName}`
+        : "",
+    },
+    publicKey,
+  };
+  const PaymentBtn = () => {
+    const initializePayment = usePaystackPayment(config);
+    return (
+      <button
+        className="payBtn"
+        onClick={() => {
+          initializePayment(onSuccess, onClose);
+        }}
+      >
+        Subscribe
+      </button>
+    );
+  };
 
   return (
     <Card>
       <h3>{type}</h3>
       {typeof plan === "string" ? (
-        <p>{plan}</p>
+        <>
+          <p>{plan}</p>
+          <p>
+            Total: <span>{subscription.total}</span>
+          </p>
+        </>
       ) : (
         <>
           <p>
@@ -103,16 +82,11 @@ const CartSubscription: React.FC<CartSubscriptionProps> = ({
             Regularity: <span> {plan.regularity}</span>
           </p>
           <p>
-            Total: <span>{plan.total}</span>
+            Total: <span>{subscription.total}</span>
           </p>
         </>
       )}
-      <button
-        className="payBtn"
-        onClick={() => handleSubscriptionOrderSubmit({subscription})}
-      >
-        Sudscribe
-      </button>
+      <PaymentBtn />
       <button className="delBtn" onClick={onDelete}>
         <VscClose />
       </button>
