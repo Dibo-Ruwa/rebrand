@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-hot-toast";
 import { usePaystackPayment } from "react-paystack";
 
-const publicKey = "sk_test_e646591352b00a164d81ae119410f4f26dd6bb3d";
+const publicKey = process.env.PAYSTACK_KEY;
 
 const Payment = () => {
   const { data: session } = useSession();
@@ -30,7 +30,7 @@ const Payment = () => {
 
   const config = {
     reference: referenceId,
-    amount: totalPrice,
+    amount: totalPrice * 100,
     email: session ? session?.user.email : "",
     custom_fields: {
       email: session ? session?.user.email : "",
@@ -50,7 +50,7 @@ const Payment = () => {
           initializePayment(onSuccess, onClose);
         }}
       >
-        {" "}
+       
         Pay {totalPrice}
       </button>
     );
