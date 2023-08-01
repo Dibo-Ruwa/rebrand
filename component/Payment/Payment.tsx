@@ -8,8 +8,6 @@ import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-hot-toast";
 import { usePaystackPayment } from "react-paystack";
 
-const publicKey = process.env.PAYSTACK_KEY;
-
 const Payment = () => {
   const { data: session } = useSession();
 
@@ -28,6 +26,8 @@ const Payment = () => {
     console.log("closed");
   };
 
+  const publicKey = process.env.PAYSTACK_KEY ? process.env.PAYSTACK_KEY : "";
+
   const config = {
     reference: referenceId,
     amount: totalPrice * 100,
@@ -41,7 +41,6 @@ const Payment = () => {
     },
     publicKey,
   };
-
   const PaymentBtn = () => {
     const initializePayment = usePaystackPayment(config);
     return (
@@ -50,7 +49,6 @@ const Payment = () => {
           initializePayment(onSuccess, onClose);
         }}
       >
-       
         Pay {totalPrice}
       </button>
     );
