@@ -44,13 +44,13 @@ const Payment = () => {
   const PaymentBtn = () => {
     const initializePayment = usePaystackPayment(config);
     return (
-      <button
+      <PayButton
         onClick={() => {
           initializePayment(onSuccess, onClose);
         }}
       >
         Pay {totalPrice}
-      </button>
+      </PayButton>
     );
   };
 
