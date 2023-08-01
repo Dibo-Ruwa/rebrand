@@ -26,7 +26,7 @@ const Payment = () => {
     console.log("closed");
   };
 
-  const publicKey = process.env.PAYSTACK_KEY ? process.env.PAYSTACK_KEY : "";
+  const publicKey = "pk_test_aa151675a5dd4dcccede80346dd579becf26e6ef";
 
   const config = {
     reference: referenceId,
