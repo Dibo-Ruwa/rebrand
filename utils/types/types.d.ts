@@ -53,8 +53,8 @@ export interface Subscription {
       }
     | string;
   total: number;
-  start: string;
-  due: string
+  start?: string;
+  due?: string
 }
 
 export type CartItem = Product & {
