@@ -102,9 +102,7 @@ const useOrder = () => {
     }
   };
 
-  useEffect(() => {
-    getOrders();
-  }, []);
+
 
   const getOrderById = (orderId: string) => {
     setIsSubmitting(true);

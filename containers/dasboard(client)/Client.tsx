@@ -4,9 +4,13 @@ import { Container, EmptyServices, Services } from "./client.tyles";
 import Card from "@/component/dahboardCard/Card";
 import useOrder from "@/hooks/useOrder";
 import OrderList from "@/component/orderListing/OrderList";
+import { useEffect } from "react";
 
 const Client = () => {
-  const { orders } = useOrder();
+  const { orders, getOrders } = useOrder();
+  useEffect(() => {
+    getOrders();
+  }, []);
   return (
     <Container>
      
