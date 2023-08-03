@@ -1,10 +1,38 @@
 "use client";
 import useCartStore from "@/store/useCart.store";
+import { CartItem, Subscription } from "@/utils/types/types";
 import { useEffect } from "react";
 
 export const useCart = () => {
-  // Client Global State
-  const { cartItems, getCart, getSubscriptions } = useCartStore();
+  function getTotalQuantityAndPrice(
+    cartItems: CartItem[],
+    subscriptions: Subscription[]
+  ): {
+    totalQuantities: number;
+    totalPrice: number;
+  } {
+    let totalQuantities = 0;
+    let totalPrice = 0;
+
+    for (const cartItem of cartItems) {
+      totalQuantities += cartItem.quantity;
+      totalPrice += cartItem.total;
+    }
+
+    const subCount = subscriptions ? subscriptions.length : 0;
+
+    totalQuantities += subCount;
+
+    return { totalQuantities, totalPrice };
+  }
+
+  const { cartItems, getCart, getSubscriptions, subscriptions } =
+    useCartStore();
+
+  const { totalQuantities, totalPrice } = getTotalQuantityAndPrice(
+    cartItems,
+    subscriptions
+  );
 
   useEffect(() => {
     getCart();
@@ -15,7 +43,7 @@ export const useCart = () => {
     cartItems.length > 0 &&
     cartItems.map((item: any) => {
       const { title, total, price, imgUrl, quantity } = item;
-   
+
       return {
         id: item?._id,
         title,
@@ -26,27 +54,17 @@ export const useCart = () => {
       };
     });
 
-  let totalPrice: string | false = "0";
-  let totalQuantity: number | false = 0;
+  // // let totalPrice: number  = 0;
 
-  if (cartItems) {
-    totalPrice =
-      cartItems.length > 0 &&
-      cartItems
-        .reduce(
-          (accumulator: number, currentItem) =>
-            accumulator + currentItem.price * currentItem.quantity,
-          0
-        )
-        .toLocaleString();
-  }
+  // if (cartItems) {
+  //   totalPrice =
+  //     cartItems.length > 0 &&
+  //     cartItems.reduce(
+  //       (accumulator: number, currentItem) =>
+  //         accumulator + currentItem.price * currentItem.quantity,
+  //       0
+  //     );
+  // }
 
-  totalQuantity =
-    cartItems.length > 0 &&
-    cartItems.reduce(
-      (accumulator: number, currentItem) => accumulator + currentItem.quantity,
-      0
-    );
-
-  return { cartData, totalPrice, totalQuantity };
+  return { cartData, totalPrice, totalQuantities };
 };

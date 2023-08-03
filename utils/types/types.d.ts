@@ -26,7 +26,7 @@ export type UserType = {
   city?: string;
   state?: string;
   phone?: string;
-  emailVeridied: boolean;
+  emailVerified: boolean;
   accessToken: string;
 };
 
@@ -53,6 +53,8 @@ export interface Subscription {
       }
     | string;
   total: number;
+  start: string;
+  due: string
 }
 
 export type CartItem = Product & {
@@ -73,3 +75,19 @@ export type CartState = {
   updateQuantity: (id: string, action: "increase" | "decrease") => void;
   clearCart: () => void;
 };
+
+
+export interface Order {
+  _id: string;
+  orderItems: any;
+  type: string;
+  total: number;
+  email: string;
+  address: string;
+  phone: string;
+  paymentId: string;
+  user: UserType;
+  createdAt: Date;
+  updatedAt: Date;
+
+}

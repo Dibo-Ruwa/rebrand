@@ -34,9 +34,11 @@ export async function POST(req: Request, res: Response) {
       // If an existing cart is found, load orderItems
       order = new Order({
         orderItems: existingCart.cartItems,
+        type: "cart",
         email: user.email,
         phone: user.phone,
         address: user.address,
+        total: existingCart.total,
         user,
         paymentId: body.referenceId,
       });

@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { closeDB, connectDB } from "@/utils/db";
 import User from "@/utils/models/Users";
 import { compare } from "bcrypt";
+import { UserType } from "../types/types";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -48,12 +49,19 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    jwt: async ({ token, user }) => {
+    jwt: async ({ token, user, trigger, session }) => {
       user && (token.user = user);
+
+      if (trigger === 'update') {
+        user && (token.user = user);
+        return { ...token, ...session.user}
+      }
       return { ...token, ...user };
     },
-    session: async ({ session, token }) => {
+    session: async ({ session, token, trigger }) => {
       const user: UserType = token.user as UserType;
+
+  
       session.user = user;
 
       return session;

@@ -43,8 +43,10 @@ export async function PUT(
       // If an existing Subscription is found, check if the item exists
       order = new Order({
         orderItems: subscription,
+        type: 'subscription',
         email: user.email,
         phone: user.phone,
+        total: subscription.total,
         address: user.address,
         user,
         paymentId: body.referenceId,

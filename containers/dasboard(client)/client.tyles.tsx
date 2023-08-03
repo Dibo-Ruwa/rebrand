@@ -3,7 +3,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 15vh 8% 5%;
+  padding: 3% 8%;
   width: 100%;
 `;
 export const Services = styled.div`
@@ -11,7 +11,8 @@ export const Services = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap:30px;
+  gap: 30px;
+  padding: 15vh 8% 0;
 
   @media screen and (max-width: 900px) {
     flex-wrap: wrap;
@@ -39,10 +40,10 @@ export const EmptyServices = styled.div`
   }
 
   h3 {
-          font-size: 28px;
+    font-size: 28px;
   }
 
   p {
-          font-size: 20px;
+    font-size: 20px;
   }
 `;

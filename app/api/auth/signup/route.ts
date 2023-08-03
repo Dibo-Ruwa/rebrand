@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { hash } from "bcrypt";
 import User from "@/utils/models/Users";
 import { connectDB, closeDB } from "@/utils/db";
+import { Cart } from "@/utils/models/Cart";
 
 export async function POST(req: Request, res: Response) {
   try {
@@ -37,6 +38,15 @@ export async function POST(req: Request, res: Response) {
 
     // Save the new user model to database and store data
     const createdUser = await user.save();
+
+
+    //ceate cart upon registration
+
+    const cart = new Cart({
+      user: user._id,
+    });
+
+    await cart.save();
 
     // Remove the password from the response
     createdUser.password =  undefined

@@ -2,7 +2,7 @@
 import { useCart } from "@/hooks/useCart";
 import { Column, Container, PayButton } from "./payment.styles";
 import useOrder from "@/hooks/useOrder";
-import useCartStore, { getTotalQuantityAndPrice } from "@/store/useCart.store";
+import useCartStore from "@/store/useCart.store";
 import { useSession } from "next-auth/react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-hot-toast";
@@ -12,7 +12,7 @@ const Payment = () => {
   const { data: session } = useSession();
 
   const { cartItems, subscriptions } = useCartStore();
-  const { totalPrice } = getTotalQuantityAndPrice(cartItems, subscriptions);
+  const { totalPrice } = useCart();
   const { isSubmitting, isError, isSuccess, handleCartOrderSubmit } =
     useOrder();
 
@@ -46,7 +46,21 @@ const Payment = () => {
     return (
       <PayButton
         onClick={() => {
-          initializePayment(onSuccess, onClose);
+          if (
+            session?.user.phone &&
+            session?.user.address &&
+            session?.user.state &&
+            session?.user.city
+          ) {
+            initializePayment(onSuccess, onClose);
+          } else if (
+            !session?.user.phone ||
+            !session?.user.address ||
+            !session?.user.state ||
+            !session?.user.city
+          ) {
+            return toast.error("please complete profile!!!");
+          }
         }}
       >
         Pay {totalPrice}
@@ -54,11 +68,11 @@ const Payment = () => {
     );
   };
 
-  const { totalQuantity } = useCart();
+  const { totalQuantities } = useCart();
   return (
     <Container>
       <Column>
-        <strong>Items</strong> <span>{totalQuantity}</span>
+        <strong>Items</strong> <span>{totalQuantities}</span>
       </Column>
       <Column>
         <strong>Total</strong> <span>${totalPrice}</span>

@@ -6,7 +6,7 @@ import CartSubscription from "@/component/subscriptionCardCart/SubscriptionCardC
 import Loader from "@/component/ui/loader/Loader";
 import { useCart } from "@/hooks/useCart";
 import { useMounted } from "@/hooks/useMounted";
-import useCartStore, { getTotalQuantityAndPrice } from "@/store/useCart.store";
+import useCartStore from "@/store/useCart.store";
 import { Subscription } from "@/utils/types/types";
 import React from "react";
 import styled from "styled-components";
@@ -48,11 +48,8 @@ const ClearCartButton = styled.button`
 const Cart: React.FC = () => {
   const { cartItems, clearCart, subscriptions, removeSubscription } =
     useCartStore();
-  const { totalQuantities, totalPrice } = getTotalQuantityAndPrice(
-    cartItems,
-    subscriptions
-  );
-  const { cartData } = useCart();
+
+  const { cartData, totalQuantities } = useCart();
 
   const mounted = useMounted();
   const handlePay = () => {

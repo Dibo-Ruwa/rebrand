@@ -21,7 +21,7 @@ import Loader from "@/component/ui/loader/Loader";
 
 const Profile = () => {
   const [isEditable, setIsEditable] = useState(false);
-  const { session, status } = useAuth();
+  const { session, status, userUpdate } = useAuth();
 
   const onSubmit = async (formData: { [key: string]: string }) => {
     try {
@@ -33,6 +33,7 @@ const Profile = () => {
 
       if (response.success) {
         // Show success toast message
+        userUpdate(formData);
         toast.success("Profile updated successfully!", {
           duration: 3000,
           position: "bottom-right",
@@ -70,7 +71,6 @@ const Profile = () => {
     },
     onSubmit
   );
- 
 
   if (status === "loading") return <Loader />;
 

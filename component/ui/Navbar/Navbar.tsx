@@ -25,7 +25,7 @@ import UserDropdown from "@/component/userDropdown/UserDropdown";
 import { FiShoppingCart } from "react-icons/fi";
 import { useCart } from "@/hooks/useCart";
 import { useSession } from "next-auth/react";
-import useCartStore, { getTotalQuantityAndPrice } from "@/store/useCart.store";
+import useCartStore from "@/store/useCart.store";
 
 const Navbar = () => {
   const { data: session, status } = useSession({
@@ -41,9 +41,13 @@ const Navbar = () => {
     trimedPath === "" ? "main" : trimedPath
   );
 
-  const { cartData, totalQuantity } = useCart();
   const [toggle, setToggle] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const { cartItems, getCart, getSubscriptions, subscriptions } =
+    useCartStore();
+
+  const { totalQuantities } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,13 +67,6 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const { cartItems, subscriptions } = useCartStore();
-
-  const { totalQuantities, totalPrice } = getTotalQuantityAndPrice(
-    cartItems,
-    subscriptions
-  );
 
   return (
     <NavbarContainer
@@ -126,7 +123,12 @@ const Navbar = () => {
 
       {session && (
         <div className="cart">
-          <div className="badge">{totalQuantities }</div>
+          {totalQuantities >= 1 ? (
+            <div className="badge">{totalQuantities}</div>
+          ) : (
+            <></>
+          )}
+
           <Link
             href="/cart"
             style={{ textDecoration: "none", color: "var(--primary)" }}

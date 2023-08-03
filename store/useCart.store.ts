@@ -65,8 +65,8 @@ const useCartStore = create<CartState>()(
               position: "top-center",
             });
           } catch (error: any) {
-            console.log(error);
-            toast.error(error.message, {
+            // console.log(error);
+            toast.error(error.response.data.error, {
               duration: 3000,
               position: "top-center",
             });
@@ -104,18 +104,9 @@ const useCartStore = create<CartState>()(
             });
             const response = await addCartItemAPI(productObj);
 
-            set(
-              (state) => (
-                addCartItem(state.cartItems, productObj),
-                {
-                  cartItems: [
-                    ...state.cartItems,
-                    { ...productObj },
-                    ...response.data.cart.cartItems,
-                  ],
-                }
-              )
-            );
+            set((state) => ({
+              cartItems: [...response.data.cart.cartItems],
+            }));
             toast.success("Item Added Successfuly!!!", {
               duration: 3000,
               position: "top-center",
@@ -203,28 +194,6 @@ const useCartStore = create<CartState>()(
     )
   )
 );
-
-export function getTotalQuantityAndPrice(
-  cartItems: CartItem[],
-  subscriptions: Subscription[]
-): {
-  totalQuantities: number;
-  totalPrice: number;
-} {
-  var totalQuantities = 0;
-  var totalPrice = 0;
-
-  for (const cartItem of cartItems) {
-    totalQuantities += cartItem.quantity;
-    totalPrice += cartItem.total;
-  }
-
-  const subCount = subscriptions ? subscriptions.length : 0;
-
-  totalQuantities += subCount;
-
-  return { totalQuantities, totalPrice };
-}
 
 /* ===== Cart Store Util Functions ===== */
 function addCartItem(state: CartItem[], product: Product) {

@@ -2,6 +2,10 @@ import mongoose, { Schema, model, models } from "mongoose";
 
 const orderSchema = new Schema(
   {
+    type: {
+      type: String,
+      required: true,
+    },
     orderItems: {
       type: Schema.Types.Mixed,
       required: true,
@@ -17,6 +21,10 @@ const orderSchema = new Schema(
     phone: {
       type: String,
       required: true,
+    },
+    total: {
+      type: Number,
+      required: true
     },
     paymentId: {
       type: String,

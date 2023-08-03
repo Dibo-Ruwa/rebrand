@@ -12,11 +12,12 @@ interface AuthHook {
   error: string | null;
   signup: (formData: { [key: string]: string }) => Promise<void>;
   signin: (formData: { [key: string]: string }) => Promise<void>;
+  userUpdate: (formData: { [key: string]: string }) => Promise<void>;
   signout: () => Promise<void>;
 }
 
 const useAuth = (): AuthHook => {
-  const { data: session, status } = useSession();
+  const { data: session, status, update } = useSession();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -32,7 +33,7 @@ const useAuth = (): AuthHook => {
       setError(null);
       toast.success("Signup successful!", {
         duration: 2000,
-        position: "bottom-right"
+        position: "bottom-right",
       });
       setTimeout(() => {
         router.push("/signin");
@@ -44,7 +45,7 @@ const useAuth = (): AuthHook => {
       toast.error(error.response.data);
       toast.error("Signup failed. Please try again.", {
         duration: 3000,
-        position: "bottom-right"
+        position: "bottom-right",
       });
     }
   };
@@ -82,7 +83,41 @@ const useAuth = (): AuthHook => {
       toast.error(error.response.data);
       toast.error("Signin failed. Please check your credentials.", {
         duration: 3000,
-        position: "bottom-left"
+        position: "bottom-left",
+      });
+    }
+  };
+  const userUpdate = async (formData: { [key: string]: string }) => {
+    try {
+      // Perform signin logic using axios
+      await update({
+        ...session,
+        user: {
+          ...session?.user,
+          ...formData,
+        },
+      });
+
+      setLoading(false);
+      setError(null);
+
+      toast.success("Signin successful!");
+      toast.success("Signin successful!", {
+        duration: 2000,
+        position: "bottom-right",
+      });
+      router.back();
+
+      // setTimeout(() => {
+      //   router.push("/dashboard");
+      // }, 500);
+    } catch (error: any) {
+      setLoading(false);
+      setError(error.message);
+      toast.error(error.response.data);
+      toast.error("Signin failed. Please check your credentials.", {
+        duration: 3000,
+        position: "bottom-left",
       });
     }
   };
@@ -91,7 +126,7 @@ const useAuth = (): AuthHook => {
     await signOut();
     toast.success("Signout successful!", {
       duration: 2000,
-      position: "bottom-right"
+      position: "bottom-right",
     });
   };
 
@@ -102,6 +137,7 @@ const useAuth = (): AuthHook => {
     error,
     signup,
     signin,
+    userUpdate,
     signout,
   };
 };

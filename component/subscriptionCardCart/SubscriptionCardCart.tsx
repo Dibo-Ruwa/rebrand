@@ -9,6 +9,7 @@ import { PayButton } from "../Payment/payment.styles";
 import { usePaystackPayment } from "react-paystack";
 import { v4 as uuidv4 } from "uuid";
 import { Card } from "./subscriptionCardCart.styles";
+import { toast } from "react-hot-toast";
 
 interface CartSubscriptionProps {
   subscription: Subscription;
@@ -55,7 +56,17 @@ const CartSubscription: React.FC<CartSubscriptionProps> = ({
       <button
         className="payBtn"
         onClick={() => {
-          initializePayment(onSuccess, onClose);
+          if (
+            !session?.user.phone ||
+            !session?.user.address ||
+            !session?.user.state ||
+            !session?.user.city ||
+            !session.user.emailVerified
+          ) {
+            return toast.error("please complete profile!!!");
+          } else {
+            initializePayment(onSuccess, onClose);
+          }
         }}
       >
         Subscribe
