@@ -49,16 +49,13 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    jwt: async ({ token, user, trigger, session }) => {
+    jwt: async ({ token, user,  }) => {
       user && (token.user = user);
 
-      if (trigger === 'update') {
-        user && (token.user = user);
-        return { ...token, ...session.user}
-      }
+    
       return { ...token, ...user };
     },
-    session: async ({ session, token, trigger }) => {
+    session: async ({ session, token, }) => {
       const user: UserType = token.user as UserType;
 
   
