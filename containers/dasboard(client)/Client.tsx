@@ -8,9 +8,7 @@ import { useEffect } from "react";
 
 const Client = () => {
   const { orders, getOrders } = useOrder();
-  useEffect(() => {
-    getOrders();
-  }, []);
+
   return (
     <Container>
      

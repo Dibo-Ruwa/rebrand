@@ -25,6 +25,7 @@ const useOrder = () => {
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { data: session } = useSession();
+  
 
   const router = useRouter();
 
@@ -102,7 +103,9 @@ const useOrder = () => {
     }
   };
 
-
+  useEffect(() => {
+    getOrders();
+  }, []);
 
   const getOrderById = (orderId: string) => {
     setIsSubmitting(true);

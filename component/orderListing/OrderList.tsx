@@ -54,6 +54,7 @@ const ColumnData = styled.div`
 // Order History Component
 const OrderList: React.FC = () => {
   const { orders, getOrderById } = useOrder();
+ 
   const router = useRouter();
   const handleOrderClick = (orderId: string) => {
     router.push(`/dashboard/${orderId}`);
@@ -61,7 +62,7 @@ const OrderList: React.FC = () => {
 
   return (
     <OrderHistoryContainer>
-      <h1>Order History {orders && orders.length}</h1>
+      <h1>Order History</h1>
       {orders.length > 0 && (
         <OrderListing>
           <OrderRow className="header">
