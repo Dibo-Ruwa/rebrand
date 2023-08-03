@@ -21,9 +21,7 @@ export async function GET() {
 
     const orders = await Order.find({ user: user._id });
 
-    if (!orders) {
-      return NextResponse.json({ error: "Data is missing" }, { status: 400 });
-    }
+
 
     return NextResponse.json({ orders, success: true }, { status: 201 });
   } catch (err) {
