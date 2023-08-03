@@ -52,8 +52,7 @@ export async function POST(req: Request, res: Response) {
 
     return NextResponse.json({ order, success: true }, { status: 201 });
   } catch (err) {
-   
-    NextResponse.json({ error: "An error occurred" }, { status: 500 });
+    return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
   }
@@ -81,8 +80,7 @@ export async function GET(req: Request, res: Response) {
 
     return NextResponse.json({ ordersHistory, success: true }, { status: 201 });
   } catch (err) {
-    
-    NextResponse.json({ error: "An error occurred" }, { status: 500 });
+    return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
   }
