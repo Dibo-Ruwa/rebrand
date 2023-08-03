@@ -5,7 +5,7 @@ import User from "@/utils/models/Users";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req: Request, res: Response) {
   try {
     await connectDB();
 
@@ -25,7 +25,7 @@ export async function GET() {
 
     return NextResponse.json({ orders, success: true }, { status: 201 });
   } catch (err) {
-    console.error(err);
+    
     NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
