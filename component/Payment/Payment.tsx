@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-hot-toast";
 import { usePaystackPayment } from "react-paystack";
+import {nanoid} from "nanoid";
 
 const Payment = () => {
   const { data: session } = useSession();
@@ -16,7 +17,7 @@ const Payment = () => {
   const { isSubmitting, isError, isSuccess, handleCartOrderSubmit } =
     useOrder();
 
-  const referenceId = uuidv4();
+  const referenceId = nanoid(8);
 
   const onSuccess = () => {
     handleCartOrderSubmit(referenceId, totalPrice);

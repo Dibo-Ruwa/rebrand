@@ -37,7 +37,7 @@ export async function POST(req: Request, res: Response) {
       plan: body.plan,
     });
 
-    console.log(existingSubscription);
+ 
 
     if (!existingSubscription) {
       // Create a new subscription object
@@ -79,8 +79,7 @@ export async function POST(req: Request, res: Response) {
       { status: 201 }
     );
   } catch (err) {
-    console.error(err);
-    NextResponse.json({ error: "An error occurred" }, { status: 500 });
+   return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
   }

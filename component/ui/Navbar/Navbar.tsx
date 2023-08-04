@@ -32,6 +32,8 @@ const Navbar = () => {
     required: false,
   });
 
+  console.log(session)
+
   //get partName to render route types
   const pathname = usePathname();
 

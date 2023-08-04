@@ -4,6 +4,9 @@ import { closeDB, connectDB } from "@/utils/db";
 import User from "@/utils/models/Users";
 import { compare } from "bcrypt";
 import { UserType } from "../types/types";
+import { NextResponse } from "next/server";
+import { generateActivationToken } from "@/templates/authTemplates";
+import { sendMail } from "../sendMail";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -15,6 +18,7 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        // try {
         await connectDB().catch((err) => {
           throw new Error(err);
         });
@@ -36,9 +40,20 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid email or password");
         }
         user.password = undefined;
-        await closeDB();
 
+        console.log(user)
+
+        // if (!user.emailVerified) {
+        //   throw new Error("please check your mail for a verification link");
+        // }
+        await closeDB();
         return user;
+        // } catch (err) {
+        //   // console.log(err);
+        //   return NextResponse.json(err);
+        // } finally {
+
+        // }
       },
     }),
   ],
@@ -49,16 +64,14 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    jwt: async ({ token, user,  }) => {
+    jwt: async ({ token, user }) => {
       user && (token.user = user);
 
-    
       return { ...token, ...user };
     },
-    session: async ({ session, token, }) => {
+    session: async ({ session, token }) => {
       const user: UserType = token.user as UserType;
 
-  
       session.user = user;
 
       return session;

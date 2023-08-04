@@ -38,8 +38,7 @@ export async function GET(
 
     return NextResponse.json({ order: order, success: true }, { status: 200 });
   } catch (err) {
-    console.error(err);
-    NextResponse.json({ error: "An error occurred" }, { status: 500 });
+  return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
   }

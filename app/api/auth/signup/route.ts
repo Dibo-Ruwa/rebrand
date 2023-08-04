@@ -3,6 +3,11 @@ import { hash } from "bcrypt";
 import User from "@/utils/models/Users";
 import { connectDB, closeDB } from "@/utils/db";
 import { Cart } from "@/utils/models/Cart";
+import {
+  generateActivationToken,
+  generateToken,
+} from "@/templates/authTemplates";
+import { sendMail } from "@/utils/sendMail";
 
 export async function POST(req: Request, res: Response) {
   try {
@@ -25,8 +30,6 @@ export async function POST(req: Request, res: Response) {
       );
     }
 
-
-
     // Hash password
     const hashedPassword = await hash(password, 12);
 
@@ -39,7 +42,6 @@ export async function POST(req: Request, res: Response) {
     // Save the new user model to database and store data
     const createdUser = await user.save();
 
-
     //ceate cart upon registration
 
     const cart = new Cart({
@@ -48,16 +50,38 @@ export async function POST(req: Request, res: Response) {
 
     await cart.save();
 
-    // Remove the password from the response
-    createdUser.password =  undefined
+    // @todo verification mail
 
-    return NextResponse.json(
-      { createdUser, success: true },
-      { status: 201 }
+    const activationEmailContent = generateActivationToken(user._id);
+
+    // Use the sendMail utility to send the email
+    const mail = await sendMail(
+      email,
+      "Activate Your Account",
+      activationEmailContent
     );
+
+    if (user && mail) {
+      // Remove the password from the response
+      createdUser.password = undefined;
+
+      return NextResponse.json(
+        {
+          message:
+            "User signed up successfuly!!!\n a verification email hs been sent to you\n please verify your account.",
+          user,
+          success: true,
+        },
+        { status: 201 }
+      );
+    } else {
+      await user.remove();
+
+      throw new Error("Unable to sign Up");
+    }
+
   } catch (err) {
-    console.error(err);
-    NextResponse.json(err);
+    return NextResponse.json(err);
   } finally {
     await closeDB();
   }

@@ -44,10 +44,9 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {authModal}
-          
-             {children}
-          
-         
+
+          <main>{children}</main>
+
           <Footer />
           <GlobalStyles />
         </Providers>

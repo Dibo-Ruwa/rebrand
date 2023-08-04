@@ -41,8 +41,7 @@ export async function PUT(req: NextRequest, res: Response) {
     );
    
   } catch (err) {
-    console.error(err);
-    NextResponse.json(err);
+    return  NextResponse.json(err);
   } finally {
     await closeDB();
   }

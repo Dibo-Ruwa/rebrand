@@ -10,6 +10,7 @@ import { usePaystackPayment } from "react-paystack";
 import { v4 as uuidv4 } from "uuid";
 import { Card } from "./subscriptionCardCart.styles";
 import { toast } from "react-hot-toast";
+import {nanoid} from "nanoid";
 
 interface CartSubscriptionProps {
   subscription: Subscription;
@@ -25,7 +26,7 @@ const CartSubscription: React.FC<CartSubscriptionProps> = ({
     useOrder();
   const { type, plan } = subscription;
 
-  const referenceId = uuidv4();
+  const referenceId = nanoid();
 
   const onSuccess = () => {
     handleSubscriptionOrderSubmit(referenceId, { subscription });

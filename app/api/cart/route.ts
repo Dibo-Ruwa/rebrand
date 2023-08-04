@@ -81,8 +81,8 @@ export async function POST(req: Request, res: Response) {
       { status: 201 }
     );
   } catch (err) {
-    console.error(err);
-    NextResponse.json({ error: "An error occurred" }, { status: 500 });
+   
+   return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
   }
@@ -110,8 +110,7 @@ export async function GET(req: Request, res: Response) {
 
     return NextResponse.json({ cart, success: true });
   } catch (err) {
-    console.error(err);
-    NextResponse.json({ error: "An error occurred" }, { status: 500 });
+   return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
   }
@@ -143,8 +142,8 @@ export async function DELETE(req: Request, res: Response) {
 
     return NextResponse.json({ cart, success: true });
   } catch (err) {
-    console.error(err);
-    NextResponse.json({ error: "An error occurred" }, { status: 500 });
+   
+   return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
   }

@@ -44,8 +44,7 @@ export async function DELETE(
       { status: 201 }
     );
   } catch (err) {
-    console.error(err);
-    NextResponse.json({ error: "An error occurred" }, { status: 500 });
+   return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
   }

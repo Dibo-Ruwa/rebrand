@@ -77,8 +77,7 @@ export async function PUT(
       { status: 200 }
     );
   } catch (err) {
-    console.error(err);
-    NextResponse.json({ error: "An error occurred" }, { status: 500 });
+    return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
   }
@@ -137,8 +136,7 @@ export async function DELETE(
       { status: 200 }
     );
   } catch (err) {
-    console.error(err);
-    NextResponse.json({ error: "An error occurred" }, { status: 500 });
+   return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
   }
