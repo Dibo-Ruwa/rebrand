@@ -1,19 +1,17 @@
 "use client";
-import { DashboradServices } from "@/constants";
-import { Container, EmptyServices, Services } from "./client.tyles";
-import Card from "@/component/dahboardCard/Card";
+import { Container, EmptyServices } from "./client.tyles";
 import useOrder from "@/hooks/useOrder";
 import OrderList from "@/component/orderListing/OrderList";
-import { useEffect } from "react";
+
+import { useSession } from "next-auth/react";
 
 const Client = () => {
+  const { data: session } = useSession();
   const { orders, getOrders } = useOrder();
 
   return (
     <Container>
-     
-
-      {orders ? (
+      {session && orders ? (
         <OrderList />
       ) : (
         <EmptyServices>

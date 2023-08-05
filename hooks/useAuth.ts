@@ -28,16 +28,26 @@ const useAuth = (): AuthHook => {
 
     try {
       // Perform signup logic using axios
-      await interceptor.post("/auth/signup", formData);
+      const res = await interceptor.post("/auth/signup", formData);
       setLoading(false);
       setError(null);
-      toast.success("Signup successful!", {
-        duration: 2000,
-        position: "bottom-right",
+
+      toast.loading("Submiing credentials..", {
+
+        duration: 1000
       });
-      setTimeout(() => {
-        router.push("/signin");
-      }, 1000);
+
+      if (session) {
+        toast.success("Sign Up Successful!!!", {
+          duration: 2000,
+          position: "bottom-right",
+        });
+        router.back();
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 500);
+      } else {
+      }
     } catch (error: any) {
       console.log(error.response.data);
       setLoading(false);
@@ -59,28 +69,33 @@ const useAuth = (): AuthHook => {
         password: formData.password,
       });
 
+      toast.loading("Submiing credentials..", {
+
+        duration: 1000
+      });
+
       if (res && res.error !== null) {
-        console.log(res.error);
-        // toast.error(res.error)
+        toast.error(`${res.error}`);
       }
 
       setLoading(false);
       setError(null);
 
-      toast.success("Signin successful!");
-      toast.success("Signin successful!", {
-        duration: 2000,
-        position: "bottom-right",
-      });
-      router.back();
-
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, 500);
+      if (session && session.user) {
+        toast.success("Signin successful!", {
+          duration: 2000,
+          position: "bottom-right",
+      
+        });
+        router.back();
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 500);
+      }
     } catch (error: any) {
       setLoading(false);
       setError(error.message);
-      toast.error(error.response.data);
+      toast.error(error);
       toast.error("Signin failed. Please check your credentials.", {
         duration: 3000,
         position: "bottom-left",
@@ -101,12 +116,8 @@ const useAuth = (): AuthHook => {
       setLoading(false);
       setError(null);
 
-      toast.success("Signin successful!");
-      toast.success("Signin successful!", {
-        duration: 2000,
-        position: "bottom-right",
-      });
-      router.back();
+      toast.success("Update SuccessFul");
+     
 
       // setTimeout(() => {
       //   router.push("/dashboard");

@@ -26,41 +26,17 @@ import NewsletterForm from "@/component/NewsletterForm";
 import { motion } from "framer-motion";
 import FeedbackCarousel from "@/component/feedBacksCarousel/FeedBacks";
 import Image from "next/image";
-
-const ContainerVariant = {
-  hidden: {
-    x: "-100",
-    opacity: 0,
-  },
-  show: {
-    x: 0,
-    opacity: 1,
-    transition: [0.3, 0.4, 0.9, 0.2],
-  },
-};
-
-const contentVariant = {
-  hidden: {
-    x: "-100",
-    opacity: 0,
-  },
-  show: {
-    x: 0,
-    opacity: 1,
-    transition: [0.3, 0.4, 0.9, 0.2],
-  },
-};
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
+  const { data: session } = useSession();
+  const router = useRouter();
+
   return (
     <Container>
       <HeroContainer bg="primary-20">
-        <motion.div
-          className="hero__text"
-          variants={ContainerVariant}
-          initial="hidden"
-          animate="show"
-        >
+        <motion.div className="hero__text">
           <div className="title">
             Break free from mundane tasks that drains your time and energy
           </div>
@@ -72,7 +48,11 @@ export default function Home() {
           </p>
 
           <div className="btn_grp">
-            <Button size="large" color="primary">
+            <Button
+              size="large"
+              color="primary"
+              onClick={() => router.push(session ? "/dashboard" : "/signin")}
+            >
               Get Started
             </Button>
             <div className="contact">
@@ -141,7 +121,7 @@ export default function Home() {
             and energy. We offer a range of services designed to transform your
             daily routine and let you focus on what truly matters.
           </WhyChooseUsContent>
-          <Button size="large" color="primary">
+          <Button size="large" color="primary" onClick={() => router.push(session ? "/dashboard" : "/signin")}>
             Get Started
           </Button>
         </WhyChooseUsText>
@@ -156,11 +136,7 @@ export default function Home() {
 
         <div className="content">
           <div className="image">
-            <Image
-              src={assets.testimonial}
-             
-              alt="...."
-            />
+            <Image src={assets.testimonial} alt="...." />
           </div>
 
           <div className="carousel">

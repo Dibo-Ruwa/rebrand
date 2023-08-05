@@ -16,16 +16,18 @@ import Button from "@/component/ui/button/Button";
 import Image from "next/image";
 import { assets } from "@/public/assets";
 import WhatYouGetCard from "@/component/WhatYouGetCard";
-import Link from "next/link";
-import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import MoreServices from "@/component/shared/MoreServices";
 import { Wyg, subscriptionPlans } from "@/constants";
-import { v4 as uuidv4 } from "uuid";
 import useCartStore from "@/store/useCart.store";
+import { toast } from "react-hot-toast";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 
 const Cleaning = () => {
   const { addSubscription, subscriptions } = useCartStore();
-
+  const {data: session } = useSession()
+  const router = useRouter()
   const ChoosePlan = (plan: string) => {
     const data = {
       type: "cleaning",
@@ -120,7 +122,16 @@ const Cleaning = () => {
                 <Button
                   size="medium"
                   color="primary"
-                  onClick={() => ChoosePlan(plan.title)}
+                  
+                  onClick={() => {
+                    if (session) {
+                      ChoosePlan(plan.title)
+                      toast.success("item added successfully");
+                    } else {
+                      router.push('signin')
+                      toast("please sign in to add item to cart");
+                    }
+                  }}
                 >
                   <span> {plan.cta.label}</span>
                 </Button>

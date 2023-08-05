@@ -12,10 +12,13 @@ import {
 } from "./laundryCounter.styles";
 import Button from "../ui/button/Button";
 import useCartStore from "@/store/useCart.store";
-import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-hot-toast";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const LaundryCount: React.FC = () => {
+  const { data: session } = useSession();
+  const router = useRouter()
   const { addSubscription, subscriptions } = useCartStore();
   const [bagCount, setBagCount] = useState<number>(1);
   const [regularity, setRegularity] = useState<string>("monthly");
@@ -140,8 +143,13 @@ const LaundryCount: React.FC = () => {
           size="medium"
           color="primary"
           onClick={() => {
-            ChoosePlan();
-            toast.success("plan added successfully");
+            if (session) {
+              ChoosePlan();
+              toast.success("item added successfully");
+            } else {
+              router.push('signin')
+              toast("please sign in to add item to cart");
+            }
           }}
         >
           Choose Plan
