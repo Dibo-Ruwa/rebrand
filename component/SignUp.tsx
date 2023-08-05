@@ -3,6 +3,8 @@ import useAuth from "@/hooks/useAuth";
 import AuthForm, { AuthField } from "./AuthForm";
 import Modal from "./Modal";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 interface SignUpPageProps {
   isModal?: boolean;
@@ -37,6 +39,7 @@ const signUpFields: AuthField[] = [
 ];
 
 const SignUp: React.FC<SignUpPageProps> = ({ isModal = false }) => {
+  const { data: session } = useSession();
   const router = useRouter();
   const { signup } = useAuth();
   const handleSignIn = async (formData: { [key: string]: string }) => {
@@ -44,6 +47,14 @@ const SignUp: React.FC<SignUpPageProps> = ({ isModal = false }) => {
     await signup(formData);
     // router.back();
   };
+
+  useEffect(() => {
+    if (session && session.user) {
+      isModal = false
+      router.push("/dashboard");
+    }
+  }, [session, router, isModal]);
+
 
   return (
     <div className="">

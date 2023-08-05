@@ -1,5 +1,5 @@
 "use client";
-import Guard from "@/component/Guard";
+import AuthGuard from "@/lib/AuthGuard";
 import StyledComponentsRegistry from "@/lib/registery";
 import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";
@@ -9,9 +9,9 @@ const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <SessionProvider>
       <StyledComponentsRegistry>
-        <Guard>
+        <AuthGuard>
           {children} <Toaster />
-        </Guard>
+        </AuthGuard>
       </StyledComponentsRegistry>
     </SessionProvider>
   );

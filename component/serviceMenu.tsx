@@ -16,6 +16,8 @@ interface Routes {
 }
 
 const ServiceMenu: FC<Routes> = ({ trigger, routes, toggle }) => {
+
+ 
   return (
     <NavigationMenu.Root>
       <NavigationMenu.List
@@ -66,9 +68,17 @@ const ServiceMenu: FC<Routes> = ({ trigger, routes, toggle }) => {
                     style={
                       link.name === "signOut"
                         ? {
-                            padding: "5px",
+                            textDecoration: "none",
+                            display: "flex",
+                            gap: "10px",
+                            padding: "10px",
+                            width: "100%",
+                            textAlign: "center",
+                            alignItems: "center",
+                          justifyContent: "center",
+                          
                             borderRadius: "8px",
-                            background: "rgba(238, 51, 116, 0.238)",
+                            background: "rgba(234, 0, 82, 0.85)",
                             color: "white",
                           }
                         : {
