@@ -81,7 +81,7 @@ const CartSubscription: React.FC<CartSubscriptionProps> = ({
         <>
           <p>{plan}</p>
           <p>
-            Total: <span>{subscription.total}</span>
+            Total: <span>₦{subscription.total}</span>
           </p>
         </>
       ) : (
@@ -93,7 +93,7 @@ const CartSubscription: React.FC<CartSubscriptionProps> = ({
             Regularity: <span> {plan.regularity}</span>
           </p>
           <p>
-            Total: <span>{subscription.total}</span>
+            Total: <span>₦{subscription.total}</span>
           </p>
         </>
       )}

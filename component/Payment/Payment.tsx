@@ -76,7 +76,7 @@ const Payment = () => {
         <strong>Items</strong> <span>{totalQuantities}</span>
       </Column>
       <Column>
-        <strong>Total</strong> <span>${totalPrice.toFixed(2)}</span>
+        <strong>Total</strong> <span>₦{totalPrice.toFixed(2)}</span>
       </Column>
       <PaymentBtn />
     </Container>

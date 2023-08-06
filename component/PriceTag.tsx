@@ -86,7 +86,7 @@ const PriceCard = () => {
     <PriceCardContainer>
       <PrimaryBackground />
       <ContentContainer>
-        <PriceTag>$30/bag</PriceTag>
+        <PriceTag>₦13,000/bag</PriceTag>
         <Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae
           consequat neque. Donec ac velit vitae metus porttitor luctus.

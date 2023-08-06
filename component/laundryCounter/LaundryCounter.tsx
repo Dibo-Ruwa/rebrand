@@ -136,7 +136,7 @@ const LaundryCount: React.FC = () => {
           transition={{ duration: 0.5 }}
           style={{ fontSize: "1.5rem", marginTop: "1rem" }}
         >
-          Total: {total} <sub>/ Month</sub>
+          Total: ₦{total} <sub>/ Month</sub>
         </TotalDisplay>
 
         <Button
