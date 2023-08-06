@@ -61,8 +61,7 @@ const CartSubscription: React.FC<CartSubscriptionProps> = ({
             !session?.user.phone ||
             !session?.user.address ||
             !session?.user.state ||
-            !session?.user.city ||
-            !session.user.emailVerified
+            !session?.user.city 
           ) {
             return toast.error("please complete profile!!!");
           } else {
