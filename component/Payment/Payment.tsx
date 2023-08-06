@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-hot-toast";
 import { usePaystackPayment } from "react-paystack";
-import {nanoid} from "nanoid";
+import { nanoid } from "nanoid";
 
 const Payment = () => {
   const { data: session } = useSession();
@@ -64,7 +64,7 @@ const Payment = () => {
           }
         }}
       >
-        Pay {totalPrice}
+        Pay {totalPrice.toFixed(2)}
       </PayButton>
     );
   };
@@ -76,7 +76,7 @@ const Payment = () => {
         <strong>Items</strong> <span>{totalQuantities}</span>
       </Column>
       <Column>
-        <strong>Total</strong> <span>${totalPrice}</span>
+        <strong>Total</strong> <span>${totalPrice.toFixed(2)}</span>
       </Column>
       <PaymentBtn />
     </Container>

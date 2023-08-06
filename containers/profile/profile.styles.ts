@@ -62,4 +62,5 @@ export const SaveButton = styled.button`
   background: var(--primary);
   color: white;
   border: none;
+  cursor: pointer;
 `;

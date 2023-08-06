@@ -41,7 +41,7 @@ export const authOptions: NextAuthOptions = {
         }
         user.password = undefined;
 
-        console.log(user)
+        console.log(user);
 
         // if (!user.emailVerified) {
         //   throw new Error("please check your mail for a verification link");
@@ -64,8 +64,12 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    jwt: async ({ token, user }) => {
+    jwt: async ({ token, user, trigger, session }) => {
       user && (token.user = user);
+
+      if (trigger === "update" && session) {
+        session && (token.user = session.user);
+      }
 
       return { ...token, ...user };
     },

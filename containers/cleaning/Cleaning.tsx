@@ -23,11 +23,10 @@ import { toast } from "react-hot-toast";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-
 const Cleaning = () => {
   const { addSubscription, subscriptions } = useCartStore();
-  const {data: session } = useSession()
-  const router = useRouter()
+  const { data: session } = useSession();
+  const router = useRouter();
   const ChoosePlan = (plan: string) => {
     const data = {
       type: "cleaning",
@@ -70,8 +69,6 @@ const Cleaning = () => {
           <HeroImage>
             <Image
               src={assets.cleaningImg}
-              //     width={100}
-              //     height={100}
               style={{ objectFit: "contain" }}
               alt="..."
             />
@@ -122,13 +119,11 @@ const Cleaning = () => {
                 <Button
                   size="medium"
                   color="primary"
-                  
                   onClick={() => {
                     if (session) {
-                      ChoosePlan(plan.title)
-                      toast.success("item added successfully");
+                      ChoosePlan(plan.title);
                     } else {
-                      router.push('signin')
+                      router.push("signin");
                       toast("please sign in to add item to cart");
                     }
                   }}

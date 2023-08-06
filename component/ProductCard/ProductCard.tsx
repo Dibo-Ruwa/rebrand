@@ -33,7 +33,6 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
             onClick={() => {
               if (session) {
                 addToCart(product);
-                toast.success("item added successfully");
               } else {
                 router.push("signin");
                 toast("please sign in to add item to cart");

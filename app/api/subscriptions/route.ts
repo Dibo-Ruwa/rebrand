@@ -6,6 +6,8 @@ import { authOptions } from "@/utils/helpers/authOptions";
 import User from "@/utils/models/Users";
 import { CartItem } from "@/utils/types/types";
 import { Subscription } from "@/utils/models/Subscription";
+// import Paystack from '@paystack/paystack-sdk'
+// const paystack = new Paystack("sk_test_xxxxxx")
 
 export async function POST(req: Request, res: Response) {
   try {
@@ -36,8 +38,6 @@ export async function POST(req: Request, res: Response) {
       type: body.type,
       plan: body.plan,
     });
-
- 
 
     if (!existingSubscription) {
       // Create a new subscription object
@@ -79,7 +79,7 @@ export async function POST(req: Request, res: Response) {
       { status: 201 }
     );
   } catch (err) {
-   return NextResponse.json({ error: "An error occurred" }, { status: 500 });
+    return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
   }
@@ -99,7 +99,10 @@ export async function GET(req: Request, res: Response) {
       return NextResponse.json({ message: "User does not exist" });
     }
 
-    const subscriptions = await Subscription.find({ user: user._id, isPaid: false });
+    const subscriptions = await Subscription.find({
+      user: user._id,
+      isPaid: false,
+    });
 
     if (!subscriptions) {
       return NextResponse.json({ message: "Cart is empty" });

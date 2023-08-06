@@ -105,13 +105,15 @@ const useAuth = (): AuthHook => {
   const userUpdate = async (formData: { [key: string]: string }) => {
     try {
       // Perform signin logic using axios
-      await update({
+      const up = update({
         ...session,
         user: {
           ...session?.user,
           ...formData,
         },
       });
+
+      console.log(up)
 
       setLoading(false);
       setError(null);

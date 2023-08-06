@@ -147,7 +147,7 @@ const ProductList = () => {
       </ProductListing>
       {productsToShow < filteredProducts.length && (
         <Button size="large" color="primary" onClick={handleViewMore}>
-          Get Started
+          More
         </Button>
       )}
     </Container>

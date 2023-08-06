@@ -56,14 +56,15 @@ const useCartStore = create<CartState>()(
               duration: 1000,
             });
             const response = await addSubscriptionAPI(subscription);
-
+            if (response) {
+              toast.success("subscription added success fully", {
+                duration: 2000,
+                position: "top-center",
+              });
+            }
             set((state) => ({
               subscriptions: [...response.data.subscriptions],
             }));
-            toast.success("subscription added success fully", {
-              duration: 2000,
-              position: "top-center",
-            });
           } catch (error: any) {
             // console.log(error);
             toast.error(error.response.data.error, {

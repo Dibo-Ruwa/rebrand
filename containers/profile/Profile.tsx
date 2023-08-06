@@ -34,27 +34,16 @@ const Profile = () => {
       if (response.success) {
         // Show success toast message
         userUpdate(formData);
-        toast.success("Profile updated successfully!", {
-          duration: 3000,
-          position: "bottom-right",
-        });
+        toast.success("Profile updated successfully!");
         setIsEditable(false);
         // Redirect to a success page or do something else after successful update
       } else {
         // Show error toast message
-        toast.error("Failed to update profile: " + response.message, {
-          duration: 5000,
-          position: "bottom-right",
-        });
+        toast.error("Failed to update profile: ");
         // Handle the error or display an error message
       }
     } catch (error) {
-      console.error("Error updating profile:", error);
-      // Show error toast message
-      toast.error("An error occurred while updating the profile", {
-        duration: 5000,
-        position: "top-right",
-      });
+      toast.error("An error occurred while updating the profile");
       // Handle the error or display an error message
     }
   };

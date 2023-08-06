@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 
 const LaundryCount: React.FC = () => {
   const { data: session } = useSession();
-  const router = useRouter()
+  const router = useRouter();
   const { addSubscription, subscriptions } = useCartStore();
   const [bagCount, setBagCount] = useState<number>(1);
   const [regularity, setRegularity] = useState<string>("monthly");
@@ -145,9 +145,8 @@ const LaundryCount: React.FC = () => {
           onClick={() => {
             if (session) {
               ChoosePlan();
-              toast.success("item added successfully");
             } else {
-              router.push('signin')
+              router.push("signin");
               toast("please sign in to add item to cart");
             }
           }}
