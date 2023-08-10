@@ -11,7 +11,7 @@ export interface Route {
   paths: {
     name: string;
     path: string;
-    icon: string;
+    icon?: string;
     subroutes?: {
       name: string;
       path: string;
@@ -36,6 +36,11 @@ export const routes: Route[] = [
           { name: "Food", path: "/food", icon: assets.food },
         ],
       },
+
+      {
+        name: "pricing",
+        path: "/pricing",
+      },
     ],
   },
   {
@@ -53,28 +58,13 @@ export const routes: Route[] = [
           { name: "Food", path: "/food", icon: assets.food },
         ],
       },
-    ],
-  },
-  {
-    category: "loggedInUser",
-    name: "Logged In User",
-    icon: "👤",
-    paths: [
       {
-        name: "Services",
-        path: "/services",
-        icon: "🛠️",
-        subroutes: [
-          { name: "Laundry", path: "/laundry", icon: assets.soap },
-          { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
-          { name: "Food", path: "/food", icon: assets.food },
-        ],
+        name: "pricing",
+        path: "/pricing",
       },
-      { name: "Profile", path: "/profile", icon: "👨‍💼" },
-      { name: "Settings", path: "/settings", icon: "⚙️" },
-      { name: "Orders", path: "/orders", icon: "📦" },
     ],
   },
+
   {
     category: "cleaning",
     name: "Cleaning",
@@ -89,6 +79,10 @@ export const routes: Route[] = [
           { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
           { name: "Food", path: "/food", icon: assets.food },
         ],
+      },
+      {
+        name: "pricing",
+        path: "/pricing",
       },
     ],
   },
@@ -107,7 +101,10 @@ export const routes: Route[] = [
           { name: "Food", path: "/food", icon: assets.food },
         ],
       },
-     
+      {
+        name: "pricing",
+        path: "/pricing",
+      },
     ],
   },
 ];
@@ -328,10 +325,9 @@ export const DashboradServices = [
 export const AboutUsContent = {
   introduction: {
     heading: "",
-    content: ""
-  }
- 
-}
+    content: "",
+  },
+};
 
 export const PrivacyContent = [
   {
@@ -497,3 +493,67 @@ export const TermsContent = [
     text: "If you have any questions or concerns about these Terms and Conditions or our website, please contact us at [email address].",
   },
 ];
+
+export interface Plan {
+  title: string;
+  features: string[];
+  total: string;
+}
+
+export interface PlanDetails {
+  [subscription: string]: Plan[]
+}
+
+export const planDetails: PlanDetails = {
+  Food: [
+    {
+      title: "Monthly Plan",
+      features: ["Feature 1", "Feature 2"],
+      total: "$50",
+    },
+    {
+      title: "Weekly Plan",
+      features: ["Feature 1", "Feature 2"],
+      total: "$20",
+    },
+    {
+      title: "Biweekly Plan",
+      features: ["Feature 1", "Feature 3"],
+      total: "$30",
+    },
+  ],
+  Laundry: [
+    {
+      title: "Monthly Plan",
+      features: ["Feature 1", "Feature 2",],
+      total: "$50",
+    },
+    {
+      title: "Weekly Plan",
+      features: ["Feature 1", "Feature 2"],
+      total: "$20",
+    },
+    {
+      title: "Biweekly Plan",
+      features: ["Feature 1", "Feature 3"],
+      total: "$30",
+    },
+  ],
+  Cleaning: [
+    {
+      title: "Monthly Plan",
+      features: ["Feature 1", "Feature 2", ],
+      total: "$50",
+    },
+    {
+      title: "Weekly Plan",
+      features: ["Feature 1", "Feature 2"],
+      total: "$20",
+    },
+    {
+      title: "Biweekly Plan",
+      features: ["Feature 1", "Feature 3"],
+      total: "$30",
+    },
+  ],
+};
