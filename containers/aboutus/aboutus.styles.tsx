@@ -13,7 +13,17 @@ export const Section = styled.div`
 `;
 export const SectionHeader = styled.h2`
   color: var(--primary);
-  font-size: 28px;
+  font-size: 20px;
+  margin-bottom: 20px;
+
+  &.main {
+    font-size: 38px;
+  }
+`;
+
+export const SectionSubHeader = styled.h2`
+  color: var(--primary);
+  font-size: 15px;
   margin-bottom: 20px;
 
   &.main {
@@ -22,6 +32,7 @@ export const SectionHeader = styled.h2`
 `;
 export const SectionText = styled.p`
 font-size: 18px;
+margin: 20px 0;
 `;
 export const BulletList = styled.ul`
   list-style: none;
