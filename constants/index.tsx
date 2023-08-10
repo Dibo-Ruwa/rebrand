@@ -220,7 +220,7 @@ export const sublinks = [
     title: "Company",
     links: [
       { name: "About Us", path: "/aboutus" },
-      { name: "Pricing", path: "/" },
+      { name: "Pricing", path: "/pricing" },
     ],
   },
   {
