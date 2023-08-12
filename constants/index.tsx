@@ -520,59 +520,61 @@ export interface PlanDetails {
 
 export const planDetails: PlanDetails = {
   Food: [
-    {
-      title: "free",
-      features: ["Feature 1", "Feature 2"],
-      total: "$50",
-    },
-    {
+     {
       title: "Starter",
-      features: ["Feature 1", "Feature 2"],
-      total: "$20",
+      features: ["1 meal per week", "Weekly delivery", "Delivered once a week", "Standard plate", "Ideal for occasional treats"],
+      total: "N7700",
     },
     {
-      title: "Premium",
-      features: ["Feature 1", "Feature 3"],
-      total: "$30",
+      title: "Regular",
+      features: ["2 meal per week", "Standard plate", "Weekly delivery", "Delivered once a week", "Ideal for weekend treats"],
+      total: "14,980",
     },
     {
       title: "Enterprise",
-      features: ["Feature 1", "Feature 3"],
-      total: "$30",
+      features: ["5 meal per week", "Standard plate + extra", "Weekdays Delivery", "Delivered 5 times a week", "Perfect for workweek meals" ],
+      total: "N34,970",
+    },
+    {
+      title: "Gold",
+      features: ["7 meal per week", "Standard plate + extra", "Daily Delivery", "Delivered 7 times a week", "Perfect for everyday meals", "A meal every day" ],
+      total: "N47,960",
     },
   ],
   Laundry: [
     {
-      title: "Monthly Plan",
-      features: ["Feature 1", "Feature 2",],
-      total: "$50",
+      title: "Lite Laundry",
+      features: ["Dibo Ruwa Laundry Bag", "30 clothing materials", "Gentle washing for delicate fabrics", "Stain treatment", "Picked up once a month", "Ideal for individual"],
+      total: "11,960",
     },
     {
-      title: "Weekly Plan",
-      features: ["Feature 1", "Feature 2"],
-      total: "$20",
+      title: "Regular Laundry",
+      features: ["Dibo Ruwa Laundry Bag", "30 clothing materials",  "Gentle washing for delicate fabrics", "Stain treatment", "Quick-dry service", "Picked up twice a month", "Ideal for family of two" ],
+      total: "N22,100",
     },
     {
-      title: "Biweekly Plan",
-      features: ["Feature 1", "Feature 3"],
-      total: "$30",
+      title: "Family",
+      features: ["Dibo Ruwa Laundry Bag", "50 clothing materials",  "Gentle washing for delicate fabrics", "Stain treatment", "Quick-dry service", "Emergencies", "Picked up four times a month", "Ideal for family of four"],
+      total: "N36,700",
     },
   ],
   Cleaning: [
     {
-      title: "Monthly Plan",
-      features: ["Feature 1", "Feature 2", ],
-      total: "$50",
+      title: "Standard",
+      features: ["1 Bedrooms", "1 Living Rooms/ Dining Areas", "Bathroom sanitization",  "Kitchen cleanup",  "Vacuuming and mopping", "Dusting of all surfaces", "Once a week" ],
+      total: "12,900",
     },
     {
-      title: "Weekly Plan",
-      features: ["Feature 1", "Feature 2"],
-      total: "$20",
+      title: "Premium",
+      features: ["2 Bedrooms", "1 Living Rooms/ Dining Areas", "2 Bathroom sanitization",  "Kitchen cleanup",  "Vacuuming and mopping", "Dusting of all surfaces", "Once a week" ],
+
+      total: "N22,750",
     },
     {
-      title: "Biweekly Plan",
-      features: ["Feature 1", "Feature 3"],
-      total: "$30",
+      title: "Deep",
+      features: ["3 Bedrooms", "1 Living Rooms/ Dining Areas", "2 Bathroom sanitization",  "2 Kitchen cleanup",  "Vacuuming and mopping", "Dusting of all surfaces", "Once a week" ],
+
+      total: "N31,900",
     },
   ],
 };
