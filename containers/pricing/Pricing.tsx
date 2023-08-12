@@ -31,6 +31,7 @@ const SubscriptionTab = styled.div`
   background: var(--primary-20);
   width: 30%;
   padding: 10px;
+  cursor: pointer;
   border-radius: 12px;
   margin: auto;
 
@@ -70,9 +71,10 @@ const Subtitle = styled.p`
 const PlanContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: stretch;
   gap: 20px;
-  width: 100%;
+  width: 100%; 
   margin: 30px auto;
 
   @media screen and (max-width: 768px) {
@@ -88,6 +90,7 @@ const PlanCard = styled.div<{ bestvalue: boolean }>`
  
   /* text-align: center; */
   width: 100%;
+  //  height: 500px;
   max-width: 300px;
   position: relative;
 
@@ -132,7 +135,7 @@ const PlanCard = styled.div<{ bestvalue: boolean }>`
   ul {
     list-style: none;
     display: grid;
-    grid-gap: 7px;
+    grid-gap: 30px;
     margin: 20px 0;
     font-size: 16px;
 
@@ -140,6 +143,7 @@ const PlanCard = styled.div<{ bestvalue: boolean }>`
       display: flex;
       align-items: center;
       gap: 15px;
+     
 
       .icon {
         font-size: 17px;
@@ -205,7 +209,7 @@ const Pricing = () => {
           <PlanCard key={plan.title} bestvalue={plan.title === "Premium"}>
             <h3>{plan.title}</h3>
 
-            <p>Total: {plan.total}</p>
+            <p>{plan.total}</p>
             <hr />
             <ul>
               {plan.features.map((feature: string[], index: string) => (
