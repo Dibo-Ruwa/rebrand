@@ -2,18 +2,19 @@
 import { useSession } from "next-auth/react";
 import { Container } from "./Admin.styles";
 import { useEffect } from "react";
-import { redirect } from "next/navigation";
+import {  useRouter } from "next/navigation";
 
 const Admin = () => {
   const { data: session } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     if (!session) {
-      redirect("/signin");
+      router.push("/signin");
     } else if (session?.user?.role !== "admin") {
-      redirect("/dashboard");
+      router.push("/dashboard");
     }
-  }, [session]);
+  }, [session, router]);
 
   return <Container>Enter</Container>;
 };
