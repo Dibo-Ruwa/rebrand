@@ -26,6 +26,7 @@ export type UserType = {
   city?: string;
   state?: string;
   phone?: string;
+  role: string;
   emailVerified: boolean;
   accessToken: string;
 };
