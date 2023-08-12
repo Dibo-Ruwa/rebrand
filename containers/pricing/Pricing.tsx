@@ -101,7 +101,7 @@ const PlanCard = styled.div<{ bestvalue: boolean }>`
     content: "Best Value";
     position: absolute;
     top: -10%;
-    left: 0;
+    left: -5px;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     padding: 10px;
