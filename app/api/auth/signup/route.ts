@@ -8,7 +8,7 @@ import {
   generateToken,
 } from "@/templates/authTemplates";
 import { sendMail } from "@/utils/sendMail";
-import { Resend } from "resend";
+// import { Resend } from "resend";
 import SignUpTemplate from "@/templates/SignUpTemplate";
 
 export async function POST(req: Request, res: Response) {
