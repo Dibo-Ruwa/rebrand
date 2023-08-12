@@ -54,7 +54,7 @@ export async function POST(req: Request, res: Response) {
 
     // @todo verification mail
 
-    const resend = new Resend("re_AErzxZ8q_BotHJgBjXCGaEYFZUL53662i");
+    // const resend = new Resend("re_AErzxZ8q_BotHJgBjXCGaEYFZUL53662i");
 
     // const mail = await resend.emails.send({
     //   from: "Acme <onboarding@resend.dev>",
