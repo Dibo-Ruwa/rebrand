@@ -1,7 +1,7 @@
 import { assets } from "@/public/assets";
 
 // Base URL
-const baseURL: string = "https://example.com";
+const baseURL: string = "https://diboruwa.com";
 
 // Route configuration
 export interface Route {
@@ -126,38 +126,45 @@ export const generateLinksByCategory = (category: string) => {
 export const HWW = [
   {
     image: "h",
-    title: "Choose your plan",
-    content:
-      "Choose a meal schedule that works for you; when you want it, how you want it. It takes less than 5 minutes.",
+    title: "Hand-Picked Selection or Choose a plan",
+    content: "Choose from a specially curated menu of delicious meals, sourced from the best local eateries, all in one place."
+    // content:
+    //   "Choose a meal schedule that works for you; when you want it, how you want it. It takes less than 5 minutes.",
   },
   {
     image: "h",
-    title: "We Cook and Deliver",
+    title: "Effortless Ordering",
     content:
-      "We cook up your picks from our rich menu and deliver them to you on schedule. At no extra delivery costs.",
+      "Browse, select, and place your order in just a few clicks. A streamlined process designed for your convenience.",
+    //  content:
+    //   "We cook up your picks from our rich menu and deliver them to you on schedule. At no extra delivery costs.",
   },
   {
     image: "h",
-    title: "You Heat and Eat",
+    title: "Reliable & Prompt Delivery",
+    // title: "You Heat and Eat",
     content:
-      "With Just 5 Minutes of Heating, Your Meal Is Good to Go, or Refrigerate It for a Later Tasty Treat",
+      "Experience the joy of having your favorite meals delivered right to your door, fresh and on time.",
+    // content:
+    //   "With Just 5 Minutes of Heating, Your Meal Is Good to Go, or Refrigerate It for a Later Tasty Treat",  
   },
 ];
 
 export const services = [
   {
-    title: "Home Cleaning",
-    category: "cleaning",
-    image: assets.broom,
-    color: "primary",
-    bg: "primary-20",
+    title: "Food",
+    category: "food",
+    image: assets.food,
+    color: "color3",
+    bg: "color3-20",
     content:
       "Fresh and on schedule Delight in chef-cooked meals delivered to your doorstep.",
     cta: {
       label: "Order Now",
-      path: "/cleaning",
+      path: "/food",
     },
   },
+ 
   {
     title: "Laundry",
     category: "laundry",
@@ -172,45 +179,50 @@ export const services = [
     },
   },
   {
-    title: "Food",
-    category: "food",
-    image: assets.food,
-    color: "color3",
-    bg: "color3-20",
+    title: "Home Cleaning",
+    category: "cleaning",
+    image: assets.broom,
+    color: "primary",
+    bg: "primary-20",
     content:
-      "Fresh and on schedule Delight in chef-cooked meals delivered to your doorstep.",
+      "Expert cleaning for those who appreciate the brilliance of a spotless space.",
     cta: {
       label: "Order Now",
-      path: "/food",
+      path: "/cleaning",
     },
   },
-  {
-    title: "Training",
-    category: "training",
-    image: assets.chefHat,
-    color: "color4",
-    bg: "color4-20",
-    content:
-      "Fresh and on schedule Delight in chef-cooked meals delivered to your doorstep.",
-    cta: {
-      label: "Order Now",
-      path: "/trainning",
-    },
-  },
+ 
+  // {
+  //   title: "Training",
+  //   category: "training",
+  //   image: assets.chefHat,
+  //   color: "color4",
+  //   bg: "color4-20",
+  //   content:
+  //     "Fresh and on schedule Delight in chef-cooked meals delivered to your doorstep.",
+  //   cta: {
+  //     label: "Order Now",
+  //     path: "/trainning",
+  //   },
+  // },
 ];
 
 export const accordionData = [
   {
-    title: "Accordion Item 1",
-    content: "Content for Accordion Item 1",
+    title: "How can I easily place an order?",
+    content: "Placing an order is a breeze! Just navigate to the desired service on our website, select your preferences, and follow the simple checkout process. For regular users, our dashboard provides even quicker access to frequent orders.",
   },
   {
-    title: "Accordion Item 2",
-    content: "Content for Accordion Item 2",
+    title: "Are there subscription plans available for regular services",
+    content: "Yes, we offer subscription plans that provide additional benefits and savings for our regular customers.",
   },
   {
-    title: "Accordion Item 3",
-    content: "Content for Accordion Item 3",
+    title: "How do you ensure the quality of food delivered?",
+    content: "We partner with reputable restaurants and enforce strict quality checks to ensure your food is fresh, hygienic, and delicious.",
+  },
+  {
+    title: "What measures are taken to care for delicate garments during laundry?",
+    content: "Our laundry professionals are trained in fabric care, ensuring that delicate garments are handled with utmost care and precision.",
   },
 ];
 
@@ -264,16 +276,16 @@ export const Wyg = [
 export const subscriptionPlans = [
   {
     image: "/path/to/standart-image.png",
-    title: "Standard Plan",
+    title: "Cleaning",
     content:
-      "Impress your guest and experience the joys of living in a clean home.",
+      "For regular upkeep and a consistently clean home.",
     features: [
       "1 Bedrooms",
       "1 Living Rooms/ Dining Areas",
-      "1 toilet/bathrooms",
-      "1 kitchen",
-      "1 Study/Store",
-      "1 Outdoor/Balcony",
+      "Bathroom sanitization",
+      "Kitchen cleanup",   
+      "Vacuuming and mopping", 
+      "Dusting of all surfaces",
     ],
     cta: {
       label: "Subscribe Now",
@@ -282,15 +294,17 @@ export const subscriptionPlans = [
   },
   {
     image: "/path/to/deep-image.png",
-    title: "Deep Plan",
-    content: "Get a top-to-bottom clean for your whole home.",
+    title: "Deep Cleaning",
+    content: "A thorough clean for homes that need some extra attention.",
     features: [
-      "3 Bedrooms",
-      "2 Living Rooms/ Dining Areas",
-      "3 toilet/bathrooms",
-      "2 kitchen",
-      "2 Study/Store",
-      "2 Outdoor/Balcony",
+      "Everything from Standard Cleaning... Plus",
+      "2 Bedrooms",
+      "1 Living Rooms/ Dining Areas",
+      "2 toilet/bathrooms",
+      "1 kitchen",      
+      "Deep floor scrubbing",
+      "Window and sill cleaning",
+
     ],
     cta: {
       label: "Subscribe Now",

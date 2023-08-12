@@ -3,8 +3,39 @@
 import styled from "styled-components";
 
 export const Container = styled.div``;
+
+export const HeroList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 30px 0;
+`;
+export const HeroListItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+
+  .dot {
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+
+  .tick{
+    font-weight: 800;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+    align-items: baseline;
+  }
+`;
 export const ServicesSection = styled.div`
   padding: 8%;
+ 
 
   header {
     margin: auto;
@@ -19,6 +50,7 @@ export const ServicesSection = styled.div`
     .subtitle {
       font-size: 20px;
       color: var(--content);
+
     }
   }
   @media (max-width: 900px) {
@@ -40,7 +72,7 @@ export const ServicesSection = styled.div`
 export const ServiceList = styled.div`
   display: flex;
   gap: 20px;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   position: relative;
   height: auto;
