@@ -8,6 +8,8 @@ import {
   generateToken,
 } from "@/templates/authTemplates";
 import { sendMail } from "@/utils/sendMail";
+import { Resend } from "resend";
+import SignUpTemplate from "@/templates/SignUpTemplate";
 
 export async function POST(req: Request, res: Response) {
   try {
@@ -52,6 +54,18 @@ export async function POST(req: Request, res: Response) {
 
     // @todo verification mail
 
+    const resend = new Resend("re_AErzxZ8q_BotHJgBjXCGaEYFZUL53662i");
+
+    // const mail = await resend.emails.send({
+    //   from: "Acme <onboarding@resend.dev>",
+    //   to: user.email,
+    //   subject: "Hello world",
+    //   react: SignUpTemplate({
+    //     firstName: user.firstName,
+    //   }) as React.ReactElement,
+    // });
+
+    // console.log(mail)
     const activationEmailContent = generateActivationToken(user._id);
 
     // Use the sendMail utility to send the email
@@ -79,7 +93,6 @@ export async function POST(req: Request, res: Response) {
 
       throw new Error("Unable to sign Up");
     }
-
   } catch (err) {
     return NextResponse.json(err);
   } finally {
