@@ -60,6 +60,7 @@ export const HWWList = styled.div`
 export const HWWCard = styled.div`
   width: 100%;
   /* max-width: 370px; */
+  height: 100%;
   padding: 15px;
   border-radius: 10px;
   background: var(--primary-20);

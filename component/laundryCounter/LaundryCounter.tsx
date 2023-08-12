@@ -24,7 +24,7 @@ const LaundryCount: React.FC = () => {
   const { addSubscription, subscriptions } = useCartStore();
   const [bagCount, setBagCount] = useState<number>(1);
   const [regularity, setRegularity] = useState<string>("monthly");
-  const [total, setTotal] = useState<number>(13000);
+  const [total, setTotal] = useState<number>(11960);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const { openSuccess } = useModal();
 
@@ -32,13 +32,13 @@ const LaundryCount: React.FC = () => {
     (count: number) => {
       switch (regularity) {
         case "weekly":
-          setTotal(13000 * count * 4);
+          setTotal(11960 * count * 4);
           break;
         case "twiceWeekly":
-          setTotal(13000 * count * 2);
+          setTotal(11960 * count * 2);
           break;
         default:
-          setTotal(13000 * count);
+          setTotal(11960 * count);
       }
     },
     [regularity, setTotal]
@@ -80,13 +80,13 @@ const LaundryCount: React.FC = () => {
   useEffect(() => {
     switch (regularity) {
       case "weekly":
-        setTotal(13000 * bagCount * 4);
+        setTotal(11960 * bagCount * 4);
         break;
       case "twiceWeekly":
-        setTotal(13000 * bagCount * 2);
+        setTotal(11960 * bagCount * 2);
         break;
       default:
-        setTotal(13000 * bagCount);
+        setTotal(11960 * bagCount);
     }
   }, [bagCount, regularity]);
 
@@ -105,7 +105,7 @@ const LaundryCount: React.FC = () => {
         <CounterButton onClick={handleIncrement}>+</CounterButton>
       </CounterContainer>
       <BagCountSection>
-        <BagCountTitle>Regularity</BagCountTitle>
+        <BagCountTitle>Family Size</BagCountTitle>
       </BagCountSection>
       <div
         style={{
@@ -118,19 +118,19 @@ const LaundryCount: React.FC = () => {
           selected={regularity === "monthly"}
           onClick={() => handlePlanSelect("monthly")}
         >
-          Once a Month
+          Yourself
         </PlanButton>
         <PlanButton
           selected={regularity === "weekly"}
           onClick={() => handlePlanSelect("weekly")}
         >
-          Once a Week
+          Family of 4
         </PlanButton>
         <PlanButton
           selected={regularity === "twiceWeekly"}
           onClick={() => handlePlanSelect("twiceWeekly")}
         >
-          Twice a Week
+          Family of 2
         </PlanButton>
       </div>
       <Footer>

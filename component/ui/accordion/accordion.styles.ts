@@ -22,7 +22,7 @@ export const AccordionButton = styled(motion.button)`
   width: 100%;
   font-weight: bold;
 
-  text-align: center;
+  text-align: left;
   outline: none;
   border: none;
   background: transparent;

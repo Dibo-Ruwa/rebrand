@@ -42,27 +42,26 @@ const Cleaning = () => {
       <HeroContainer bg="primary-20">
         <div className="hero__text">
           <h3 className="title">
-            Invest your energy in Nurturing your loved ones
+            Home Cleaning, Tailored to Perfection with Diboruwa
           </h3>
-          <p>Our dedicated team of skilled caregivers:</p>
-
-          <HeroList>
-            <HeroListItem>
-              <span className="dot" />
-              Provide compassionate care, support, and assistance
-            </HeroListItem>
-            <HeroListItem>
-              <span className="dot" />
-              Are meticulously screened to ensure your familys well-being️
-            </HeroListItem>
-            <HeroListItem>
-              <span className="dot" />
-              Relieve you of strenuous responsibilities, giving you quality time
-            </HeroListItem>
-          </HeroList>
-          <Button size="large" color="primary">
-            Book Now
-          </Button>
+          
+            <HeroList>
+              <HeroListItem>
+                <span className="dot" />
+                Book Online - Choose your service and preferred time slot with a few clicks.
+              </HeroListItem>
+              <HeroListItem>
+                <span className="dot" />
+                Expert Clean - Our team brings the shine, making sure every corner sparkles.
+              </HeroListItem>
+              <HeroListItem>
+                <span className="dot" />
+                Enjoy Your Space - Step into a home that feels fresh, without any of the work.
+              </HeroListItem>
+            </HeroList>
+            <Button size="large" color="primary">
+              Schedule a Clean
+            </Button>
         </div>
 
         <HeroImageContainer>
@@ -135,7 +134,8 @@ const Cleaning = () => {
           ))}
           <SubscriptionCard>
             <div className="image"> .. </div>
-            <h3 className="title">Moving </h3>
+            <h3 className="title">Simplifying Your Move from Start to Finish</h3>
+            <p>Diboruwa isn't just about cleaning; we assist you in every step of your relocation. From ensuring your space is spotless to safely transporting your belongings, we're here to make the transition as smooth as possible.</p>
             <p> Contact us today to make it the easiest move of your life.</p>
 
             <Button size="medium" color="primary">

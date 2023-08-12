@@ -60,11 +60,11 @@ const CTAIcon = styled(RiArrowRightSLine)`
 const CTAButton = styled(Link)`
   display: inline-flex;
   align-items: center;
+  font-size: 18px;
 
   /* background-color: var(--primary-20); */
   color: var(--color4);
   /* padding: 5px 10px; */
-  font-size: 12px;
   text-decoration: none;
   border-radius: 20px;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
@@ -86,10 +86,9 @@ const PriceCard = () => {
     <PriceCardContainer>
       <PrimaryBackground />
       <ContentContainer>
-        <PriceTag>₦13,000/bag</PriceTag>
+        <PriceTag>₦11,960/bag</PriceTag>
         <Description>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae
-          consequat neque. Donec ac velit vitae metus porttitor luctus.
+          Never be without a clean outfit again. Our specially designed Diboruwa Laundry Bag ensures your clothes remain organized and ready for pickup. Just fill, schedule, and relax
         </Description>
         <CTAButton href="#">
           Schedule a pick up

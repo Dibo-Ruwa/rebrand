@@ -20,6 +20,7 @@ const CardContainer = styled(motion.div)`
   background-color: var(--primary-20);
   padding: 1.5rem;
   border-radius: 16px;
+  height: 100%;
 
   width: 100%;
 `;
@@ -47,8 +48,9 @@ const CardTitle = styled.h3`
 `;
 
 const CardContent = styled.p`
-  color: rgba(143, 143, 143, 0.663);
+  color: #333333;
   line-height: 130%;
+  font-size: 18px;
 `;
 
 const HowItWorksCard: React.FC<HowItWorksCardProps> = ({ data }) => {

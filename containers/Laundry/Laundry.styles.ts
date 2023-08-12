@@ -90,10 +90,13 @@ export const PriceTagSection = styled.div`
   overflow: hidden;
 
   .price__text {
+    /* width: 30%; */
+    display: flex;
     .title {
       font-size: 38px;
       font-weight: bold;
       margin-bottom: 10px;
+      width: 50%;
 
       span {
         color: var(--color4);
