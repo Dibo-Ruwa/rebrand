@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { Order } from "@/utils/types/types";
 import useOrder from "@/hooks/useOrder";
 import Loader from "@/component/ui/loader/Loader";
+import { BackBtn } from "../profile/profile.styles";
+import BackButton from "@/component/ui/BackButton/BackButton";
 
 // Styled Components
 const OrderContainer = styled.div`
@@ -44,6 +46,9 @@ const SingleOrderPage = ({ id }: { id: any }) => {
 
   return (
     <OrderContainer>
+      <BackBtn>
+        <BackButton />
+      </BackBtn>
       <OrderTitle>Order Details</OrderTitle>
 
       {order && (

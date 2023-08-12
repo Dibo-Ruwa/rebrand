@@ -14,6 +14,7 @@ declare module "next-auth" {
       city?: string;
       state?: string;
       phone?: string;
+      role: "user" | "admin"
       emailVerified: boolean;
       accessToken: string;
     };

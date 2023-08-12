@@ -1,12 +1,16 @@
 "use client";
 
 import { planDetails } from "@/constants";
+import { CheckIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
+import { CheckmarkIcon } from "react-hot-toast";
+import { FaCheck } from "react-icons/fa";
 import styled from "styled-components";
 
 const Container = styled.div`
   padding: 15vh 8% 5%;
 `;
+
 const Heading = styled.div`
   text-align: center;
   display: flex;
@@ -15,9 +19,8 @@ const Heading = styled.div`
   width: 50%;
   margin: auto;
 
-  @media screen and (max-width: 768px){
-          width: 100%;
-
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 `;
 const SubscriptionTab = styled.div`
@@ -30,10 +33,9 @@ const SubscriptionTab = styled.div`
   padding: 10px;
   border-radius: 12px;
   margin: auto;
-  
-  @media screen and (max-width: 768px){
-          width: 100%;
-          
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -53,18 +55,16 @@ const SubTitle = styled.div`
 const Title = styled.h3`
   font-size: 38px;
   margin-bottom: 20px;
-  
-  @media screen and (max-width: 768px){
-         font-size: 18px;
-          
+
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
   }
 `;
 const Subtitle = styled.p`
   font-size: 20px;
   margin-bottom: 20px;
-  @media screen and (max-width: 768px){
-         font-size: 14px;
-          
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
   }
 `;
 const PlanContainer = styled.div`
@@ -72,36 +72,80 @@ const PlanContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  width: 60%;
+  width: 100%;
   margin: 30px auto;
 
-  
-  @media screen and (max-width: 768px){
-          width: 100%;
-          flex-direction: column;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
   }
 `;
-const PlanCard = styled.div`
+const PlanCard = styled.div<{ bestvalue: boolean }>`
   border: 3px solid var(--color2-20);
+  background: var(--color2-20);
   padding: 20px;
   border-radius: 12px;
-text-align: center;
+ 
+  /* text-align: center; */
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+
+  ${({ bestvalue }) =>
+    bestvalue &&
+    `
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border: 3px solid var(--color2);
+  &::before {
+    content: "Best Value";
+    position: absolute;
+    top: -10%;
+    left: 0;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 10px;
+    width: 95.5%;
+    background: var(--color2);
+    color: #fff;
+  }
+`}
 
   h3 {
-    font-size: 20px;
+    font-size: 34px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
     margin-bottom: 10px;
   }
 
   p {
+    font-size: 20px;
     text-align: center;
     color: var(--color2);
+  }
+
+  hr {
+    border: 3px solid var(--color2-20);
+    margin: 20px 0;
   }
 
   ul {
     list-style: none;
     display: grid;
     grid-gap: 7px;
-    margin: 20px;
+    margin: 20px 0;
+    font-size: 16px;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      .icon {
+        font-size: 17px;
+        color: var(--color2);
+      }
+    }
   }
 
   button {
@@ -114,13 +158,12 @@ text-align: center;
     color: #fff;
   }
 
-  @media screen and (max-width: 768px){
-        width: 100%
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 `;
 
 const subscriptions = ["Food", "Cleaning", "Laundry"];
-const plans = ["Weekly", "Biweekly", "Monthly"];
 
 const Pricing = () => {
   const [activeSubscription, setActiveSubscription] = useState(
@@ -159,12 +202,19 @@ const Pricing = () => {
 
       <PlanContainer>
         {planDetails[activeSubscription].map((plan: any) => (
-          <PlanCard key={plan.title}>
+          <PlanCard key={plan.title} bestvalue={plan.title === "Premium"}>
             <h3>{plan.title}</h3>
+
             <p>Total: {plan.total}</p>
+            <hr />
             <ul>
               {plan.features.map((feature: string[], index: string) => (
-                <li key={index}>{feature}</li>
+                <li key={index}>
+                  <div className="icon">
+                    <FaCheck />
+                  </div>
+                  {feature}
+                </li>
               ))}
             </ul>
             <button>Choose Plan</button>

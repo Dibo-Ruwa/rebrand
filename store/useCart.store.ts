@@ -31,6 +31,12 @@ const useCartStore = create<CartState>()(
   devtools(
     persist(
       (set) => ({
+        openModal: false,
+        messageType: "success",
+        message: "",
+        toggleModal: () => set((state) => ({ openModal: !state.openModal })),
+        setMessage: (message: string, messageType: "success" | "error") =>
+          set({ message, messageType, openModal: true }),
         cartItems: [],
         subscriptions: [],
         getCart: async () => {
@@ -61,9 +67,12 @@ const useCartStore = create<CartState>()(
                 duration: 2000,
                 position: "top-center",
               });
+              
             }
+
             set((state) => ({
               subscriptions: [...response.data.subscriptions],
+            
             }));
           } catch (error: any) {
             // console.log(error);

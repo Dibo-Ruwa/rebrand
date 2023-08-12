@@ -15,6 +15,8 @@ import useCartStore from "@/store/useCart.store";
 import { toast } from "react-hot-toast";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Success from "../modals/Success";
+import { useModal } from "@/hooks/useModal";
 
 const LaundryCount: React.FC = () => {
   const { data: session } = useSession();
@@ -23,6 +25,8 @@ const LaundryCount: React.FC = () => {
   const [bagCount, setBagCount] = useState<number>(1);
   const [regularity, setRegularity] = useState<string>("monthly");
   const [total, setTotal] = useState<number>(13000);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const { openSuccess } = useModal();
 
   const calculateTotal = useCallback(
     (count: number) => {
@@ -145,6 +149,7 @@ const LaundryCount: React.FC = () => {
           onClick={() => {
             if (session) {
               ChoosePlan();
+              openSuccess();
             } else {
               router.push("signin");
               toast("please sign in to add item to cart");

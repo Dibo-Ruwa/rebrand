@@ -54,7 +54,7 @@ export interface Subscription {
     | string;
   total: number;
   start?: string;
-  due?: string
+  due?: string;
 }
 
 export type CartItem = Product & {
@@ -64,6 +64,10 @@ export type CartItem = Product & {
 };
 
 export type CartState = {
+  openModal: boolean;
+  message: string;
+  toggleModal: () => void;
+  messageType: "success" | "error";
   cartItems: CartItem[];
   subscriptions: Subscription[];
   getCart: () => void;
@@ -75,7 +79,6 @@ export type CartState = {
   updateQuantity: (id: string, action: "increase" | "decrease") => void;
   clearCart: () => void;
 };
-
 
 export interface Order {
   _id: string;
@@ -89,5 +92,4 @@ export interface Order {
   user: UserType;
   createdAt: Date;
   updatedAt: Date;
-
 }

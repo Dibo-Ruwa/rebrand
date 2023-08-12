@@ -507,17 +507,22 @@ export interface PlanDetails {
 export const planDetails: PlanDetails = {
   Food: [
     {
-      title: "Monthly Plan",
+      title: "free",
       features: ["Feature 1", "Feature 2"],
       total: "$50",
     },
     {
-      title: "Weekly Plan",
+      title: "Starter",
       features: ["Feature 1", "Feature 2"],
       total: "$20",
     },
     {
-      title: "Biweekly Plan",
+      title: "Premium",
+      features: ["Feature 1", "Feature 3"],
+      total: "$30",
+    },
+    {
+      title: "Enterprise",
       features: ["Feature 1", "Feature 3"],
       total: "$30",
     },

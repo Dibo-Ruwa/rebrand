@@ -1,3 +1,4 @@
+"use client";
 import HeroContainer from "@/component/shared/HeroContainer";
 import {
   Container,
@@ -19,6 +20,9 @@ import LaundryCount from "@/component/laundryCounter/LaundryCounter";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { assets } from "@/public/assets";
 import MoreServices from "@/component/shared/MoreServices";
+import Success from "@/component/modals/Success";
+import { useModal } from "@/hooks/useModal";
+import useCartStore from "@/store/useCart.store";
 
 const howItWorksData = [
   {
@@ -42,6 +46,8 @@ const howItWorksData = [
 ];
 
 const Laundry = () => {
+  const { successModal } = useModal();
+  const { openModal, message, messageType, toggleModal } = useCartStore();
   return (
     <Container>
       <HeroContainer bg="primary-20">
@@ -144,6 +150,15 @@ const Laundry = () => {
       </PlansSection>
 
       <MoreServices />
+
+      {/* {openModal === true ? (
+        <Success
+          open={openModal}
+          message={message}
+          type={messageType}
+          close={toggleModal}
+        />
+      ) : null} */}
     </Container>
   );
 };
