@@ -36,8 +36,8 @@ export const CartBtn = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  width: 150px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   border-radius: 15px;
   background: var(--primary-20);
   position: relative;
@@ -56,8 +56,8 @@ export const ImageContainer = styled.div`
   }
 `;
 export const ProductImage = styled(Image)`
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
 `;
 
 export const ProductInfo = styled.div`

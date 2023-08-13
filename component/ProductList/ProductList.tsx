@@ -9,73 +9,80 @@ import { Product } from "@/utils/types/types";
 const products: Product[] = [
   {
     id: "1",
-    title: "Product 1",
-    price: 29.99,
-    imgUrl: "https://example.com/product1.jpg",
-    category: "Electronics",
+    title: "Jolof rice",
+    price: 1329,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691930939/diboruwa/Screenshot_from_2023-07-23_12-41-36_gqry1k.png",
+    category: "Rice and Grains",
   },
   {
     id: "2",
-    title: "Product 2",
-    price: 49.99,
-    imgUrl: "https://example.com/product2.jpg",
-    category: "Clothing",
+    title: "Jolof rice",
+    price: 1329,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691930939/diboruwa/Screenshot_from_2023-07-23_12-41-36_gqry1k.png",
+    category: "Rice and Grains",
   },
   {
     id: "3",
-    title: "Product 3",
-    price: 14.99,
-    imgUrl: "https://example.com/product3.jpg",
-    category: "Home & Kitchen",
+    title: "Ofada rice",
+    price: 1329,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691931036/diboruwa/Screenshot_from_2023-07-23_12-43-31_fachft.png",
+    category: "Rice and Grains",
   },
   {
     id: "4",
+    title: "Masa",
+    price: 49.99,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691930984/diboruwa/Screenshot_from_2023-07-23_12-25-21_hc8kbh.png",
+    category: "Swallow",
+  },
+  {
+    id: "4",
+    title: "Beans, Bread and Plantain",
+    price: 14.99,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691938465/diboruwa/Screenshot_from_2023-08-13_15-51-22_vzskcj.png",
+    category: "Beans",
+  },
+  {
+    id: "5",
     title: "Banana",
     price: 0.99,
     imgUrl: "https://example.com/banana.jpg",
     category: "Fruits",
   },
   {
-    id: "5",
+    id: "6",
     title: "Chocolate Bar",
     price: 2.49,
-    imgUrl: "https://example.com/chocolate.jpg",
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691938468/diboruwa/Screenshot_from_2023-08-13_15-52-34_fofcpm.png",
     category: "Snacks",
   },
   {
-    id: "6",
-    title: "Cereal",
+    id: "7",
+    title: "Custard and Akara",
     price: 3.99,
-    imgUrl: "https://example.com/cereal.jpg",
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691931043/diboruwa/Screenshot_from_2023-07-23_12-51-05_kt11tb.png",
     category: "Breakfast",
   },
-  {
-    id: "7",
-    title: "Yogurt",
-    price: 1.25,
-    imgUrl: "https://example.com/yogurt.jpg",
-    category: "Dairy",
-  },
-  {
-    id: "8",
-    title: "Headphones",
-    price: 59.99,
-    imgUrl: "https://example.com/headphones.jpg",
-    category: "Electronics",
-  },
+  // {
+  //   id: "8",
+  //   title: "Yogurt",
+  //   price: 1.25,
+  //   imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691930939/diboruwa/Screenshot_from_2023-07-23_12-41-36_gqry1k.png",
+  //   category: "Dairy",
+  // },
   {
     id: "9",
-    title: "T-Shirt",
+    title: "Rice and Seafood",
     price: 19.99,
-    imgUrl: "https://example.com/tshirt.jpg",
-    category: "Clothing",
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691931367/diboruwa/thai-food-shrimp-squid-fried-cooked-with-long-beans-rice_acmjpp.jpg",
+    category: "Rice and Grains",
   },
   {
     id: "10",
     title: "Toaster",
     price: 34.99,
     imgUrl: "https://example.com/toaster.jpg",
-    category: "Home & Kitchen",
+    category: "Rice and Grains",
   },
   {
     id: "11",
@@ -86,19 +93,76 @@ const products: Product[] = [
   },
   {
     id: "12",
-    title: "Chips",
+    title: "Pap and Beans Cake (Kunu and Kose)",
     price: 1.99,
-    imgUrl: "https://example.com/chips.jpg",
-    category: "hijikjikjnkl",
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691931001/diboruwa/Screenshot_from_2023-07-23_12-48-37_aeja1o.png",
+    category: "Breakfast",
   },
   {
     id: "13",
     title: "Milk",
     price: 2.75,
     imgUrl: "https://example.com/milk.jpg",
-    category: "sssss",
+    category: "Rice and Grains",
+  },
+  {
+    id: "14",
+    title: "Tuwo and Egusi",
+    price: 49.99,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691936446/diboruwa/Screenshot_from_2023-07-23_12-24-59_w5xtrh.png",
+    category: "Swallow",
+  },
+  {
+    id: "15",
+    title: "Tuwo da Miya",
+    price: 49.99,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691936460/diboruwa/Screenshot_from_2023-07-23_12-11-27_bvdnwl.png",
+    category: "Swallow",
+  },
+  {
+    id: "16",
+    title: "Efo riro",
+    price: 49.99,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691936467/diboruwa/Screenshot_from_2023-07-23_12-07-34_f2ue5j.png",
+    category: "Soup",
+  },
+  {
+    id: "17",
+    title: "Efo riro",
+    price: 49.99,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691938479/diboruwa/Screenshot_from_2023-08-13_15-53-36_juo2h5.png",
+    category: "Soup",
+  },
+  {
+    id: "18",
+    title: "Efo riro",
+    price: 49.99,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691938474/diboruwa/Screenshot_from_2023-08-13_15-51-40_qaokht.png",
+    category: "Soup",
+  },
+  {
+    id: "19",
+    title: "Efo riro",
+    price: 49.99,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691938465/diboruwa/Screenshot_from_2023-08-13_15-51-57_crohno.png",
+    category: "Soup",
+  },
+  {
+    id: "20",
+    title: "Dan wake",
+    price: 49.99,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691936473/diboruwa/Screenshot_from_2023-07-23_12-10-00_vb6bd5.png",
+    category: "Swallow",
+  },
+  {
+    id: "21",
+    title: "Beans and Bread (Ewa agonyi)",
+    price: 49.99,
+    imgUrl: "https://res.cloudinary.com/zeeson-info-tech-and-innovations/image/upload/v1691938465/diboruwa/Screenshot_from_2023-08-13_15-51-22_vzskcj.png",
+    category: "Beans",
   },
 ];
+
 
 const categories: string[] = Array.from(
   new Set(products.map((product) => product.category))
@@ -146,7 +210,7 @@ const ProductList = () => {
         ))}
       </ProductListing>
       {productsToShow < filteredProducts.length && (
-        <Button size="large" color="primary" onClick={handleViewMore}>
+        <Button size="large" color="primary" onClick={handleViewMore} >
           More
         </Button>
       )}
