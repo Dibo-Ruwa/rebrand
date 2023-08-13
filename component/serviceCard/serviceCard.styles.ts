@@ -7,12 +7,18 @@ export const ServiceCardContainer = styled.div<{ bg: string }>`
   /* display: flex;
   flex-direction: column; */
 
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
   padding: 20px;
   border-radius: 8px;
   background-color: ${(props) => `var(--${props.bg})`};
   width: 100%;
+  height: 320px;
 
-  max-width: 350px;
+  max-width: 450px;
   z-index: 5;
 
   @media (max-width: 900px) {

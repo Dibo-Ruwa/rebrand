@@ -24,26 +24,26 @@ const Food = () => {
       <HeroContainer bg="primary-20">
         <div className="hero__text">
           <h3 className="title">
-            Effortlessly Enjoy Gourmet
-            <br /> Dishes in a Matter of Minutes
+          Delicious Meals, 
+            <br />Delivered Effortlessly by Diboruwa
           </h3>
 
           <HeroList>
             <HeroListItem>
               <span className="dot" />
-              Indulge in Chef-Quality Meals Without the Effort or Extra Charges
+              Browse & Choose - Explore our menu filled with delectable choices from top eateries.
             </HeroListItem>
             <HeroListItem>
               <span className="dot" />
-              Get Freshly Prepared Meals Delivered, Skip the Store and Cooking
+              Place Your Order - Pick your favorites, add to cart, and check out with ease.
             </HeroListItem>
             <HeroListItem>
               <span className="dot" />
-              Delivered fresh and ready-to-eat, just heat and relish!
+              Savor the Taste - Sit back and relax as fresh, delicious meals are delivered to your door.
             </HeroListItem>
           </HeroList>
           <Button size="large" color="primary">
-            Get a meal plan
+            Order Now
           </Button>
         </div>
 

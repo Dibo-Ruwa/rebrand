@@ -115,7 +115,8 @@ export const SubscriptionCard = styled.div`
   border-radius: 15px;
   padding: 20px;
   background: #fff;
-  min-height: 30vh;
+  /* min-height: 30vh; */
+  height: 100%;
   display: flex;
   flex-direction: column;
 

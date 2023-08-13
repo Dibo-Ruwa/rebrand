@@ -29,19 +29,19 @@ const howItWorksData = [
     image: assets.snpImg,
     title: "Schedule and Pickup",
     content:
-      "Contact Dibo Ruwa and schedule a pickup for your dirty clothes and beddings. Specify your preferred date and time for the pickup. On the scheduled day, a representative from Dibo Ruwa will come to your location to collect your laundry.",
+      "Choose a time slot that fits your schedule. Whether it's a one-time pickup or a weekly routine, we adjust to your needs.",
   },
   {
     image: assets.washingmachine,
     title: "Professional Laundry Service",
     content:
-      "Dibo Ruwa's experienced partners will handle the cleaning process for your clothes. They will wash, dry-clean, and iron all the items using high-quality detergents and following proper cleaning techniques. They take care of your clothes to ensure they are properly cleaned and maintained.",
+      "Our laundry experts treat each garment as their own. From stains to fabric care, we've got it all covered.",
   },
   {
     image: assets.cleaningTowel,
     title: "Quality Check and Delivery",
     content:
-      "After the laundry process is completed, Dibo Ruwa's team performs a thorough quality check. They inspect each item to ensure they are clean, intact, and perfectly laundered. Once the quality control is done, Dibo Ruwa will deliver your clean clothes back to you, aiming to complete the entire process within 48 hours.",
+      "No long waits. Your clothes are returned fresh and clean, right on schedule.",
   },
 ];
 
@@ -59,20 +59,20 @@ const Laundry = () => {
           <HeroList>
             <HeroListItem>
               <span className="dot" />
-              We pick up your dirty laundry
+               Schedule a Pickup - Choose a time, and we'll be there.
             </HeroListItem>
             <HeroListItem>
               <span className="dot" />
-              We launder, iron, and QC
+              Expert Cleaning - Your clothes are treated with care, ensuring a fresh and clean feel
             </HeroListItem>
             <HeroListItem>
               <span className="dot" />
-              We deliver your clean clothes, within 48 hours.
+              Swift Delivery - Freshly laundered clothes returned to your doorstep, ready to wear
             </HeroListItem>
           </HeroList>
 
           <Button size="large" color="primary">
-            Get Started
+            Order Now
           </Button>
         </div>
 
@@ -106,6 +106,11 @@ const Laundry = () => {
           <h3 className="title">
             Wash & <br /> Fold <span>Pricing</span>
           </h3>
+          <HeroImage 
+            src={assets.bag} 
+            width={300}
+            height={200}  
+            alt="" />
         </div>
         <div className="pricecard__container">
           <PriceCard />

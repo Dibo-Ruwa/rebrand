@@ -14,6 +14,8 @@ import {
   WhyChooseUsSection,
   WhyChooseUsText,
   WhyChooseUsTitle,
+  HeroList,
+  HeroListItem,
 } from "./home.styles";
 import Button from "@/component/ui/button/Button";
 import { FiPhoneCall } from "react-icons/fi";
@@ -35,17 +37,30 @@ export default function Home() {
 
   return (
     <Container>
-      <HeroContainer bg="primary-20">
+      <HeroContainer bg="primary-20" >
         <motion.div className="hero__text">
           <div className="title">
             Break free from mundane tasks that drains your time and energy
           </div>
-          <p className="subtitle">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora
-            animi quo totam, in voluptatem corporis esse illo quas ad repellat
-            quisquam repellendus optio harum ea eligendi quae sapiente commodi.
-            Tenetur?
-          </p>
+          {/* <p className="subtitle">
+            Experience premium services that seamlessly blend into your life. Whether it's a <span className="meal">meal</span>, a <span>clean home</span>, or <span>fresh clothes</span>  – we're here for you.
+          </p> */}
+
+          <HeroList>
+            <HeroListItem>
+              <span className="dot" />
+              <span className="tick">Tasty Meals Delivered:</span> Savor delicious dishes without the daily cooking hassle.
+            </HeroListItem>
+            <HeroListItem>
+              <span className="dot" />
+              <span className="tick">Fresh Clothes, Always Ready:</span>  Forget laundry day; always have your favorite outfits ready.
+            </HeroListItem>
+            <HeroListItem>
+              <span className="dot" />
+              <span className="tick">Sparkling Clean Homes:</span> Step into a fresh, clean space every day, without lifting a finger.
+            </HeroListItem>
+          </HeroList>
+
 
           <div className="btn_grp">
             <Button
@@ -53,7 +68,7 @@ export default function Home() {
               color="primary"
               onClick={() => router.push(session ? "/dashboard" : "/signin")}
             >
-              Get Started
+              Discover Easy Living
             </Button>
             <div className="contact">
               <button className="withIcon">
@@ -61,7 +76,7 @@ export default function Home() {
               </button>
               <div className="content">
                 <span>Call us</span>
-                <span className="cell">+2348148918529</span>
+                <span className="cell">+2348059303261</span>
               </div>
             </div>
           </div>
