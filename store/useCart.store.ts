@@ -28,8 +28,8 @@ import {
 import { toast } from "react-hot-toast";
 
 const useCartStore = create<CartState>()(
-  devtools(
-    persist(
+  // devtools(
+  //   persist(
       (set) => ({
         openModal: false,
         messageType: "success",
@@ -198,11 +198,11 @@ const useCartStore = create<CartState>()(
           }
         },
       }),
-      {
-        name: "cart-storage",
-      }
-    )
-  )
+  //     {
+  //       name: "cart-storage",
+  //     }
+  //   )
+  // )
 );
 
 /* ===== Cart Store Util Functions ===== */
