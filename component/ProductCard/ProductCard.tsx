@@ -9,6 +9,7 @@ import {
   ProductInfo,
   ProductName,
   ProductPrice,
+  ProductImage
 } from "./productCard.styles";
 import useCartStore from "@/store/useCart.store";
 import { Product } from "@/utils/types/types";
@@ -27,7 +28,8 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
   return (
     <Container>
       <ImageContainer>
-        {/* <ProductImage src={product.imgUrl} alt="...." /> */}
+        {/* <ProductImage src={product.imgUrl} alt="...." style={{ width: "100%" }} /> */}
+        <img src={product?.imgUrl} alt="" style={{ width: "100%", height: "100%", }} />
         <CartOverlay>
           <CartBtn
             onClick={() => {
