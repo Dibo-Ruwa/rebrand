@@ -1,13 +1,22 @@
-import React from "react";
-import DashboardRoutes from "../DasboardRoutes/DashBoardRoutes";
+'use client'
 
-const DashboradLayout = ({ children }: { children: React.ReactNode }) => {
+import React, { useEffect } from "react";
+import DashboardRoutes from "../DasboardRoutes/DashBoardRoutes";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import AdminRoutes from "../adminRoutes/AdminRoutes";
+
+const Dashboard = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
+  const { data: session } = useSession();
+
   return (
     <div>
-      <DashboardRoutes />
+      {session?.user?.role === "admin" ? <AdminRoutes /> : <DashboardRoutes />}
+
       {children}
     </div>
   );
 };
 
-export default DashboradLayout;
+export default Dashboard;

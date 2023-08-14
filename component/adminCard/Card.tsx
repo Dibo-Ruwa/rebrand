@@ -1,20 +1,20 @@
 "use client";
 import { FC } from "react";
-import { Container, Img, ImgContainer, Title } from "./card.styles";
+import { Container, Title } from "./card.styles";
 import { useRouter } from "next/navigation";
 
 interface CardProps {
   title: string;
-  image: string;
-  value: string;
+
+  value: string | number;
 }
 
-const Card: FC<CardProps> = ({ title, image, value }) => {
+const Card: FC<CardProps> = ({ title, value }) => {
   const router = useRouter();
   return (
-    <Container onClick={() => router.push(value)}>
+    <Container onClick={() => router.push(title)}>
       <Title>{title}</Title>
-      <ImgContainer>{value}</ImgContainer>
+      <div className="value">{value}</div>
     </Container>
   );
 };
