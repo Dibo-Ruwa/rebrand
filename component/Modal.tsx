@@ -54,9 +54,13 @@ const CloseButton = styled.button`
   }
 `;
 
+interface ModalProps {
+  open: boolean;
+  children: React.ReactNode;
+  onClose: () => void;
+}
 
-
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
   const overlayVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
