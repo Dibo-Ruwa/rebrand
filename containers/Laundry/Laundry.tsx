@@ -20,9 +20,9 @@ import LaundryCount from "@/component/laundryCounter/LaundryCounter";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { assets } from "@/public/assets";
 import MoreServices from "@/component/shared/MoreServices";
-import Success from "@/component/modals/Success";
-import { useModal } from "@/hooks/useModal";
+import Success from "@/component/modals/Modal";
 import useCartStore from "@/store/useCart.store";
+import Modal from "@/component/modals/Modal";
 
 const howItWorksData = [
   {
@@ -46,8 +46,8 @@ const howItWorksData = [
 ];
 
 const Laundry = () => {
-  const { successModal } = useModal();
-  const { openModal, message, messageType, toggleModal } = useCartStore();
+  const { modal, closeModal } = useCartStore();
+
   return (
     <Container>
       <HeroContainer bg="primary-20">
@@ -59,21 +59,39 @@ const Laundry = () => {
           <HeroList>
             <HeroListItem>
               <span className="dot" />
-               Schedule a Pickup - Choose a time, and we'll be there.
+              <div className="text">
+                <strong> Schedule a Pickup</strong>
+                <small> Choose a time, and we&apos;ll be there.</small>
+              </div>
             </HeroListItem>
             <HeroListItem>
               <span className="dot" />
-              Expert Cleaning - Your clothes are treated with care, ensuring a fresh and clean feel
+              <div className="text">
+                <strong>Expert Cleaning </strong>
+                <small>
+                  {" "}
+                  Your clothes are treated with care, ensuring a fresh and clean
+                  feel
+                </small>
+              </div>
             </HeroListItem>
             <HeroListItem>
               <span className="dot" />
-              Swift Delivery - Freshly laundered clothes returned to your doorstep, ready to wear
+              <div className="text">
+                <strong>Swift Delivery</strong>
+                <small>
+                  Freshly laundered clothes returned to your doorstep, ready to
+                  wear
+                </small>
+              </div>
             </HeroListItem>
           </HeroList>
 
-          <Button size="large" color="primary">
-            Order Now
-          </Button>
+          <div className="ctaBtn">
+            <Button size="large" color="primary">
+              Order Now
+            </Button>
+          </div>
         </div>
 
         <HeroImageContainer>
@@ -106,11 +124,7 @@ const Laundry = () => {
           <h3 className="title">
             Wash & <br /> Fold <span>Pricing</span>
           </h3>
-          <HeroImage 
-            src={assets.bag} 
-            width={300}
-            height={200}  
-            alt="" />
+          <HeroImage src={assets.bag} width={150} height={70} alt="" />
         </div>
         <div className="pricecard__container">
           <PriceCard />
@@ -156,14 +170,12 @@ const Laundry = () => {
 
       <MoreServices />
 
-      {/* {openModal === true ? (
-        <Success
-          open={openModal}
-          message={message}
-          type={messageType}
-          close={toggleModal}
-        />
-      ) : null} */}
+      <Modal
+        isOpen={modal.isOpen}
+        type={modal.type}
+        message={modal.message}
+        onClose={closeModal}
+      />
     </Container>
   );
 };

@@ -26,14 +26,14 @@ import {
   removeSubscriptionAPI,
 } from "@/utils/services/subscriptions";
 import { toast } from "react-hot-toast";
+import { useModal } from "@/hooks/useModal";
 
 const useCartStore = create<CartState>()((set) => ({
-  openModal: false,
-  messageType: "success",
-  message: "",
-  toggleModal: () => set((state) => ({ openModal: !state.openModal })),
-  setMessage: (message: string, messageType: "success" | "error") =>
-    set({ message, messageType, openModal: true }),
+  modal: {
+    isOpen: false,
+    message: "",
+    type: "success",
+  },
   cartItems: [],
   subscriptions: [],
   getCart: async () => {
@@ -59,21 +59,25 @@ const useCartStore = create<CartState>()((set) => ({
         duration: 1000,
       });
       const response = await addSubscriptionAPI(subscription);
-      if (response) {
-        toast.success("subscription added success fully", {
-          duration: 2000,
-          position: "top-center",
-        });
-      }
-
       set((state) => ({
         subscriptions: [...response.data.subscriptions],
       }));
+      if (response) {
+        set({ modal: { isOpen: true, message: "Subscription added successfully!!!", type: "success" } });
+       
+      }
+
+     
     } catch (error: any) {
-      // console.log(error);
-      toast.error(error.response.data.error, {
-        duration: 3000,
-        position: "top-center",
+     
+
+      // Show error modal with the extracted error message
+      set({
+        modal: {
+          isOpen: true,
+          message: error.response.data.error,
+          type: "error",
+        },
       });
     }
   },
@@ -112,14 +116,20 @@ const useCartStore = create<CartState>()((set) => ({
       set((state) => ({
         cartItems: [...response.data.cart.cartItems],
       }));
-      toast.success("Item Added Successfuly!!!", {
-        duration: 3000,
-        position: "top-center",
-      });
+      if (response) {
+        set({ modal: { isOpen: true, message: "Item added successfully!!!", type: "success" } });
+       
+      }
+
+      
+     
     } catch (error: any) {
-      toast.error(error.message, {
-        duration: 3000,
-        position: "top-center",
+      set({
+        modal: {
+          isOpen: true,
+          message: error.response.data.error,
+          type: "error",
+        },
       });
     }
   },
@@ -191,6 +201,9 @@ const useCartStore = create<CartState>()((set) => ({
     } catch (error) {
       console.log(error);
     }
+  },
+  closeModal: () => {
+    set((state) => ({ modal: { ...state.modal, isOpen: false } }));
   },
 }));
 

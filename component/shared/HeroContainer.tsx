@@ -63,6 +63,8 @@ const Container = styled.div<{ background: string }>`
       display: flex;
       gap: 30px;
 
+     
+
       @media screen and (max-width: 900px) {
         flex-direction: column-reverse;
       }

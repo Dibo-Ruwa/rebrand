@@ -24,6 +24,8 @@ const ButtonContainer = styled(motion.button)<{
   cursor: pointer;
   outline: none;
 
+ 
+
   @media (max-width: 768px) {
     font-size: 0.875rem;
   }

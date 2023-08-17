@@ -17,34 +17,44 @@ import MoreServices from "@/component/shared/MoreServices";
 import { assets } from "@/public/assets";
 import { HWW } from "@/constants";
 import ProductList from "@/component/ProductList/ProductList";
+import useCartStore from "@/store/useCart.store";
+import Modal from "@/component/modals/Modal";
 
 const Food = () => {
+  const { modal, closeModal } = useCartStore();
   return (
     <Container>
       <HeroContainer bg="primary-20">
         <div className="hero__text">
           <h3 className="title">
-          Delicious Meals, 
-            <br />Delivered Effortlessly by Diboruwa
+            Delicious Meals,
+            <br />
+            Delivered Effortlessly by Diboruwa
           </h3>
 
           <HeroList>
             <HeroListItem>
               <span className="dot" />
-              Browse & Choose - Explore our menu filled with delectable choices from top eateries.
+              Browse & Choose - Explore our menu filled with delectable choices
+              from top eateries.
             </HeroListItem>
             <HeroListItem>
               <span className="dot" />
-              Place Your Order - Pick your favorites, add to cart, and check out with ease.
+              Place Your Order - Pick your favorites, add to cart, and check out
+              with ease.
             </HeroListItem>
             <HeroListItem>
               <span className="dot" />
-              Savor the Taste - Sit back and relax as fresh, delicious meals are delivered to your door.
+              Savor the Taste - Sit back and relax as fresh, delicious meals are
+              delivered to your door.
             </HeroListItem>
           </HeroList>
-          <Button size="large" color="primary">
-            Order Now
-          </Button>
+
+          <div className="ctaBtn">
+            <Button size="large" color="primary">
+              Order Now
+            </Button>
+          </div>
         </div>
 
         <HeroImageContainer>
@@ -80,6 +90,13 @@ const Food = () => {
       </MenuSection>
 
       <MoreServices />
+
+      <Modal
+        isOpen={modal.isOpen}
+        type={modal.type}
+        message={modal.message}
+        onClose={closeModal}
+      />
     </Container>
   );
 };
