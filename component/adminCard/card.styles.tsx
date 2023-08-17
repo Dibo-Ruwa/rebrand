@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -11,7 +10,8 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  /* width: 100%; */
+  width: 100%;
+  max-width: 300px;
   transition: all 0.3s ease;
 
   &:hover {
@@ -21,6 +21,24 @@ export const Container = styled.div`
     color: var(--color4);
   }
 
+
+  
+  border: 1px solid var(--primary);
+
+ 
+
+  .value {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--primary-20);
+    color: var(--colr2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+  }
+
   
 
   @media screen and (max-width: 768px) {
@@ -28,18 +46,8 @@ export const Container = styled.div`
   }
 `;
 export const Title = styled.h3`
-  font-size: 20px;
-  width: 100px;
+   font-size: 24px;
+    font-weight: bold;
+    color: var(--color4);
 `;
-export const ImgContainer = styled.div`
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: var(--primary-20);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-export const Img = styled(Image)`
-  width: 100%;
-`;
+

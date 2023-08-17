@@ -30,6 +30,7 @@ import FeedbackCarousel from "@/component/feedBacksCarousel/FeedBacks";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import AccordionList from "@/component/AccordionList/AccordionList";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -37,7 +38,7 @@ export default function Home() {
 
   return (
     <Container>
-      <HeroContainer bg="primary-20" >
+      <HeroContainer bg="primary-20">
         <motion.div className="hero__text">
           <div className="title">
             Break free from mundane tasks that drains your time and energy
@@ -49,18 +50,34 @@ export default function Home() {
           <HeroList>
             <HeroListItem>
               <span className="dot" />
-              <span className="tick">Tasty Meals Delivered:</span> Savor delicious dishes without the daily cooking hassle.
+              <div className="text">
+                <strong>Tasty Meals Delivered:</strong>
+                <small>
+                  Savor delicious dishes without the dailycooking hassle.
+                </small>
+              </div>
             </HeroListItem>
             <HeroListItem>
               <span className="dot" />
-              <span className="tick">Fresh Clothes, Always Ready:</span>  Forget laundry day; always have your favorite outfits ready.
+
+              <div className="text">
+                <strong>Fresh Clothes, Always Ready:</strong>
+                <small>
+                  Forget laundry day, always have your favorite outfits ready.
+                </small>
+              </div>
             </HeroListItem>
             <HeroListItem>
               <span className="dot" />
-              <span className="tick">Sparkling Clean Homes:</span> Step into a fresh, clean space every day, without lifting a finger.
+              <div className="text">
+                <strong>Sparkling Clean Homes:</strong>
+                <small>
+                  Step into a fresh, clean space every day, without lifting a
+                  finger.
+                </small>
+              </div>
             </HeroListItem>
           </HeroList>
-
 
           <div className="btn_grp">
             <Button
@@ -136,7 +153,11 @@ export default function Home() {
             and energy. We offer a range of services designed to transform your
             daily routine and let you focus on what truly matters.
           </WhyChooseUsContent>
-          <Button size="large" color="primary" onClick={() => router.push(session ? "/dashboard" : "/signin")}>
+          <Button
+            size="large"
+            color="primary"
+            onClick={() => router.push(session ? "/dashboard" : "/signin")}
+          >
             Get Started
           </Button>
         </WhyChooseUsText>
@@ -163,13 +184,8 @@ export default function Home() {
       <FaqSection>
         <div className="container">
           <NewsletterForm />
-          <FaqAccordionList>
-            {accordionData.map((item, index) => (
-              <div className="accordion" key={index}>
-                <Accordion title={item.title} content={item.content} />
-              </div>
-            ))}
-          </FaqAccordionList>
+
+          <AccordionList />
         </div>
       </FaqSection>
     </Container>

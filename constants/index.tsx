@@ -209,18 +209,22 @@ export const services = [
 
 export const accordionData = [
   {
+    id: 1,
     title: "How can I easily place an order?",
     content: "Placing an order is a breeze! Just navigate to the desired service on our website, select your preferences, and follow the simple checkout process. For regular users, our dashboard provides even quicker access to frequent orders.",
   },
   {
+    id: 2,
     title: "Are there subscription plans available for regular services",
     content: "Yes, we offer subscription plans that provide additional benefits and savings for our regular customers.",
   },
   {
+    id: 3,
     title: "How do you ensure the quality of food delivered?",
     content: "We partner with reputable restaurants and enforce strict quality checks to ensure your food is fresh, hygienic, and delicious.",
   },
   {
+    id: 4,
     title: "What measures are taken to care for delicate garments during laundry?",
     content: "Our laundry professionals are trained in fabric care, ensuring that delicate garments are handled with utmost care and precision.",
   },

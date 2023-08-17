@@ -1,7 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import styled from "styled-components";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useRef, useState } from "react";
+
 import { MinusCircledIcon, PlusCircledIcon } from "@radix-ui/react-icons";
 import {
   AccordionButton,
@@ -9,43 +8,43 @@ import {
   AccordionWrapper,
 } from "./accordion.styles";
 
-interface AccordionProps {
-  title: string;
-  content: React.ReactNode;
+interface Props {
+  faq: {
+    id: number;
+    title: string;
+    content: string;
+  };
+  active: any;
+  handleToggle: (index: any) => void;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Accordion: React.FC<Props> = ({ faq, active, handleToggle }) => {
+  const contentEl = useRef<HTMLDivElement>(null);
 
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
+  const { id, title, content } = faq;
 
   return (
-    <AnimatePresence initial={false}>
-      <AccordionWrapper>
-        <AccordionButton onClick={toggleAccordion}>
-          <span>{title}</span>
-          {isOpen ? <MinusCircledIcon /> : <PlusCircledIcon />}
-        </AccordionButton>
-        <AnimatePresence initial={false}>
-          {isOpen && (
-            <AccordionContent
-              initial="collapsed"
-              animate="open"
-              variants={{
-                open: { opacity: 1, height: "auto" },
-                collapsed: { opacity: 0, height: 0 },
-              }}
-              exit="collapsed"
-              transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.93] }}
-            >
-              <p>{content}</p>
-            </AccordionContent>
-          )}
-        </AnimatePresence>
-      </AccordionWrapper>
-    </AnimatePresence>
+    <AccordionWrapper>
+      <AccordionButton
+        className={active === id ? "active" : ""}
+        onClick={() => handleToggle(id)}
+      >
+        <span>{title}</span>
+        {active === id ? <MinusCircledIcon /> : <PlusCircledIcon />}
+      </AccordionButton>
+
+      <AccordionContent
+        ref={contentEl}
+        className={`collapse ${active === id ? "show" : ""}`}
+        style={
+          active === id
+            ? { height: contentEl?.current?.scrollHeight }
+            : { height: 0 }
+        }
+      >
+        <p>{content}</p>
+      </AccordionContent>
+    </AccordionWrapper>
   );
 };
 

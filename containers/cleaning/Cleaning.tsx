@@ -22,9 +22,10 @@ import useCartStore from "@/store/useCart.store";
 import { toast } from "react-hot-toast";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Modal from "@/component/modals/Modal";
 
 const Cleaning = () => {
-  const { addSubscription, subscriptions } = useCartStore();
+  const { addSubscription, subscriptions, modal, closeModal } = useCartStore();
   const { data: session } = useSession();
   const router = useRouter();
   const ChoosePlan = (plan: string) => {
@@ -47,21 +48,37 @@ const Cleaning = () => {
           
             <HeroList>
               <HeroListItem>
-                <span className="dot" />
-                Book Online - Choose your service and preferred time slot with a few clicks.
+              <span className="dot" />
+              <div className="text">
+                <strong>Book Online</strong>
+                <small>Choose your service and preferred time slot with a few clicks.</small>
+              </div>
+                 
               </HeroListItem>
               <HeroListItem>
-                <span className="dot" />
-                Expert Clean - Our team brings the shine, making sure every corner sparkles.
+              <span className="dot" />
+              <div className="text">
+                <strong>Expert Clean </strong>
+                <small> Our team brings the shine, making sure every corner sparkles.</small>
+              </div>
+                
               </HeroListItem>
               <HeroListItem>
-                <span className="dot" />
-                Enjoy Your Space - Step into a home that feels fresh, without any of the work.
+              <span className="dot" />
+              <div className="text">
+                <strong>Enjoy Your Space</strong>
+                <small> Step into a home that feels fresh, without any of the work.</small>
+              </div>
+                
               </HeroListItem>
-            </HeroList>
+          </HeroList>
+          
+          <div className="ctaBtn">
             <Button size="large" color="primary">
               Schedule a Clean
             </Button>
+          </div>
+            
         </div>
 
         <HeroImageContainer>
@@ -135,7 +152,7 @@ const Cleaning = () => {
           <SubscriptionCard>
             <div className="image"> .. </div>
             <h3 className="title">Simplifying Your Move from Start to Finish</h3>
-            <p>Diboruwa isn't just about cleaning; we assist you in every step of your relocation. From ensuring your space is spotless to safely transporting your belongings, we're here to make the transition as smooth as possible.</p>
+            <p>Diboruwa isn&apos;t just about cleaning; we assist you in every step of your relocation. From ensuring your space is spotless to safely transporting your belongings, we&apos;re here to make the transition as smooth as possible.</p>
             <p> Contact us today to make it the easiest move of your life.</p>
 
             <Button size="medium" color="primary">
@@ -146,6 +163,13 @@ const Cleaning = () => {
       </SubscriptionSection>
 
       <MoreServices />
+
+      <Modal
+        isOpen={modal.isOpen}
+        type={modal.type}
+        message={modal.message}
+        onClose={closeModal}
+      />
     </Container>
   );
 };

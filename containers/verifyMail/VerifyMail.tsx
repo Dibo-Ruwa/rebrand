@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { FailureContainer, SuccessContainer } from "./verifyMail.styles";
+import { Container, FailureContainer, SuccessContainer } from "./verifyMail.styles";
 import Loader from "@/component/ui/loader/Loader";
 import { useRouter } from "next/navigation";
 
@@ -57,13 +57,13 @@ const VerifyMail = ({ token }: { token: string }) => {
   }
 
   return (
-    <div>
+    <Container>
       {verificationStatus === "success" ? (
         <SuccessComponent />
       ) : (
         <FailureComponent />
       )}
-    </div>
+    </Container>
   );
 };
 

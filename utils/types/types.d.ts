@@ -64,11 +64,14 @@ export type CartItem = Product & {
   total: number;
 };
 
-export type CartState = {
-  openModal: boolean;
+export type Modal = {
+  isOpen: boolean;
   message: string;
-  toggleModal: () => void;
-  messageType: "success" | "error";
+  type: "success" | "error";
+};
+
+export type CartState = {
+  modal: Modal;
   cartItems: CartItem[];
   subscriptions: Subscription[];
   getCart: () => void;
@@ -79,6 +82,7 @@ export type CartState = {
   removeFromCart: (itemId: string) => void;
   updateQuantity: (id: string, action: "increase" | "decrease") => void;
   clearCart: () => void;
+  closeModal: () => void;
 };
 
 export interface Order {

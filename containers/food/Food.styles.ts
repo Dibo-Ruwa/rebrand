@@ -3,12 +3,23 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  .ctaBtn {
+    width: 200px;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      button {
+        width: 100%;
+      }
+    }
+  }
+`;
 export const HeroList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 30px 0;
+  margin: 20px 0;
 `;
 export const HeroListItem = styled.div`
   display: flex;
@@ -55,7 +66,6 @@ export const HWWList = styled.div`
   @media screen and (max-width: 768px) {
     grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
   }
- 
 `;
 export const HWWCard = styled.div`
   width: 100%;
@@ -64,8 +74,6 @@ export const HWWCard = styled.div`
   padding: 15px;
   border-radius: 10px;
   background: var(--primary-20);
-
- 
 
   .image {
     width: 60px;
@@ -90,25 +98,22 @@ export const HWWCard = styled.div`
     color: #333;
   }
 
-
   @media screen and (max-width: 768px) {
     width: 100%;
     .image {
-    width: 80px;
-    height: 80px;
- 
-  }
+      width: 80px;
+      height: 80px;
+    }
 
-  .title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 12px;
-  }
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
 
-  p {
-    font-size: 16px;
-  
-  }
+    p {
+      font-size: 16px;
+    }
   }
 `;
 

@@ -23,17 +23,7 @@ const verifyMailToken = (token: string) => {
   }
 };
 
-const generateActivationToken = (userId: string) => {
-  // Generate the token based on user ID and purpose
-  const token = generateToken(userId, "1d");
-  const activationLink = `https://yourdomain.com/activate-account/${token}`;
 
-  return `
-            <h1>Activate Your Account</h1>
-            <p>Click the link below to activate your account:</p>
-            <a href="${activationLink}">Activate</a>
-          `;
-};
 
 const generateResetPasswordToken = (userId: string) => {
   // Generate the token based on user ID and purpose (you can use a library like 'jsonwebtoken' for this)
@@ -47,4 +37,4 @@ const generateResetPasswordToken = (userId: string) => {
           `;
 };
 
-export { generateResetPasswordToken, generateActivationToken, verifyMailToken, generateToken };
+export { generateResetPasswordToken, verifyMailToken, generateToken };

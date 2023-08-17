@@ -18,7 +18,7 @@ export const ServiceCardContainer = styled.div<{ bg: string }>`
   width: 100%;
   height: 320px;
 
-  max-width: 450px;
+  max-width: 350px;
   z-index: 5;
 
   @media (max-width: 900px) {

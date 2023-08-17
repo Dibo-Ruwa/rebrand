@@ -3,13 +3,10 @@ import { hash } from "bcrypt";
 import User from "@/utils/models/Users";
 import { connectDB, closeDB } from "@/utils/db";
 import { Cart } from "@/utils/models/Cart";
-import {
-  generateActivationToken,
-  generateToken,
-} from "@/templates/authTemplates";
-import { sendMail } from "@/utils/sendMail";
-// import { Resend } from "resend";
-import SignUpTemplate from "@/templates/SignUpTemplate";
+import { generateToken } from "@/templates/authTemplates";
+import ActivateAccount from "@/emails/ActivateAccount";
+import { resend } from "@/utils/resend";
+
 
 export async function POST(req: Request, res: Response) {
   try {
@@ -54,28 +51,22 @@ export async function POST(req: Request, res: Response) {
 
     // @todo verification mail
 
-    // const resend = new Resend("re_AErzxZ8q_BotHJgBjXCGaEYFZUL53662i");
+    const activationLink = generateToken(user._id, "1d")
 
-    // const mail = await resend.emails.send({
-    //   from: "Acme <onboarding@resend.dev>",
-    //   to: user.email,
-    //   subject: "Hello world",
-    //   react: SignUpTemplate({
-    //     firstName: user.firstName,
-    //   }) as React.ReactElement,
-    // });
 
-    // console.log(mail)
-    const activationEmailContent = generateActivationToken(user._id);
+    const mail = await resend.emails.send({
+      from: "email@diboruwa.com",
+      to: user.email,
+      subject: "Hello world",
+      react: ActivateAccount({
+        customerName: user.firstName,
+        activationLink: `https://rebrand-omega.vercel.app/verifyMail/${activationLink}`
+      }) as React.ReactElement,
+    });
 
-    // Use the sendMail utility to send the email
-    const mail = await sendMail(
-      email,
-      "Activate Your Account",
-      activationEmailContent
-    );
+    console.log(mail);
 
-    if (user && mail) {
+    if (user) {
       // Remove the password from the response
       createdUser.password = undefined;
 

@@ -2,19 +2,30 @@
 
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+.ctaBtn {
+  width: 200px;
+  @media screen and (max-width: 768px) {
+  width: 100%;
+  button {
+    width: 100%;
+  }
+}
+}
+`;
 
 export const HeroList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin: 30px 0;
+  gap: 15px;
+  margin: 20px 0;
 `;
 export const HeroListItem = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   font-size: 18px;
+
   .dot {
     width: 20px;
     min-width: 20px;
@@ -23,8 +34,13 @@ export const HeroListItem = styled.div`
     background: var(--primary);
   }
 
+  .text {
+    display: grid;
+  }
+
   @media screen and (max-width: 768px) {
-    align-items: flex-start;
+    font-size: 16px;
+    align-items: baseline;
   }
 `;
 

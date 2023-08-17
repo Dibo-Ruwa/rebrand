@@ -2,17 +2,19 @@
 
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+
+`;
 
 export const HeroList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   margin: 30px 0;
 `;
 export const HeroListItem = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   font-size: 18px;
 
@@ -24,8 +26,8 @@ export const HeroListItem = styled.div`
     background: var(--primary);
   }
 
-  .tick{
-    font-weight: 800;
+  .text {
+    display: grid;
   }
 
   @media screen and (max-width: 768px) {
@@ -35,7 +37,6 @@ export const HeroListItem = styled.div`
 `;
 export const ServicesSection = styled.div`
   padding: 8%;
- 
 
   header {
     margin: auto;
@@ -50,7 +51,6 @@ export const ServicesSection = styled.div`
     .subtitle {
       font-size: 20px;
       color: var(--content);
-
     }
   }
   @media (max-width: 900px) {
@@ -77,6 +77,8 @@ export const ServiceList = styled.div`
   position: relative;
   height: auto;
   width: 100%;
+
+  margin-top: 40px;
 
   .pattern {
     position: absolute;
@@ -197,8 +199,8 @@ export const FeedBackSection = styled.div`
         width: 90%;
         height: 100%;
         @media screen and (max-width: 900px) {
-        width: 100%;
-      }
+          width: 100%;
+        }
       }
     }
 

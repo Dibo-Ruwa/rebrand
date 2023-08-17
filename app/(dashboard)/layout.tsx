@@ -1,19 +1,14 @@
 import DashboardRoutes from "@/component/DasboardRoutes/DashBoardRoutes";
-// import AdminRoutes from "@/component/adminRoutes/AdminRoutes";
-// import { authOptions } from "@/utils/helpers/authOptions";
-// import { getServerSession } from "next-auth";
+import Dashboard from "@/component/dashboardLayout/DashboradLayout";
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  
   return (
     <section>
-       <DashboardRoutes /> 
-
-      {children}
+      <Dashboard>{children}</Dashboard>
     </section>
   );
 }
