@@ -48,7 +48,6 @@ const CloseButton = styled.button`
   justify-content: center;
   align-items: center;
 
-
   &:hover {
     color: #f00;
   }
@@ -56,8 +55,9 @@ const CloseButton = styled.button`
 
 interface ModalProps {
   open: boolean;
-  children: React.ReactNode;
+
   onClose: () => void;
+  children: React.ReactNode;
 }
 
 const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {

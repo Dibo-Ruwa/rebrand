@@ -51,22 +51,21 @@ export async function POST(req: Request, res: Response) {
 
     // @todo verification mail
 
-    const activationLink = generateToken(user._id, "1d")
+    const activationLink = generateToken(user._id)
 
 
     const mail = await resend.emails.send({
       from: "email@diboruwa.com",
       to: user.email,
-      subject: "Hello world",
+      subject: "Activate Account",
       react: ActivateAccount({
         customerName: user.firstName,
         activationLink: `https://rebrand-omega.vercel.app/verifyMail/${activationLink}`
       }) as React.ReactElement,
     });
 
-    console.log(mail);
 
-    if (user) {
+    if (user && mail?.id) {
       // Remove the password from the response
       createdUser.password = undefined;
 

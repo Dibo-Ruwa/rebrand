@@ -28,35 +28,19 @@ const useAuth = (): AuthHook => {
 
     try {
       // Perform signup logic using axios
-      const res = await interceptor.post("/auth/signup", formData);
+      await interceptor.post("auth/signup", formData);
       setLoading(false);
       setError(null);
-
-      toast.loading("Submiing credentials..", {
-
-        duration: 1000
-      });
-
-      if (session) {
-        toast.success("Sign Up Successful!!!", {
-          duration: 2000,
-          position: "bottom-right",
-        });
-        router.back();
-        setTimeout(() => {
-          router.push("/dashboard");
-        }, 500);
-      } else {
-      }
+      toast.success("Signup successful!");
+      setTimeout(() => {
+        router.push("/signin");
+      }, 1000);
     } catch (error: any) {
-      console.log(error.response.data);
+      console.log(error.response.data)
       setLoading(false);
       setError(error.message);
       toast.error(error.response.data);
-      toast.error("Signup failed. Please try again.", {
-        duration: 3000,
-        position: "bottom-right",
-      });
+      toast.error("Signup failed. Please try again.");
     }
   };
 
@@ -103,6 +87,7 @@ const useAuth = (): AuthHook => {
     }
   };
   const userUpdate = async (formData: { [key: string]: string }) => {
+    setLoading(true);
     try {
       // Perform signin logic using axios
       const up = update({
@@ -119,16 +104,12 @@ const useAuth = (): AuthHook => {
       setError(null);
 
       toast.success("Update SuccessFul");
-     
-
-      // setTimeout(() => {
-      //   router.push("/dashboard");
-      // }, 500);
+    
     } catch (error: any) {
       setLoading(false);
       setError(error.message);
       toast.error(error.response.data);
-      toast.error("Signin failed. Please check your credentials.", {
+      toast.error("Profile Update failed", {
         duration: 3000,
         position: "bottom-left",
       });

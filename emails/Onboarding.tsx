@@ -1,26 +1,24 @@
-'use client'
 import React from 'react';
-import styled from 'styled-components';
 
-const Wrapper = styled.div`
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 20px;
-`;
+const wrapperStyle: React.CSSProperties = {
+  fontFamily: 'Arial, sans-serif',
+  textAlign: 'center',
+  padding: '20px',
+};
 
-const Title = styled.h1`
-  color: #333;
-`;
+const titleStyle: React.CSSProperties = {
+  color: '#333',
+};
 
-const Message = styled.p`
-  color: #666;
-  line-height: 1.5;
-`;
+const messageStyle: React.CSSProperties = {
+  color: '#666',
+  lineHeight: '1.5',
+};
 
-const Signature = styled.p`
-  font-style: italic;
-  color: #999;
-`;
+const signatureStyle: React.CSSProperties = {
+  fontStyle: 'italic',
+  color: '#1df590',
+};
 
 interface Props {
   customerName: string;
@@ -28,26 +26,26 @@ interface Props {
 
 const OnboardingTemplate: React.FC<Props> = ({ customerName }) => {
   return (
-    <Wrapper>
-      <Title>Welcome to the Dibo Ruwa Family!</Title>
-      <Message>
+    <div style={wrapperStyle}>
+      <h1 style={titleStyle}>Welcome to the Dibo Ruwa Family!</h1>
+      <p style={messageStyle}>
         Hello {customerName},
         <br />
-        You&#39;ve made a fantastic decision! Welcome to the Dibo Ruwa family, where convenience meets quality.
-        Whether you&#39;re here for our mouth-watering meals, impeccable cleaning, or our premium laundry services,
+        You&apos;ve made a fantastic decision! Welcome to the Dibo Ruwa family, where convenience meets quality.
+        Whether you&apos;re here for our mouth-watering meals, impeccable cleaning, or our premium laundry services,
         we promise to deliver the best.
-      </Message>
-      <Message>
+      </p>
+      <p style={messageStyle}>
         A big thank you for joining us! If you have any questions or need assistance, our team is here to help.
-      </Message>
-      <Message>
+      </p>
+      <p style={messageStyle}>
         Cheers to an easier life with Dibo Ruwa!
-      </Message>
-      <Signature>
+      </p>
+      <p style={signatureStyle}>
         Warm Regards, <br />
         The Dibo Ruwa Team
-      </Signature>
-    </Wrapper>
+      </p>
+    </div>
   );
 };
 
