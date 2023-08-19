@@ -55,6 +55,7 @@ const CloseButton = styled.button`
 
 interface ModalProps {
   open: boolean;
+
   onClose: () => void;
   children: React.ReactNode;
 }
