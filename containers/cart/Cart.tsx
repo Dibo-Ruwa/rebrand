@@ -1,9 +1,11 @@
 "use client";
 import EmptyCart from "@/component/EmptyCart";
+import NotificationModal from "@/component/NotificationModal";
 import Payment from "@/component/Payment/Payment";
 import CartItem from "@/component/cartItem/CartItem";
 import CartSubscription from "@/component/subscriptionCardCart/SubscriptionCardCart";
 import Loader from "@/component/ui/loader/Loader";
+import useAuth from "@/hooks/useAuth";
 import { useCart } from "@/hooks/useCart";
 import { useMounted } from "@/hooks/useMounted";
 import useCartStore from "@/store/useCart.store";
@@ -50,13 +52,11 @@ const Cart: React.FC = () => {
     useCartStore();
 
   const { cartData, totalQuantities } = useCart();
+  const { showModal, modalMessage, modalErrorType, openModal, closeModal } =
+    useAuth();
 
   const mounted = useMounted();
-  const handlePay = () => {
-    // Perform payment logic here
-  };
 
-  const handleDelete = (id: string) => {};
 
   return (
     <CartPageContainer>
@@ -77,6 +77,7 @@ const Cart: React.FC = () => {
                       key={subscription._id}
                       subscription={subscription}
                       onDelete={() => removeSubscription(subscription._id)}
+                      modal={openModal}
                     />
                   ))}
               </CartItemsContainer>
@@ -89,7 +90,7 @@ const Cart: React.FC = () => {
 
             {cartItems.length > 0 && (
               <div className="payment">
-                <Payment />
+                <Payment modal={openModal} />
               </div>
             )}
           </>
@@ -98,6 +99,13 @@ const Cart: React.FC = () => {
         )
       ) : (
         <Loader />
+      )}
+      {showModal && (
+        <NotificationModal
+          message={modalMessage}
+          errorType={modalErrorType}
+          onClose={closeModal}
+        />
       )}
     </CartPageContainer>
   );

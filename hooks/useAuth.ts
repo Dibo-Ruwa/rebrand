@@ -14,12 +14,42 @@ interface AuthHook {
   signin: (formData: { [key: string]: string }) => Promise<void>;
   userUpdate: (formData: { [key: string]: string }) => Promise<void>;
   signout: () => Promise<void>;
+  showModal: boolean;
+  modalMessage: string;
+  modalErrorType: "success" | "error" | "info";
+  openModal: (
+    errorType: "success" | "error" | "info",
+    errorMessage: string
+  ) => void;
+  closeModal: () => void;
 }
 
 const useAuth = (): AuthHook => {
   const { data: session, status, update } = useSession();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalErrorType, setModalErrorType] = useState<
+    "success" | "error" | "info"
+  >("success");
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = (
+    errorType: "success" | "error" | "info",
+    errorMessage: string
+  ) => {
+   
+    setModalMessage(errorMessage);
+    setModalErrorType(errorType);
+    setShowModal(true);
+
+    console.log(showModal)
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   const router = useRouter();
 
@@ -32,15 +62,19 @@ const useAuth = (): AuthHook => {
       setLoading(false);
       setError(null);
       toast.success("Signup successful!");
+      openModal(
+        "success",
+        "Signup successful! \n A verification email has been sent"
+      );
       setTimeout(() => {
         router.push("/signin");
       }, 1000);
     } catch (error: any) {
-      console.log(error.response.data)
+      console.log(error.response.data);
       setLoading(false);
       setError(error.message);
       toast.error(error.response.data);
-      toast.error("Signup failed. Please try again.");
+      openModal("error", error.response.data);
     }
   };
 
@@ -54,8 +88,7 @@ const useAuth = (): AuthHook => {
       });
 
       toast.loading("Submiing credentials..", {
-
-        duration: 1000
+        duration: 1000,
       });
 
       if (res && res.error !== null) {
@@ -69,7 +102,6 @@ const useAuth = (): AuthHook => {
         toast.success("Signin successful!", {
           duration: 2000,
           position: "bottom-right",
-      
         });
         router.back();
         setTimeout(() => {
@@ -98,13 +130,12 @@ const useAuth = (): AuthHook => {
         },
       });
 
-      console.log(up)
+      console.log(up);
 
       setLoading(false);
       setError(null);
 
       toast.success("Update SuccessFul");
-    
     } catch (error: any) {
       setLoading(false);
       setError(error.message);
@@ -125,6 +156,11 @@ const useAuth = (): AuthHook => {
   };
 
   return {
+    showModal,
+    modalMessage,
+    modalErrorType,
+    openModal,
+    closeModal,
     session,
     loading,
     status,

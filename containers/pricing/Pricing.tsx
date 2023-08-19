@@ -101,9 +101,9 @@ const PlanCard = styled.div<{ bestvalue: boolean }>`
     border-top-right-radius: 0;
     border: 3px solid var(--color2);
   &::before {
-    content: "Best Value";
+    content: "save 10% and 2hrs";
     position: absolute;
-    top: -10%;
+    top: -5%;
     left: -5px;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;

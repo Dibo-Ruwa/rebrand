@@ -6,8 +6,10 @@ import Button from "./ui/button/Button";
 import Input from "./ui/input/Input";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Loader from "./Loader";
 
 export interface AuthFormProps {
+  title: string;
   fields: AuthField[];
   onSubmit: (formData: { [key: string]: string }) => void;
   onCancel?: () => void;
@@ -26,7 +28,7 @@ const AuthFormContainer = styled.div`
 `;
 
 const AuthFormTitle = styled.h2`
-  /* Add your styling for the title here */
+  text-transform: capitalize;
   margin-bottom: 30px;
 `;
 
@@ -50,11 +52,12 @@ const AuthFormSmall = styled.small`
 `;
 
 const AuthForm: React.FC<AuthFormProps> = ({
+  title,
   fields,
   onSubmit,
   onCancel,
   submitButtonText = "Submit",
-  loading = false
+  loading = false,
 }) => {
   const initialState = fields.reduce<{ [key: string]: string }>(
     (acc, field) => ({
@@ -66,25 +69,19 @@ const AuthForm: React.FC<AuthFormProps> = ({
 
   const path = usePathname();
 
-  const handleCancel = () => {
-    if (onCancel) {
-      onCancel();
-    }
-  };
+
 
   const { formData, handleChange, handleSubmit, resetForm, errors } = useForm(
     initialState,
     onSubmit
   );
 
-
-
   return (
     <AuthFormContainer>
-      <AuthFormTitle>Sign In</AuthFormTitle>
+      <AuthFormTitle>{title}</AuthFormTitle>
       <AuthFormWrapper onSubmit={handleSubmit}>
         {fields.map((field) => (
-          <AuthFormFieldWrapper  key={field.name}>
+          <AuthFormFieldWrapper key={field.name}>
             <Input
               label={field.label}
               name={field.name}
@@ -115,8 +112,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
           )}
         </AuthFormAlternateRoute>
         <Button size="medium" color="primary" disabled={loading}>
-          {loading ? " loading..." : submitButtonText}
-          
+          {loading ? <Loader /> : submitButtonText}
         </Button>
       </AuthFormWrapper>
     </AuthFormContainer>

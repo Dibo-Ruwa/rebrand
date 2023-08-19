@@ -46,11 +46,12 @@ const SignIn: React.FC<SignInPageProps> = ({ isModal = false }) => {
     <div className="">
       <Modal open={isModal} onClose={() => router.back()}>
         <AuthForm
+          title='Sign In'
           fields={signInFields}
           onSubmit={handleSignIn}
           submitButtonText="Sign In"
           loading={loading}
-          // onCancel={handleBack}
+         
         />
       </Modal>
     </div>

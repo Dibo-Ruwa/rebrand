@@ -2,15 +2,29 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Container, FailureContainer, SuccessContainer } from "./verifyMail.styles";
+import {
+  Container,
+  FailureContainer,
+  SuccessContainer,
+} from "./verifyMail.styles";
 import Loader from "@/component/ui/loader/Loader";
 import { useRouter } from "next/navigation";
+import {
+  BsFillEnvelopeCheckFill,
+  BsFillEnvelopeExclamationFill,
+} from "react-icons/bs";
 
 const SuccessComponent: React.FC = () => {
   return (
     <SuccessContainer>
+      <div className="icon">
+        <BsFillEnvelopeCheckFill />
+      </div>
       <h2>Verification Successful</h2>
-      <p>Your email has been verified successfully.</p>
+      <p>
+        Your email has been verified successfully!!!. <br /> you will be
+        redirected to the Sign In page shortly
+      </p>
     </SuccessContainer>
   );
 };
@@ -18,6 +32,9 @@ const SuccessComponent: React.FC = () => {
 const FailureComponent: React.FC = () => {
   return (
     <FailureContainer>
+      <div className="icon">
+        <BsFillEnvelopeExclamationFill />{" "}
+      </div>
       <h2>Verification Failed</h2>
       <p>There was an issue verifying your email. Please try again.</p>
     </FailureContainer>
@@ -25,7 +42,6 @@ const FailureComponent: React.FC = () => {
 };
 
 const VerifyMail = ({ token }: { token: string }) => {
-  
   const [loading, setLoading] = useState(true);
   const [verificationStatus, setVerificationStatus] = useState<
     "success" | "failure" | null
