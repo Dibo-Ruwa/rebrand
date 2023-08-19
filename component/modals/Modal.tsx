@@ -38,7 +38,7 @@ const ModalContent = styled.div`
   }
 
   .icon {
-    font-size: 30px;
+    font-size: 60px;
     margin-bottom: 20px;
   }
 
@@ -55,21 +55,23 @@ const ModalButtons = styled.div`
 `;
 
 const ModalCloseButton = styled.button`
-  padding: 8px 16px;
+  padding: 10px 20px;
   border: none;
+  height: 45px;
   background: transparent;
   border: 1px solid #f2274c;
   color: #f2274c;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 17px;
 `;
 const ModalCartButton = styled.button`
-  padding: 10px 18px;
+  padding: 10px 20px;
   border: none;
+  height: 45px;
   background-color: var(--primary);
   color: white;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 17px;
 `;
@@ -116,7 +118,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, type, message, onClose }) => {
                 router.push("/cart");
               }}
             >
-              go to cart
+              Go to cart
             </ModalCartButton>
           )}
         </ModalButtons>

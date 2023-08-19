@@ -60,6 +60,7 @@ const SignUp: React.FC<SignUpPageProps> = ({ isModal = false }) => {
     <div className="">
       <Modal open={isModal} onClose={() => router.back()}>
         <AuthForm
+          title='Sign Up'
           fields={signUpFields}
           onSubmit={handleSignIn}
           submitButtonText="Sign Up"
