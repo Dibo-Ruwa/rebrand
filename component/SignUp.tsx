@@ -5,6 +5,7 @@ import Modal from "./Modal";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
+import NotificationModal from "./NotificationModal";
 
 interface SignUpPageProps {
   isModal?: boolean;
@@ -41,7 +42,9 @@ const signUpFields: AuthField[] = [
 const SignUp: React.FC<SignUpPageProps> = ({ isModal = false }) => {
   const { data: session } = useSession();
   const router = useRouter();
-  const { signup, loading } = useAuth();
+  const { signup, loading, showModal, modalMessage, modalErrorType, closeModal } = useAuth();
+
+
   const handleSignIn = async (formData: { [key: string]: string }) => {
     console.log("Sign Up", formData);
     await signup(formData);
@@ -68,6 +71,13 @@ const SignUp: React.FC<SignUpPageProps> = ({ isModal = false }) => {
         
         />
       </Modal>
+      {showModal && (
+        <NotificationModal
+          message={modalMessage}
+          errorType={modalErrorType}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 };

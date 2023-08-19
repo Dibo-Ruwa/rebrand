@@ -109,7 +109,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, type, message, onClose }) => {
             style={type === "error" ? { margin: "0 auto" } : {}}
             onClick={onClose}
           >
-            Close
+          
+            {type === "error" ? "Close" : "Later"}
           </ModalCloseButton>
           {type === "success" && (
             <ModalCartButton
