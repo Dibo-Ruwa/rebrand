@@ -1,3 +1,5 @@
+"use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { MdError } from "react-icons/md";
@@ -6,7 +8,7 @@ import styled from "styled-components";
 interface ModalProps {
   className?: string;
   message: string;
-  errorType: "success" | "error"; // Add more types if needed
+  errorType: "success" | "error" | "info"; // Add more types if needed
   onClose: () => void;
 }
 
@@ -16,23 +18,23 @@ const NotificationModal: React.FC<ModalProps> = ({
   errorType,
   onClose,
 }) => {
+  const router = useRouter();
   return (
     <ModalContainer className={className}>
       <ModalContent errorType={errorType}>
-        <div
-          className="icon"
-          style={
-            errorType === "success"
-              ? { color: "var(--primary)" }
-              : { color: "#f2274c" }
-          }
-        >
+        <div className="icon">
           {errorType === "success" ? <BsCheckCircleFill /> : <MdError />}
         </div>
 
-     
         <Message>{message}</Message>
-        <CloseButton onClick={onClose}>Close</CloseButton>
+
+        {errorType === "info" ? (
+          <ProfileButton onClick={() => router.push("/profile")}>
+            Go to profile
+          </ProfileButton>
+        ) : (
+          <CloseButton onClick={onClose}>Close</CloseButton>
+        )}
       </ModalContent>
     </ModalContainer>
   );
@@ -105,6 +107,19 @@ const CloseButton = styled.button`
   background: transparent;
   border: 1px solid #f2274c;
   color: #f2274c;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 17px;
+`;
+
+const ProfileButton = styled.button`
+  /* Styling for the close button */
+  padding: 10px 20px;
+  border: none;
+  height: 45px;
+  background: transparent;
+  border: 1px solid var(--color4);
+  color: var(--color4);
   border-radius: 8px;
   cursor: pointer;
   font-size: 17px;

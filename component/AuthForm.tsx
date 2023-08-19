@@ -69,11 +69,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
 
   const path = usePathname();
 
-  const handleCancel = () => {
-    if (onCancel) {
-      onCancel();
-    }
-  };
+
 
   const { formData, handleChange, handleSubmit, resetForm, errors } = useForm(
     initialState,

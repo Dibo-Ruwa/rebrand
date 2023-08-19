@@ -42,8 +42,14 @@ const signUpFields: AuthField[] = [
 const SignUp: React.FC<SignUpPageProps> = ({ isModal = false }) => {
   const { data: session } = useSession();
   const router = useRouter();
-  const { signup, loading, showModal, modalMessage, modalErrorType, closeModal } = useAuth();
-
+  const {
+    signup,
+    loading,
+    showModal,
+    modalMessage,
+    modalErrorType,
+    closeModal,
+  } = useAuth();
 
   const handleSignIn = async (formData: { [key: string]: string }) => {
     console.log("Sign Up", formData);
@@ -53,22 +59,20 @@ const SignUp: React.FC<SignUpPageProps> = ({ isModal = false }) => {
 
   useEffect(() => {
     if (session && session.user) {
-      isModal = false
+      isModal = false;
       router.push("/dashboard");
     }
   }, [session, router, isModal]);
-
 
   return (
     <div className="">
       <Modal open={isModal} onClose={() => router.back()}>
         <AuthForm
-          title='Sign Up'
+          title="Sign Up"
           fields={signUpFields}
           onSubmit={handleSignIn}
           submitButtonText="Sign Up"
           loading={loading}
-        
         />
       </Modal>
       {showModal && (

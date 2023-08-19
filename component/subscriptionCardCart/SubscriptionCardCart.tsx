@@ -10,23 +10,29 @@ import { usePaystackPayment } from "react-paystack";
 import { v4 as uuidv4 } from "uuid";
 import { Card } from "./subscriptionCardCart.styles";
 import { toast } from "react-hot-toast";
-import {nanoid} from "nanoid";
+import { nanoid } from "nanoid";
+import PaymentButton from "../paymentButton/PayButton";
 
 interface CartSubscriptionProps {
   subscription: Subscription;
   onDelete?: () => void;
+  modal: (
+    errorType: "success" | "error" | "info",
+    errorMessage: string
+  ) => void;
 }
 
 const CartSubscription: React.FC<CartSubscriptionProps> = ({
   subscription,
   onDelete,
+  modal,
 }) => {
   const { data: session } = useSession();
   const { isSubmitting, isError, isSuccess, handleSubscriptionOrderSubmit } =
     useOrder();
   const { type, plan } = subscription;
 
-  const referenceId = nanoid();
+  const referenceId = nanoid(8);
 
   const onSuccess = () => {
     handleSubscriptionOrderSubmit(referenceId, { subscription });
@@ -34,44 +40,6 @@ const CartSubscription: React.FC<CartSubscriptionProps> = ({
 
   const onClose = () => {
     console.log("closed");
-  };
-
-  const publicKey = "pk_test_aa151675a5dd4dcccede80346dd579becf26e6ef";
-
-  const config = {
-    reference: referenceId,
-    amount: subscription.total * 100,
-    email: session ? session?.user.email : "",
-    custom_fields: {
-      email: session ? session?.user.email : "",
-      phone_number: session ? session?.user.phone : "",
-      name: session
-        ? `${session?.user.firstName} ${session?.user.lastName}`
-        : "",
-    },
-    publicKey,
-  };
-  const PaymentBtn = () => {
-    const initializePayment = usePaystackPayment(config);
-    return (
-      <button
-        className="payBtn"
-        onClick={() => {
-          if (
-            !session?.user.phone ||
-            !session?.user.address ||
-            !session?.user.state ||
-            !session?.user.city 
-          ) {
-            return toast.error("please complete profile!!!");
-          } else {
-            initializePayment(onSuccess, onClose);
-          }
-        }}
-      >
-        Subscribe
-      </button>
-    );
   };
 
   return (
@@ -97,7 +65,15 @@ const CartSubscription: React.FC<CartSubscriptionProps> = ({
           </p>
         </>
       )}
-      <PaymentBtn />
+      <PaymentButton
+        totalPrice={subscription.total}
+        openModal={modal}
+        buttonText="Pay Now"
+        color="color2"
+        onSuccess={onSuccess}
+        onClose={onClose}
+        referenceId={referenceId}
+      />
       <button className="delBtn" onClick={onDelete}>
         <VscClose />
       </button>

@@ -51,7 +51,7 @@ const SignIn: React.FC<SignInPageProps> = ({ isModal = false }) => {
           onSubmit={handleSignIn}
           submitButtonText="Sign In"
           loading={loading}
-          // onCancel={handleBack}
+         
         />
       </Modal>
     </div>

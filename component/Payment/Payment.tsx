@@ -8,8 +8,18 @@ import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-hot-toast";
 import { usePaystackPayment } from "react-paystack";
 import { nanoid } from "nanoid";
+import useAuth from "@/hooks/useAuth";
 
-const Payment = () => {
+import PaymentButton from "../paymentButton/PayButton";
+import { FC } from "react";
+interface Props {
+  modal: (
+    errorType: "success" | "error" | "info",
+    errorMessage: string
+  ) => void;
+}
+
+const Payment: FC<Props> = ({ modal }) => {
   const { data: session } = useSession();
 
   const { cartItems, subscriptions } = useCartStore();
@@ -27,48 +37,6 @@ const Payment = () => {
     console.log("closed");
   };
 
-  const publicKey = "pk_test_aa151675a5dd4dcccede80346dd579becf26e6ef";
-
-  const config = {
-    reference: referenceId,
-    amount: totalPrice * 100,
-    email: session ? session?.user.email : "",
-    custom_fields: {
-      email: session ? session?.user.email : "",
-      phone_number: session ? session?.user.phone : "",
-      name: session
-        ? `${session?.user.firstName} ${session?.user.lastName}`
-        : "",
-    },
-    publicKey,
-  };
-  const PaymentBtn = () => {
-    const initializePayment = usePaystackPayment(config);
-    return (
-      <PayButton
-        onClick={() => {
-          if (
-            session?.user.phone &&
-            session?.user.address &&
-            session?.user.state &&
-            session?.user.city
-          ) {
-            initializePayment(onSuccess, onClose);
-          } else if (
-            !session?.user.phone ||
-            !session?.user.address ||
-            !session?.user.state ||
-            !session?.user.city
-          ) {
-            return toast.error("please complete profile!!!");
-          }
-        }}
-      >
-        Pay {totalPrice.toFixed(2)}
-      </PayButton>
-    );
-  };
-
   const { totalQuantities } = useCart();
   return (
     <Container>
@@ -78,7 +46,15 @@ const Payment = () => {
       <Column>
         <strong>Total</strong> <span>₦{totalPrice.toFixed(2)}</span>
       </Column>
-      <PaymentBtn />
+      <PaymentButton
+        totalPrice={totalPrice}
+        openModal={modal}
+        buttonText="Pay Now"
+        color="primary"
+        onSuccess={onSuccess}
+        onClose={onClose}
+        referenceId={referenceId}
+      />
     </Container>
   );
 };

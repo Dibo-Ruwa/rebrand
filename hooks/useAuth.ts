@@ -16,7 +16,11 @@ interface AuthHook {
   signout: () => Promise<void>;
   showModal: boolean;
   modalMessage: string;
-  modalErrorType: "success" | "error";
+  modalErrorType: "success" | "error" | "info";
+  openModal: (
+    errorType: "success" | "error" | "info",
+    errorMessage: string
+  ) => void;
   closeModal: () => void;
 }
 
@@ -26,15 +30,21 @@ const useAuth = (): AuthHook => {
   const [loading, setLoading] = useState(false);
 
   const [modalMessage, setModalMessage] = useState("");
-  const [modalErrorType, setModalErrorType] = useState<"success" | "error">(
-    "success"
-  );
+  const [modalErrorType, setModalErrorType] = useState<
+    "success" | "error" | "info"
+  >("success");
   const [showModal, setShowModal] = useState(false);
 
-  const openModal = (errorType: "success" | "error", errorMessage: string) => {
+  const openModal = (
+    errorType: "success" | "error" | "info",
+    errorMessage: string
+  ) => {
+   
     setModalMessage(errorMessage);
     setModalErrorType(errorType);
     setShowModal(true);
+
+    console.log(showModal)
   };
 
   const closeModal = () => {
@@ -149,6 +159,7 @@ const useAuth = (): AuthHook => {
     showModal,
     modalMessage,
     modalErrorType,
+    openModal,
     closeModal,
     session,
     loading,
