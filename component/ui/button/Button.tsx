@@ -9,6 +9,7 @@ type ButtonProps = {
   size?: "small" | "medium" | "large";
   onClick?: () => void;
   children: React.ReactNode;
+  disabled?: boolean;
 };
 
 const ButtonContainer = styled(motion.button)<{
@@ -23,8 +24,6 @@ const ButtonContainer = styled(motion.button)<{
   font-size: 1rem;
   cursor: pointer;
   outline: none;
-
- 
 
   @media (max-width: 768px) {
     font-size: 0.875rem;
@@ -48,13 +47,20 @@ const getSize = (size?: "small" | "medium" | "large"): string => {
   }
 };
 
-const Button: React.FC<ButtonProps> = ({ color, size, onClick, children }) => {
+const Button: React.FC<ButtonProps> = ({
+  color,
+  size,
+  onClick,
+  children,
+  disabled,
+}) => {
   return (
     <ButtonContainer
       color={color}
       size={size}
       onClick={onClick}
       whileTap={{ scale: 0.95 }}
+      disabled={disabled}
     >
       {children}
     </ButtonContainer>

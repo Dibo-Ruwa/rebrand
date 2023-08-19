@@ -12,6 +12,7 @@ export interface AuthFormProps {
   onSubmit: (formData: { [key: string]: string }) => void;
   onCancel?: () => void;
   submitButtonText?: string;
+  loading: boolean;
 }
 
 export interface AuthField {
@@ -53,6 +54,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
   onSubmit,
   onCancel,
   submitButtonText = "Submit",
+  loading = false
 }) => {
   const initialState = fields.reduce<{ [key: string]: string }>(
     (acc, field) => ({
@@ -112,8 +114,9 @@ const AuthForm: React.FC<AuthFormProps> = ({
             </AuthFormSmall>
           )}
         </AuthFormAlternateRoute>
-        <Button size="medium" color="primary" >
-          {submitButtonText}
+        <Button size="medium" color="primary" disabled={loading}>
+          {loading ? " loading..." : submitButtonText}
+          
         </Button>
       </AuthFormWrapper>
     </AuthFormContainer>

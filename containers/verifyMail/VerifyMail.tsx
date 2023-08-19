@@ -25,7 +25,7 @@ const FailureComponent: React.FC = () => {
 };
 
 const VerifyMail = ({ token }: { token: string }) => {
-  const router = useRouter();
+  
   const [loading, setLoading] = useState(true);
   const [verificationStatus, setVerificationStatus] = useState<
     "success" | "failure" | null

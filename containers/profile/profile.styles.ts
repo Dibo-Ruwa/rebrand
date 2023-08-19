@@ -6,6 +6,7 @@ export const Container = styled.div`
   padding: 15vh 8% 5%;
   position: relative;
 `;
+
 export const BackBtn = styled.div`
 margin-bottom: 30px;
 `;
@@ -43,7 +44,7 @@ export const EditBtn = styled.button`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--primary-20);
+  background: var(--primary);
   color: white;
   position: absolute;
   top: -10px;

@@ -41,7 +41,7 @@ const signUpFields: AuthField[] = [
 const SignUp: React.FC<SignUpPageProps> = ({ isModal = false }) => {
   const { data: session } = useSession();
   const router = useRouter();
-  const { signup } = useAuth();
+  const { signup, loading } = useAuth();
   const handleSignIn = async (formData: { [key: string]: string }) => {
     console.log("Sign Up", formData);
     await signup(formData);
@@ -63,7 +63,8 @@ const SignUp: React.FC<SignUpPageProps> = ({ isModal = false }) => {
           fields={signUpFields}
           onSubmit={handleSignIn}
           submitButtonText="Sign Up"
-          // onCancel={handleBack}
+          loading={loading}
+        
         />
       </Modal>
     </div>

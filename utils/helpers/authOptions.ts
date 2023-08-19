@@ -5,7 +5,6 @@ import User from "@/utils/models/Users";
 import { compare } from "bcrypt";
 import { UserType } from "../types/types";
 import { NextResponse } from "next/server";
-import { generateActivationToken } from "@/templates/authTemplates";
 import { sendMail } from "../sendMail";
 
 export const authOptions: NextAuthOptions = {

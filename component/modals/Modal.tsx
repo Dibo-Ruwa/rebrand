@@ -1,5 +1,4 @@
 "use client";
-import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { BsCartCheckFill, BsCartXFill } from "react-icons/bs";
@@ -32,7 +31,7 @@ const ModalContent = styled.div`
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 50%;
+  width: 25%;
 
   @media screen and (max-width: 768px) {
     width: 80%;

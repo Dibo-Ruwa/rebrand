@@ -7,10 +7,10 @@ import styled from "styled-components";
 const Container = styled.button`
   padding: 10px 25px;
   border-radius: 8px;
-  border: 1px solid var(--primary-20);
+  border: 1px solid var(--primary);
   outline: none;
   background: transparent;
-  color: var(--primary-20);
+  color: var(--primary);
   display: flex;
   align-items: center;
   gap: 7px;

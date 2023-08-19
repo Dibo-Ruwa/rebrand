@@ -26,7 +26,7 @@ const signInFields: AuthField[] = [
 const SignIn: React.FC<SignInPageProps> = ({ isModal = false }) => {
   const { data: session } = useSession();
   const router = useRouter();
-  const { signin } = useAuth();
+  const { signin, loading } = useAuth();
   const handleSignIn = async (formData: { [key: string]: string }) => {
     console.log("Sign In", formData);
     await signin(formData);
@@ -49,6 +49,7 @@ const SignIn: React.FC<SignInPageProps> = ({ isModal = false }) => {
           fields={signInFields}
           onSubmit={handleSignIn}
           submitButtonText="Sign In"
+          loading={loading}
           // onCancel={handleBack}
         />
       </Modal>

@@ -21,7 +21,7 @@ import Loader from "@/component/ui/loader/Loader";
 
 const Profile = () => {
   const [isEditable, setIsEditable] = useState(false);
-  const { session, status, userUpdate } = useAuth();
+  const { session, status, userUpdate, loading } = useAuth();
 
   const onSubmit = async (formData: { [key: string]: string }) => {
     try {
@@ -146,7 +146,7 @@ const Profile = () => {
           />
         </FormControl>
 
-        {isEditable && <SaveButton type="submit">Save</SaveButton>}
+        {isEditable && <SaveButton type="submit" disabled={loading}> {loading ? "loading..." : "Save"} </SaveButton>}
       </Form>
     </Container>
   );

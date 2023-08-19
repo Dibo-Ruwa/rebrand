@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 
-const secretKey = 'blloooppooop';
+const secretKey = "blloooppooop";
 
-const generateToken = (userId: string, expiresIn: string) => {
-  const token = jwt.sign({ userId }, secretKey, { expiresIn });
+const generateToken = (userId: string) => {
+  const token = jwt.sign({ userId }, secretKey, { expiresIn: "1d" });
 
   return token;
 };
@@ -22,8 +22,6 @@ const verifyMailToken = (token: string) => {
     };
   }
 };
-
-
 
 const generateResetPasswordToken = (userId: string) => {
   // Generate the token based on user ID and purpose (you can use a library like 'jsonwebtoken' for this)

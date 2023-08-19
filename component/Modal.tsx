@@ -48,15 +48,18 @@ const CloseButton = styled.button`
   justify-content: center;
   align-items: center;
 
-
   &:hover {
     color: #f00;
   }
 `;
 
+interface ModalProps {
+  open: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}
 
-
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
   const overlayVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
