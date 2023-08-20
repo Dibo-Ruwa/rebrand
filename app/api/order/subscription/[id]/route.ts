@@ -5,6 +5,8 @@ import { Order } from "@/utils/models/Order";
 import User from "@/utils/models/Users";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import { resend } from "@/utils/resend";
+import SubscriptionConfirmation from "@/emails/SubscriptionOrder";
 
 export async function PUT(
   req: Request,
@@ -50,6 +52,19 @@ export async function PUT(
         address: user.address,
         user,
         paymentId: body.referenceId,
+      });
+
+      const mail = await resend.emails.send({
+        from: "email@diboruwa.com",
+        to: user.email,
+        subject: "Subscription Confirmed",
+        react: SubscriptionConfirmation({
+          customerName: user.firstName,
+          service: subscription.type,
+          plan: subscription.plan | subscription.title,
+          startDate: subscription.start,
+          endDate: subscription.due
+        }) as React.ReactElement,
       });
 
       await order.save();
