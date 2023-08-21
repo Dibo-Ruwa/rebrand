@@ -42,6 +42,7 @@ const FailureComponent: React.FC = () => {
 };
 
 const VerifyMail = ({ token }: { token: string }) => {
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [verificationStatus, setVerificationStatus] = useState<
     "success" | "failure" | null
@@ -56,6 +57,10 @@ const VerifyMail = ({ token }: { token: string }) => {
           const success = response.data.success;
           setLoading(false);
           setVerificationStatus(success ? "success" : "failure");
+
+          setTimeout(() => {
+            router.push("/signin");
+          }, 2000);
         })
         .catch((error) => {
           setLoading(false);
