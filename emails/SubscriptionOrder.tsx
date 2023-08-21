@@ -3,7 +3,7 @@ import React from 'react';
 interface SubscriptionConfirmationProps {
   customerName: string;
   service: string;
-  plan: string;
+  plan: any;
   startDate: string;
   endDate: string;
 }

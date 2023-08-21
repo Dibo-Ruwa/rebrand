@@ -1,8 +1,10 @@
+import OrderConfirmation from "@/emails/FoodOrder";
 import { closeDB, connectDB } from "@/utils/db";
 import { authOptions } from "@/utils/helpers/authOptions";
 import { Cart } from "@/utils/models/Cart";
 import { Order } from "@/utils/models/Order";
 import User from "@/utils/models/Users";
+import { resend } from "@/utils/resend";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
@@ -45,9 +47,25 @@ export async function POST(req: Request, res: Response) {
 
       await order.save();
 
+      const mail = await resend.emails.send({
+        from: "email@diboruwa.com",
+        to: user.email,
+        subject: "Order Confirmed",
+        react: OrderConfirmation({
+          customerName: user.firstName,
+          orderItem: {
+            orderItems: existingCart.cartItems,
+            total: existingCart.total,
+            estimatedDeliveryTime: "3 working days",
+          },
+        }) as React.ReactElement,
+      });
+
       existingCart.cartItems = [];
       existingCart.total = 0;
       await existingCart.save();
+
+    
     }
 
     return NextResponse.json({ order, success: true }, { status: 201 });
