@@ -18,10 +18,20 @@ import useAuth from "@/hooks/useAuth";
 import { updateProfile } from "@/utils/helpers/updateUser";
 import { toast } from "react-hot-toast";
 import Loader from "@/component/ui/loader/Loader";
+import NotificationModal from "@/component/NotificationModal";
 
 const Profile = () => {
   const [isEditable, setIsEditable] = useState(false);
-  const { session, status, userUpdate, loading } = useAuth();
+  const {
+    session,
+    status,
+    userUpdate,
+    loading,
+    showModal,
+    modalMessage,
+    modalErrorType,
+    closeModal,
+  } = useAuth();
 
   const onSubmit = async (formData: { [key: string]: string }) => {
     try {
@@ -34,7 +44,7 @@ const Profile = () => {
       if (response.success) {
         // Show success toast message
         userUpdate(formData);
-        toast.success("Profile updated successfully!");
+        // toast.success("Profile updated successfully!");
         setIsEditable(false);
         // Redirect to a success page or do something else after successful update
       } else {
@@ -61,7 +71,7 @@ const Profile = () => {
     onSubmit
   );
 
-  if (status === "loading") return <Loader />;
+  // if (status === "loading") return <Loader />;
 
   return (
     <Container>
@@ -146,8 +156,21 @@ const Profile = () => {
           />
         </FormControl>
 
-        {isEditable && <SaveButton type="submit" disabled={loading}> {loading ? "loading..." : "Save"} </SaveButton>}
+        {isEditable && (
+          <SaveButton type="submit" disabled={loading}>
+            {" "}
+            {loading ? "loading..." : "Save"}{" "}
+          </SaveButton>
+        )}
       </Form>
+
+      {showModal && (
+        <NotificationModal
+          message={modalMessage}
+          errorType={modalErrorType}
+          onClose={closeModal}
+        />
+      )}
     </Container>
   );
 };

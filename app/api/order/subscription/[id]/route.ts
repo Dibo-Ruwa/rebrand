@@ -7,6 +7,7 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { resend } from "@/utils/resend";
 import SubscriptionConfirmation from "@/emails/SubscriptionOrder";
+import moment from "moment";
 
 export async function PUT(
   req: Request,
@@ -45,7 +46,7 @@ export async function PUT(
       // If an existing Subscription is found, check if the item exists
       order = new Order({
         orderItems: subscription,
-        type: 'subscription',
+        type: "subscription",
         email: user.email,
         phone: user.phone,
         total: subscription.total,
@@ -61,9 +62,9 @@ export async function PUT(
         react: SubscriptionConfirmation({
           customerName: user.firstName,
           service: subscription.type,
-          plan: subscription.plan | subscription.title,
-          startDate: subscription.start,
-          endDate: subscription.due
+          plan: subscription.plan,
+          startDate: moment(subscription.start).format("YYYY-MM-DD"),
+          endDate: moment(subscription.due).format("YYYY-MM-DD"),
         }) as React.ReactElement,
       });
 
@@ -72,8 +73,10 @@ export async function PUT(
 
     return NextResponse.json({ order, success: true }, { status: 201 });
   } catch (err) {
-  
-    return NextResponse.json({ error: "An error occurred" }, { status: 500 });
+    return NextResponse.json(
+      { error: "An error occurred", err },
+      { status: 500 }
+    );
   } finally {
     await closeDB();
   }
@@ -101,7 +104,6 @@ export async function GET(req: Request, res: Response) {
 
     return NextResponse.json({ ordersHistory, success: true }, { status: 201 });
   } catch (err) {
-    
     return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();

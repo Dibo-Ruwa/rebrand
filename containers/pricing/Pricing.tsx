@@ -34,6 +34,7 @@ const SubscriptionTab = styled.div`
   cursor: pointer;
   border-radius: 12px;
   margin: auto;
+  margin-bottom: 30px;
 
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -74,15 +75,16 @@ const PlanContainer = styled.div`
   justify-content: space-around;
   align-items: stretch;
   gap: 20px;
-  width: 100%; 
-  margin: 30px auto;
+  width: 100%;
+  margin: 10vh auto;
 
   @media screen and (max-width: 768px) {
     width: 100%;
     flex-direction: column;
+    gap: 40px;
   }
 `;
-const PlanCard = styled.div<{ bestvalue: boolean }>`
+const PlanCard = styled.div`
   border: 3px solid var(--color2-20);
   background: var(--color2-20);
   padding: 20px;
@@ -94,17 +96,15 @@ const PlanCard = styled.div<{ bestvalue: boolean }>`
   max-width: 300px;
   position: relative;
 
-  ${({ bestvalue }) =>
-    bestvalue &&
-    `
+ 
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    border: 3px solid var(--color2);
+  
   &::before {
     content: "save 10% and 2hrs";
     position: absolute;
     top: -5%;
-    left: -5px;
+    left: -3px;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     padding: 10px;
@@ -112,7 +112,6 @@ const PlanCard = styled.div<{ bestvalue: boolean }>`
     background: var(--color2);
     color: #fff;
   }
-`}
 
   h3 {
     font-size: 34px;
@@ -164,6 +163,7 @@ const PlanCard = styled.div<{ bestvalue: boolean }>`
 
   @media screen and (max-width: 768px) {
     width: 100%;
+    max-width: 100%;
   }
 `;
 
@@ -206,7 +206,7 @@ const Pricing = () => {
 
       <PlanContainer>
         {planDetails[activeSubscription].map((plan: any) => (
-          <PlanCard key={plan.title} bestvalue={plan.title === "Premium"}>
+          <PlanCard key={plan.title}>
             <h3>{plan.title}</h3>
 
             <p>{plan.total}</p>
