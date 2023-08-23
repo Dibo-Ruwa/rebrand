@@ -13,6 +13,7 @@ import {
   BsFillEnvelopeCheckFill,
   BsFillEnvelopeExclamationFill,
 } from "react-icons/bs";
+import { useSession } from "next-auth/react";
 
 const SuccessComponent: React.FC = () => {
   return (
@@ -42,6 +43,7 @@ const FailureComponent: React.FC = () => {
 };
 
 const VerifyMail = ({ token }: { token: string }) => {
+  const { data: session } = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [verificationStatus, setVerificationStatus] = useState<
@@ -59,7 +61,14 @@ const VerifyMail = ({ token }: { token: string }) => {
           setVerificationStatus(success ? "success" : "failure");
 
           setTimeout(() => {
-            router.push("/signin");
+            if (session && session.user) {
+              router.push("/dashboard");
+            } else {
+              router.push("/signin");
+              
+            }
+
+          
           }, 2000);
         })
         .catch((error) => {

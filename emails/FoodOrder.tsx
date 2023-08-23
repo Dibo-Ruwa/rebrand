@@ -19,7 +19,7 @@ const OrderConfirmation: React.FC<OrderConfirmationProps> = ({
 }) => {
   const containerStyle: React.CSSProperties = {
     fontFamily: 'Arial, sans-serif',
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#4feca0',
     padding: '20px',
     borderRadius: '5px',
     textAlign: 'center',

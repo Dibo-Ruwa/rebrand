@@ -39,12 +39,11 @@ const useAuth = (): AuthHook => {
     errorType: "success" | "error" | "info",
     errorMessage: string
   ) => {
-   
     setModalMessage(errorMessage);
     setModalErrorType(errorType);
     setShowModal(true);
 
-    console.log(showModal)
+    console.log(showModal);
   };
 
   const closeModal = () => {
@@ -61,24 +60,24 @@ const useAuth = (): AuthHook => {
       await interceptor.post("auth/signup", formData);
       setLoading(false);
       setError(null);
-      toast.success("Signup successful!");
+
       openModal(
         "success",
         "Signup successful! \n A verification email has been sent"
       );
       setTimeout(() => {
         router.push("/signin");
-      }, 1000);
+      }, 3000);
     } catch (error: any) {
-      console.log(error.response.data);
+      // console.log(error.response.data);
       setLoading(false);
       setError(error.message);
-      toast.error(error.response.data);
       openModal("error", error.response.data);
     }
   };
 
   const signin = async (formData: { [key: string]: string }) => {
+    setLoading(true);
     try {
       // Perform signin logic using axios
       const res = await signIn("credentials", {
@@ -101,9 +100,7 @@ const useAuth = (): AuthHook => {
       if (session && session.user) {
         toast.success("Signin successful!", {
           duration: 2000,
-          position: "bottom-right",
         });
-        router.back();
         setTimeout(() => {
           router.push("/dashboard");
         }, 500);
@@ -122,7 +119,7 @@ const useAuth = (): AuthHook => {
     setLoading(true);
     try {
       // Perform signin logic using axios
-      const up = update({
+      const up = await update({
         ...session,
         user: {
           ...session?.user,
@@ -135,7 +132,7 @@ const useAuth = (): AuthHook => {
       setLoading(false);
       setError(null);
 
-      toast.success("Update SuccessFul");
+      openModal("success", "Profile updated successfully!!!");
     } catch (error: any) {
       setLoading(false);
       setError(error.message);
