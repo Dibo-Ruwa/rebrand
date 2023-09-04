@@ -26,6 +26,16 @@ const orderSchema = new Schema(
       type: Number,
       required: true
     },
+    status: {
+      type: String,
+      required: true,
+      default: "processing",
+      enum: ["processing", "dispatched", "delivered"],
+    },
+    partner: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    },
     paymentId: {
       type: String,
       required: true,
