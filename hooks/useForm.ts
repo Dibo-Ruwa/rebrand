@@ -18,7 +18,7 @@ const useForm = (
   const [errors, setErrors] = useState<FormErrors>({});
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
     fieldName: string
   ) => {
     const { value } = e.target;

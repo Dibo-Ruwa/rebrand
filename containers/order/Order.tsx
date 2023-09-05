@@ -40,7 +40,7 @@ const SingleOrderPage = ({ id }: { id: any }) => {
   useEffect(() => {
     //     console.log("kkkkkkkkkkkkkk");
     getOrderById(id);
-  }, []);
+  }, [getOrderById, id]);
 
   if (isSubmitting) return <Loader />;
 

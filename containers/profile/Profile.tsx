@@ -19,6 +19,8 @@ import { updateProfile } from "@/utils/helpers/updateUser";
 import { toast } from "react-hot-toast";
 import Loader from "@/component/ui/loader/Loader";
 import NotificationModal from "@/component/NotificationModal";
+import CustomSelect from "@/component/customSelect";
+import * as Nglca from "nigerian-states-and-lgas";
 
 const Profile = () => {
   const [isEditable, setIsEditable] = useState(false);
@@ -136,30 +138,28 @@ const Profile = () => {
           />
         </FormControl>
         <FormControl>
-          <Input
+          <CustomSelect
             label="State"
-            name="state"
-            type="text"
-            id="id"
-            readOnly={!isEditable}
+            disabled={!isEditable}
+            options={Nglca.states()}
             value={formData.state}
+            name="state"
             onChange={(e) => handleChange(e, e.target.name)}
           />
-          <Input
-            label="City"
-            name="city"
-            type="text"
-            id="id"
-            readOnly={!isEditable}
+          <CustomSelect
+            label="city"
+            disabled={!isEditable}
+            options={Nglca.lgas(formData.state)}
             value={formData.city}
+            name="city"
             onChange={(e) => handleChange(e, e.target.name)}
           />
         </FormControl>
 
         {isEditable && (
           <SaveButton type="submit" disabled={loading}>
-            {" "}
-            {loading ? "loading..." : "Save"}{" "}
+           
+            {loading ? "loading..." : "Save"}
           </SaveButton>
         )}
       </Form>
