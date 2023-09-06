@@ -31,6 +31,16 @@ const userSchema = new Schema({
     required: true,
     default: false,
   },
+  
+  accountNo: {
+    type: String,
+  },
+  accountName: {
+    type: String,
+  },
+  bankName: {
+    type: String,
+  },
 
   password: {
     type: String,
