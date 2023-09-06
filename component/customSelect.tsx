@@ -5,12 +5,15 @@ import styled from "styled-components";
 
 const CustomSelectContainer = styled.div`
   position: relative;
-  width: 200px;
+  width: 100%;
 
   label {
     display: block;
     color: #4b5563;
     margin-bottom: 5px;
+  }
+  @media screen and (max-width: 768px) {
+    /* min-width: 300px; */
   }
 `;
 
@@ -20,9 +23,10 @@ const CustomSelectButton = styled.button`
   border-radius: 0.45rem;
   padding: 0.6rem;
   min-height: 35px;
-  width: 100%;
+ 
   transition: all 0.3s ease;
   background: transparent;
+  width: 100%;
 
   &:focus {
     border: 1px solid var(--primary);
