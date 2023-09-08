@@ -34,38 +34,109 @@ export async function POST(req: Request, res: Response) {
       return NextResponse.json({ error: "Data is missing" }, { status: 400 });
     } else {
       // If an existing cart is found, load orderItems
-      order = new Order({
-        orderItems: existingCart.cartItems,
-        type: "cart",
-        email: user.email,
-        phone: user.phone,
-        address: user.address,
-        total: existingCart.total,
-        user,
-        paymentId: body.referenceId,
+      const partners = await User.find({
+        role: "partner",
+        state: user.state,
+        city: user.city,
       });
 
-      await order.save();
+      let assigned = false;
 
-      const mail = await resend.emails.send({
-        from: "email@diboruwa.com",
-        to: user.email,
-        subject: "Order Confirmed",
-        react: OrderConfirmation({
-          customerName: user.firstName,
-          orderItem: {
-            orderItems: existingCart.cartItems,
-            total: existingCart.total,
-            estimatedDeliveryTime: "3 working days",
+      for (const partner of partners) {
+        const today = new Date();
+
+
+        const partnersOrders = await Order.find({
+          partner: partner._id,
+          createdAt: {
+            $gte: new Date(
+              today.getFullYear(),
+              today.getMonth(),
+              today.getDate()
+            ),
+            $lte: new Date(
+              today.getFullYear(),
+              today.getMonth(),
+              today.getDate() + 1
+            ),
           },
-        }) as React.ReactElement,
-      });
+        });
 
-      existingCart.cartItems = [];
-      existingCart.total = 0;
-      await existingCart.save();
+        if (partnersOrders.length < 5) {
+          order = new Order({
+            orderItems: existingCart.cartItems,
+            type: "cart",
+            email: user.email,
+            phone: user.phone,
+            address: user.address,
+            total: existingCart.total,
+            partner: partner._id,
+            user,
+            paymentId: body.referenceId,
+          });
+
+          await order.save();
+
+          assigned = true
+
+          const mail = await resend.emails.send({
+            from: "email@diboruwa.com",
+            to: user.email,
+            subject: "Order Confirmed",
+            react: OrderConfirmation({
+              customerName: user.firstName,
+              orderItem: {
+                orderItems: existingCart.cartItems,
+                total: existingCart.total,
+                estimatedDeliveryTime: "3 working days",
+              },
+            }) as React.ReactElement,
+          });
+    
+          existingCart.cartItems = [];
+          existingCart.total = 0;
+          await existingCart.save();
+          break
+        }
+      }
+
+      if (!assigned) {
+        order = new Order({
+          orderItems: existingCart.cartItems,
+          type: "cart",
+          email: user.email,
+          phone: user.phone,
+          address: user.address,
+          total: existingCart.total,
+          user,
+          paymentId: body.referenceId,
+        });
+
+        await order.save();
+
+
+        const mail = await resend.emails.send({
+          from: "email@diboruwa.com",
+          to: user.email,
+          subject: "Order Confirmed",
+          react: OrderConfirmation({
+            customerName: user.firstName,
+            orderItem: {
+              orderItems: existingCart.cartItems,
+              total: existingCart.total,
+              estimatedDeliveryTime: "3 working days",
+            },
+          }) as React.ReactElement,
+        });
+  
+        existingCart.cartItems = [];
+        existingCart.total = 0;
+        await existingCart.save();
+     }
 
     
+
+     
     }
 
     return NextResponse.json({ order, success: true }, { status: 201 });
