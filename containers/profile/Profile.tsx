@@ -42,7 +42,7 @@ const Profile = () => {
         session?.user._id as string,
         formData
       );
-
+    
       if (response.success) {
         // Show success toast message
         userUpdate(formData);
@@ -158,7 +158,6 @@ const Profile = () => {
 
         {isEditable && (
           <SaveButton type="submit" disabled={loading}>
-           
             {loading ? "loading..." : "Save"}
           </SaveButton>
         )}
