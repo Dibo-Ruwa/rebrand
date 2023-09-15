@@ -6,6 +6,7 @@ import {
   Container,
   CounterButton,
   CounterContainer,
+  CounterInput,
   Footer,
   PlanButton,
   TotalDisplay,
@@ -17,6 +18,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Success from "../modals/Modal";
 import { useModal } from "@/hooks/useModal";
+import MultiSelect from "../multiselect/MultiSelect";
 
 const LaundryCount: React.FC = () => {
   const { data: session } = useSession();
@@ -25,11 +27,17 @@ const LaundryCount: React.FC = () => {
   const [bagCount, setBagCount] = useState<number>(1);
   const [regularity, setRegularity] = useState<string>("monthly");
   const [total, setTotal] = useState<number>(11960);
+  const [selectedExtras, setSelectedExtras] = useState<string[]>([]); // State for selected extras
+
 
   const { openModal, closeModal, modalData } = useModal();
 
   const calculateTotal = useCallback(
+  
+  
     (count: number) => {
+
+      
       switch (regularity) {
         case "weekly":
           setTotal(11960 * count * 4);
@@ -43,6 +51,8 @@ const LaundryCount: React.FC = () => {
     },
     [regularity, setTotal]
   );
+
+  
 
   const handlePlanSelect = useCallback(
     (plan: string) => {
@@ -64,6 +74,14 @@ const LaundryCount: React.FC = () => {
     }
   };
 
+  const handleBagCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newCount = parseInt(event.target.value, 10); // Parse input value to an integer
+    if (!isNaN(newCount)) {
+      setBagCount(newCount);
+      calculateTotal(newCount);
+    }
+  };
+
   const ChoosePlan = () => {
     const data = {
       type: "laundry",
@@ -76,6 +94,8 @@ const LaundryCount: React.FC = () => {
 
     addSubscription(data);
   };
+
+
 
   useEffect(() => {
     switch (regularity) {
@@ -90,7 +110,13 @@ const LaundryCount: React.FC = () => {
     }
   }, [bagCount, regularity]);
 
-  console.log(subscriptions);
+ 
+  const extraOptions = ['Duvet', 'Curtains', 'Boxing Gloves']; // Define the extra options
+
+  const handleExtrasChange = (selectedValues: string[]) => {
+    // Handle the selected extras here
+    setSelectedExtras(selectedValues);
+  };
 
   return (
     <Container>
@@ -99,11 +125,19 @@ const LaundryCount: React.FC = () => {
       </BagCountSection>
       <CounterContainer>
         <CounterButton onClick={handleDecrement}>-</CounterButton>
-        <span style={{ fontSize: "1.5rem", margin: "0 0.5rem" }}>
-          {bagCount}
-        </span>
+
+        <CounterInput
+          value={bagCount}
+          onChange={handleBagCountChange}
+          min={1} // Set a minimum value for the input
+        />
+
         <CounterButton onClick={handleIncrement}>+</CounterButton>
       </CounterContainer>
+      <MultiSelect
+        options={extraOptions}
+        onChange={handleExtrasChange}
+      />
       <BagCountSection>
         <BagCountTitle>Family Size</BagCountTitle>
       </BagCountSection>

@@ -35,6 +35,15 @@ export const CounterContainer = styled.div`
   justify-content: space-between;
   margin: 20px 0;
 `;
+export const CounterInput = styled.input`
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-20);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+`;
 
 export const CounterButton = styled.button`
   width: 40px;

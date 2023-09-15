@@ -582,3 +582,23 @@ export const planDetails: PlanDetails = {
     },
   ],
 };
+
+
+export const teamMembers = [
+  {
+    name: 'John Doe',
+    role: 'CEO',
+    imageUrl: '/john-doe.jpg', // Provide the actual image URL
+  },
+  {
+    name: 'Jane Smith',
+    role: 'Designer',
+    imageUrl: '/jane-smith.jpg', // Provide the actual image URL
+  },
+  {
+    name: 'Michael Johnson',
+    role: 'Developer',
+    imageUrl: '/michael-johnson.jpg', // Provide the actual image URL
+  },
+  // Add more team members as needed
+];
