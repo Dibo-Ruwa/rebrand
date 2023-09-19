@@ -45,6 +45,23 @@ const howItWorksData = [
   },
 ];
 
+
+const laundryItems = [
+  {
+    id: 1,
+    name: 'T-Shirt',
+    price: 5,
+    amount: 0,
+  },
+  {
+    id: 2,
+    name: 'Jeans',
+    price: 10,
+    amount: 0,
+  },
+  // Add more laundry items as needed
+];
+
 const Laundry = () => {
   const { modal, closeModal } = useCartStore();
 
@@ -164,7 +181,7 @@ const Laundry = () => {
         </div>
 
         <div className="calc">
-          <LaundryCount />
+        <LaundryCount  />
         </div>
       </PlansSection>
 

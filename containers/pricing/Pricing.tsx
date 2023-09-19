@@ -1,7 +1,12 @@
 "use client";
 
+import NotificationModal from "@/component/NotificationModal";
+import PaymentButton from "@/component/paymentButton/PayButton";
 import { planDetails } from "@/constants";
+import useAuth from "@/hooks/useAuth";
+import useOrder from "@/hooks/useOrder";
 import { CheckIcon } from "@radix-ui/react-icons";
+import { nanoid } from "nanoid";
 import { useState } from "react";
 import { CheckmarkIcon } from "react-hot-toast";
 import { FaCheck } from "react-icons/fa";
@@ -89,17 +94,16 @@ const PlanCard = styled.div`
   background: var(--color2-20);
   padding: 20px;
   border-radius: 12px;
- 
+
   /* text-align: center; */
   width: 100%;
   //  height: 500px;
   max-width: 300px;
   position: relative;
 
- 
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+
   &::before {
     content: "save 10% and 2hrs";
     position: absolute;
@@ -142,7 +146,6 @@ const PlanCard = styled.div`
       display: flex;
       align-items: center;
       gap: 15px;
-     
 
       .icon {
         font-size: 17px;
@@ -170,12 +173,26 @@ const PlanCard = styled.div`
 const subscriptions = ["Food", "Cleaning", "Laundry"];
 
 const Pricing = () => {
+  const { showModal, modalMessage, modalErrorType, openModal, closeModal } =
+    useAuth();
+  const { isSubmitting, isError, isSuccess, handleSubscriptionOrderSubmit } =
+    useOrder();
   const [activeSubscription, setActiveSubscription] = useState(
     subscriptions[0]
   );
 
   const handleSubscriptionChange = (subscription: string) => {
     setActiveSubscription(subscription);
+  };
+
+  const referenceId = nanoid(8);
+
+  const onSuccess = () => {
+    // handleSubscriptionOrderSubmit(referenceId, { subscription });
+  };
+
+  const onClose = () => {
+    console.log("closed");
   };
   return (
     <Container>
@@ -221,10 +238,28 @@ const Pricing = () => {
                 </li>
               ))}
             </ul>
-            <button>Choose Plan</button>
+
+            <PaymentButton
+              totalPrice={plan.total}
+              openModal={openModal}
+              buttonText="Choose Plan"
+              color="color2"
+              planCode={plan.planCode}
+              onSuccess={onSuccess}
+              onClose={onClose}
+              referenceId={referenceId}
+            />
           </PlanCard>
         ))}
       </PlanContainer>
+
+      {showModal && (
+        <NotificationModal
+          message={modalMessage}
+          errorType={modalErrorType}
+          onClose={closeModal}
+        />
+      )}
     </Container>
   );
 };

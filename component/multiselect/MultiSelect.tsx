@@ -10,7 +10,7 @@ interface MultiSelectProps {
 const SelectContainer = styled.div`
   display: inline-block;
   position: relative;
-  position: relative;
+  width: 100%;
 
   .dropbox {
     display: flex;

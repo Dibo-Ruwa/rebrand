@@ -5,129 +5,40 @@ const baseURL: string = "https://diboruwa.com";
 
 // Route configuration
 export interface Route {
-  category: string;
   name: string;
-  icon: string;
-  paths: {
+  path: string;
+  icon?: string;
+  subroutes?: {
     name: string;
     path: string;
-    icon?: string;
-    subroutes?: {
-      name: string;
-      path: string;
-      icon: string;
-    }[];
+    icon: string;
   }[];
 }
 
 export const routes: Route[] = [
   {
-    category: "food",
-    name: "Food",
-    icon: "🍔",
-    paths: [
-      {
-        name: "Services",
-        path: "/services",
-        icon: "🛠️",
-        subroutes: [
-          { name: "Laundry", path: "/laundry", icon: assets.soap },
-          { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
-          { name: "Food", path: "/food", icon: assets.food },
-        ],
-      },
-
-      {
-        name: "pricing",
-        path: "/pricing",
-      },
-    ],
-  },
-  {
-    category: "laundry",
-    name: "Laundry",
-    icon: "🧺",
-    paths: [
-      {
-        name: "Services",
-        path: "/services",
-        icon: "🛠️",
-        subroutes: [
-          { name: "Laundry", path: "/laundry", icon: assets.soap },
-          { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
-          { name: "Food", path: "/food", icon: assets.food },
-        ],
-      },
-      {
-        name: "pricing",
-        path: "/pricing",
-      },
+    name: "Services",
+    path: "/services",
+    icon: "🛠️",
+    subroutes: [
+      { name: "Laundry", path: "/laundry", icon: assets.soap },
+      { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
+      { name: "Food", path: "/food", icon: assets.food },
     ],
   },
 
   {
-    category: "cleaning",
-    name: "Cleaning",
-    icon: "🧹",
-    paths: [
-      {
-        name: "Services",
-        path: "/services",
-        icon: "🛠️",
-        subroutes: [
-          { name: "Laundry", path: "/laundry", icon: assets.soap },
-          { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
-          { name: "Food", path: "/food", icon: assets.food },
-        ],
-      },
-      {
-        name: "pricing",
-        path: "/pricing",
-      },
-    ],
-  },
-  {
-    category: "main",
-    name: "Main",
-    icon: "🏠",
-    paths: [
-      {
-        name: "Services",
-        path: "/services",
-        icon: "🛠️",
-        subroutes: [
-          { name: "Laundry", path: "/laundry", icon: assets.soap },
-          { name: "Cleaning", path: "cleaning", icon: assets.cleaningImg },
-          { name: "Food", path: "/food", icon: assets.food },
-        ],
-      },
-      {
-        name: "pricing",
-        path: "/pricing",
-      },
-    ],
+    name: "pricing",
+    path: "/pricing",
   },
 ];
-
-export const generateLinksByCategory = (category: string) => {
-  const route: Route | undefined = routes.find(
-    (route) => route.category === category
-  );
-
-  if (route) {
-    const links = route.paths.map((path) => path);
-
-    return links;
-  } else {
-    return [];
-  }
-};
 
 export const HWW = [
   {
     image: "h",
     title: "Hand-Picked Selection or Choose a plan",
-    content: "Choose from a specially curated menu of delicious meals, sourced from the best local eateries, all in one place."
+    content:
+      "Choose from a specially curated menu of delicious meals, sourced from the best local eateries, all in one place.",
     // content:
     //   "Choose a meal schedule that works for you; when you want it, how you want it. It takes less than 5 minutes.",
   },
@@ -146,7 +57,7 @@ export const HWW = [
     content:
       "Experience the joy of having your favorite meals delivered right to your door, fresh and on time.",
     // content:
-    //   "With Just 5 Minutes of Heating, Your Meal Is Good to Go, or Refrigerate It for a Later Tasty Treat",  
+    //   "With Just 5 Minutes of Heating, Your Meal Is Good to Go, or Refrigerate It for a Later Tasty Treat",
   },
 ];
 
@@ -164,7 +75,7 @@ export const services = [
       path: "/food",
     },
   },
- 
+
   {
     title: "Laundry",
     category: "laundry",
@@ -191,7 +102,7 @@ export const services = [
       path: "/cleaning",
     },
   },
- 
+
   // {
   //   title: "Training",
   //   category: "training",
@@ -211,22 +122,27 @@ export const accordionData = [
   {
     id: 1,
     title: "How can I easily place an order?",
-    content: "Placing an order is a breeze! Just navigate to the desired service on our website, select your preferences, and follow the simple checkout process. For regular users, our dashboard provides even quicker access to frequent orders.",
+    content:
+      "Placing an order is a breeze! Just navigate to the desired service on our website, select your preferences, and follow the simple checkout process. For regular users, our dashboard provides even quicker access to frequent orders.",
   },
   {
     id: 2,
     title: "Are there subscription plans available for regular services",
-    content: "Yes, we offer subscription plans that provide additional benefits and savings for our regular customers.",
+    content:
+      "Yes, we offer subscription plans that provide additional benefits and savings for our regular customers.",
   },
   {
     id: 3,
     title: "How do you ensure the quality of food delivered?",
-    content: "We partner with reputable restaurants and enforce strict quality checks to ensure your food is fresh, hygienic, and delicious.",
+    content:
+      "We partner with reputable restaurants and enforce strict quality checks to ensure your food is fresh, hygienic, and delicious.",
   },
   {
     id: 4,
-    title: "What measures are taken to care for delicate garments during laundry?",
-    content: "Our laundry professionals are trained in fabric care, ensuring that delicate garments are handled with utmost care and precision.",
+    title:
+      "What measures are taken to care for delicate garments during laundry?",
+    content:
+      "Our laundry professionals are trained in fabric care, ensuring that delicate garments are handled with utmost care and precision.",
   },
 ];
 
@@ -281,14 +197,13 @@ export const subscriptionPlans = [
   {
     image: "/path/to/standart-image.png",
     title: "Cleaning",
-    content:
-      "For regular upkeep and a consistently clean home.",
+    content: "For regular upkeep and a consistently clean home.",
     features: [
       "1 Bedrooms",
       "1 Living Rooms/ Dining Areas",
       "Bathroom sanitization",
-      "Kitchen cleanup",   
-      "Vacuuming and mopping", 
+      "Kitchen cleanup",
+      "Vacuuming and mopping",
       "Dusting of all surfaces",
     ],
     cta: {
@@ -305,10 +220,9 @@ export const subscriptionPlans = [
       "2 Bedrooms",
       "1 Living Rooms/ Dining Areas",
       "2 toilet/bathrooms",
-      "1 kitchen",      
+      "1 kitchen",
       "Deep floor scrubbing",
       "Window and sill cleaning",
-
     ],
     cta: {
       label: "Subscribe Now",
@@ -516,89 +430,172 @@ export interface Plan {
   title: string;
   features: string[];
   total: string;
+  planCode?: string;
 }
 
 export interface PlanDetails {
-  [subscription: string]: Plan[]
+  [subscription: string]: Plan[];
 }
 
 export const planDetails: PlanDetails = {
   Food: [
-     {
+    {
       title: "Starter",
-      features: ["1 meal per week", "Weekly delivery", "Delivered once a week", "Standard plate", "Ideal for occasional treats"],
+      features: [
+        "1 meal per week",
+        "Weekly delivery",
+        "Delivered once a week",
+        "Standard plate",
+        "Ideal for occasional treats",
+      ],
       total: "N7700",
+      planCode: "PLN_sqxrib4c4knnh0i",
     },
     {
       title: "Regular",
-      features: ["2 meal per week", "Standard plate", "Weekly delivery", "Delivered once a week", "Ideal for weekend treats"],
+      features: [
+        "2 meal per week",
+        "Standard plate",
+        "Weekly delivery",
+        "Delivered once a week",
+        "Ideal for weekend treats",
+      ],
       total: "14,980",
+      planCode: 'PLN_w988l6ia7g7dfq6'
     },
     {
       title: "Enterprise",
-      features: ["5 meal per week", "Standard plate + extra", "Weekdays Delivery", "Delivered 5 times a week", "Perfect for workweek meals" ],
+      features: [
+        "5 meal per week",
+        "Standard plate + extra",
+        "Weekdays Delivery",
+        "Delivered 5 times a week",
+        "Perfect for workweek meals",
+      ],
       total: "N34,970",
+      planCode: "PLN_pz6i6zhbcwvfdk7"
     },
     {
       title: "Gold",
-      features: ["7 meal per week", "Standard plate + extra", "Daily Delivery", "Delivered 7 times a week", "Perfect for everyday meals", "A meal every day" ],
+      features: [
+        "7 meal per week",
+        "Standard plate + extra",
+        "Daily Delivery",
+        "Delivered 7 times a week",
+        "Perfect for everyday meals",
+        "A meal every day",
+      ],
       total: "N47,960",
+      planCode: "PLN_f5nb851w9xpbtto"
     },
   ],
   Laundry: [
     {
       title: "Lite Laundry",
-      features: ["Dibo Ruwa Laundry Bag", "30 clothing materials", "Gentle washing for delicate fabrics", "Stain treatment", "Picked up once a month", "Ideal for individual"],
+      features: [
+        "Dibo Ruwa Laundry Bag",
+        "30 clothing materials",
+        "Gentle washing for delicate fabrics",
+        "Stain treatment",
+        "Picked up once a month",
+        "Ideal for individual",
+      ],
       total: "11,960",
+      planCode: 'PLN_jjx1iqwxol2hch4'
     },
     {
       title: "Regular Laundry",
-      features: ["Dibo Ruwa Laundry Bag", "30 clothing materials",  "Gentle washing for delicate fabrics", "Stain treatment", "Quick-dry service", "Picked up twice a month", "Ideal for family of two" ],
+      features: [
+        "Dibo Ruwa Laundry Bag",
+        "30 clothing materials",
+        "Gentle washing for delicate fabrics",
+        "Stain treatment",
+        "Quick-dry service",
+        "Picked up twice a month",
+        "Ideal for family of two",
+      ],
       total: "N22,100",
+      planCode: 'PLN_jd0nwcnhvifs0no'
     },
     {
       title: "Family",
-      features: ["Dibo Ruwa Laundry Bag", "50 clothing materials",  "Gentle washing for delicate fabrics", "Stain treatment", "Quick-dry service", "Emergencies", "Picked up four times a month", "Ideal for family of four"],
+      features: [
+        "Dibo Ruwa Laundry Bag",
+        "50 clothing materials",
+        "Gentle washing for delicate fabrics",
+        "Stain treatment",
+        "Quick-dry service",
+        "Emergencies",
+        "Picked up four times a month",
+        "Ideal for family of four",
+      ],
       total: "N36,700",
+      planCode: 'PLN_d3km1qswvj8nbot'
     },
   ],
   Cleaning: [
     {
       title: "Standard",
-      features: ["1 Bedrooms", "1 Living Rooms/ Dining Areas", "Bathroom sanitization",  "Kitchen cleanup",  "Vacuuming and mopping", "Dusting of all surfaces", "Once a week" ],
+      features: [
+        "1 Bedrooms",
+        "1 Living Rooms/ Dining Areas",
+        "Bathroom sanitization",
+        "Kitchen cleanup",
+        "Vacuuming and mopping",
+        "Dusting of all surfaces",
+        "Once a week",
+      ],
       total: "12,900",
+      planCode: 'PLN_fw9vc36viohwk6l'
     },
     {
       title: "Premium",
-      features: ["2 Bedrooms", "1 Living Rooms/ Dining Areas", "2 Bathroom sanitization",  "Kitchen cleanup",  "Vacuuming and mopping", "Dusting of all surfaces", "Once a week" ],
+      features: [
+        "2 Bedrooms",
+        "1 Living Rooms/ Dining Areas",
+        "2 Bathroom sanitization",
+        "Kitchen cleanup",
+        "Vacuuming and mopping",
+        "Dusting of all surfaces",
+        "Once a week",
+      ],
 
       total: "N22,750",
+      planCode: 'PLN_b361yykypop2gfz'
     },
     {
       title: "Deep",
-      features: ["3 Bedrooms", "1 Living Rooms/ Dining Areas", "2 Bathroom sanitization",  "2 Kitchen cleanup",  "Vacuuming and mopping", "Dusting of all surfaces", "Once a week" ],
+      features: [
+        "3 Bedrooms",
+        "1 Living Rooms/ Dining Areas",
+        "2 Bathroom sanitization",
+        "2 Kitchen cleanup",
+        "Vacuuming and mopping",
+        "Dusting of all surfaces",
+        "Once a week",
+      ],
 
       total: "N31,900",
+      planCode: 'PLN_jsbrun8t72zsbiu'
     },
   ],
 };
 
-
 export const teamMembers = [
   {
-    name: 'John Doe',
-    role: 'CEO',
-    imageUrl: '/john-doe.jpg', // Provide the actual image URL
+    name: "Ricketts Rowland",
+    role: "Developer",
+    imageUrl: "/john-doe.jpg", // Provide the actual image URL
   },
   {
-    name: 'Jane Smith',
-    role: 'Designer',
-    imageUrl: '/jane-smith.jpg', // Provide the actual image URL
+    name: "Jane Smith",
+    role: "Designer",
+    imageUrl: "/jane-smith.jpg", // Provide the actual image URL
   },
   {
-    name: 'Michael Johnson',
-    role: 'Developer',
-    imageUrl: '/michael-johnson.jpg', // Provide the actual image URL
+    name: "Michael Johnson",
+    role: "Developer",
+    imageUrl: "/michael-johnson.jpg", // Provide the actual image URL
   },
   // Add more team members as needed
 ];

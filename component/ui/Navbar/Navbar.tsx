@@ -1,6 +1,6 @@
 "use client";
 import styled from "styled-components";
-import { generateLinksByCategory } from "@/constants";
+import { routes } from "@/constants";
 import { assets } from "@/public/assets";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
@@ -32,16 +32,12 @@ const Navbar = () => {
     required: false,
   });
 
-  console.log(session)
+  console.log(session);
 
   //get partName to render route types
   const pathname = usePathname();
 
   const trimedPath = pathname.replace("/", "");
-
-  const links = generateLinksByCategory(
-    trimedPath === "" ? "main" : trimedPath
-  );
 
   const [toggle, setToggle] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -94,19 +90,22 @@ const Navbar = () => {
       </Toggle>
 
       <MenuList className="menu">
-        {links.map((link, index) => (
-          <li key={index}>
-            {link.subroutes ? (
-              <>
-                <ServiceMenu trigger={link.name} routes={link?.subroutes} />
-              </>
-            ) : (
-              <Link className="link" href={link.path}>
-                {link.name}
-              </Link>
-            )}
-          </li>
-        ))}
+        {routes.map((link, index) => {
+          console.log(link);
+          return (
+            <li key={index}>
+              {link.subroutes ? (
+                <>
+                  <ServiceMenu trigger={link.name} routes={link?.subroutes} />
+                </>
+              ) : (
+                <Link className="link" href={link.path}>
+                  {link.name}
+                </Link>
+              )}
+            </li>
+          );
+        })}
         {!session && (
           <li>
             <Link className="link" href="/signin">
@@ -155,7 +154,7 @@ const Navbar = () => {
               exit={{ right: "-100%", opacity: 0 }}
               transition={{ duration: 0.6 }}
             >
-              {links.map((link, index) => (
+              {routes.map((link, index) => (
                 <li key={index}>
                   {link.subroutes ? (
                     <>

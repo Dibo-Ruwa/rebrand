@@ -13,7 +13,7 @@ interface PaymentButtonProps {
   totalPrice: number;
   planCode?: string;
   buttonText: string; // New prop for button text
-  openModal: (
+  openModal?: (
     errorType: "success" | "error" | "info",
     errorMessage: string
   ) => void;
@@ -34,7 +34,6 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   referenceId,
 }) => {
   const { data: session } = useSession();
-
 
   const getPaystackConfig = (
     referenceId: string,
@@ -69,10 +68,11 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       paymentFn(onSuccess, onClose);
     } else {
       toast.error("Please complete your profile before making a payment.");
-      openModal(
-        "info",
-        "Please complete your profile before making a payment."
-      );
+      openModal &&
+        openModal(
+          "info",
+          "Please complete your profile before making a payment."
+        );
     }
   };
 
