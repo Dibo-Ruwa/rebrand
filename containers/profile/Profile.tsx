@@ -67,6 +67,7 @@ const Profile = () => {
       email: session ? session?.user.email : "",
       phone: session ? session?.user.phone : "",
       address: session ? session?.user.address : "",
+      lga: session ? session?.user.lga : "",
       city: session ? session?.user?.city : "",
       state: session ? session.user?.state : "",
     },
@@ -134,6 +135,15 @@ const Profile = () => {
             readOnly={!isEditable}
             id="id"
             value={formData.address}
+            onChange={(e) => handleChange(e, e.target.name)}
+          />
+          <Input
+            label="Local Gov Area"
+            name="lga"
+            type="text"
+            readOnly={!isEditable}
+            id="id"
+            value={formData.lga}
             onChange={(e) => handleChange(e, e.target.name)}
           />
         </FormControl>

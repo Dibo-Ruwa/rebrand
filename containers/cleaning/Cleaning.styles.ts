@@ -3,15 +3,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-.ctaBtn {
-  width: 200px;
-  @media screen and (max-width: 768px) {
-  width: 100%;
-  button {
-    width: 100%;
+  .ctaBtn {
+    width: 200px;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      button {
+        width: 100%;
+      }
+    }
   }
-}
-}
 `;
 
 export const HeroList = styled.div`
@@ -110,13 +110,34 @@ export const BenefitList = styled.div`
 export const SubscriptionSection = styled.div`
   padding: 5% 8%;
   display: flex;
+  flex-direction: column;
   gap: 30px;
   background: var(--primary-20);
+
+  h2 {
+    width: 40%;
+    font-size: 26px;
+    font-weight: 600;
+  }
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
 `;
+
+export const ContactForm = styled.form`
+display: flex;
+gap: 10px;
+`;
+export const LocationInput = styled.input`
+  padding: 10px 15px;
+  background: var(--primary-20);
+  outline: none;
+  border: none;
+  border-radius: 8px;
+
+`;
+
 export const SubscriptionList = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -127,6 +148,7 @@ export const SubscriptionList = styled.div`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
+
 export const SubscriptionCard = styled.div`
   border-radius: 15px;
   padding: 20px;

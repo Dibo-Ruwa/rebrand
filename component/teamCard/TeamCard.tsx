@@ -11,7 +11,7 @@ interface TeamCardProps {
 const CardContainer = styled.div`
 
   padding: 16px;
-  margin: 16px;
+  margin: auto;
   text-align: center;
   background-color: #fff;
   display: grid;

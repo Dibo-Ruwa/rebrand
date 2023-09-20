@@ -17,6 +17,12 @@ const userSchema = new Schema({
   address: {
     type: String,
   },
+  lga: {
+    type: String,
+  },
+  businessName: {
+    type: String,
+  },
   city: {
     type: String,
   },

@@ -11,6 +11,7 @@ declare module "next-auth" {
       lastName: string;
       email: string;
       address?: string;
+      lga?: string;
       city?: string;
       state?: string;
       phone?: string;

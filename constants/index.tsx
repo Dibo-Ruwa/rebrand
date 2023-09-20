@@ -195,8 +195,8 @@ export const Wyg = [
 
 export const subscriptionPlans = [
   {
-    image: "/path/to/standart-image.png",
-    title: "Cleaning",
+  
+    title: "One-Off Cleaning Plan",
     content: "For regular upkeep and a consistently clean home.",
     features: [
       "1 Bedrooms",
@@ -211,24 +211,24 @@ export const subscriptionPlans = [
       path: "/subscribe/standard",
     },
   },
-  {
-    image: "/path/to/deep-image.png",
-    title: "Deep Cleaning",
-    content: "A thorough clean for homes that need some extra attention.",
-    features: [
-      "Everything from Standard Cleaning... Plus",
-      "2 Bedrooms",
-      "1 Living Rooms/ Dining Areas",
-      "2 toilet/bathrooms",
-      "1 kitchen",
-      "Deep floor scrubbing",
-      "Window and sill cleaning",
-    ],
-    cta: {
-      label: "Subscribe Now",
-      path: "/subscribe/deep",
-    },
-  },
+  // {
+  //   image: "/path/to/deep-image.png",
+  //   title: "Deep Cleaning",
+  //   content: "A thorough clean for homes that need some extra attention.",
+  //   features: [
+  //     "Everything from Standard Cleaning... Plus",
+  //     "2 Bedrooms",
+  //     "1 Living Rooms/ Dining Areas",
+  //     "2 toilet/bathrooms",
+  //     "1 kitchen",
+  //     "Deep floor scrubbing",
+  //     "Window and sill cleaning",
+  //   ],
+  //   cta: {
+  //     label: "Subscribe Now",
+  //     path: "/subscribe/deep",
+  //   },
+  // },
 ];
 
 export const DashboradServices = [

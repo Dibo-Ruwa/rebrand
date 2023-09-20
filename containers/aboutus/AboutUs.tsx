@@ -8,12 +8,13 @@ import styled from "styled-components";
 // Define your styled components below
 
 const Container = styled.div`
-  /* padding: 8%; */
+
 `;
 
 const FirstSection = styled.div`
   background: var(--color2-20);
   padding: 8%;
+  padding-top: 20vh;
   margin-bottom: 20px;
   display: flex;
   margin-bottom: 3%;
@@ -36,6 +37,10 @@ const FirstSection = styled.div`
   .image {
     flex: 1;
   }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const SecondSection = styled.div`
@@ -49,7 +54,7 @@ const ThreeColumnSection = styled.div`
   margin-top: 30px;
 
   @media screen and (max-width: 698px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 `;
 const Column = styled.div`
@@ -116,11 +121,14 @@ const FourthSection = styled.div`
   padding: 5% 8%;
   display: flex;
 
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const LeftColumn = styled.div`
   /* Style for the left column */
-flex: 1;
+  flex: 1;
   button {
     padding: 10px 25px;
     background: var(--primary);
@@ -146,7 +154,10 @@ const TeamMemberList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  align-items: center;
+  text-align: center;
   justify-content: space-between;
+  margin-top: 20px;
 `;
 
 const AboutUsPage: React.FC = () => {
@@ -210,7 +221,7 @@ const AboutUsPage: React.FC = () => {
           </Column>
         </ThreeColumnSection>
 
-        <ParagraphText>
+        <ParagraphText style={{ fontStyle: "italic", fontSize: "14px" }}>
           In entrusting us with your laundry, cleaning, and food delivery needs,
           you&#39;re choosing a partner that values excellence, efficiency, and
           environmental responsibility.

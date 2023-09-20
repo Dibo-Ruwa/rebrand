@@ -2,11 +2,13 @@
 import HeroContainer from "@/component/shared/HeroContainer";
 import {
   BenefitList,
+  ContactForm,
   Container,
   HeroImage,
   HeroImageContainer,
   HeroList,
   HeroListItem,
+  LocationInput,
   SubscriptionCard,
   SubscriptionList,
   SubscriptionSection,
@@ -23,6 +25,7 @@ import { toast } from "react-hot-toast";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Modal from "@/component/modals/Modal";
+import CustomClean from "@/component/customClean/CustomClean";
 
 const Cleaning = () => {
   const { addSubscription, subscriptions, modal, closeModal } = useCartStore();
@@ -45,40 +48,44 @@ const Cleaning = () => {
           <h3 className="title">
             Home Cleaning, Tailored to Perfection with Diboruwa
           </h3>
-          
-            <HeroList>
-              <HeroListItem>
+
+          <HeroList>
+            <HeroListItem>
               <span className="dot" />
               <div className="text">
                 <strong>Book Online</strong>
-                <small>Choose your service and preferred time slot with a few clicks.</small>
+                <small>
+                  Choose your service and preferred time slot with a few clicks.
+                </small>
               </div>
-                 
-              </HeroListItem>
-              <HeroListItem>
+            </HeroListItem>
+            <HeroListItem>
               <span className="dot" />
               <div className="text">
                 <strong>Expert Clean </strong>
-                <small> Our team brings the shine, making sure every corner sparkles.</small>
+                <small>
+                  {" "}
+                  Our team brings the shine, making sure every corner sparkles.
+                </small>
               </div>
-                
-              </HeroListItem>
-              <HeroListItem>
+            </HeroListItem>
+            <HeroListItem>
               <span className="dot" />
               <div className="text">
                 <strong>Enjoy Your Space</strong>
-                <small> Step into a home that feels fresh, without any of the work.</small>
+                <small>
+                  {" "}
+                  Step into a home that feels fresh, without any of the work.
+                </small>
               </div>
-                
-              </HeroListItem>
+            </HeroListItem>
           </HeroList>
-          
+
           <div className="ctaBtn">
             <Button size="large" color="primary">
               Schedule a Clean
             </Button>
           </div>
-            
         </div>
 
         <HeroImageContainer>
@@ -116,11 +123,11 @@ const Cleaning = () => {
       </WYGSection>
 
       <SubscriptionSection>
+        <h2>Have you been wondering how to get your apartment cleaned?</h2>
         <SubscriptionList>
           {subscriptionPlans.map((plan, index) => (
             <div className="card" key={index}>
               <SubscriptionCard>
-                <div className="image"> {plan.image} </div>
                 <h3 className="title">{plan.title} </h3>
                 <p> {plan.content}</p>
                 <ul className="features">
@@ -149,11 +156,25 @@ const Cleaning = () => {
               </SubscriptionCard>
             </div>
           ))}
+
+          <CustomClean />
+
           <SubscriptionCard>
-            <div className="image"> .. </div>
-            <h3 className="title">Simplifying Your Move from Start to Finish</h3>
-            <p>Diboruwa isn&apos;t just about cleaning; we assist you in every step of your relocation. From ensuring your space is spotless to safely transporting your belongings, we&apos;re here to make the transition as smooth as possible.</p>
-            <p> Contact us today to make it the easiest move of your life.</p>
+            <h3 className="title">
+              Simplifying Your Move from Start to Finish
+            </h3>
+            <p>
+              Diboruwa isn&apos;t just about cleaning; we assist you in every
+              step of your relocation. From ensuring your space is spotless to
+              safely transporting your belongings, we&apos;re here to make the
+              transition as smooth as possible.
+            </p>
+            <p>Contact us today to make it the easiest move of your life.</p>
+
+            <ContactForm>
+              <LocationInput type="text" placeholder='from' />
+              <LocationInput type="text" placeholder='to' />
+            </ContactForm>
 
             <Button size="medium" color="primary">
               Contact Us

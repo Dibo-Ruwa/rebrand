@@ -32,12 +32,12 @@ const Navbar = () => {
     required: false,
   });
 
-  console.log(session);
+ 
 
   //get partName to render route types
   const pathname = usePathname();
 
-  const trimedPath = pathname.replace("/", "");
+ 
 
   const [toggle, setToggle] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -91,7 +91,6 @@ const Navbar = () => {
 
       <MenuList className="menu">
         {routes.map((link, index) => {
-          console.log(link);
           return (
             <li key={index}>
               {link.subroutes ? (
