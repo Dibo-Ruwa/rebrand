@@ -5,7 +5,7 @@ import { connectDB, closeDB } from "@/utils/db";
 import { Cart } from "@/utils/models/Cart";
 import { generateToken } from "@/templates/authTemplates";
 import ActivateAccount from "@/emails/ActivateAccount";
-import { resend } from "@/utils/resend";
+import sendEmail from "@/utils/resend";
 
 
 export async function POST(req: Request, res: Response) {
@@ -51,38 +51,29 @@ export async function POST(req: Request, res: Response) {
 
     // @todo verification mail
 
-    const activationLink = generateToken(user._id)
+    const activationLink = generateToken(user._id);
 
+    // Remove the password from the response
+    createdUser.password = undefined;
 
-    const mail = await resend.emails.send({
-      from: "email@diboruwa.com",
-      to: user.email,
-      subject: "Activate Account",
-      react: ActivateAccount({
+    await sendEmail(
+      user.email,
+      "Activate Account",
+      ActivateAccount({
         customerName: user.firstName,
-        activationLink: `https://rebrand-omega.vercel.app/verifyMail/${activationLink}`
-      }) as React.ReactElement,
-    });
+        activationLink: `${process.env.BASE_URL}${activationLink}`,
+      })
+    );
 
-
-    if (user && mail?.id) {
-      // Remove the password from the response
-      createdUser.password = undefined;
-
-      return NextResponse.json(
-        {
-          message:
-            "User signed up successfuly!!!\n a verification email hs been sent to you\n please verify your account.",
-          user,
-          success: true,
-        },
-        { status: 201 }
-      );
-    } else {
-      await user.remove();
-
-      throw new Error("Unable to sign Up");
-    }
+    return NextResponse.json(
+      {
+        message:
+          "User signed up successfuly!!!\n a verification email hs been sent to you\n please verify your account.",
+        user,
+        success: true,
+      },
+      { status: 201 }
+    );
   } catch (err) {
     return NextResponse.json(err);
   } finally {

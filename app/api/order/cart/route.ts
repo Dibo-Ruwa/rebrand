@@ -1,10 +1,16 @@
+import {
+  AdminOrderNotificationComponent,
+  PartnerOrderNotificationComponent,
+} from "@/emails";
 import OrderConfirmation from "@/emails/FoodOrder";
 import { closeDB, connectDB } from "@/utils/db";
 import { authOptions } from "@/utils/helpers/authOptions";
 import { Cart } from "@/utils/models/Cart";
 import { Order } from "@/utils/models/Order";
 import User from "@/utils/models/Users";
-import { resend } from "@/utils/resend";
+import sendEmail from "@/utils/resend";
+
+import moment from "moment";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
@@ -45,7 +51,6 @@ export async function POST(req: Request, res: Response) {
       for (const partner of partners) {
         const today = new Date();
 
-
         const partnersOrders = await Order.find({
           partner: partner._id,
           createdAt: {
@@ -77,26 +82,54 @@ export async function POST(req: Request, res: Response) {
 
           await order.save();
 
-          assigned = true
+          assigned = true;
 
-          const mail = await resend.emails.send({
-            from: "email@diboruwa.com",
-            to: user.email,
-            subject: "Order Confirmed",
-            react: OrderConfirmation({
+          await sendEmail(
+            user.email,
+            "Order Confirmed",
+            OrderConfirmation({
               customerName: user.firstName,
               orderItem: {
                 orderItems: existingCart.cartItems,
                 total: existingCart.total,
                 estimatedDeliveryTime: "3 working days",
               },
-            }) as React.ReactElement,
-          });
-    
+            })
+          );
+
+          await sendEmail(
+            user.email,
+            "New Order Notification",
+            PartnerOrderNotificationComponent({
+              partnerFirstName: partner.firstName,
+              customerFullName: `${user.firstName} ${user.lastName}`,
+              orderNumber: body.referenceId,
+              itemsOrdered: existingCart.cartItems,
+              totalAmount: existingCart.total,
+              customerAddress: `${user.address}, ${user.lga}, ${user.city}, ${user.state}`,
+              orderTimestamp: moment(order.createdAt).format("MMMM D, YYYY"),
+              orderLink: `${process.env.BASE_URL}/dashboard/${order._id}`,
+            })
+          );
+          await sendEmail(
+            user.email,
+            "New Order Notification",
+            AdminOrderNotificationComponent({
+              customerFullName: `${user.firstName} ${user.lastName}`,
+              orderNumber: body.referenceId,
+              itemsOrdered: existingCart.cartItems,
+              totalAmount: existingCart.total,
+              customerAddress: `${user.address}, ${user.lga}, ${user.city}, ${user.state}`,
+              partnerFullName: `${partner.firstName} ${partner.lastName}`,
+              orderTimestamp: moment(order.createdAt).format("MMMM D, YYYY"),
+              adminDashboardLink: `${process.env.BASE_URL}/dashboard/${order._id}`,
+            })
+          );
+
           existingCart.cartItems = [];
           existingCart.total = 0;
           await existingCart.save();
-          break
+          break;
         }
       }
 
@@ -114,29 +147,38 @@ export async function POST(req: Request, res: Response) {
 
         await order.save();
 
-
-        const mail = await resend.emails.send({
-          from: "email@diboruwa.com",
-          to: user.email,
-          subject: "Order Confirmed",
-          react: OrderConfirmation({
+        await sendEmail(
+          user.email,
+          "Order Confirmed",
+          OrderConfirmation({
             customerName: user.firstName,
             orderItem: {
               orderItems: existingCart.cartItems,
               total: existingCart.total,
               estimatedDeliveryTime: "3 working days",
             },
-          }) as React.ReactElement,
-        });
-  
+          })
+        );
+
+        await sendEmail(
+          user.email,
+          "New Order Notification",
+          AdminOrderNotificationComponent({
+            customerFullName: `${user.firstName} ${user.lastName}`,
+            orderNumber: body.referenceId,
+            itemsOrdered: existingCart.cartItems,
+            totalAmount: existingCart.total,
+            customerAddress: `${user.address}, ${user.lga}, ${user.city}, ${user.state}`,
+            partnerFullName: `un-assigned`,
+            orderTimestamp: moment(order.createdAt).format("MMMM D, YYYY"),
+            adminDashboardLink: `${process.env.BASE_URL}/dashboard/${order._id}`,
+          })
+        );
+
         existingCart.cartItems = [];
         existingCart.total = 0;
         await existingCart.save();
-     }
-
-    
-
-     
+      }
     }
 
     return NextResponse.json({ order, success: true }, { status: 201 });

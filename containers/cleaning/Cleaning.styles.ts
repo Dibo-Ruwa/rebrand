@@ -128,6 +128,9 @@ export const SubscriptionSection = styled.div`
 export const ContactForm = styled.form`
 display: flex;
 gap: 10px;
+flex-direction: column;
+
+margin-bottom: 20px;
 `;
 export const LocationInput = styled.input`
   padding: 10px 15px;

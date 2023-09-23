@@ -231,6 +231,7 @@ export const FaqSection = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 30px;
     @media screen and (max-width: 900px) {
       border-radius: 12px;
       flex-direction: column;

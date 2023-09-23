@@ -12,11 +12,21 @@ interface Cleanproperties {
 
 const Container = styled.div`
   background: #fff;
-  padding: 30px;
+  padding: 20px;
   border-radius: 20px;
   height: auto;
   display: flex;
   flex-direction: column;
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+
+  p {
+    color: var(--content);
+    margin-bottom: 30px;
+  }
 `;
 const MultiSelectWrapper = styled.div`
   position: relative;
@@ -41,23 +51,31 @@ const MultiSelectDropdown = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   &::-webkit-scrollbar {
-  width: 5px; /* Width of the scrollbar */
-}
+    width: 5px; /* Width of the scrollbar */
+  }
 
-&::-webkit-scrollbar-track {
-  background: var(--primary-20); /* Track color (the background behind the scrollbar) */
-}
+  &::-webkit-scrollbar-track {
+    background: var(
+      --primary-20
+    ); /* Track color (the background behind the scrollbar) */
+  }
 
-&::-webkit-scrollbar-thumb {
-  background: var(--primary-20); /* Thumb color (the draggable part of the scrollbar) */
-  border-radius: 20px; /* Rounded corners on the thumb */
-}
+  &::-webkit-scrollbar-thumb {
+    background: var(
+      --primary-20
+    ); /* Thumb color (the draggable part of the scrollbar) */
+    border-radius: 20px; /* Rounded corners on the thumb */
+  }
 `;
+
+
 const MultiSelectOption = styled.div`
   padding: 10px 20px;
   font-size: 18px;
   background-color: var(--primary-20);
 `;
+
+
 const SelectedOptions = styled.div`
   display: grid;
   gap: 10px;
@@ -65,21 +83,25 @@ const SelectedOptions = styled.div`
   max-height: 150px;
   overflow-y: auto;
   &::-webkit-scrollbar {
-  width: 2px; /* Width of the scrollbar */
-}
+    width: 2px; /* Width of the scrollbar */
+  }
 
-&::-webkit-scrollbar-track {
-  background: var(--primary-20); /* Track color (the background behind the scrollbar) */
-}
+  &::-webkit-scrollbar-track {
+    background: var(
+      --primary-20
+    ); /* Track color (the background behind the scrollbar) */
+  }
 
-&::-webkit-scrollbar-thumb {
-  background: var(--primary-20); /* Thumb color (the draggable part of the scrollbar) */
-  border-radius: 20px; /* Rounded corners on the thumb */
-}
+  &::-webkit-scrollbar-thumb {
+    background: var(
+      --primary-20
+    ); /* Thumb color (the draggable part of the scrollbar) */
+    border-radius: 20px; /* Rounded corners on the thumb */
+  }
 
-&::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Thumb color on hover */
-}
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Thumb color on hover */
+  }
 `;
 
 const MultiSelectButton = styled.button`
@@ -107,8 +129,8 @@ const Counter = styled.div`
 `;
 
 const CounterButton = styled.button`
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   background-color: var(--primary);
   border-radius: 5px;
   color: #fff;
@@ -126,8 +148,8 @@ const ItemInfo = styled.div`
   align-items: center;
   border-bottom: 1px solid #ccc;
   border-radius: 8px;
-  padding: 8px 20px;
-  font-size: 18px;
+  padding: 6px 10px;
+  font-size: 14px;
   background-color: var(--primary-20);
 `;
 
@@ -135,7 +157,6 @@ const ItemName = styled.span`
   flex-grow: 1;
   padding: 0 8px;
 `;
-
 
 const Notification = styled.div`
   color: #ff0000;
@@ -156,8 +177,7 @@ const CustomClean: React.FC = () => {
   const [quote, setQuote] = useState<string | null>(null);
   const [notification, setNotification] = useState<string | null>(null);
 
-  const dropdownRef = useRef<HTMLDivElement | null>(null); 
-
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const cleanproperties: Cleanproperties[] = [
     { id: 1, name: "T-Shirt", amount: 0 },
@@ -221,11 +241,12 @@ const CustomClean: React.FC = () => {
 
   return (
     <Container>
-      {/* <h2>Laundry Counter</h2> */}
+      <h2>Custom</h2>
+      <p>have a different cleaning need?</p>
 
       <MultiSelectWrapper ref={dropdownRef}>
         <MultiSelectButton onClick={() => setDropdownOpen(!isDropdownOpen)}>
-          Select laundry items...
+          Select cleaning need...
         </MultiSelectButton>
         {isDropdownOpen && (
           <MultiSelectDropdown>
@@ -233,8 +254,8 @@ const CustomClean: React.FC = () => {
               <MultiSelectOption
                 key={item.id}
                 onClick={() => {
-                  handleItemClick(item)
-                  setDropdownOpen(!isDropdownOpen)
+                  handleItemClick(item);
+                  setDropdownOpen(!isDropdownOpen);
                 }}
               >
                 {item.name}

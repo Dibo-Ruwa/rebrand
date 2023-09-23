@@ -174,6 +174,8 @@ const Cleaning = () => {
             <ContactForm>
               <LocationInput type="text" placeholder='from' />
               <LocationInput type="text" placeholder='to' />
+            
+              <LocationInput type="date" placeholder='to' />
             </ContactForm>
 
             <Button size="medium" color="primary">

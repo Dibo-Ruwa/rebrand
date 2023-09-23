@@ -5,13 +5,14 @@ import Select from "./ui/select/Select";
 import { FiSend } from "react-icons/fi";
 import { FormEvent } from "react";
 import { motion } from "framer-motion";
+import ContactForm from "./contactForm/ContactForm";
 
 const Container = styled.div`
   flex: 1;
   width: 100%;
 `;
 const Heading = styled.h3`
-  font-size: 48px;
+  font-size: 28px;
   font-weight: bold;
   margin-bottom: 10vh;
 
@@ -20,60 +21,8 @@ const Heading = styled.h3`
     margin-bottom: 30px;
   }
 `;
-const Form = styled.form`
-  width: 400px;
 
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
 
-  .grouped {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-    gap: 15px;
-  }
-`;
-const Input = styled(motion.input)`
-  outline: none;
-  border: none;
-  padding: 20px 15px;
-  border-radius: 12px;
-  font-size: 20px;
-  width: 100%;
-  margin-bottom: 15px;
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    padding: 15px;
-    font-size: 15px;
-  }
-  background: var(--primary-20);
-`;
-const SendBtn = styled(motion.button)`
-  width: 80px;
-  height: 60px;
-  border-radius: 10px;
-  font-size: 30px;
-  outline: none;
-  border: none;
-  background: var(--primary-20);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--primary);
-  @media screen and (max-width: 768px) {
-    width: 48px;
-    height: 48px;
-    font-size: 20px;
-  }
-`;
-
-const options = [
-  { value: "option1", label: "Option 1" },
-  { value: "option2", label: "Option 2" },
-  { value: "option3", label: "Option 3" },
-];
 
 const NewsletterForm = () => {
   const handleSelectChange = (e: {
@@ -84,28 +33,15 @@ const NewsletterForm = () => {
   };
 
   const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
   return (
     <Container>
       <Heading>
         Got Questions ? <br />
         We’ve got answers.
       </Heading>
-      <Form onSubmit={onSubmit}>
-        <Input placeholder="Enter you email...."  whileTap={{ scale: 0.95 }}/>
-        <div className="grouped">
-          <Select
-            name="Location"
-            value="option1"
-            options={options}
-            onChange={handleSelectChange}
-          />
-          <SendBtn  whileTap={{ scale: 0.95 }}>
-            <FiSend />
-          </SendBtn>
-        </div>
-      </Form>
+      <ContactForm />
     </Container>
   );
 };
