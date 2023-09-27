@@ -12,6 +12,8 @@ interface AuthHook {
   error: string | null;
   signup: (formData: { [key: string]: string }) => Promise<void>;
   signin: (formData: { [key: string]: string }) => Promise<void>;
+  forgotPassword: (formData: { [key: string]: string }) => Promise<void>;
+  resetPassword: (formData: { [key: string]: string }) => Promise<void>;
   userUpdate: (formData: { [key: string]: string }) => Promise<void>;
   signout: () => Promise<void>;
   showModal: boolean;
@@ -75,6 +77,50 @@ const useAuth = (): AuthHook => {
       openModal("error", error.response.data);
     }
   };
+  const forgotPassword = async (formData: {
+    [key: string]: string;
+  }): Promise<void> => {
+    setLoading(true);
+
+    try {
+      // Perform signup logic using axios
+      const res = await interceptor.post("auth/forgot-password", formData);
+      setLoading(false);
+      setError(null);
+
+      openModal("success", res.data.message);
+      setTimeout(() => {
+        router.push("/signin");
+      }, 3000);
+    } catch (error: any) {
+      // console.log(error.response.data);
+      setLoading(false);
+      setError(error.message);
+      openModal("error", error.response.data);
+    }
+  };
+  const resetPassword = async (formData: {
+    [key: string]: string;
+  }): Promise<void> => {
+    setLoading(true);
+
+    try {
+      // Perform signup logic using axios
+      const res = await interceptor.post("auth/reset-password", formData);
+      setLoading(false);
+      setError(null);
+
+      openModal("success", res.data.message);
+      setTimeout(() => {
+        router.push("/signin");
+      }, 3000);
+    } catch (error: any) {
+      // console.log(error.response.data);
+      setLoading(false);
+      setError(error.message);
+      openModal("error", error.response.data);
+    }
+  };
 
   const signin = async (formData: { [key: string]: string }) => {
     setLoading(true);
@@ -91,7 +137,7 @@ const useAuth = (): AuthHook => {
       });
 
       if (res && res.error !== null) {
-        toast.error(`${res.error}`);
+        openModal("error", `${res.error}`);
       }
 
       setLoading(false);
@@ -109,12 +155,14 @@ const useAuth = (): AuthHook => {
       setLoading(false);
       setError(error.message);
       toast.error(error);
+      openModal("error", error.response.data);
       toast.error("Signin failed. Please check your credentials.", {
         duration: 3000,
         position: "bottom-left",
       });
     }
   };
+
   const userUpdate = async (formData: { [key: string]: string }) => {
     setLoading(true);
     try {
@@ -166,6 +214,8 @@ const useAuth = (): AuthHook => {
     signin,
     userUpdate,
     signout,
+    forgotPassword,
+    resetPassword,
   };
 };
 

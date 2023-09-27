@@ -6,6 +6,7 @@ import { FiSend } from "react-icons/fi";
 import { FormEvent } from "react";
 import { motion } from "framer-motion";
 import ContactForm from "./contactForm/ContactForm";
+import axios from "axios";
 
 const Container = styled.div`
   flex: 1;
@@ -25,15 +26,12 @@ const Heading = styled.h3`
 
 
 const NewsletterForm = () => {
-  const handleSelectChange = (e: {
-    target: { name: string; value: string };
-  }) => {
-    // Handle the change event here
-    console.log(e.target.value);
-  };
+ 
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    const res = await axios.post('/api/contact')
   };
   return (
     <Container>

@@ -26,6 +26,9 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Modal from "@/component/modals/Modal";
 import CustomClean from "@/component/customClean/CustomClean";
+import useForm from "@/hooks/useForm";
+import { FormEvent } from "react";
+import axios from "axios";
 
 const Cleaning = () => {
   const { addSubscription, subscriptions, modal, closeModal } = useCartStore();
@@ -39,6 +42,24 @@ const Cleaning = () => {
     };
 
     addSubscription(data);
+  };
+
+  const { formData, handleChange, resetForm, errors } = useForm(
+    {
+      from: "",
+      to: "",
+      date: "",
+    },
+    () => {}
+  );
+
+  const onSubmit = async (e: FormEvent) => {
+    try {
+      const res = await axios.post("/api/contact", formData);
+    } catch (error) {
+      toast.error("An error occurred while updating the profile");
+      // Handle the error or display an error message
+    }
   };
 
   return (
@@ -172,13 +193,42 @@ const Cleaning = () => {
             <p>Contact us today to make it the easiest move of your life.</p>
 
             <ContactForm>
-              <LocationInput type="text" placeholder='from' />
-              <LocationInput type="text" placeholder='to' />
-            
-              <LocationInput type="date" placeholder='to' />
+              <LocationInput
+                type="text"
+                name="from"
+                placeholder="from"
+                value={formData.from}
+                onChange={(e: any) => handleChange(e, e.target.name)}
+              />
+              <LocationInput
+                type="text"
+                name="to"
+                placeholder="to"
+                value={formData.to}
+                onChange={(e: any) => handleChange(e, e.target.name)}
+              />
+
+              <LocationInput
+                type="date"
+                name="date"
+                // placeholder="to"
+                value={formData.date}
+                onChange={(e: any) => handleChange(e, e.target.name)}
+              />
             </ContactForm>
 
-            <Button size="medium" color="primary">
+            <Button
+              size="medium"
+              color="primary"
+              onClick={() => {
+                if (session) {
+                  // handleGetQuote;
+                } else {
+                  router.push("signin");
+                  toast("please sign in to add item to cart");
+                }
+              }}
+            >
               Contact Us
             </Button>
           </SubscriptionCard>

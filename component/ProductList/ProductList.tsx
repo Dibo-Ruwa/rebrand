@@ -203,17 +203,21 @@ const ProductList = () => {
       />
       <ProductListing>
         {filteredProducts.slice(0, productsToShow).map((product) => (
-          <li key={product.id}>
+          <div key={product.id}>
             {" "}
             <ProductCard product={product} />
-          </li>
+          </div>
         ))}
       </ProductListing>
-      {productsToShow < filteredProducts.length && (
+
+      <div className="buttonContainer">
+         {productsToShow < filteredProducts.length && (
         <Button size="large" color="primary" onClick={handleViewMore} >
           More
         </Button>
       )}
+      </div>
+     
     </Container>
   );
 };

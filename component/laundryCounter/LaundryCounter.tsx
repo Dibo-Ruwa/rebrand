@@ -1,6 +1,10 @@
 "use client";
 
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useState, useRef, useEffect } from "react";
+import toast from "react-hot-toast";
 import styled from "styled-components";
 
 // Define the LaundryItem interface
@@ -14,7 +18,7 @@ const Container = styled.div`
   background: var(--primary-20);
   padding: 30px;
   border-radius: 20px;
-  height: 50vh;
+  height: 45vh;
 
   display: flex;
   flex-direction: column;
@@ -42,17 +46,21 @@ const MultiSelectDropdown = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   &::-webkit-scrollbar {
-  width: 5px; /* Width of the scrollbar */
-}
+    width: 5px; /* Width of the scrollbar */
+  }
 
-&::-webkit-scrollbar-track {
-  background: var(--primary-20); /* Track color (the background behind the scrollbar) */
-}
+  &::-webkit-scrollbar-track {
+    background: var(
+      --primary-20
+    ); /* Track color (the background behind the scrollbar) */
+  }
 
-&::-webkit-scrollbar-thumb {
-  background: var(--primary-20); /* Thumb color (the draggable part of the scrollbar) */
-  border-radius: 20px; /* Rounded corners on the thumb */
-}
+  &::-webkit-scrollbar-thumb {
+    background: var(
+      --primary-20
+    ); /* Thumb color (the draggable part of the scrollbar) */
+    border-radius: 20px; /* Rounded corners on the thumb */
+  }
 `;
 const MultiSelectOption = styled.div`
   padding: 10px 20px;
@@ -66,21 +74,25 @@ const SelectedOptions = styled.div`
   max-height: 150px;
   overflow-y: auto;
   &::-webkit-scrollbar {
-  width: 2px; /* Width of the scrollbar */
-}
+    width: 2px; /* Width of the scrollbar */
+  }
 
-&::-webkit-scrollbar-track {
-  background: var(--primary-20); /* Track color (the background behind the scrollbar) */
-}
+  &::-webkit-scrollbar-track {
+    background: var(
+      --primary-20
+    ); /* Track color (the background behind the scrollbar) */
+  }
 
-&::-webkit-scrollbar-thumb {
-  background: var(--primary-20); /* Thumb color (the draggable part of the scrollbar) */
-  border-radius: 20px; /* Rounded corners on the thumb */
-}
+  &::-webkit-scrollbar-thumb {
+    background: var(
+      --primary-20
+    ); /* Thumb color (the draggable part of the scrollbar) */
+    border-radius: 20px; /* Rounded corners on the thumb */
+  }
 
-&::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Thumb color on hover */
-}
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Thumb color on hover */
+  }
 `;
 
 const MultiSelectButton = styled.button`
@@ -137,7 +149,6 @@ const ItemName = styled.span`
   padding: 0 8px;
 `;
 
-
 const Notification = styled.div`
   color: #ff0000;
   margin-top: 10px;
@@ -152,13 +163,14 @@ const QuoteButton = styled.div`
 `;
 
 const LaundryCounter: React.FC = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
   const [selectedItems, setSelectedItems] = useState<LaundryItem[]>([]);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [quote, setQuote] = useState<string | null>(null);
   const [notification, setNotification] = useState<string | null>(null);
 
   const dropdownRef = useRef<HTMLDivElement | null>(null); // Replace 'HTMLDivElement' with the appropriate element type
-
 
   const laundryItems: LaundryItem[] = [
     { id: 1, name: "T-Shirt", amount: 0 },
@@ -206,7 +218,7 @@ const LaundryCounter: React.FC = () => {
     };
   }, []);
 
-  const handleGetQuote = () => {
+  const handleGetQuote = async () => {
     if (selectedItems.some((item) => item.amount <= 0)) {
       setNotification("Please add item amounts before getting a quote.");
     } else {
@@ -217,6 +229,12 @@ const LaundryCounter: React.FC = () => {
 
       setQuote(`Quote: ${quoteText}`);
       setNotification(null);
+
+      try {
+        const res = await axios.post("/api/quote", { quote: quoteText });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -234,8 +252,8 @@ const LaundryCounter: React.FC = () => {
               <MultiSelectOption
                 key={item.id}
                 onClick={() => {
-                  handleItemClick(item)
-                  setDropdownOpen(!isDropdownOpen)
+                  handleItemClick(item);
+                  setDropdownOpen(!isDropdownOpen);
                 }}
               >
                 {item.name}
@@ -262,7 +280,18 @@ const LaundryCounter: React.FC = () => {
         ))}
       </SelectedOptions>
       {notification && <Notification>{notification}</Notification>}
-      <QuoteButton onClick={handleGetQuote}>Get a Quote</QuoteButton>
+      <QuoteButton
+        onClick={() => {
+          if (session) {
+            handleGetQuote;
+          } else {
+            router.push("signin");
+            toast("please sign in");
+          }
+        }}
+      >
+        Get a Quote
+      </QuoteButton>
       {/* {quote && <div>{quote}</div>} */}
     </Container>
   );

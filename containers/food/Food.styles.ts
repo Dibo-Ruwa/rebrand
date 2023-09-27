@@ -119,6 +119,7 @@ export const HWWCard = styled.div`
 
 export const MenuSection = styled.div`
   padding: 5% 8%;
+  height: auto;
 `;
 
 export const MenuTitle = styled.h3`

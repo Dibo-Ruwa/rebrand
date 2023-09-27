@@ -1,6 +1,10 @@
 "use client";
 
+import axios from "axios";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useState, useRef, useEffect } from "react";
+import toast from "react-hot-toast";
 import styled from "styled-components";
 
 // Define the Cleanproperties interface
@@ -68,13 +72,11 @@ const MultiSelectDropdown = styled.div`
   }
 `;
 
-
 const MultiSelectOption = styled.div`
   padding: 10px 20px;
   font-size: 18px;
   background-color: var(--primary-20);
 `;
-
 
 const SelectedOptions = styled.div`
   display: grid;
@@ -172,6 +174,8 @@ const QuoteButton = styled.div`
 `;
 
 const CustomClean: React.FC = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
   const [selectedItems, setSelectedItems] = useState<Cleanproperties[]>([]);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [quote, setQuote] = useState<string | null>(null);
@@ -225,7 +229,7 @@ const CustomClean: React.FC = () => {
     };
   }, []);
 
-  const handleGetQuote = () => {
+  const handleGetQuote = async () => {
     if (selectedItems.some((item) => item.amount <= 0)) {
       setNotification("Please add item amounts before getting a quote.");
     } else {
@@ -236,6 +240,11 @@ const CustomClean: React.FC = () => {
 
       setQuote(`Quote: ${quoteText}`);
       setNotification(null);
+      try {
+        const res = await axios.post("/api/quote", { quote: quoteText });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -282,7 +291,18 @@ const CustomClean: React.FC = () => {
         ))}
       </SelectedOptions>
       {notification && <Notification>{notification}</Notification>}
-      <QuoteButton onClick={handleGetQuote}>Get a Quote</QuoteButton>
+      <QuoteButton
+        onClick={() => {
+          if (session) {
+            handleGetQuote;
+          } else {
+            router.push("signin");
+            toast("please sign in to add item to cart");
+          }
+        }}
+      >
+        Get a Quote
+      </QuoteButton>
       {/* {quote && <div>{quote}</div>} */}
     </Container>
   );

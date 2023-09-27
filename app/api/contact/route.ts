@@ -6,7 +6,7 @@ import { sendMail } from "@/utils/sendMail";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request, res: Response) {
+export async function POST(req: Request, res: Response) {
   try {
     await connectDB();
 
@@ -14,7 +14,7 @@ export async function GET(req: Request, res: Response) {
 
     const { email, subject, message } = body;
 
-    await sendMail("z3phyronsnides@gmail.com", subject, message);
+    await sendMail("ibrahim.saliman.zainab@gmail.com", subject, message);
     return NextResponse.json(
       { message: "emails sent successfully", success: true },
       { status: 201 }

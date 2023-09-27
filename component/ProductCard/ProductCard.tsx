@@ -16,6 +16,7 @@ import { Product } from "@/utils/types/types";
 import { toast } from "react-hot-toast";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface ProductCardProps {
   product: Product;
@@ -29,7 +30,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
     <Container>
       <ImageContainer>
         {/* <ProductImage src={product.imgUrl} alt="...." style={{ width: "100%" }} /> */}
-        <img src={product?.imgUrl} alt="" style={{ width: "100%", height: "100%", }} />
+        <Image src={product?.imgUrl} alt=".." fill={true} />
         <CartOverlay>
           <CartBtn
             onClick={() => {

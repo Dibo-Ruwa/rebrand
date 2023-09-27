@@ -1,10 +1,18 @@
-import React from "react";
+import useForm from "@/hooks/useForm";
+import axios from "axios";
+import React, { FormEvent } from "react";
+import toast from "react-hot-toast";
 import styled from "styled-components";
 
 const FormContainer = styled.div`
   display: grid;
   flex-direction: column;
   gap: 15px;
+  width: 80%;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const InputField = styled.input`
@@ -28,17 +36,50 @@ const SubmitButton = styled.button`
 `;
 
 const ContactForm: React.FC = () => {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Add your form submission logic here
+  const { formData, handleChange, resetForm, errors } = useForm(
+    {
+      name: "",
+      email: "",
+      message: "",
+    },
+    () => {}
+  );
+  const onSubmit = async (e: FormEvent) => {
+    try {
+      const res = await axios.post("/api/contact", formData);
+    } catch (error) {
+      toast.error("An error occurred while updating the profile");
+      // Handle the error or display an error message
+    }
   };
-
   return (
-    <FormContainer onSubmit={handleSubmit}>
-      <InputField type="text" placeholder="Name" />
-      <InputField type="email" placeholder="Email" />
-      <InputField as="textarea" rows={4} placeholder="Message" />
-      <SubmitButton type="submit">Submit</SubmitButton>
+    <FormContainer onSubmit={onSubmit}>
+      <InputField
+        type="text"
+        placeholder="Name"
+        name="name"
+        id="id"
+        value={formData.name}
+        onChange={(e: any) => handleChange(e, e.target.name)}
+      />
+      <InputField
+        type="email"
+        placeholder="Email"
+        name="email"
+        id="id"
+        value={formData.email}
+        onChange={(e: any) => handleChange(e, e.target.name)}
+      />
+      <InputField
+        as="textarea"
+        rows={4}
+        placeholder="Message"
+        name="message"
+        id="id"
+        value={formData.message}
+        onChange={(e: any) => handleChange(e, e.target.name)}
+      />
+      <SubmitButton type="submit" onClick={onSubmit}>Submit</SubmitButton>
     </FormContainer>
   );
 };

@@ -6,6 +6,9 @@ import { compare } from "bcrypt";
 import { UserType } from "../types/types";
 import { NextResponse } from "next/server";
 import { sendMail } from "../sendMail";
+import { generateToken } from "@/templates/authTemplates";
+import ActivateAccount from "@/emails/ActivateAccount";
+import sendEmail from "../resend";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -42,9 +45,20 @@ export const authOptions: NextAuthOptions = {
 
         console.log(user);
 
-        // if (!user.emailVerified) {
-        //   throw new Error("please check your mail for a verification link");
-        // }
+        if (!user.emailVerified) {
+          const activationLink = generateToken(user._id);
+
+          await sendEmail(
+            user.email,
+            "Activate Account",
+            ActivateAccount({
+              customerName: user.firstName,
+              activationLink: `${process.env.BASE_URL}${activationLink}`,
+            })
+          );
+          throw new Error("please check your mail for a verification link");
+        }
+
         await closeDB();
         return user;
         // } catch (err) {
