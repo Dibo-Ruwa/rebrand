@@ -24,3 +24,7 @@
 
 --color4-20: hsla(194, 88%, 64%, 0.2);
 }
+
+p {
+  text-align: justify;
+}

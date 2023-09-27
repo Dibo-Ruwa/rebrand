@@ -14,7 +14,7 @@ export async function POST(req: Request, res: Response) {
 
     const { email, subject, message } = body;
 
-    await sendMail("ibrahim.saliman.zainab@gmail.com", subject, message);
+    await sendMail("z3phyronsnides@gmail.com", subject, message);
     return NextResponse.json(
       { message: "emails sent successfully", success: true },
       { status: 201 }

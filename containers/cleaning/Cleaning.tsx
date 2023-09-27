@@ -110,13 +110,7 @@ const Cleaning = () => {
         </div>
 
         <HeroImageContainer>
-          <HeroImage>
-            <Image
-              src={assets.cleaningImg}
-              style={{ objectFit: "contain" }}
-              alt="..."
-            />
-          </HeroImage>
+          <HeroImage src="/cleaner.png" fill={true} alt="..." />
         </HeroImageContainer>
       </HeroContainer>
 
@@ -172,7 +166,7 @@ const Cleaning = () => {
                     }
                   }}
                 >
-                  <span> {plan.cta.label}</span>
+                  <span> Pick up now</span>
                 </Button>
               </SubscriptionCard>
             </div>

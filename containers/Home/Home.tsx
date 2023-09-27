@@ -16,6 +16,8 @@ import {
   WhyChooseUsTitle,
   HeroList,
   HeroListItem,
+  HeroImageContainer,
+  HeroImage,
 } from "./home.styles";
 import Button from "@/component/ui/button/Button";
 import { FiPhoneCall } from "react-icons/fi";
@@ -99,7 +101,15 @@ export default function Home() {
           </div>
         </motion.div>
 
-        <div className="hero__image"></div>
+        <HeroImageContainer>
+          <div className="image home">
+            <HeroImage
+              src='/homepage_hero.png'
+              fill={true}
+              alt=".."
+            />
+          </div>
+        </HeroImageContainer>
       </HeroContainer>
 
       <ServicesSection>
@@ -172,7 +182,7 @@ export default function Home() {
 
         <div className="content">
           <div className="image">
-            <Image src={assets.testimonial} alt="...." />
+            <Image src='/lady thinking.png' fill={true} alt="...." />
           </div>
 
           <div className="carousel">

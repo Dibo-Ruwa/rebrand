@@ -1,10 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import styled from "styled-components";
 
-export const Container = styled.div`
-
-`;
+export const Container = styled.div``;
 
 export const HeroList = styled.div`
   display: flex;
@@ -35,6 +34,28 @@ export const HeroListItem = styled.div`
     align-items: baseline;
   }
 `;
+
+export const HeroImageContainer = styled.div`
+  width: 500px;
+  height: 600px;
+  position: relative;
+  object-fit: cover;
+
+  @media screen and (max-width: 768px) {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* .image {
+    width: 100%;
+  } */
+`;
+export const HeroImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+`;
+
 export const ServicesSection = styled.div`
   padding: 8%;
 
@@ -182,6 +203,7 @@ export const FeedBackSection = styled.div`
     font-weight: bold;
     margin-bottom: 10vh;
     @media screen and (max-width: 900px) {
+      margin-bottom: 6vh;
       font-size: 30px;
     }
   }
@@ -193,14 +215,21 @@ export const FeedBackSection = styled.div`
     gap: 30px;
 
     .image {
-      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      width: 450px;
+      height: 300px;
+      position: relative;
+
+      @media screen and (max-width: 768px) {
+        width: 300px;
+        height: 200px;
+      }
 
       img {
-        width: 90%;
+        width: 100%;
         height: 100%;
-        @media screen and (max-width: 900px) {
-          width: 100%;
-        }
+        object-fit: cover;
       }
     }
 

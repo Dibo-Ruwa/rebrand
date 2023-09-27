@@ -33,22 +33,20 @@ const AuthFormTitle = styled.h2`
 `;
 
 const AuthFormWrapper = styled.form`
-  /* Add your styling for the form wrapper here */
   display: flex;
   flex-direction: column;
   gap: 15px;
 `;
 
-const AuthFormFieldWrapper = styled.div`
-  /* Add your styling for the field wrapper here */
-`;
+const AuthFormFieldWrapper = styled.div``;
 
-const AuthFormAlternateRoute = styled.div`
-  /* Add your styling for the alternate route section here */
-`;
+const AuthFormAlternateRoute = styled.div``;
 
 const AuthFormSmall = styled.small`
-  /* Add your styling for the small element here */
+  a {
+    color: #555555;
+    text-decoration: none;
+  }
 `;
 
 const AuthForm: React.FC<AuthFormProps> = ({
@@ -68,8 +66,6 @@ const AuthForm: React.FC<AuthFormProps> = ({
   );
 
   const path = usePathname();
-
-
 
   const { formData, handleChange, handleSubmit, resetForm, errors } = useForm(
     initialState,
@@ -96,12 +92,20 @@ const AuthForm: React.FC<AuthFormProps> = ({
         ))}
         <AuthFormAlternateRoute className="alternate__route mb-2 float-right">
           {path === "/signin" ? (
-            <AuthFormSmall className="text-[12px]">
-              Don&#39;t have an account?{" "}
-              <Link href={"/signup"} className="text-primary">
-                Sign Up
-              </Link>
-            </AuthFormSmall>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <AuthFormSmall className="text-[10px]">
+                Don&#39;t have an account?{" "}
+                <Link href={"/signup"} className=" text-gray-800">
+                  Sign Up
+                </Link>
+              </AuthFormSmall>
+              <AuthFormSmall className="text-[10px]">
+                <Link href={"/signup"} className=" text-gray-800">
+                  Forgot Password?
+                </Link>
+              </AuthFormSmall>
+              <br />
+            </div>
           ) : (
             <AuthFormSmall className="text-[12px]">
               Already have an account?{" "}

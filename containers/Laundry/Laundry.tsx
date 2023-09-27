@@ -11,7 +11,7 @@ import {
   HeroListItem,
   PlansSection,
   PriceTagSection,
-  Rectangle,
+  // Rectangle,
 } from "./Laundry.styles";
 import Button from "@/component/ui/button/Button";
 import HowItWorksCard from "@/component/howitworksCard/HiwCard";
@@ -112,11 +112,10 @@ const Laundry = () => {
         </div>
 
         <HeroImageContainer>
-          <Rectangle />
+          {/* <Rectangle /> */}
           <HeroImage
-            src={assets.laundry_basket}
-            width={600}
-            height={200}
+            src='/laundry to.png'
+            fill={true}
             alt="...."
           />
         </HeroImageContainer>
@@ -141,7 +140,10 @@ const Laundry = () => {
           <h3 className="title">
             Wash & <br /> Fold <span>Pricing</span>
           </h3>
-          <HeroImage src={assets.bag} width={150} height={70} alt="" />
+          <div className="imageContainer">
+             <HeroImage src='/the bag.png' fill={true} alt="" />
+          </div>
+         
         </div>
         <div className="pricecard__container">
           <PriceCard />

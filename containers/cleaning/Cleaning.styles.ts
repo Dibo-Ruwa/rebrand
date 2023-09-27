@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -45,21 +46,20 @@ export const HeroListItem = styled.div`
 `;
 
 export const HeroImageContainer = styled.div`
-  flex: 1;
-`;
-export const HeroImage = styled.div`
-  flex: 1;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  img {
-    width: 75%;
-    height: 75%;
+   width: 500px;
+  height: 600px;
+  position: relative;
 
-    margin: auto;
-    /* object-fit: contain; */
+  @media screen and (max-width: 768px) {
+    width: 300px;
+    height: 300px;
   }
+`;
+export const HeroImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  object-fit: contain;
 `;
 
 export const WYGSection = styled.div`

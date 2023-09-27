@@ -58,11 +58,10 @@ const Food = () => {
         </div>
 
         <HeroImageContainer>
-          <div className="image">
+          <div className="image food">
             <HeroImage
-              src={assets.food_hero}
-              width={600}
-              height={400}
+              src='/cheff.png'
+              fill={true}
               alt=".."
             />
           </div>

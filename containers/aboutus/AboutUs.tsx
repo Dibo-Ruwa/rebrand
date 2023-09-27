@@ -7,9 +7,7 @@ import styled from "styled-components";
 
 // Define your styled components below
 
-const Container = styled.div`
-
-`;
+const Container = styled.div``;
 
 const FirstSection = styled.div`
   background: var(--color2-20);
@@ -115,11 +113,15 @@ const ThirdSection = styled.div`
 const ParagraphText = styled.p`
   font-size: 18px;
   line-height: 130%;
+  text-align: justify;
 `;
 
 const FourthSection = styled.div`
   padding: 5% 8%;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -128,7 +130,7 @@ const FourthSection = styled.div`
 
 const LeftColumn = styled.div`
   /* Style for the left column */
-  flex: 1;
+ width: 40%;
   button {
     padding: 10px 25px;
     background: var(--primary);
@@ -145,8 +147,21 @@ const Background = styled.div`
 `;
 
 const RightColumn = styled.div`
-  /* Style for the right column */
-  flex: 1;
+  width: 500px;
+  height: 600px;
+  position: relative;
+
+  @media screen and (max-width: 768px) {
+    width: 300px;
+    height: 300px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    object-fit: contain;
+  }
 `;
 
 const TeamMemberList = styled.div`
@@ -261,7 +276,9 @@ const AboutUsPage: React.FC = () => {
 
           <button>Apply Now</button>
         </LeftColumn>
-        <RightColumn>{/* Image for the 4th section */}</RightColumn>
+        <RightColumn>
+          <Image src="/join hands.png" fill={true} alt="joining hands " />
+        </RightColumn>
       </FourthSection>
     </Container>
   );

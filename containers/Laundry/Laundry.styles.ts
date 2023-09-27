@@ -3,15 +3,15 @@ import Image from "next/image";
 import styled from "styled-components";
 
 export const Container = styled.div`
-.ctaBtn {
-  width: 200px;
-@media screen and (max-width: 768px) {
-  width: 100%;
-  button {
-    width: 100%;
+  .ctaBtn {
+    width: 200px;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      button {
+        width: 100%;
+      }
+    }
   }
-}
-}
 `;
 export const HeroList = styled.div`
   display: flex;
@@ -43,39 +43,43 @@ export const HeroListItem = styled.div`
   }
 `;
 export const HeroImageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 500px;
+  height: 600px;
+  position: relative;
+
+  @media screen and (max-width: 768px) {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* .image {
+    width: 100%;
+  } */
 `;
 export const HeroImage = styled(Image)`
-  width: 70%;
-  height: 70%;
-  margin: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   z-index: 5;
-
-  @media screen and (max-width: 768px) {
-    /* display: none; */
-    width: 85%;
-  }
 `;
-export const Rectangle = styled.div`
-  width: 400px;
-  height: 100px;
-  background: var(--color4-20);
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  position: absolute;
-  right: 0;
-  top: 45%;
-  z-index: 3;
+// export const Rectangle = styled.div`
+//   width: 400px;
+//   height: 100px;
+//   background: var(--color4-20);
+//   border-top-left-radius: 20px;
+//   border-bottom-left-radius: 20px;
+//   position: absolute;
+//   right: 0;
+//   top: 45%;
+//   z-index: 3;
 
-  @media screen and (max-width: 768px) {
-    /* display: none; */
-    top: 75%;
-    width: 200px;
-    height: 100px;
-  }
-`;
+//   @media screen and (max-width: 768px) {
+//     /* display: none; */
+//     top: 75%;
+//     width: 200px;
+//     height: 100px;
+//   }
+// `;
 
 export const HIWSection = styled.div`
   padding: 8%;
@@ -145,6 +149,17 @@ export const PriceTagSection = styled.div`
     transform: rotate(45deg);
   }
 
+  .imageContainer {
+    width: 250px;
+    height: 250px;
+    position: relative;
+
+    @media screen and (max-width: 768px) {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     flex-direction: column;
     gap: 30px;
@@ -170,7 +185,8 @@ export const PlansSection = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  .text__container, .calc {
+  .text__container,
+  .calc {
     flex: 1;
 
     @media screen and (max-width: 768px) {
@@ -223,7 +239,6 @@ export const PlansSection = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
-    
 
     .benefits {
       width: 100%;

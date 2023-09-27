@@ -35,16 +35,24 @@ export const HeroListItem = styled.div`
   }
 `;
 export const HeroImageContainer = styled.div`
-  .image {
-    width: 500px;
-    height: auto;
-    margin: auto;
+  width: 500px;
+  height: 600px;
+  position: relative;
+
+  @media screen and (max-width: 768px) {
+    width: 300px;
+    height: 300px;
   }
+
+  /* .image {
+    width: 100%;
+  } */
 `;
 export const HeroImage = styled(Image)`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  margin: auto;
+  object-fit: contain;
 `;
 
 export const HWWSecetion = styled.div`
