@@ -61,7 +61,7 @@ export async function POST(req: Request, res: Response) {
       "Activate Account",
       ActivateAccount({
         customerName: user.firstName,
-        activationLink: `${process.env.BASE_URL}${activationLink}`,
+        activationLink: `${process.env.BASE_URL}/verifyMail/${activationLink}`,
       })
     );
 
