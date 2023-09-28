@@ -56,12 +56,14 @@ export async function POST(req: Request, res: Response) {
     // Remove the password from the response
     createdUser.password = undefined;
 
+    const baseUrl = process.env.BASE_URL
+
     await sendEmail(
       user.email,
       "Activate Account",
       ActivateAccount({
         customerName: user.firstName,
-        activationLink: `${process.env.BASE_URL}/verifyMail/${activationLink}`,
+        activationLink: `${baseUrl}/verifyMail/${activationLink}`,
       })
     );
 
