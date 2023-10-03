@@ -11,8 +11,6 @@ export async function GET(req: Request, res: Response) {
   try {
     await connectDB();
 
-   
-
     const url = new URL(req.url);
     const token = url.searchParams.get("token");
 
@@ -26,8 +24,7 @@ export async function GET(req: Request, res: Response) {
 
       return NextResponse.json(
         {
-          message:
-            "An email has been sent to verify your account successfuly!!!",
+          message: "An email has been sent to verify your account!!!",
           email: user.email,
           success: true,
         },
@@ -61,9 +58,9 @@ export async function POST(req: Request, res: Response) {
     // Check if user already exists
     const userExists = await User.findOne({ email });
 
-    if (userExists) {
+    if (!userExists) {
       return new Response(
-        "User already exists. Try entering other email address",
+        "User does not exists. Try entering other email address",
         { status: 400 }
       );
     }
@@ -71,7 +68,7 @@ export async function POST(req: Request, res: Response) {
     // Hash password
     const hashedPassword = await hash(password, 12);
 
-    const changedPassword = await User.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
       userExists._id,
       { password: hashedPassword },
       { new: true }
@@ -79,8 +76,7 @@ export async function POST(req: Request, res: Response) {
 
     return NextResponse.json(
       {
-        message:
-          "Password Changed successfuly!!!\n a verification email hs been sent to you\n please verify your account.",
+        message: "Password Changed successfuly!!!",
 
         success: true,
       },

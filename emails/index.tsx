@@ -127,15 +127,19 @@ export const PartnerWelcomeEmailComponent: React.FC<{
 
   return (
     <div style={emailStyles}>
-      <header style={{
-    background: "#35f77f",
-    padding: "30px 0",
-    textAlign: "center",
-    display: "flex",
-    fontSize: "30px",
-    justifyContent: "center",
-    alignItems: "center",
-  }}>Welcome</header>
+      <header
+        style={{
+          background: "#35f77f",
+          padding: "30px 0",
+          textAlign: "center",
+          display: "flex",
+          fontSize: "30px",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        Welcome
+      </header>
 
       <div style={contentStyles}>
         <p>
@@ -326,15 +330,19 @@ export const PartnerOrderNotificationComponent: React.FC<{
 
   return (
     <div style={emailStyles}>
-      <header style={{
-    background: "#35f77f",
-    padding: "30px 0",
-    textAlign: "center",
-    display: "flex",
-    fontSize: "30px",
-    justifyContent: "center",
-    alignItems: "center",
-  }}>New Order Received!!!</header>
+      <header
+        style={{
+          background: "#35f77f",
+          padding: "30px 0",
+          textAlign: "center",
+          display: "flex",
+          fontSize: "30px",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        New Order Received!!!
+      </header>
 
       <div style={contentStyles}>
         <p>Hello {partnerFirstName},</p>
@@ -381,7 +389,7 @@ export const PartnerOrderNotificationComponent: React.FC<{
 export const AdminOrderNotificationComponent: React.FC<{
   customerFullName: string;
   orderNumber: string;
-  itemsOrdered: string;
+  itemsOrdered: any;
   totalAmount: string;
   customerAddress: string;
   partnerFullName: string;
@@ -439,17 +447,37 @@ export const AdminOrderNotificationComponent: React.FC<{
     width: "max-content",
   };
 
+  const tableStyles = {
+    border: "2px solid rgba(156, 245, 190, 0.37)", // Green border
+    borderRadius: "20px", // Border radius
+    width: "100%", // Make the table take up 100% width
+  };
+
+  const headerCellStyle = {
+    background: "#35f77f", // Header cell background color
+    color: "#fff", // Header cell text color
+    padding: "10px", // Header cell padding
+  };
+
+  const cellStyle = {
+    padding: "10px", // Cell padding
+  };
+
   return (
     <div style={emailStyles}>
-      <header style={{
-    background: "#35f77f",
-    padding: "30px 0",
-    textAlign: "center",
-    display: "flex",
-    fontSize: "30px",
-    justifyContent: "center",
-    alignItems: "center",
-  }}>New Order Placed</header>
+      <header
+        style={{
+          background: "#35f77f",
+          padding: "30px 0",
+          textAlign: "center",
+          display: "flex",
+          fontSize: "30px",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        New Order Placed
+      </header>
 
       <div style={contentStyles}>
         <p>Admin Team,</p>
@@ -465,7 +493,26 @@ export const AdminOrderNotificationComponent: React.FC<{
             Order ID: <strong>#{orderNumber}</strong>{" "}
           </li>
           <li>
-            Items Ordered: <strong>{itemsOrdered}</strong>{" "}
+            <table style={tableStyles}>
+              <thead>
+                <tr>
+                  <th style={headerCellStyle}>Item</th>
+                  <th style={headerCellStyle}>Price</th>
+                  <th style={headerCellStyle}>Quantity</th>
+                  <th style={headerCellStyle}>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {itemsOrdered.map((item: any) => (
+                  <tr key={item._id}>
+                    <td style={cellStyle}>{item.title}</td>
+                    <td style={cellStyle}>${item.price}</td>
+                    <td style={cellStyle}>{item.quantity}</td>
+                    <td style={cellStyle}>${item.total}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </li>
           <li>
             Total Amount: <strong>{totalAmount}</strong>
@@ -562,15 +609,17 @@ export const AdminOrderCancelNotificationComponent: React.FC<{
 
   return (
     <div style={emailStyles}>
-      <header style={{
-    background: "#35f77f",
-    padding: "30px 0",
-    textAlign: "center",
-    display: "flex",
-    fontSize: "30px",
-    justifyContent: "center",
-    alignItems: "center",
-  }}>
+      <header
+        style={{
+          background: "#35f77f",
+          padding: "30px 0",
+          textAlign: "center",
+          display: "flex",
+          fontSize: "30px",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         Order Cancelled by Partner - Immediate Action Required
       </header>
 
@@ -658,16 +707,18 @@ export const PartnerOrderAssignmentNotificationComponent: React.FC<{
 
   return (
     <div style={emailStyles}>
-      <header style={{
-    background: "#35f77f",
-    padding: "30px 0",
-    textAlign: "center",
-    display: "flex",
-    fontSize: "30px",
-    justifyContent: "center",
-    alignItems: "center",
-  }}>
-         New Order Assigned to You
+      <header
+        style={{
+          background: "#35f77f",
+          padding: "30px 0",
+          textAlign: "center",
+          display: "flex",
+          fontSize: "30px",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        New Order Assigned to You
       </header>
       <p>Hello {partnerFirstName},</p>
       <p>
@@ -710,7 +761,7 @@ export const PartnerOrderAssignmentNotificationComponent: React.FC<{
 export const DispatchStatusNotificationComponent: React.FC<{
   customerFirstName: string;
   orderNumber: string;
-  itemsOrdered: string;
+  itemsOrdered: any;
   totalAmount: string;
   estimatedDeliveryDate: string;
   contactNumber: string;
@@ -730,16 +781,18 @@ export const DispatchStatusNotificationComponent: React.FC<{
 
   return (
     <div style={emailStyles}>
-      <header style={{
-    background: "#35f77f",
-    padding: "30px 0",
-    textAlign: "center",
-    display: "flex",
-    fontSize: "30px",
-    justifyContent: "center",
-    alignItems: "center",
-  }}>
-         Your Order #{orderNumber} Has Been Dispatched!
+      <header
+        style={{
+          background: "#35f77f",
+          padding: "30px 0",
+          textAlign: "center",
+          display: "flex",
+          fontSize: "30px",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        Your Order #{orderNumber} Has Been Dispatched!
       </header>
       <p>Dear {customerFirstName},</p>
       <p>
@@ -772,7 +825,7 @@ export const DispatchStatusNotificationComponent: React.FC<{
 export const DeliveredStatusNotificationComponent: React.FC<{
   customerFirstName: string;
   orderNumber: string;
-  itemsDelivered: string;
+  itemsDelivered: any;
   totalAmount: string;
   deliveryDate: string;
   contactNumber: string;
@@ -840,3 +893,437 @@ export const DeliveredStatusNotificationComponent: React.FC<{
     </div>
   );
 };
+
+export const AdminQuoteRequestNotification: React.FC<{
+  fullName: string;
+  userEmail: string;
+  userContact: string;
+  serviceType: string;
+  description: string;
+  timestamp: string;
+}> = ({
+  fullName,
+  userEmail,
+  userContact,
+  serviceType,
+  description,
+  timestamp,
+}) => {
+  const adminEmailStyle: React.CSSProperties = {
+    fontFamily: "Arial, sans-serif",
+    backgroundColor: "cyan",
+    padding: "20px",
+    color: "white",
+    textAlign: "center",
+    fontSize: "18px",
+  };
+  return (
+    <div style={adminEmailStyle}>
+      <p>Admin Team,</p>
+      <p>
+        We have received a new quote request for our {serviceType} services from{" "}
+        {fullName}.
+      </p>
+      <p>Request Details:</p>
+      <ul>
+        <li>User Name: {fullName}</li>
+        <li>User Email: {userEmail}</li>
+        <li>User Contact: {userContact}</li>
+        <li>Service Type: {serviceType}</li>
+        <li>Description/Notes: {description}</li>
+        <li>Request Date & Time: {timestamp}</li>
+      </ul>
+      <p>
+        Please ensure the request is addressed promptly, and a comprehensive
+        quote is provided to the user. Your prompt action is appreciated.
+      </p>
+      <p>Best Regards, Dibo Ruwa Operations Team</p>
+    </div>
+  );
+};
+
+export const UserQuoteRequestConfirmation: React.FC<{
+  firstName: string;
+  serviceType: string | undefined;
+  description: string | undefined;
+  timestamp: string;
+  turnaroundTime: string;
+  adminContact: string;
+}> = ({
+  firstName,
+  serviceType,
+  description,
+  timestamp,
+  turnaroundTime,
+  adminContact,
+}) => {
+  const userEmailStyle: React.CSSProperties = {
+    fontFamily: "Arial, sans-serif",
+    backgroundColor: "cyan",
+    padding: "20px",
+    color: "white",
+    textAlign: "center",
+    fontSize: "18px",
+  };
+  return (
+    <div style={userEmailStyle}>
+      <p>Hello {firstName},</p>
+      <p>
+        Thank you for expressing interest in our {serviceType} services.
+        We&#39;ve received your request for a quote and are currently reviewing
+        the details.
+      </p>
+      <p>Your Request Details:</p>
+      <ul>
+        <li>Service Type: {serviceType}</li>
+        <li>Description/Notes: {description}</li>
+        <li>Request Date & Time: {timestamp}</li>
+      </ul>
+      <p>
+        Our team is committed to providing you with a comprehensive and
+        competitive quote. You can expect to hear back from us within{" "}
+        {turnaroundTime}.
+      </p>
+      <p>
+        If you have any immediate questions or require further information,
+        please don&#39;t hesitate to contact us at {adminContact}.
+      </p>
+      <p>
+        Thank you for considering Dibo Ruwa for your {serviceType} needs.
+        We&#39;re eager to serve you!
+      </p>
+      <p>Warm Regards, The Dibo Ruwa Team</p>
+    </div>
+  );
+};
+
+export const AdminLaundryQuoteRequest: React.FC<{
+  adminName: string;
+  userName: string;
+  userEmail: string;
+  userContact: string;
+  userAddress: string;
+  laundryItems: any;
+}> = ({
+  adminName,
+  userName,
+  userEmail,
+  userContact,
+  userAddress,
+  laundryItems,
+}) => {
+  const adminEmailStyle: React.CSSProperties = {
+    fontFamily: "Arial, sans-serif",
+    backgroundColor: "cyan",
+    padding: "20px",
+    color: "white",
+    textAlign: "center",
+    fontSize: "18px",
+  };
+  return (
+    <div style={adminEmailStyle}>
+      <p>Hello {adminName},</p>
+      <p>
+        We&#39;ve received a new quote request for laundry services from{" "}
+        {userName}, with the following details:
+      </p>
+      <p>Customer Information:</p>
+      <ul>
+        <li>Name: {userName}</li>
+        <li>Email: {userEmail}</li>
+        <li>Contact Number: {userContact}</li>
+        <li>Address: {userAddress}</li>
+      </ul>
+      <p>Laundry Items for Quotation:</p>
+      <ul>
+        {laundryItems.map((item: any, index: any) => (
+          <li key={index}>
+            {item.nae} - {item.amount}
+          </li>
+        ))}
+      </ul>
+      <p>
+        Please prepare a quote for the above-mentioned items and send it to the
+        customer at the earliest convenience.
+      </p>
+      <p>Warm regards,</p>
+    </div>
+  );
+};
+
+export const AdminHomeCleaningQuoteRequest: React.FC<{
+  adminName: string;
+  userName: string;
+  userEmail: string;
+  userContact: string;
+  userAddress: string;
+  homeCleaningAreas: any;
+}> = ({
+  adminName,
+  userName,
+  userEmail,
+  userContact,
+  userAddress,
+  homeCleaningAreas,
+}) => {
+  const adminEmailStyle: React.CSSProperties = {
+    fontFamily: "Arial, sans-serif",
+    backgroundColor: "cyan",
+    padding: "20px",
+    color: "white",
+    textAlign: "center",
+    fontSize: "18px",
+  };
+
+  return (
+    <div style={adminEmailStyle}>
+      <p>Hello {adminName},</p>
+      <p>
+        We&#39;ve received a new quote request for home cleaning services from{" "}
+        {userName}, with the following details:
+      </p>
+      <p>Customer Information:</p>
+      <ul>
+        <li>Name: {userName}</li>
+        <li>Email: {userEmail}</li>
+        <li>Contact Number: {userContact}</li>
+        <li>Address: {userAddress}</li>
+      </ul>
+      <p>Areas/Items for Home Cleaning Quotation:</p>
+      <ul>
+        {homeCleaningAreas.map((area: any, index: any) => (
+          <li key={index}>
+            {area.name} - {area.amount}
+          </li>
+        ))}
+      </ul>
+      <p>
+        Please prepare a quote for the above-mentioned areas/items and send it
+        to the customer at the earliest convenience.
+      </p>
+      <p>Warm regards,</p>
+    </div>
+  );
+};
+
+export const MovingRequestEmail: React.FC<{
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  currentAddress: string;
+  destinationAddress: string;
+  preferredDate: string;
+  // itemsForMoving: string[];
+  // specialInstructions: string;
+  companyName: string;
+}> = ({
+  customerName,
+  customerEmail,
+  customerPhone,
+  currentAddress,
+  destinationAddress,
+  preferredDate,
+  // itemsForMoving,
+  // specialInstructions,
+  companyName,
+}) => {
+  const emailStyle: React.CSSProperties = {
+    fontFamily: "Arial, sans-serif",
+    backgroundColor: "#f0f0f0", // Background color
+    padding: "20px",
+  };
+
+  const headerStyle: React.CSSProperties = {
+    backgroundColor: "#007bff", // Header background color
+    color: "white", // Header text color
+    padding: "10px",
+    fontSize: "24px",
+    fontWeight: "bold",
+    textAlign: "center",
+  };
+
+  const contentStyle: React.CSSProperties = {
+    backgroundColor: "white", // Content background color
+    padding: "20px",
+  };
+  return (
+    <div style={emailStyle}>
+      <div style={headerStyle}>New Moving Request from {customerName}</div>
+      <div style={contentStyle}>
+        <p>Hello Admin,</p>
+        <p>
+          We have received a new moving request from the website. Please find
+          the details below:
+        </p>
+        <p>Customer Information:</p>
+        <ul>
+          <li>Name: {customerName}</li>
+          <li>Email Address: {customerEmail}</li>
+          <li>Phone Number: {customerPhone}</li>
+          <li>Current Address: {currentAddress}</li>
+          <li>Destination Address: {destinationAddress}</li>
+          <li>Preferred Moving Date: {preferredDate}</li>
+        </ul>
+        {/* {itemsForMoving.length > 0 && (
+          <>
+            <p>List of Items for Moving:</p>
+            <ul>
+              {itemsForMoving.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </>
+        )}
+        {specialInstructions && (
+          <p>Special Instructions: {specialInstructions}</p>
+        )} */}
+        <p>
+          Please ensure that the moving team is informed and a quote is prepared
+          for the customer based on the details provided. It would be prudent to
+          reach out to the customer as soon as possible to confirm details,
+          provide the quote, and schedule the move.
+        </p>
+        <p>Thank you,</p>
+        <p>{companyName} Support Team</p>
+      </div>
+    </div>
+  );
+};
+
+
+
+
+export const PasswordRecoveryEmail: React.FC<{
+  userName: string;
+  passwordResetLink: string;
+}> = ({ userName, passwordResetLink }) => {
+  const emailStyle: React.CSSProperties = {
+    fontFamily: 'Arial, sans-serif',
+    backgroundColor: '#f0f0f0', // Background color
+    padding: '20px',
+  };
+  
+  const headerStyle: React.CSSProperties = {
+    backgroundColor: '#007bff', // Header background color
+    color: 'white', // Header text color
+    padding: '10px',
+    fontSize: '24px',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  };
+  
+  const contentStyle: React.CSSProperties = {
+    backgroundColor: 'white', // Content background color
+    padding: '20px',
+  };
+  return (
+    <div style={emailStyle}>
+      <div style={headerStyle}>Password Recovery</div>
+      <div style={contentStyle}>
+        <p>Hello {userName},</p>
+        <p>We received a request to reset your password for your Dibo Ruwa account. If you didn&#39;t make this request, please ignore this email.</p>
+        <p>To set a new password, click the link below:</p>
+        <p><a href={passwordResetLink}>{passwordResetLink}</a></p>
+        <p>This link will expire in 24 hours, so be sure to use it right away.</p>
+        <p>Stay safe, and always ensure you use a strong, unique password for your accounts.</p>
+        <p>Best,</p>
+        <p>The Dibo Ruwa Team</p>
+      </div>
+    </div>
+  );
+};
+
+
+
+
+
+export const SubscriptionConfirmationEmail: React.FC<{
+  customerName: string;
+  serviceName: string;
+  planName: string;
+  startDate: string;
+  endDate: string;
+}> = ({ customerName, serviceName, planName, startDate, endDate }) => {
+  
+const emailStyle: React.CSSProperties = {
+  fontFamily: 'Arial, sans-serif',
+  backgroundColor: '#f0f0f0', // Background color
+  padding: '20px',
+};
+
+const headerStyle: React.CSSProperties = {
+  backgroundColor: '#007bff', // Header background color
+  color: 'white', // Header text color
+  padding: '10px',
+  fontSize: '24px',
+  fontWeight: 'bold',
+  textAlign: 'center',
+};
+
+const contentStyle: React.CSSProperties = {
+  backgroundColor: 'white', // Content background color
+  padding: '20px',
+};
+  return (
+    <div style={emailStyle}>
+      <div style={headerStyle}>Your Subscription with Dibo Ruwa is Confirmed!</div>
+      <div style={contentStyle}>
+        <p>Hello {customerName},</p>
+        <p>Great choice! We&#39;re thrilled to have you onboard. Your subscription for {serviceName} is now confirmed. Get ready for a hassle-free and delightful experience.</p>
+        <p>Details:</p>
+        <ul>
+          <li>Service: {serviceName}</li>
+          <li>Plan: {planName}</li>
+          <li>Subscription Period: {startDate} to {endDate}</li>
+        </ul>
+        <p>Thank you for trusting Dibo Ruwa. We&#39;re excited to serve you!</p>
+        <p>Warmly,</p>
+        <p>The Dibo Ruwa Team</p>
+      </div>
+    </div>
+  );
+};
+
+
+
+
+const DaysToSubscriptionExpiryEmail: React.FC<{
+  customerName: string;
+  serviceName: string;
+  daysToExpiry: number;
+}> = ({ customerName, serviceName, daysToExpiry }) => {
+  
+const emailStyle: React.CSSProperties = {
+  fontFamily: 'Arial, sans-serif',
+  backgroundColor: '#f0f0f0', // Background color
+  padding: '20px',
+};
+
+const headerStyle: React.CSSProperties = {
+  backgroundColor: '#007bff', // Header background color
+  color: 'white', // Header text color
+  padding: '10px',
+  fontSize: '24px',
+  fontWeight: 'bold',
+  textAlign: 'center',
+};
+
+const contentStyle: React.CSSProperties = {
+  backgroundColor: 'white', // Content background color
+  padding: '20px',
+};
+  return (
+    <div style={emailStyle}>
+      <div style={headerStyle}>Heads up! Your Dibo Ruwa Subscription Ends in {daysToExpiry} Days</div>
+      <div style={contentStyle}>
+        <p>Hello {customerName},</p>
+        <p>Just a quick note to remind you that your {serviceName} subscription with Dibo Ruwa is coming to an end in {daysToExpiry} days.</p>
+        <p>Want uninterrupted service? Consider renewing your subscription. Head to our website or get in touch if you need any assistance.</p>
+        <p>Thank you for choosing Dibo Ruwa. We hope to continue serving you!</p>
+        <p>Best,</p>
+        <p>The Dibo Ruwa Team</p>
+      </div>
+    </div>
+  );
+};
+

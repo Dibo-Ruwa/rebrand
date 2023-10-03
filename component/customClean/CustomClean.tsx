@@ -1,5 +1,6 @@
 "use client";
 
+import useQuote from "@/hooks/useQuote";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -81,7 +82,7 @@ const MultiSelectOption = styled.div`
 const SelectedOptions = styled.div`
   display: grid;
   gap: 10px;
-  margin-top: 20px;
+  margin: 20px;
   max-height: 150px;
   overflow-y: auto;
   &::-webkit-scrollbar {
@@ -183,6 +184,9 @@ const CustomClean: React.FC = () => {
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
+  const { handleQuote, showModal, modalErrorType, modalMessage, closeModal } =
+    useQuote();
+
   const cleanproperties: Cleanproperties[] = [
     { id: 1, name: "T-Shirt", amount: 0 },
     { id: 2, name: "Jeans", amount: 0 },
@@ -235,13 +239,18 @@ const CustomClean: React.FC = () => {
     } else {
       const quoteText = selectedItems
         .filter((item) => item.amount > 0)
-        .map((item) => `${item.name} x ${item.amount}`)
+        .map((item) => `${item.name} -- ${item.amount}`)
         .join(", ");
+      console.log(selectedItems)
 
       setQuote(`Quote: ${quoteText}`);
       setNotification(null);
       try {
-        const res = await axios.post("/api/quote", { quote: quoteText });
+        const data = {
+          type: "cleaning",
+          quote: selectedItems,
+        };
+        handleQuote(data);
       } catch (error) {
         console.log(error);
       }
@@ -294,7 +303,7 @@ const CustomClean: React.FC = () => {
       <QuoteButton
         onClick={() => {
           if (session) {
-            handleGetQuote;
+            handleGetQuote();
           } else {
             router.push("signin");
             toast("please sign in to add item to cart");

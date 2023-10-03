@@ -9,12 +9,20 @@ import sendEmail from "@/utils/resend";
 import { sendMail } from "@/utils/sendMail";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/helpers/authOptions";
+import {
+  AdminHomeCleaningQuoteRequest,
+  AdminLaundryQuoteRequest,
+  UserQuoteRequestConfirmation,
+} from "@/emails";
+import moment from "moment";
 
 export async function POST(req: Request, res: Response) {
   try {
     await connectDB();
 
-    const body = await res.json();
+    const body = await req.json();
+
+    console.log("ooooo");
 
     if (!req.body)
       return NextResponse.json({ error: "Data is missing" }, { status: 400 });
@@ -28,8 +36,57 @@ export async function POST(req: Request, res: Response) {
       return NextResponse.json({ message: "user does not exist" });
     }
 
-    const { quote } = body;
-    await sendMail(user, "new Quote", quote);
+    const { type, quote } = body;
+    console.log(type, quote);
+    const timestamp = moment().format("YYYY-MM-DD HH:mm:ss");
+    const turnaroundTime = moment().add(1, "day").format("YYYY-MM-DD HH:mm:ss");
+
+    const quoteText = quote
+      .filter((item: any) => item.amount > 0)
+      .map((item: any) => `${item.name} -- ${item.amount}`)
+      .join(", ");
+
+    await sendEmail(
+      user.email,
+      "new Quote",
+      UserQuoteRequestConfirmation({
+        firstName: user.firstName,
+        serviceType: type,
+        description: quoteText,
+        timestamp: timestamp,
+        turnaroundTime: turnaroundTime,
+        adminContact: "info@diboruwa.com",
+      })
+    );
+
+    if (type === "laundry") {
+      await sendEmail(
+        user.email,
+        "new Quote",
+        AdminLaundryQuoteRequest({
+          adminName: "Ibrahim",
+          userName: `${user.firstName} ${user.lastName}`,
+          userEmail: user.email,
+          userContact: user.phone,
+          userAddress: `${user.address}, ${user.lga}, ${user.city}, ${user.state}`,
+          laundryItems: quote,
+        })
+      );
+    } else if (type === "cleaning") {
+      await sendEmail(
+        user.email,
+        "new Quote",
+        AdminHomeCleaningQuoteRequest({
+          adminName: "Ibrahim",
+          userName: `${user.firstName} ${user.lastName}`,
+          userEmail: user.email,
+          userContact: user.phone,
+          userAddress: `${user.address}, ${user.lga}, ${user.city}, ${user.state}`,
+          homeCleaningAreas: quote,
+        })
+      );
+    }
+
     return NextResponse.json(
       { message: "emails sent successfully", success: true },
       { status: 201 }

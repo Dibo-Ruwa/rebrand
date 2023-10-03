@@ -122,6 +122,11 @@ export const SubscriptionSection = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
+
+    h2 {
+      width: 100%;
+      font-size: 18px;
+    }
   }
 `;
 

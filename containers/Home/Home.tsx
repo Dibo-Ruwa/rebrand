@@ -103,11 +103,7 @@ export default function Home() {
 
         <HeroImageContainer>
           <div className="image home">
-            <HeroImage
-              src='/homepage_hero.png'
-              fill={true}
-              alt=".."
-            />
+            <HeroImage src="/homepage_hero.png" fill={true} alt=".." />
           </div>
         </HeroImageContainer>
       </HeroContainer>
@@ -149,6 +145,10 @@ export default function Home() {
             <div className="ball blueBall"></div>
             <div className="ball yellowBall"></div>
             <div className="ball purpleBall"></div>
+
+            <div className="image">
+              <Image src="/phone user.png" fill={true} alt="..." />
+            </div>
           </WhyChooseUsImage>
         </WhyChooseUsImageContainer>
 
@@ -182,7 +182,7 @@ export default function Home() {
 
         <div className="content">
           <div className="image">
-            <Image src='/lady thinking.png' fill={true} alt="...." />
+            <Image src="/lady thinking.png" fill={true} alt="...." />
           </div>
 
           <div className="carousel">

@@ -1,11 +1,13 @@
 "use client";
 
+import useQuote from "@/hooks/useQuote";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState, useRef, useEffect } from "react";
 import toast from "react-hot-toast";
 import styled from "styled-components";
+import NotificationModal from "../NotificationModal";
 
 // Define the LaundryItem interface
 interface LaundryItem {
@@ -70,7 +72,7 @@ const MultiSelectOption = styled.div`
 const SelectedOptions = styled.div`
   display: grid;
   gap: 10px;
-  margin-top: 20px;
+  margin: 20px;
   max-height: 150px;
   overflow-y: auto;
   &::-webkit-scrollbar {
@@ -153,13 +155,15 @@ const Notification = styled.div`
   color: #ff0000;
   margin-top: 10px;
 `;
-const QuoteButton = styled.div`
+const QuoteButton = styled.button`
   background: var(--primary);
   padding: 10px 20px;
   border-radius: 8px;
   color: #fff;
   margin-top: auto;
   margin-left: auto;
+  outline: none;
+  border: none;
 `;
 
 const LaundryCounter: React.FC = () => {
@@ -169,6 +173,7 @@ const LaundryCounter: React.FC = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [quote, setQuote] = useState<string | null>(null);
   const [notification, setNotification] = useState<string | null>(null);
+  const { handleQuote,  showModal, modalErrorType, modalMessage, closeModal } = useQuote();
 
   const dropdownRef = useRef<HTMLDivElement | null>(null); // Replace 'HTMLDivElement' with the appropriate element type
 
@@ -224,14 +229,17 @@ const LaundryCounter: React.FC = () => {
     } else {
       const quoteText = selectedItems
         .filter((item) => item.amount > 0)
-        .map((item) => `${item.name} x ${item.amount}`)
+        .map((item) => `${item.name} -- ${item.amount}`)
         .join(", ");
 
       setQuote(`Quote: ${quoteText}`);
       setNotification(null);
 
+      console.log(quoteText);
+
       try {
-        const res = await axios.post("/api/quote", { quote: quoteText });
+        const data = { type: "laundry", quote: quoteText };
+        handleQuote(data);
       } catch (error) {
         console.log(error);
       }
@@ -283,7 +291,7 @@ const LaundryCounter: React.FC = () => {
       <QuoteButton
         onClick={() => {
           if (session) {
-            handleGetQuote;
+            handleGetQuote();
           } else {
             router.push("signin");
             toast("please sign in");
@@ -292,7 +300,13 @@ const LaundryCounter: React.FC = () => {
       >
         Get a Quote
       </QuoteButton>
-      {/* {quote && <div>{quote}</div>} */}
+      {showModal && (
+        <NotificationModal
+          message={modalMessage}
+          errorType={modalErrorType}
+          onClose={closeModal}
+        />
+      )}
     </Container>
   );
 };

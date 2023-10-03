@@ -28,11 +28,7 @@ const Heading = styled.h3`
 const NewsletterForm = () => {
  
 
-  const onSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    const res = await axios.post('/api/contact')
-  };
+ 
   return (
     <Container>
       <Heading>

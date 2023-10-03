@@ -6,6 +6,7 @@ import { Cart } from "@/utils/models/Cart";
 import { generateToken } from "@/templates/authTemplates";
 import ActivateAccount from "@/emails/ActivateAccount";
 import sendEmail from "@/utils/resend";
+import { PasswordRecoveryEmail } from "@/emails";
 
 export async function POST(req: Request, res: Response) {
   try {
@@ -32,15 +33,15 @@ export async function POST(req: Request, res: Response) {
 
     const resetToken = generateToken(userExists._id);
 
-  
-//         await sendEmail(
-//           userExists.email,
-//           "Activate Account",
-//           ActivateAccount({
-//             customerName: userExists.firstName,
-//             activationLink: `${process.env.BASE_URL}/reset-password?token=${resetToken}`,
-//           })
-//         );
+  const baseUrl = process.env.BASE_URL
+        await sendEmail(
+          userExists.email,
+          "Activate Account",
+          PasswordRecoveryEmail({
+            userName: userExists.firstName,
+            passwordResetLink: `${baseUrl}/reset-password?token=${resetToken}`,
+          })
+        );
 
     return NextResponse.json(
       {

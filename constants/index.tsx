@@ -429,7 +429,7 @@ export const TermsContent = [
 export interface Plan {
   title: string;
   features: string[];
-  total: string;
+  total: string | number;
   planCode?: string;
 }
 
@@ -448,7 +448,7 @@ export const planDetails: PlanDetails = {
         "Standard plate",
         "Ideal for occasional treats",
       ],
-      total: "N7700",
+      total: 7700,
       planCode: "PLN_sqxrib4c4knnh0i",
     },
     {
@@ -460,7 +460,7 @@ export const planDetails: PlanDetails = {
         "Delivered once a week",
         "Ideal for weekend treats",
       ],
-      total: "14,980",
+      total: 14980,
       planCode: 'PLN_w988l6ia7g7dfq6'
     },
     {
@@ -472,7 +472,7 @@ export const planDetails: PlanDetails = {
         "Delivered 5 times a week",
         "Perfect for workweek meals",
       ],
-      total: "N34,970",
+      total: 34970,
       planCode: "PLN_pz6i6zhbcwvfdk7"
     },
     {
@@ -485,7 +485,7 @@ export const planDetails: PlanDetails = {
         "Perfect for everyday meals",
         "A meal every day",
       ],
-      total: "N47,960",
+      total: 47960,
       planCode: "PLN_f5nb851w9xpbtto"
     },
   ],
@@ -500,7 +500,7 @@ export const planDetails: PlanDetails = {
         "Picked up once a month",
         "Ideal for individual",
       ],
-      total: "11,960",
+      total: 11960,
       planCode: 'PLN_jjx1iqwxol2hch4'
     },
     {
@@ -514,7 +514,7 @@ export const planDetails: PlanDetails = {
         "Picked up twice a month",
         "Ideal for family of two",
       ],
-      total: "N22,100",
+      total: 22100,
       planCode: 'PLN_jd0nwcnhvifs0no'
     },
     {
@@ -529,7 +529,7 @@ export const planDetails: PlanDetails = {
         "Picked up four times a month",
         "Ideal for family of four",
       ],
-      total: "N36,700",
+      total: 36700,
       planCode: 'PLN_d3km1qswvj8nbot'
     },
   ],
@@ -545,7 +545,7 @@ export const planDetails: PlanDetails = {
         "Dusting of all surfaces",
         "Once a week",
       ],
-      total: "12,900",
+      total: 12900,
       planCode: 'PLN_fw9vc36viohwk6l'
     },
     {
@@ -560,7 +560,7 @@ export const planDetails: PlanDetails = {
         "Once a week",
       ],
 
-      total: "N22,750",
+      total: 22750,
       planCode: 'PLN_b361yykypop2gfz'
     },
     {
@@ -575,7 +575,7 @@ export const planDetails: PlanDetails = {
         "Once a week",
       ],
 
-      total: "N31,900",
+      total: 31900,
       planCode: 'PLN_jsbrun8t72zsbiu'
     },
   ],

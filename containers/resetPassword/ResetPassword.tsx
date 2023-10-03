@@ -1,10 +1,11 @@
 "use client";
 
+import NotificationModal from "@/component/NotificationModal";
 import Input from "@/component/ui/input/Input";
 import useAuth from "@/hooks/useAuth";
 import useForm from "@/hooks/useForm";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import styled from "styled-components";
 
@@ -57,7 +58,7 @@ export const Form = styled.form`
   }
 `;
 export const InputField = styled.div``;
-export const Button = styled.button`
+export const Button = styled.input`
   outline: none;
   padding: 15px;
   border-radius: 8px;
@@ -65,30 +66,35 @@ export const Button = styled.button`
   color: white;
   border: none;
   cursor: pointer;
+
+  &:disabled {
+    background: var(--primary-20);
+  }
 `;
 
 const ResetPassword = ({ token }: { token: string | string[] | undefined }) => {
-  const { resetPassword } = useAuth();
+  const { resetPassword, showModal, modalErrorType, modalMessage, closeModal } =
+    useAuth();
   const [email, setEmail] = useState("");
 
-  const onSubmit = async (formData: { [key: string]: string }) => {
-    console.log(formData);
-    // try {
-    //   resetPassword(formData);
-    // } catch (error) {
-    //   toast.error("An error occurred while updating the profile");
-    //   // Handle the error or display an error message
-    // }
-  };
   const { formData, handleChange, handleSubmit, resetForm, errors } = useForm(
     {
-      email,
+      email: email ? email : "",
       password: "",
       confirmPassword: "",
     },
-    onSubmit
+    () => {}
   );
 
+  console.log(errors);
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const data = {
+      email,
+      password: formData.password,
+    };
+    resetPassword(data);
+  };
   useEffect(() => {
     async function fetchData() {
       // You can await here
@@ -98,7 +104,6 @@ const ResetPassword = ({ token }: { token: string | string[] | undefined }) => {
         );
 
         setEmail(response.data.email);
-        console.log(email);
       } catch (error) {
         console.log(error);
       }
@@ -110,7 +115,7 @@ const ResetPassword = ({ token }: { token: string | string[] | undefined }) => {
 
   return (
     <Container>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={onSubmit}>
         <Header>
           <h3> Password reset</h3>
           <p>please enter your registered email to reset yor password.</p>
@@ -124,6 +129,7 @@ const ResetPassword = ({ token }: { token: string | string[] | undefined }) => {
             id="id1"
             value={formData.password}
             onChange={(e) => handleChange(e, e.target.name)}
+            showPasswordToggle
           />
         </InputField>
         <InputField>
@@ -134,11 +140,25 @@ const ResetPassword = ({ token }: { token: string | string[] | undefined }) => {
             id="id2"
             value={formData.confirmPassword}
             onChange={(e) => handleChange(e, e.target.name)}
+            showPasswordToggle
           />
         </InputField>
 
-        <Button onClick={handleSubmit}>Submit</Button>
+        {/* <Button onClick={handleSubmit}>Submit</Button> */}
+        <Button
+          type="submit"
+          value="Submit"
+          disabled={formData.password !== formData.confirmPassword}
+        />
       </Form>
+
+      {showModal && (
+        <NotificationModal
+          message={modalMessage}
+          errorType={modalErrorType}
+          onClose={closeModal}
+        />
+      )}
     </Container>
   );
 };

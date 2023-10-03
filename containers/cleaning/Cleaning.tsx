@@ -27,13 +27,34 @@ import { useRouter } from "next/navigation";
 import Modal from "@/component/modals/Modal";
 import CustomClean from "@/component/customClean/CustomClean";
 import useForm from "@/hooks/useForm";
-import { FormEvent } from "react";
+import { FormEvent, useRef, useState } from "react";
 import axios from "axios";
+import useQuote from "@/hooks/useQuote";
+import NotificationModal from "@/component/NotificationModal";
+import Moving from "@/component/movingRequestCard/Moving";
 
 const Cleaning = () => {
-  const { addSubscription, subscriptions, modal, closeModal } = useCartStore();
+  const { addSubscription, subscriptions, modal } = useCartStore();
   const { data: session } = useSession();
   const router = useRouter();
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [quote, setQuote] = useState<string | null>(null);
+  const [notification, setNotification] = useState<string | null>(null);
+
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+
+  const properties  = [
+    { id: 1, name: "T-Shirt", amount: 0 },
+    { id: 2, name: "Jeans", amount: 0 },
+    { id: 3, name: "duve", amount: 0 },
+    { id: 4, name: "curtains", amount: 0 },
+    { id: 5, name: "others", amount: 0 },
+    // Add more laundry items as needed
+  ];
+
+
   const ChoosePlan = (plan: string) => {
     const data = {
       type: "cleaning",
@@ -44,6 +65,9 @@ const Cleaning = () => {
     addSubscription(data);
   };
 
+  const { handleQuote, showModal, modalErrorType, modalMessage, closeModal } =
+    useQuote();
+
   const { formData, handleChange, resetForm, errors } = useForm(
     {
       from: "",
@@ -53,14 +77,16 @@ const Cleaning = () => {
     () => {}
   );
 
-  const onSubmit = async (e: FormEvent) => {
-    try {
-      const res = await axios.post("/api/contact", formData);
-    } catch (error) {
-      toast.error("An error occurred while updating the profile");
-      // Handle the error or display an error message
-    }
+  const onSubmit = (type: any) => {
+    const data = {
+      type,
+      quote: formData,
+    };
+    handleQuote(data);
   };
+
+
+  
 
   return (
     <Container>
@@ -137,7 +163,9 @@ const Cleaning = () => {
         </BenefitList>
       </WYGSection>
 
-      <SubscriptionSection>
+     
+
+     <SubscriptionSection>
         <h2>Have you been wondering how to get your apartment cleaned?</h2>
         <SubscriptionList>
           {subscriptionPlans.map((plan, index) => (
@@ -174,7 +202,9 @@ const Cleaning = () => {
 
           <CustomClean />
 
-          <SubscriptionCard>
+          <Moving/>
+
+          {/* <SubscriptionCard>
             <h3 className="title">
               Simplifying Your Move from Start to Finish
             </h3>
@@ -216,7 +246,7 @@ const Cleaning = () => {
               color="primary"
               onClick={() => {
                 if (session) {
-                  // handleGetQuote;
+                  onSubmit("moving");
                 } else {
                   router.push("signin");
                   toast("please sign in to add item to cart");
@@ -225,18 +255,19 @@ const Cleaning = () => {
             >
               Contact Us
             </Button>
-          </SubscriptionCard>
+          </SubscriptionCard> */}
         </SubscriptionList>
       </SubscriptionSection>
 
       <MoreServices />
 
-      <Modal
-        isOpen={modal.isOpen}
-        type={modal.type}
-        message={modal.message}
-        onClose={closeModal}
-      />
+      {showModal && (
+        <NotificationModal
+          message={modalMessage}
+          errorType={modalErrorType}
+          onClose={closeModal}
+        />
+      )}
     </Container>
   );
 };

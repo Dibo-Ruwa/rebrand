@@ -15,7 +15,7 @@ interface CartOrderData {
 }
 
 interface SubscriptionOrderData {
-  subscription: Subscription;
+  subscription: any;
 }
 
 const useOrder = () => {
@@ -25,7 +25,6 @@ const useOrder = () => {
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { data: session } = useSession();
-  
 
   const router = useRouter();
 
@@ -68,33 +67,57 @@ const useOrder = () => {
 
   const handleSubscriptionOrderSubmit = async (
     referenceId: string,
-    subscriptionOrderData: SubscriptionOrderData
+    subscriptionOrderData: any,
+    type: string
   ) => {
     setIsSubmitting(true);
     setIsError(false);
     setIsSuccess(false);
 
     try {
-      const { subscription } = subscriptionOrderData;
+      console.log(subscriptionOrderData);
+      if (type === "one_off") {
+        const { subscription } = subscriptionOrderData;
 
-      const { data } = await axios.put(
-        `/api/order/subscription/${subscription?._id}`,
-        {
+        const { data } = await axios.put(
+          `/api/order/subscription/${subscription?._id}`,
+          {
+            referenceId,
+            subscription,
+          }
+        );
+
+        toast.loading("Subcription order is being proccessed", {
+          duration: 2000,
+        });
+
+        setTimeout(() => {
+          useCartStore.getState().getSubscriptions();
+
+          setIsSuccess(true);
+          toast.success("Subscription order submitted successfully!");
+        }, 500);
+        router.push(`/dashboard/${data.order?._id}`);
+      } else {
+        const { subscription } = subscriptionOrderData;
+
+        const { data } = await axios.post(`/api/subscriptions`, {
           referenceId,
-        }
-      );
+          subscription,
+        });
 
-      toast.loading("Subcription order is being proccessed", {
-        duration: 2000,
-      });
+        toast.loading("Subcription order is being proccessed", {
+          duration: 2000,
+        });
 
-      setTimeout(() => {
-        useCartStore.getState().getSubscriptions();
+        setTimeout(() => {
+          useCartStore.getState().getSubscriptions();
 
-        setIsSuccess(true);
-        toast.success("Subscription order submitted successfully!");
-      }, 500);
-      router.push(`/dashboard/${data.order?._id}`);
+          setIsSuccess(true);
+          toast.success("Subscription order submitted successfully!");
+        }, 500);
+        router.push(`/dashboard/${data.order?._id}`);
+      }
     } catch (error) {
       setIsError(true);
       toast.error("Error submitting subscription order."); // Show error toast

@@ -16,24 +16,47 @@ const FirstSection = styled.div`
   margin-bottom: 20px;
   display: flex;
   margin-bottom: 3%;
+  align-items: center;
+  gap: 30px;
   justify-content: space-between;
   .text {
     flex: 1;
   }
 
   .title {
-    font-size: 30px;
-    margin-bottom: 10px;
-    font-weight: bold;
+    font-size: 36px;
+    margin-bottom: 15px;
+    font-weight: 700;
   }
 
   p {
     font-size: 18px;
     line-height: 130%;
+    text-align: justify;
   }
 
   .image {
     flex: 1;
+    width: 300px;
+    height: 400px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    object-fit: cover;
+
+    @media screen and (max-width: 768px) {
+      width: 300px;
+      height: 300px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      margin: auto;
+      object-fit: contain;
+    }
   }
 
   @media screen and (max-width: 768px) {
@@ -44,12 +67,24 @@ const FirstSection = styled.div`
 const SecondSection = styled.div`
   padding: 5% 8%;
   text-align: center;
+
+  .desc {
+    width: 85%;
+    margin: auto;
+  }
+
+  @media screen and (max-width: 768px) {
+    .desc {
+      width: 100%;
+      margin: auto;
+    }
+  }
 `;
 const ThreeColumnSection = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px; /* Adjust the gap as needed */
-  margin-top: 30px;
+  margin: 30px;
 
   @media screen and (max-width: 698px) {
     grid-template-columns: 1fr;
@@ -57,11 +92,16 @@ const ThreeColumnSection = styled.div`
 `;
 const Column = styled.div`
   margin-bottom: 20px;
+  padding: 20px;
+
+  p {
+    font-size: 14px;
+  }
 `;
 const ColumnTitle = styled.div`
-  font-size: 23px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
 `;
 
 const SectionTitle = styled.h2`
@@ -108,12 +148,23 @@ const SectionSubTitle = styled.p`
 const ThirdSection = styled.div`
   text-align: center;
   padding: 5% 8%;
+
+  .header {
+    width: 80%;
+    margin: auto;
+  }
+
+  @media screen and (max-width: 768px) {
+    .header {
+      width: 100%;
+      margin: auto;
+    }
+  }
 `;
 
 const ParagraphText = styled.p`
   font-size: 18px;
   line-height: 130%;
-  text-align: justify;
 `;
 
 const FourthSection = styled.div`
@@ -130,7 +181,7 @@ const FourthSection = styled.div`
 
 const LeftColumn = styled.div`
   /* Style for the left column */
- width: 40%;
+  width: 40%;
   button {
     padding: 10px 25px;
     background: var(--primary);
@@ -139,6 +190,10 @@ const LeftColumn = styled.div`
     border: none;
     border-radius: 50px;
     margin-top: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -192,12 +247,12 @@ const AboutUsPage: React.FC = () => {
         </div>
 
         <div className="image">
-          {/* <Image src={} width={100} height={100} alt="...." /> */}
+          <Image src="/homepage_hero.png" fill={true} alt="...." />
         </div>
       </FirstSection>
       <SecondSection>
         <SectionTitle>Who We Are</SectionTitle>
-        <ParagraphText>
+        <ParagraphText className="desc">
           In a world that’s constantly moving, everyone seeks a touch of
           convenience. At Dibo Ruwa, we believe in making lives easier by
           providing services that let you focus on what truly matters. From
@@ -243,14 +298,17 @@ const AboutUsPage: React.FC = () => {
         </ParagraphText>
       </SecondSection>
       <ThirdSection>
-        <SectionTitle>Our Team</SectionTitle>
-        <SectionSubTitle>The Pillars of Excellence.</SectionSubTitle>
-        <ParagraphText>
-          Behind every wrinkle-free shirt, every gleaming floor, and every
-          satisfied bite, is a team that&#39;s passionate about delivering the
-          best. Meet the stalwarts who&#39;ve made Dibo Ruwa synonymous with
-          trust and quality.
-        </ParagraphText>
+        <div className="header">
+          <SectionTitle>Our Team</SectionTitle>
+          <SectionSubTitle>The Pillars of Excellence.</SectionSubTitle>
+          <ParagraphText>
+            Behind every wrinkle-free shirt, every gleaming floor, and every
+            satisfied bite, is a team that&#39;s passionate about delivering the
+            best. Meet the stalwarts who&#39;ve made Dibo Ruwa synonymous with
+            trust and quality.
+          </ParagraphText>
+        </div>
+
         <TeamMemberList>
           {teamMembers.map((member, index) => (
             <TeamCard

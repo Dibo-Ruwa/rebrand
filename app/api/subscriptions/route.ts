@@ -17,6 +17,7 @@ export async function POST(req: Request, res: Response) {
       return NextResponse.json({ error: "Data is missing" }, { status: 400 });
 
     const body = await req.json();
+    
     const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ message: "you are not loggedIn" });
@@ -35,14 +36,14 @@ export async function POST(req: Request, res: Response) {
     // Check if a subscription already exists for the user
     const existingSubscription = await Subscription.findOne({
       user,
-      type: body.type,
-      plan: body.plan,
+      type: body.subscription.type,
+      plan: body.subscription.plan,
     });
 
     if (!existingSubscription) {
       // Create a new subscription object
       const newSubscription = new Subscription({
-        ...body,
+        ...body.subscription,
         user,
         start,
         due,
@@ -79,6 +80,7 @@ export async function POST(req: Request, res: Response) {
       { status: 201 }
     );
   } catch (err) {
+    console.log(err)
     return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();

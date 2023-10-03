@@ -187,8 +187,16 @@ const Pricing = () => {
 
   const referenceId = nanoid(8);
 
-  const onSuccess = () => {
-    // handleSubscriptionOrderSubmit(referenceId, { subscription });
+  const onSuccess = (sub: any) => {
+    const subscription = {
+      plan: sub.title,
+      type: activeSubscription,
+      isPaid: true,
+      total: sub.total
+    }
+
+    console.log(subscription)
+    handleSubscriptionOrderSubmit(referenceId, { subscription }, "recurring");
   };
 
   const onClose = () => {
@@ -245,7 +253,7 @@ const Pricing = () => {
               buttonText="Choose Plan"
               color="color2"
               planCode={plan.planCode}
-              onSuccess={onSuccess}
+              onSuccess={() => onSuccess(plan)}
               onClose={onClose}
               referenceId={referenceId}
             />

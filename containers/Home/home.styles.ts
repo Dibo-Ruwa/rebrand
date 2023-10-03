@@ -99,12 +99,12 @@ export const ServiceList = styled.div`
   height: auto;
   width: 100%;
 
-  margin-top: 40px;
+  margin: 40px 0;
 
   .pattern {
     position: absolute;
     right: 0;
-    bottom: -10%;
+    bottom: -7%;
     z-index: 2;
   }
 
@@ -136,9 +136,25 @@ export const WhyChooseUsImage = styled.div`
   background: var(--primary-20);
   position: relative;
   margin-bottom: 30px;
+ 
+
+  .image {
+    width: 350px;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    img {
+     
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 
   .ball {
     position: absolute;
+    z-index: 999;
   }
 
   .blueBall {

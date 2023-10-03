@@ -72,7 +72,8 @@ const ContactForm: React.FC = () => {
       />
       <InputField
         as="textarea"
-        rows={4}
+        rows={6
+        }
         placeholder="Message"
         name="message"
         id="id"
