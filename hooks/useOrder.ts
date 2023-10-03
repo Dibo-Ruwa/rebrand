@@ -26,6 +26,28 @@ const useOrder = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const { data: session } = useSession();
 
+
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalErrorType, setModalErrorType] = useState<
+    "success" | "error" | "info"
+  >("success");
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = (
+    errorType: "success" | "error" | "info",
+    errorMessage: string
+  ) => {
+    setModalMessage(errorMessage);
+    setModalErrorType(errorType);
+    setShowModal(true);
+
+    console.log(showModal);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   const router = useRouter();
 
   const getOrders = () => {
@@ -114,9 +136,13 @@ const useOrder = () => {
           useCartStore.getState().getSubscriptions();
 
           setIsSuccess(true);
+          openModal(
+            "success",
+            "Signup successful! \n A verification email has been sent"
+          );
           toast.success("Subscription order submitted successfully!");
         }, 500);
-        router.push(`/dashboard/${data.order?._id}`);
+        // router.push(`/dashboard/${data.order?._id}`);
       }
     } catch (error) {
       setIsError(true);
@@ -140,6 +166,11 @@ const useOrder = () => {
   };
 
   return {
+    showModal,
+    modalMessage,
+    modalErrorType,
+    openModal,
+    closeModal,
     isSubmitting,
     isError,
     isSuccess,

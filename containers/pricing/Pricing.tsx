@@ -173,10 +173,17 @@ const PlanCard = styled.div`
 const subscriptions = ["Food", "Cleaning", "Laundry"];
 
 const Pricing = () => {
-  const { showModal, modalMessage, modalErrorType, openModal, closeModal } =
-    useAuth();
-  const { isSubmitting, isError, isSuccess, handleSubscriptionOrderSubmit } =
-    useOrder();
+  const {
+    isSubmitting,
+    isError,
+    isSuccess,
+    handleSubscriptionOrderSubmit,
+    showModal,
+    modalMessage,
+    modalErrorType,
+    openModal,
+    closeModal,
+  } = useOrder();
   const [activeSubscription, setActiveSubscription] = useState(
     subscriptions[0]
   );
@@ -192,10 +199,10 @@ const Pricing = () => {
       plan: sub.title,
       type: activeSubscription,
       isPaid: true,
-      total: sub.total
-    }
+      total: sub.total,
+    };
 
-    console.log(subscription)
+    console.log(subscription);
     handleSubscriptionOrderSubmit(referenceId, { subscription }, "recurring");
   };
 
