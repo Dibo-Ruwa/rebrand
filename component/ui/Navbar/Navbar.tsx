@@ -81,7 +81,7 @@ const Navbar = () => {
     >
       <span className="logo">
         <Link href="/" passHref>
-          <LogoImage src={assets.logo} width={75} height={20} alt="logo" />
+          <LogoImage src="/logo.png" fill={true} alt="logo" />
         </Link>
       </span>
 

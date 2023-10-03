@@ -34,14 +34,14 @@ export async function POST(req: Request, res: Response) {
     const resetToken = generateToken(userExists._id);
 
   const baseUrl = process.env.BASE_URL
-        await sendEmail(
-          userExists.email,
-          "Activate Account",
-          PasswordRecoveryEmail({
-            userName: userExists.firstName,
-            passwordResetLink: `${baseUrl}/reset-password?token=${resetToken}`,
-          })
-        );
+        // await sendEmail(
+        //   userExists.email,
+        //   "Activate Account",
+        //   PasswordRecoveryEmail({
+        //     userName: userExists.firstName,
+        //     passwordResetLink: `${baseUrl}/reset-password?token=${resetToken}`,
+        //   })
+        // );
 
     return NextResponse.json(
       {

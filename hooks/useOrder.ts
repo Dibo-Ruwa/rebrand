@@ -68,7 +68,7 @@ const useOrder = () => {
   const handleSubscriptionOrderSubmit = async (
     referenceId: string,
     subscriptionOrderData: any,
-    type: string
+    type?: string
   ) => {
     setIsSubmitting(true);
     setIsError(false);

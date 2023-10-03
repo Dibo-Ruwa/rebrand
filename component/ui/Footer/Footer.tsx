@@ -13,6 +13,12 @@ const FooterContainer = styled.footer`
   background-color: #ffffff;
   color: #000000;
   padding: 5% 8%;
+
+  .logo {
+    position: relative;
+    width: 100px;
+    height: 40px;
+  }
 `;
 
 const FooterContent = styled.div``;
@@ -31,7 +37,11 @@ const Column = styled.div`
   }
 `;
 
-const Logo = styled(Image)``;
+const Logo = styled(Image)`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+`;
 
 const Title = styled.h3`
   font-size: 18px;
@@ -80,8 +90,9 @@ const Footer = () => {
                 flexDirection: "column",
                 marginBottom: "16px",
               }}
+              className="logo"
             >
-              <Logo src={assets.logo}  width={125} height={30} alt="Logo" />
+              <Logo src="/logo.png"  fill={true} alt="Logo" />
             </div>
             <p style={{ color: "#ccc", marginBottom: "16px" }}>
               10x-ing the quality of lifeon the continent.

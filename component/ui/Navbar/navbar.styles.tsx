@@ -18,6 +18,14 @@ export const NavbarContainer = styled.div`
   transition: all 200ms;
 
 
+  .logo {
+    position: relative;
+    width: 100px;
+    height: 40px;
+  }
+  
+
+
   .cart {
   
     width: 30px;
@@ -47,11 +55,9 @@ export const NavbarContainer = styled.div`
 
 export const LogoImage = styled(Image)`
   width: 100%;
+  height: 100%;
 
-  @media screen and (max-width: 768px) {
-    width: 80%;
-    height: 100%;
-  }
+  object-fit: contain;
 `;
 
 export const Toggle = styled.div`
