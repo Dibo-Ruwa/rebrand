@@ -24,16 +24,16 @@ export async function GET(
 
     await user.save();
 
-    // const mail = await resend.emails.send({
-    //   from: "email@diboruwa.com",
-    //   to: user.email,
-    //   subject: "Welcome",
-    //   react: OnboardingTemplate({
-    //     customerName: user.firstName,
-    //   }) as React.ReactElement,
-    // });
+    const mail = await resend.emails.send({
+      from: "email@diboruwa.com",
+      to: user.email,
+      subject: "Welcome",
+      react: OnboardingTemplate({
+        customerName: user.firstName,
+      }) as React.ReactElement,
+    });
 
-    // console.log(mail);
+    console.log(mail);
 
     return NextResponse.json(
       { success: true, message: "Account activated Successfully!!!" },
