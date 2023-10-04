@@ -176,19 +176,19 @@ export const sublinks = [
 
 export const Wyg = [
   {
-    icon: assets.peopleIcon,
+    icon: "/people.png",
     description: "highly experienced cleaning team",
   },
   {
-    icon: assets.sprayIcon,
+    icon: "/Group.png",
     description: "All equipment and chemicals provided",
   },
   {
-    icon: assets.shieldIcon,
+    icon: "/shield-tick.png",
     description: "Insured services against damage.",
   },
   {
-    icon: assets.messageIcon,
+    icon: "/message-notif.png",
     description: "Unlimited, responsive customer service",
   },
 ];

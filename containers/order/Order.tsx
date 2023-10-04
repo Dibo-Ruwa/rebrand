@@ -38,7 +38,7 @@ const OrderItemImage = styled.img`
 const SingleOrderPage = ({ id }: { id: any }) => {
   const { order, getOrderById, isSubmitting } = useOrder();
   useEffect(() => {
-    //     console.log("kkkkkkkkkkkkkk");
+   
     getOrderById(id);
   }, []);
 
@@ -75,10 +75,9 @@ const SingleOrderPage = ({ id }: { id: any }) => {
               </OrderData>
               {order?.orderItems &&
                 order?.orderItems.map((item: any) => (
-                  <div key={item?._id}>
-                    {/* <OrderItemImage src={item.imgUrl} alt={item.title} /> */}
+                  <div key={item?._id} className="item">
                     <span>
-                      {item?.title} - ${item?.total.toFixed(2)} (Quantity:{" "}
+                      {item?.title} - ${item?.total.toFixed(2)} (Quantity:
                       {item?.quantity})
                     </span>
                   </div>
