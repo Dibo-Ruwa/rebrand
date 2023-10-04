@@ -138,7 +138,7 @@ const useOrder = () => {
           setIsSuccess(true);
           openModal(
             "success",
-            "Signup successful! \n A verification email has been sent"
+            "Subscription order submitted successfully!"
           );
           toast.success("Subscription order submitted successfully!");
         }, 500);

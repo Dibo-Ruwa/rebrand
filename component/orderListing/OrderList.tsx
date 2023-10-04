@@ -75,7 +75,7 @@ const OrderList: React.FC = () => {
             <OrderRow key={order._id}>
               <ColumnData>{order.type}</ColumnData>
               <ColumnData>{order.email}</ColumnData>
-              <ColumnData>{order.paymentId.slice(-5)}</ColumnData>
+              <ColumnData>{order.paymentId}</ColumnData>
               <ColumnData>{order.total}</ColumnData>
               <ColumnData>
                 <button onClick={() => handleOrderClick(order._id)}>

@@ -4,10 +4,15 @@ import useOrder from "@/hooks/useOrder";
 import OrderList from "@/component/orderListing/OrderList";
 
 import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 const Client = () => {
   const { data: session } = useSession();
   const { orders, getOrders } = useOrder();
+
+  useEffect(() => {
+    getOrders();
+  }, [getOrders]);
 
   return (
     <Container>
