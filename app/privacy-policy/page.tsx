@@ -1,5 +1,9 @@
 import PrivacyPolicy from "@/containers/privacyPolicy/PrivacyPolicy";
 
+export const metadata = {
+  title: "Privacy-Policy",
+};
+
 const page = () => {
   return (
     <div>

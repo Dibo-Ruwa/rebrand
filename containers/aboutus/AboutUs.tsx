@@ -3,6 +3,7 @@ import TeamCard from "@/component/teamCard/TeamCard";
 import { teamMembers } from "@/constants";
 import Image from "next/image";
 import React from "react";
+import { FaHammer, FaHandshake, FaHeart } from "react-icons/fa";
 import styled from "styled-components";
 
 // Define your styled components below
@@ -93,9 +94,28 @@ const ThreeColumnSection = styled.div`
 const Column = styled.div`
   margin-bottom: 20px;
   padding: 20px;
+  text-align: left;
+  border-radius: 6px;
+  display: grid;
+  gap: 10px;
+  transition: all 0.3s ease-in-out;
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color2-20);
+    border-radius: 6px;
+  }
 
   p {
     font-size: 14px;
+  }
+
+  &:hover {
+    background: var(--color2-20);
   }
 `;
 const ColumnTitle = styled.div`
@@ -263,7 +283,10 @@ const AboutUsPage: React.FC = () => {
 
         <ThreeColumnSection>
           <Column>
-            <ColumnTitle>Craftsmanship</ColumnTitle>{" "}
+            <div className="icon">
+              <FaHammer />
+            </div>
+            <ColumnTitle>Craftsmanship</ColumnTitle>
             <ParagraphText>
               Every garment we handle, every room we clean, and every meal we
               prepare is a testament to our unmatched skill and dedication. Our
@@ -273,6 +296,9 @@ const AboutUsPage: React.FC = () => {
           </Column>
 
           <Column>
+            <div className="icon">
+              <FaHandshake />
+            </div>
             <ColumnTitle> Commitment</ColumnTitle>
             <ParagraphText>
               Time is invaluable, and we respect yours. Our dedication to
@@ -282,6 +308,9 @@ const AboutUsPage: React.FC = () => {
           </Column>
 
           <Column>
+            <div className="icon">
+              <FaHeart />
+            </div>
             <ColumnTitle>Care</ColumnTitle>
             <ParagraphText>
               Beyond our services, we deeply care for our planet. With

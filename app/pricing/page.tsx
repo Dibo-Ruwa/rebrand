@@ -1,5 +1,9 @@
 import Pricing from "@/containers/pricing/Pricing";
 
+export const metadata = {
+  title: "Pricing",
+};
+
 const page = () => {
   return (
     <div>

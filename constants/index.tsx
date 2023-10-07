@@ -588,14 +588,14 @@ export const teamMembers = [
     imageUrl: "/john-doe.jpg", // Provide the actual image URL
   },
   {
-    name: "Jane Smith",
-    role: "Designer",
-    imageUrl: "/jane-smith.jpg", // Provide the actual image URL
+    name: "Ibrahim Saliman Zainab",
+    role: "C.E.O",
+    imageUrl: "/isz.jpeg", // Provide the actual image URL
   },
   {
-    name: "Michael Johnson",
-    role: "Developer",
-    imageUrl: "/michael-johnson.jpg", // Provide the actual image URL
+    name: "Our team",
+    role: "team",
+    imageUrl: "/ourteam.png", // Provide the actual image URL
   },
   // Add more team members as needed
 ];

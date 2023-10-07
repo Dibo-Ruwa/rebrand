@@ -1,27 +1,30 @@
-import React from 'react';
+import React from "react";
+import { EmailTemplate } from "./index";
 
-const wrapperStyle: React.CSSProperties = {
-  fontFamily: 'Arial, sans-serif',
-  padding: '20px',
+const colors = {
+  lightBlue: "#00afdb",
+  darkBlue: "#00a6cf",
 };
 
-const titleStyle: React.CSSProperties = {
-  color: '#333',
+const wrapperStyle: React.CSSProperties = {
+  fontFamily: "Arial, sans-serif",
+  padding: "20px",
 };
 
 const messageStyle: React.CSSProperties = {
-  color: '#666',
-  lineHeight: '1.5',
+  color: "#121212",
+  lineHeight: "2",
 };
 
 const buttonStyle: React.CSSProperties = {
-  backgroundColor: '#5ffa7cc2',
-  color: '#fff',
-  padding: '10px 20px',
-  border: 'none',
-  borderRadius: '4px',
-  cursor: 'pointer',
-  textDecoration: 'none',
+  backgroundColor: colors.lightBlue,
+  color: "#fff",
+  padding: "12px 25px",
+  border: "none",
+  borderRadius: "4px",
+  cursor: "pointer",
+  textDecoration: "none",
+  margin: "20px 0",
 };
 
 interface Props {
@@ -31,33 +34,39 @@ interface Props {
 
 const ActivateAccount: React.FC<Props> = ({ customerName, activationLink }) => {
   return (
-    <div style={wrapperStyle}>
-      <h1 style={titleStyle}>Welcome to Dibo Ruwa!</h1>
-      <p style={messageStyle}>
-        Hello {customerName},
-        <br />
-        We&#39;re excited to have you on board. To activate your account and start enjoying our services,
-        simply click the button below:
-      </p>
-      <a href={activationLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-        <button style={buttonStyle}>Activate Account</button>
-      </a>
-      <p style={messageStyle}>
-        If the button doesn&#39;t work, you can also copy and paste the following link into your browser&#39;s address bar:
-        <br />
-        <em>{activationLink}</em>
-      </p>
-      <p style={messageStyle}>
-        Welcome to the Dibo Ruwa family!
-      </p>
-      <p style={messageStyle}>
-        If you have any questions or need assistance, feel free to contact our support team.
-      </p>
-      <p style={messageStyle}>
-        Best Regards, <br />
-        The Dibo Ruwa Team
-      </p>
-    </div>
+    <EmailTemplate subject="Welcome to Dibo Ruwa!">
+      <div style={wrapperStyle}>
+        <p style={messageStyle}>
+          Hello <strong style={{textTransform: "capitalize"}}>{customerName}</strong>,
+        </p>
+        <p>
+          We&#39;re excited to have you on board. To activate your account and
+          start enjoying our services, simply click the button below:
+        </p>
+        <a
+          href={activationLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none" }}
+        >
+          <button style={buttonStyle}>Activate Account</button>
+        </a>
+        <p style={messageStyle}>
+          If the button doesn&#39;t work, you can also copy and paste the
+          following link into your browser&#39;s address bar:
+          <br />
+        </p>
+        <p style={messageStyle}>Welcome to the Dibo Ruwa family!</p>
+        <p style={messageStyle}>
+          If you have any questions or need assistance, feel free to contact our
+          support team.
+        </p>
+        <p style={messageStyle}>
+          Best Regards, <br />
+          The Dibo Ruwa Team
+        </p>
+      </div>
+    </EmailTemplate>
   );
 };
 

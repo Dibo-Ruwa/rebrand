@@ -1,5 +1,9 @@
 import Profile from "@/containers/profile/Profile";
 
+export const metadata = {
+  title: "Profile",
+};
+
 const page = () => {
   return (
     <div>

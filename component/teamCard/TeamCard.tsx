@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -17,19 +18,29 @@ const CardContainer = styled.div`
   display: grid;
   gap: 10px;
 
+  .imageContainer {
+    width: 230px;
+    height: 270px;
+    position: relative;
+  }
+
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 `;
 
-const Image = styled.img`
-    border-radius: 8px;
-  max-width: 100%;
-  border-radius: 50%;
+const TeamImg = styled(Image)`
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
 `;
 
 const TeamCard: React.FC<TeamCardProps> = ({ name, role, imageUrl }) => {
   return (
     <CardContainer>
-      <Image src={imageUrl} alt={`${name}'s Photo`} />
+
+      <div className="imageContainer">
+         <TeamImg src={imageUrl} alt={`${name}'s Photo`} fill={true} />
+      </div>
+     
       <h3>{name}</h3>
       <p>{role}</p>
     </CardContainer>

@@ -1,5 +1,9 @@
 import Cleaning from "@/containers/cleaning/Cleaning";
 
+export const metadata = {
+  title: "Cleaning",
+};
+
 const page = () => {
   return (
     <div>

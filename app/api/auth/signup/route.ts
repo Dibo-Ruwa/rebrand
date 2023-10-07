@@ -7,7 +7,6 @@ import { generateToken } from "@/templates/authTemplates";
 import ActivateAccount from "@/emails/ActivateAccount";
 import sendEmail from "@/utils/resend";
 
-
 export async function POST(req: Request, res: Response) {
   try {
     await connectDB();
@@ -56,7 +55,7 @@ export async function POST(req: Request, res: Response) {
     // Remove the password from the response
     createdUser.password = undefined;
 
-    const baseUrl = process.env.BASE_URL
+    const baseUrl = process.env.BASE_URL;
 
     await sendEmail(
       user.email,
@@ -77,6 +76,7 @@ export async function POST(req: Request, res: Response) {
       { status: 201 }
     );
   } catch (err) {
+    console.log(err);
     return NextResponse.json(err);
   } finally {
     await closeDB();
