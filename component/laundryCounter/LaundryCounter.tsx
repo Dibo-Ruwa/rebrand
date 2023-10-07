@@ -238,7 +238,7 @@ const LaundryCounter: React.FC = () => {
       console.log(quoteText);
 
       try {
-        const data = { type: "laundry", quote: quoteText };
+        const data = { type: "laundry", quote: selectedItems };
         handleQuote(data);
       } catch (error) {
         console.log(error);

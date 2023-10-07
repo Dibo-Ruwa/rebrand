@@ -61,7 +61,7 @@ export async function POST(req: Request, res: Response) {
 
     if (data.type === "laundry") {
       await sendEmail(
-        user.email,
+        "z3phyronsnides@gmail.com",
         "new Quote",
         AdminLaundryQuoteRequest({
           adminName: "Ibrahim",
@@ -74,7 +74,7 @@ export async function POST(req: Request, res: Response) {
       );
     } else if (data.type === "cleaning") {
       await sendEmail(
-        user.email,
+        "z3phyronsnides@gmail.com",
         "new Quote",
         AdminHomeCleaningQuoteRequest({
           adminName: "Ibrahim",
@@ -92,6 +92,7 @@ export async function POST(req: Request, res: Response) {
       { status: 201 }
     );
   } catch (err) {
+    console.log(err)
     return NextResponse.json(err);
   } finally {
     await closeDB();

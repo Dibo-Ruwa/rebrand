@@ -281,11 +281,12 @@ const Moving: React.FC = () => {
     const data = {
       properties: selectedItems,
       type,
-      quote: formData,
+      address:  formData,
+      
     };
 
     console.log(data);
-    //     handleQuote(data);
+        handleQuote(data);
   };
 
   return (

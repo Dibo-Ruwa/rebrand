@@ -1427,7 +1427,7 @@ export const AdminLaundryQuoteRequest: React.FC<{
         <ul style={{ listStyle: "none", margin: "5px 20px 20px" }}>
           {laundryItems.map((item: any, index: any) => (
             <li key={index}>
-              {item.nae} - {item.amount}
+              {item.name} - {item.amount}
             </li>
           ))}
         </ul>

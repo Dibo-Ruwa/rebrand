@@ -37,7 +37,8 @@ export async function POST(req: Request, res: Response) {
       return NextResponse.json({ message: "user does not exist" });
     }
 
-    const { from, to, date } = body;
+  
+    const { data } = body;
 
     await sendEmail(
       user.email,
@@ -46,9 +47,9 @@ export async function POST(req: Request, res: Response) {
         customerName: `${user.firstName} ${user.lastName}`,
         customerEmail: user.email,
         customerPhone: user.phone,
-        currentAddress: from,
-        destinationAddress: to,
-        preferredDate: moment(date).format("MMMM D, YYYY"),
+        currentAddress: data.address.from,
+        destinationAddress: data.address.to,
+        preferredDate: moment(data.address.date).format("MMMM D, YYYY"),
 
         companyName: "Dibo Ruwa",
       })

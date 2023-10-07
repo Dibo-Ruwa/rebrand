@@ -54,15 +54,18 @@ const useQuote = (): AuthHook => {
 
     try {
       // Perform signup logic using axios
-      await interceptor.post(`/quotes`, {data});
-      setLoading(false);
-      setError(null);
 
-      openModal(
-        "success",
-        "Submitted successfully!!!"
-      );
-    
+      if (data.type === "moving") {
+        await interceptor.post(`/quotes/moving`, { data });
+        setLoading(false);
+        setError(null);
+      } else {
+        await interceptor.post(`/quotes`, { data });
+        setLoading(false);
+        setError(null);
+      }
+
+      openModal("success", "Submitted successfully!!!");
     } catch (error: any) {
       // console.log(error.response.data);
       setLoading(false);
@@ -70,7 +73,6 @@ const useQuote = (): AuthHook => {
       openModal("error", error.response.data);
     }
   };
-
 
   return {
     showModal,
@@ -82,7 +84,7 @@ const useQuote = (): AuthHook => {
     loading,
     status,
     error,
-    handleQuote
+    handleQuote,
   };
 };
 
