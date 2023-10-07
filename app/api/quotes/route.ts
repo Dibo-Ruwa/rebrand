@@ -22,7 +22,7 @@ export async function POST(req: Request, res: Response) {
 
     const body = await req.json();
 
-    console.log("ooooo");
+    
 
     if (!req.body)
       return NextResponse.json({ error: "Data is missing" }, { status: 400 });
@@ -82,7 +82,7 @@ export async function POST(req: Request, res: Response) {
           userEmail: user.email,
           userContact: user.phone,
           userAddress: `${user.address}, ${user.lga}, ${user.city}, ${user.state}`,
-          homeCleaningAreas: quote,
+          homeCleaningAreas: data.quote,
         })
       );
     }
