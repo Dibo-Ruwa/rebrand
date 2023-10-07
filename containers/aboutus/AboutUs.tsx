@@ -101,13 +101,15 @@ const Column = styled.div`
   transition: all 0.3s ease-in-out;
 
   .icon {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: var(--color2-20);
     border-radius: 6px;
+    font-size: 24px;
+   color: var(--color2);
   }
 
   p {

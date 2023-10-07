@@ -584,7 +584,7 @@ export const planDetails: PlanDetails = {
 export const teamMembers = [
   {
     name: "Ricketts Rowland",
-    role: "Developer",
+    role: "Lead Developer",
     imageUrl: "/john-doe.jpg", // Provide the actual image URL
   },
   {
@@ -593,8 +593,33 @@ export const teamMembers = [
     imageUrl: "/isz.jpeg", // Provide the actual image URL
   },
   {
-    name: "Our team",
-    role: "team",
+    name: "Agula Adams",
+    role: "Marketing and Customer Success",
+    imageUrl: "/ourteam.png", // Provide the actual image URL
+  },
+  {
+    name: "Hassan Abbas",
+    role: "Graphics Designer",
+    imageUrl: "/ourteam.png", // Provide the actual image URL
+  },
+  {
+    name: "Adeyemo Akinola Ayomide",
+    role: "Frontend Developer",
+    imageUrl: "/ourteam.png", // Provide the actual image URL
+  },
+  {
+    name: "Mustapha Idris",
+    role: "Head of Operations",
+    imageUrl: "/ourteam.png", // Provide the actual image URL
+  },
+  {
+    name: "Yakubu Ibrahim Evuti",
+    role: "Operation Manager",
+    imageUrl: "/ourteam.png", // Provide the actual image URL
+  },
+  {
+    name: "Okorie Joshua",
+    role: "Operation",
     imageUrl: "/ourteam.png", // Provide the actual image URL
   },
   // Add more team members as needed

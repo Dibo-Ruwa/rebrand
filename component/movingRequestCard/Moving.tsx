@@ -9,6 +9,7 @@ import React, { useState, useRef, useEffect } from "react";
 import toast from "react-hot-toast";
 import styled from "styled-components";
 import Button from "../ui/button/Button";
+import NotificationModal from "../NotificationModal";
 
 // Define the Properties interface
 interface Properties {
@@ -174,6 +175,7 @@ export const LocationInput = styled.input`
   outline: none;
   border: none;
   border-radius: 8px;
+  margin-bottom: 10px;
 `;
 
 const QuoteButton = styled.div`
@@ -286,7 +288,8 @@ const Moving: React.FC = () => {
     };
 
     console.log(data);
-        handleQuote(data);
+    handleQuote(data);
+    
   };
 
   return (
@@ -355,18 +358,7 @@ const Moving: React.FC = () => {
         value={formData.date}
         onChange={(e: any) => handleChange(e, e.target.name)}
       />
-      {/* <QuoteButton
-        onClick={() => {
-          if (session) {
-            handleGetQuote();
-          } else {
-            router.push("signin");
-            toast("please sign in to add item to cart");
-          }
-        }}
-      >
-        Get a Quote
-      </QuoteButton> */}
+     
 
       <Button
         size="medium"
@@ -382,7 +374,13 @@ const Moving: React.FC = () => {
       >
         Contact Us
       </Button>
-      {/* {quote && <div>{quote}</div>} */}
+      {showModal && (
+        <NotificationModal
+          message={modalMessage}
+          errorType={modalErrorType}
+          onClose={closeModal}
+        />
+      )}
     </Container>
   );
 };

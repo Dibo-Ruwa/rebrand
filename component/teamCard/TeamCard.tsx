@@ -15,12 +15,12 @@ const CardContainer = styled.div`
   margin: auto;
   text-align: center;
   background-color: #fff;
-  display: grid;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
 
   .imageContainer {
     width: 230px;
-    height: 270px;
+    height: 200px;
     position: relative;
   }
 
