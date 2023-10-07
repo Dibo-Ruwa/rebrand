@@ -293,8 +293,6 @@ export const PartnerWelcomeEmailComponent: React.FC<{
   partnerEmail: string;
 }> = ({ partnerFirstName, partnerEmail }) => {
   const emailStyles = {
-    fontFamily: "Arial, sans-serif",
-    fontSize: "16px",
     lineHeight: "1.6",
   };
 
@@ -460,7 +458,7 @@ export const PartnerOrderNotificationComponent: React.FC<{
     padding: "20px",
     margin: "20px 0",
     listStyle: "none",
-    border: "2px solid rgba(53, 247, 127, 0.37)",
+    border: `2px solid ${colors.darkBlue}`,
     width: "auto",
     display: "grid",
     gap: "10px",
@@ -477,7 +475,7 @@ export const PartnerOrderNotificationComponent: React.FC<{
 
   const tableStyles = {
     border: `2px solid ${colors.darkBlue}`, // Green border: ;
-    borderRadius: "20px", // Border radius
+   
     width: "100%", // Make the table take up 100% width
   };
 
@@ -609,7 +607,7 @@ export const AdminOrderNotificationComponent: React.FC<{
     padding: "20px",
     margin: "20px 0",
     listStyle: "none",
-    border: "2px solid rgba(53, 247, 127, 0.37)",
+    border: `2px solid ${colors.darkBlue}`,
     width: "auto",
     display: "grid",
     gap: "10px",
@@ -627,7 +625,7 @@ export const AdminOrderNotificationComponent: React.FC<{
 
   const tableStyles = {
     border: `2px solid ${colors.darkBlue}`, // Green border: ;
-    borderRadius: "20px", // Border radius
+   
     width: "100%", // Make the table take up 100% width
   };
 
@@ -776,7 +774,7 @@ export const AdminOrderCancelNotificationComponent: React.FC<{
 
   const tableStyles = {
     border: `2px solid ${colors.darkBlue}`, // Green border: ;
-    borderRadius: "20px", // Border radius
+   
     width: "100%", // Make the table take up 100% width
   };
 
@@ -912,7 +910,7 @@ export const PartnerOrderAssignmentNotificationComponent: React.FC<{
 
   const tableStyles = {
     border: `2px solid ${colors.darkBlue}`, // Green border: ;
-    borderRadius: "20px", // Border radius
+   
     width: "100%", // Make the table take up 100% width
   };
   const headerCellStyle = {
@@ -1029,7 +1027,7 @@ export const DispatchStatusNotificationComponent: React.FC<{
 
   const tableStyles = {
     border: `2px solid ${colors.darkBlue}`,
-    borderRadius: "20px",
+   
     width: "100%",
   };
 
@@ -1068,7 +1066,7 @@ export const DispatchStatusNotificationComponent: React.FC<{
             <table style={tableStyles}>
               <thead
                 style={{
-                  background: "#35f77f", // Header cell background color
+                  background: colors.darkBlue, // Header cell background color: ;
                   color: "#fff", // Header cell text color
                 }}
               >
@@ -1145,7 +1143,7 @@ export const DeliveredStatusNotificationComponent: React.FC<{
 
   const tableStyles = {
     border: `2px solid ${colors.darkBlue}`, // Green border: ;
-    borderRadius: "20px",
+  
     width: "100%",
   };
 
