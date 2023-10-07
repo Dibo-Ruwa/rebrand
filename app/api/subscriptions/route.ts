@@ -6,6 +6,10 @@ import { authOptions } from "@/utils/helpers/authOptions";
 import User from "@/utils/models/Users";
 import { CartItem } from "@/utils/types/types";
 import { Subscription } from "@/utils/models/Subscription";
+import sendEmail from "@/utils/resend";
+import { SubscriptionConfirmationEmail } from "@/emails";
+import { subscriptionPlans } from "@/constants";
+import moment from "moment";
 // import Paystack from '@paystack/paystack-sdk'
 // const paystack = new Paystack("sk_test_xxxxxx")
 
@@ -17,7 +21,9 @@ export async function POST(req: Request, res: Response) {
       return NextResponse.json({ error: "Data is missing" }, { status: 400 });
 
     const body = await req.json();
-    
+
+    const { subscription } = body;
+
     const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ message: "you are not loggedIn" });
@@ -51,6 +57,18 @@ export async function POST(req: Request, res: Response) {
 
       // Save the new subscription to the database
       await newSubscription.save();
+
+      await sendEmail(
+        user.email,
+        "Subscription confirmed",
+        SubscriptionConfirmationEmail({
+          customerName: `${user.firstName} ${user.lastName}`,
+          serviceName: subscription.type,
+          planName: subscription.plan,
+          startDate: moment(start).format("MMMM D, YYYY"),
+          endDate: moment(due).format("MMMM D, YYYY"),
+        })
+      );
     } else {
       // Check if the existing subscription is less than a month old
       const oneMonthAgo = new Date();
@@ -80,7 +98,7 @@ export async function POST(req: Request, res: Response) {
       { status: 201 }
     );
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return NextResponse.json({ error: "An error occurred" }, { status: 500 });
   } finally {
     await closeDB();
