@@ -161,7 +161,7 @@ export async function POST(req: Request, res: Response) {
         );
 
         await sendEmail(
-          "z3phyronsnides@gmail.com",
+          "ibrahim.saliman.zainab@gmail.com",
           "New Order Notification",
           AdminOrderNotificationComponent({
             customerFullName: `${user.firstName} ${user.lastName}`,

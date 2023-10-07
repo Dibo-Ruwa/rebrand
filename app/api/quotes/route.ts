@@ -22,8 +22,6 @@ export async function POST(req: Request, res: Response) {
 
     const body = await req.json();
 
-    
-
     if (!req.body)
       return NextResponse.json({ error: "Data is missing" }, { status: 400 });
     const session = await getServerSession(authOptions);
@@ -61,7 +59,7 @@ export async function POST(req: Request, res: Response) {
 
     if (data.type === "laundry") {
       await sendEmail(
-        "z3phyronsnides@gmail.com",
+        "ibrahim.saliman.zainab@gmail.com",
         "new Quote",
         AdminLaundryQuoteRequest({
           adminName: "Ibrahim",
@@ -74,7 +72,7 @@ export async function POST(req: Request, res: Response) {
       );
     } else if (data.type === "cleaning") {
       await sendEmail(
-        "z3phyronsnides@gmail.com",
+        "ibrahim.saliman.zainab@gmail.com",
         "new Quote",
         AdminHomeCleaningQuoteRequest({
           adminName: "Ibrahim",
@@ -92,7 +90,7 @@ export async function POST(req: Request, res: Response) {
       { status: 201 }
     );
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return NextResponse.json(err);
   } finally {
     await closeDB();
