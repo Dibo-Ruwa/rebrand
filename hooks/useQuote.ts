@@ -54,7 +54,7 @@ const useQuote = (): AuthHook => {
 
     try {
       // Perform signup logic using axios
-      await interceptor.post(`/quotes`, data);
+      await interceptor.post(`/quotes`, {data});
       setLoading(false);
       setError(null);
 

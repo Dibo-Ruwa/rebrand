@@ -37,7 +37,7 @@ export async function POST(req: Request, res: Response) {
     }
 
     const { data } = body;
-    // console.log(type, quote);
+    console.log(body);
     const timestamp = moment().format("YYYY-MM-DD HH:mm:ss");
     const turnaroundTime = moment().add(1, "day").format("YYYY-MM-DD HH:mm:ss");
 
