@@ -2,7 +2,7 @@
 
 import React, { ReactNode } from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
-import logo from "@/public/logo.png";
+
 
 const colors = {
   lightBlue: "#00afdb",
@@ -36,11 +36,11 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
           margin: "auto",
         }}
       >
-        <img
+        {/* <img
           src={logo}
           alt="Your Logo"
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
-        />
+        /> */}
       </div>
 
       <div
