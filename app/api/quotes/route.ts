@@ -36,12 +36,12 @@ export async function POST(req: Request, res: Response) {
       return NextResponse.json({ message: "user does not exist" });
     }
 
-    const { type, quote } = body;
-    console.log(type, quote);
+    const { data } = body;
+    // console.log(type, quote);
     const timestamp = moment().format("YYYY-MM-DD HH:mm:ss");
     const turnaroundTime = moment().add(1, "day").format("YYYY-MM-DD HH:mm:ss");
 
-    const quoteText = quote
+    const quoteText = data.quote
       .filter((item: any) => item.amount > 0)
       .map((item: any) => `${item.name} -- ${item.amount}`)
       .join(", ");
@@ -51,7 +51,7 @@ export async function POST(req: Request, res: Response) {
       "new Quote",
       UserQuoteRequestConfirmation({
         firstName: user.firstName,
-        serviceType: type,
+        serviceType: data.type,
         description: quoteText,
         timestamp: timestamp,
         turnaroundTime: turnaroundTime,
@@ -59,7 +59,7 @@ export async function POST(req: Request, res: Response) {
       })
     );
 
-    if (type === "laundry") {
+    if (data.type === "laundry") {
       await sendEmail(
         user.email,
         "new Quote",
@@ -69,10 +69,10 @@ export async function POST(req: Request, res: Response) {
           userEmail: user.email,
           userContact: user.phone,
           userAddress: `${user.address}, ${user.lga}, ${user.city}, ${user.state}`,
-          laundryItems: quote,
+          laundryItems: data.quote,
         })
       );
-    } else if (type === "cleaning") {
+    } else if (data.type === "cleaning") {
       await sendEmail(
         user.email,
         "new Quote",
