@@ -1,3 +1,4 @@
+'use client'
 import HeroContainer from "@/component/shared/HeroContainer";
 import {
   Container,
