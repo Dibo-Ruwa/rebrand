@@ -1,5 +1,4 @@
 import DashboardRoutes from "@/component/DasboardRoutes/DashBoardRoutes";
-import Dashboard from "@/component/dashboardLayout/DashboradLayout";
 
 export default function DashboardLayout({
   children,
@@ -8,7 +7,8 @@ export default function DashboardLayout({
 }) {
   return (
     <section>
-      <Dashboard>{children}</Dashboard>
+      <DashboardRoutes />
+      {children}
     </section>
   );
 }

@@ -12,10 +12,16 @@ const OrderHistoryContainer = styled.div`
     margin: 30px 0;
   }
 `;
+
+
+const OrderListingContainer = styled.div`
+  overflow-x: scroll;
+`;
 const OrderListing = styled.div`
   border: 1px solid var(--primary-20);
   border-radius: 20px;
   overflow: hidden;
+  width: max-content;
 `;
 
 const OrderRow = styled.div`
@@ -57,13 +63,14 @@ const OrderList: React.FC = () => {
  
   const router = useRouter();
   const handleOrderClick = (orderId: string) => {
-    router.push(`/dashboard/${orderId}`);
+    router.push(`/dashboard/orders/${orderId}`);
   };
 
   return (
     <OrderHistoryContainer>
       <h1>Order History</h1>
-      {orders.length > 0 && (
+      <OrderListingContainer>
+         {orders.length > 0 && (
         <OrderListing>
           <OrderRow className="header">
             <ColumnHeader>Type</ColumnHeader>
@@ -86,6 +93,8 @@ const OrderList: React.FC = () => {
           ))}
         </OrderListing>
       )}
+      </OrderListingContainer>
+     
     </OrderHistoryContainer>
   );
 };

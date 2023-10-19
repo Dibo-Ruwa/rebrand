@@ -247,11 +247,11 @@ export const DashboradServices = [
     image: assets.soap,
     url: "/laundry",
   },
-  // {
-  //   title: "Order History",
-  //   image: assets.food,
-  //   url: "/",
-  // },
+  {
+    title: "Requests",
+    image: assets.food,
+    url: "/dashboard/requests",
+  },
 ];
 
 export const AboutUsContent = {

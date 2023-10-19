@@ -22,7 +22,6 @@ const requestSchema = new Schema(
     total: {
       type: Number,
     },
-
     from: {
       type: String,
       required: true,
@@ -30,19 +29,32 @@ const requestSchema = new Schema(
     to: {
       type: String,
     },
-
     date: {
       type: Date,
       required: true,
     },
-
     user: {
       type: mongoose.Types.ObjectId,
       ref: "User",
       required: true,
     },
+    status: {
+      type: String,
+      enum: ["pending", "paid", "processed"],
+      default: "pending",
+      required: true,
+    },
+    paymentId: {
+      type: String,
+    },
+    isPaid: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
   },
   { timestamps: true }
 );
+
 
 export const Request = models.Request || model("Request", requestSchema);

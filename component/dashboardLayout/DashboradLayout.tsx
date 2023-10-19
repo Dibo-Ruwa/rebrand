@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useEffect } from "react";
 import DashboardRoutes from "../DasboardRoutes/DashBoardRoutes";
@@ -12,7 +12,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div>
-      {session?.user?.role === "admin" ? <AdminRoutes /> : <DashboardRoutes />}
+      <DashboardRoutes />
 
       {children}
     </div>

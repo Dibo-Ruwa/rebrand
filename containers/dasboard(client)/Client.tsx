@@ -12,7 +12,7 @@ const Client = () => {
 
   useEffect(() => {
     getOrders();
-  }, [getOrders]);
+  }, []);
 
   return (
     <Container>

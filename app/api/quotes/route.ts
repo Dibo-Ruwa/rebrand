@@ -23,6 +23,36 @@ type Item = {
   amount: number;
 };
 
+
+export async function GET(req: Request, res: Response) {
+  try {
+    await connectDB();
+
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      return NextResponse.json({ message: "You are not logged in" });
+    }
+
+    const userId = session.user._id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return NextResponse.json({ message: "User does not exist" });
+    }
+
+    // Query the database for all quotes belonging to the user && fill user 
+    const quotes = await Request.find({ user: userId }).populate("user");
+
+    // You can send the 'quotes' array as the response
+    return NextResponse.json({ quotes }, { status: 200 });
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json(err);
+  } finally {
+    await closeDB();
+  }
+}
+
 export async function POST(req: Request, res: Response) {
   try {
     await connectDB();
@@ -107,7 +137,7 @@ export async function POST(req: Request, res: Response) {
     // }
 
     return NextResponse.json(
-      { message: "emails sent successfully", success: true },
+      { message: "emails sent successfully", quote: newRequest, success: true },
       { status: 201 }
     );
   } catch (err) {

@@ -79,7 +79,7 @@ export async function POST(req: Request, res: Response) {
     // );
 
     return NextResponse.json(
-      { message: "emails sent successfully", success: true },
+      { message: "emails sent successfully", quote: newRequest, success: true },
       { status: 201 }
     );
   } catch (err) {

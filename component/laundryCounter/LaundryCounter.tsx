@@ -4,10 +4,11 @@ import useQuote from "@/hooks/useQuote";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import toast from "react-hot-toast";
 import styled from "styled-components";
 import NotificationModal from "../NotificationModal";
+import { BsPlus } from "react-icons/bs";
 
 // Define the LaundryItem interface
 interface LaundryItem {
@@ -98,8 +99,10 @@ const SelectedOptions = styled.div`
 `;
 
 const MultiSelectButton = styled.button`
-  display: block;
-  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+
+  padding: 2px  5px;
   font-size: 18px;
   background-color: var(--primary-20);
   width: 100%;
@@ -109,11 +112,38 @@ const MultiSelectButton = styled.button`
   text-align: left;
   border-radius: 8px;
   transition: all 0.5s ease;
-  &:hover {
-    background-color: var(--primary);
+ 
+
+  button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: #fff;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    transition: all 0.5s ease;
+    color: var(--primary);
+
+    &:hover {
+    background-color: var(--primary-20);
+    color: #fff;
+  }
   }
 `;
 
+const CustomInput = styled.input`
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  padding: 15px 20px;
+  outline: none;
+  border: none;
+ 
+`;
 const Counter = styled.div`
   display: flex;
   align-items: center;
@@ -173,6 +203,8 @@ const QuoteButton = styled.button`
 const LaundryCounter: React.FC = () => {
   const { data: session } = useSession();
   const router = useRouter();
+
+  const [customItem, setCustomItem] = useState<string>("");
   const [selectedItems, setSelectedItems] = useState<LaundryItem[]>([]);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [quote, setQuote] = useState<string | null>(null);
@@ -180,8 +212,7 @@ const LaundryCounter: React.FC = () => {
   const { handleQuote, showModal, modalErrorType, modalMessage, closeModal } =
     useQuote();
 
-  const dropdownRef = useRef<HTMLDivElement | null>(null); // Replace 'HTMLDivElement' with the appropriate element type
-
+  const dropdownRef = useRef<HTMLDivElement | null>(null); 
   const laundryItems: LaundryItem[] = [
     { id: 1, name: "T-Shirt", amount: 0 },
     { id: 2, name: "Jeans", amount: 0 },
@@ -228,6 +259,17 @@ const LaundryCounter: React.FC = () => {
     };
   }, []);
 
+  // Function to add a custom item to the selected items
+  const handleAddCustomItem = () => {
+    if (customItem.trim() !== "") {
+      setSelectedItems((prevSelectedItems) => [
+        ...prevSelectedItems,
+        { id: Date.now(), name: customItem, amount: 1 }, // Assign a unique id
+      ]);
+      setCustomItem(""); // Clear the input field after adding the item
+    }
+  };
+
   const handleGetQuote = async () => {
     if (selectedItems.some((item) => item.amount <= 0)) {
       setNotification("Please add item amounts before getting a quote.");
@@ -253,11 +295,21 @@ const LaundryCounter: React.FC = () => {
 
   return (
     <Container>
-      {/* <h2>Laundry Counter</h2> */}
-
+     
       <MultiSelectWrapper ref={dropdownRef}>
+        {/* Add an input field for custom items */}
         <MultiSelectButton onClick={() => setDropdownOpen(!isDropdownOpen)}>
-          Select laundry items...
+          <CustomInput
+            type="text"
+            placeholder="Type a custom item..."
+            value={customItem}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setCustomItem(e.target.value)
+            }
+          />
+          <button onClick={handleAddCustomItem}>
+            <BsPlus />
+          </button>
         </MultiSelectButton>
         {isDropdownOpen && (
           <MultiSelectDropdown>
@@ -266,7 +318,7 @@ const LaundryCounter: React.FC = () => {
                 key={item.id}
                 onClick={() => {
                   handleItemClick(item);
-                  setDropdownOpen(!isDropdownOpen);
+                  setDropdownOpen(false);
                 }}
               >
                 {item.name}
@@ -302,7 +354,7 @@ const LaundryCounter: React.FC = () => {
             toast("please sign in");
           }
         }}
-        disabled={!session}
+       
       >
         Get a Quote
       </QuoteButton>

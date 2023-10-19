@@ -5,11 +5,12 @@ import useQuote from "@/hooks/useQuote";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import toast from "react-hot-toast";
 import styled from "styled-components";
 import Button from "../ui/button/Button";
 import NotificationModal from "../NotificationModal";
+import { BsPlus } from "react-icons/bs";
 
 // Define the Properties interface
 interface Properties {
@@ -34,6 +35,17 @@ const Container = styled.div`
   p {
     color: var(--content);
     margin-bottom: 30px;
+  }
+
+  .formControl {
+    wdith: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 `;
 const MultiSelectWrapper = styled.div`
@@ -111,9 +123,11 @@ const SelectedOptions = styled.div`
 `;
 
 const MultiSelectButton = styled.button`
-  display: block;
-  padding: 10px 20px;
-  font-size: 15px;
+  display: flex;
+  align-items: center;
+
+  padding: 2px 5px;
+  font-size: 18px;
   background-color: var(--primary-20);
   width: 100%;
   color: #000000;
@@ -122,9 +136,35 @@ const MultiSelectButton = styled.button`
   text-align: left;
   border-radius: 8px;
   transition: all 0.5s ease;
-  &:hover {
-    background-color: var(--primary);
+
+  button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: #fff;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    transition: all 0.5s ease;
+    color: var(--primary);
+
+    &:hover {
+      background-color: var(--primary-20);
+      color: #fff;
+    }
   }
+`;
+
+const CustomInput = styled.input`
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  padding: 15px 20px;
+  outline: none;
+  border: none;
 `;
 
 const Counter = styled.div`
@@ -176,6 +216,7 @@ export const LocationInput = styled.input`
   border: none;
   border-radius: 8px;
   margin-bottom: 10px;
+  width: 100%;
 `;
 
 const QuoteButton = styled.div`
@@ -190,6 +231,8 @@ const QuoteButton = styled.div`
 const Moving: React.FC = () => {
   const { data: session } = useSession();
   const router = useRouter();
+
+  const [customItem, setCustomItem] = useState<string>("");
   const [selectedItems, setSelectedItems] = useState<Properties[]>([]);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [quote, setQuote] = useState<string | null>(null);
@@ -246,6 +289,17 @@ const Moving: React.FC = () => {
     };
   }, []);
 
+  // Function to add a custom item to the selected items
+  const handleAddCustomItem = () => {
+    if (customItem.trim() !== "") {
+      setSelectedItems((prevSelectedItems) => [
+        ...prevSelectedItems,
+        { id: Date.now(), name: customItem, amount: 1 }, // Assign a unique id
+      ]);
+      setCustomItem(""); // Clear the input field after adding the item
+    }
+  };
+
   const handleGetQuote = async () => {
     if (selectedItems.some((item) => item.amount <= 0)) {
       setNotification("Please add item amounts before getting a quote.");
@@ -283,13 +337,11 @@ const Moving: React.FC = () => {
     const data = {
       properties: selectedItems,
       type,
-      address:  formData,
-      
+      address: formData,
     };
 
     console.log(data);
     handleQuote(data);
-    
   };
 
   return (
@@ -299,8 +351,19 @@ const Moving: React.FC = () => {
       <p>Contact us today to make it the easiest move of your life.</p>
 
       <MultiSelectWrapper ref={dropdownRef}>
+        {/* Add an input field for custom items */}
         <MultiSelectButton onClick={() => setDropdownOpen(!isDropdownOpen)}>
-          Select properties to be moved...
+          <CustomInput
+            type="text"
+            placeholder="Type a custom item..."
+            value={customItem}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setCustomItem(e.target.value)
+            }
+          />
+          <button onClick={handleAddCustomItem}>
+            <BsPlus />
+          </button>
         </MultiSelectButton>
         {isDropdownOpen && (
           <MultiSelectDropdown>
@@ -309,7 +372,7 @@ const Moving: React.FC = () => {
                 key={item.id}
                 onClick={() => {
                   handleItemClick(item);
-                  setDropdownOpen(!isDropdownOpen);
+                  setDropdownOpen(false);
                 }}
               >
                 {item.name}
@@ -336,20 +399,23 @@ const Moving: React.FC = () => {
         ))}
       </SelectedOptions>
       {notification && <Notification>{notification}</Notification>}
-      <LocationInput
-        type="text"
-        name="from"
-        placeholder="from"
-        value={formData.from}
-        onChange={(e: any) => handleChange(e, e.target.name)}
-      />
-      <LocationInput
-        type="text"
-        name="to"
-        placeholder="to"
-        value={formData.to}
-        onChange={(e: any) => handleChange(e, e.target.name)}
-      />
+
+      <div className="formControl">
+        <LocationInput
+          type="text"
+          name="from"
+          placeholder="from"
+          value={formData.from}
+          onChange={(e: any) => handleChange(e, e.target.name)}
+        />
+        <LocationInput
+          type="text"
+          name="to"
+          placeholder="to"
+          value={formData.to}
+          onChange={(e: any) => handleChange(e, e.target.name)}
+        />
+      </div>
 
       <LocationInput
         type="date"
@@ -358,7 +424,6 @@ const Moving: React.FC = () => {
         value={formData.date}
         onChange={(e: any) => handleChange(e, e.target.name)}
       />
-     
 
       <Button
         size="medium"
