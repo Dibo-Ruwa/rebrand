@@ -1,16 +1,17 @@
-"use clent"
+"use clent";
 
-import React, { ReactNode } from "react"
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa"
+import React, { ReactNode } from "react";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+
 
 const colors = {
   lightBlue: "#00afdb",
   darkBlue: "#00a6cf",
-}
+};
 
 interface EmailTemplateProps {
-  subject: string
-  children: ReactNode
+  subject: string;
+  children: ReactNode;
 }
 
 export const EmailTemplate: React.FC<EmailTemplateProps> = ({
@@ -18,16 +19,50 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
   children,
 }) => {
   return (
-    <div className="bg-[rgba(14,252,213,0.329)] lg:px-[10%] px-4">
-      <div className=" p-8">{/* Logo should go here */}</div>
+    <div
+      style={{
+        backgroundColor: "rgba(14, 252, 213, 0.329)",
+        padding: "5% 10%",
+        minHeight: "100vh",
+      }}
+      className="main"
+    >
+      <div
+        className="logoContainer"
+        style={{
+          width: "100px",
+          height: "100px",
+          position: "relative",
+          margin: "auto",
+        }}
+      >
+        {/* <img
+          src={logo}
+          alt="Your Logo"
+          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+        /> */}
+      </div>
 
-      <div className="bg-[white] rounded-[10px] ">
-        <div className="bg-[#00a6cf] py-[20px] px-[10px] text-center">
+      <div
+        style={{
+          backgroundColor: "white",
+          borderRadius: "12px",
+          overflow: "hidden",
+          margin: " 30px 0",
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: colors.darkBlue,
+            padding: "20px",
+            textAlign: "center",
+          }}
+        >
           <h1 style={{ color: "white", margin: "0", fontSize: "24px" }}>
             {subject}
           </h1>
         </div>
-        <div className="lg:p-[5%] ">
+        <div style={{ padding: "5%" }}>
           {/* Specific Email Content Goes Here */}
           {children}
         </div>
@@ -119,13 +154,18 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const PasswordRecoveryEmail: React.FC<{
-  userName: string
-  passwordResetLink: string
+  userName: string;
+  passwordResetLink: string;
 }> = ({ userName, passwordResetLink }) => {
+  const contentStyle: React.CSSProperties = {
+    backgroundColor: "white",
+    lineHeight: "1.5",
+  };
+
   const buttonStyle: React.CSSProperties = {
     backgroundColor: colors.lightBlue,
     color: "#fff",
@@ -135,10 +175,10 @@ export const PasswordRecoveryEmail: React.FC<{
     cursor: "pointer",
     textDecoration: "none",
     margin: "15px 0",
-  }
+  };
   return (
     <EmailTemplate subject="Password Recovery">
-      <div className="px-4 py-8">
+      <div style={contentStyle}>
         <p>Hello {userName},</p>
         <p>
           We received a request to reset your password for your Dibo Ruwa
@@ -162,17 +202,17 @@ export const PasswordRecoveryEmail: React.FC<{
         <p>The Dibo Ruwa Team</p>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const AdminEmailComponent: React.FC<{
-  adminFirstName: string
-  partnerFullName: string
-  partnerBusinessName: string
-  partnerContactInfo: string
-  registrationDate: string
-  adminEmail: string
-  yourName: string
+  adminFirstName: string;
+  partnerFullName: string;
+  partnerBusinessName: string;
+  partnerContactInfo: string;
+  registrationDate: string;
+  adminEmail: string;
+  yourName: string;
 }> = ({
   adminFirstName,
   partnerFullName,
@@ -182,15 +222,30 @@ export const AdminEmailComponent: React.FC<{
   adminEmail,
   yourName,
 }) => {
-  const emailStyles = "text-[16px] leading-6 flex flex-col gap-[15px] w-full "
-  const contentStyles = "p-[20px] "
-  const listStyles =
-    "py-[20px] lg:p-[20px] lg:mx-[20px]  border-[2px] border-[rgba(53,247,127,0.37)] w-auto"
+  const emailStyles = {
+    fontFamily: "Arial, sans-serif",
+    fontSize: "16px",
+    lineHeight: "1.6",
+    display: "grid",
+    gap: "15px",
+  };
+
+  const contentStyles = {
+    padding: "20px",
+    listStyle: "none",
+  };
+  const listStyles = {
+    padding: "20px",
+    margin: "20px 0",
+    listStyle: "none",
+    border: "2px solid rgba(53, 247, 127, 0.37)",
+    width: "auto",
+  };
 
   return (
     <EmailTemplate subject="  New Partner Notification!!!">
-      <div className={`${emailStyles}`}>
-        <div className={`${contentStyles} mb-4`}>
+      <div style={emailStyles}>
+        <div style={contentStyles}>
           <p>
             Hey <strong>{adminFirstName}</strong>,
           </p>
@@ -198,20 +253,20 @@ export const AdminEmailComponent: React.FC<{
             We have some exciting news to share - a new partner has registered
             with us! Here are the preliminary details:
           </p>
-          <ul className={`${listStyles} my-6`}>
-            <li className="flex items-center gap-4">
+          <ul style={listStyles}>
+            <li>
               <strong> Partner Name:</strong>
               {partnerFullName}
             </li>
-            <li className="flex items-center gap-4">
+            <li>
               <strong> Business Name:</strong>
               {partnerBusinessName}
             </li>
-            <li className="flex items-center gap-4">
+            <li>
               <strong> Contact Information:</strong>
               {partnerContactInfo}
             </li>
-            <li className="flex items-center gap-4">
+            <li>
               <strong> Registration Date:</strong>
               {registrationDate}
             </li>
@@ -230,23 +285,23 @@ export const AdminEmailComponent: React.FC<{
         </div>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const PartnerWelcomeEmailComponent: React.FC<{
-  partnerFirstName: string
-  partnerEmail: string
+  partnerFirstName: string;
+  partnerEmail: string;
 }> = ({ partnerFirstName, partnerEmail }) => {
   const emailStyles = {
     lineHeight: "1.6",
-  }
+  };
 
   const contentStyles = {
     padding: "20px",
     listStyle: "none",
     display: "grid",
     gap: "10px",
-  }
+  };
 
   return (
     <EmailTemplate subject=" Welcome">
@@ -296,25 +351,25 @@ export const PartnerWelcomeEmailComponent: React.FC<{
         </div>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const PartnerVerificationEmailComponent: React.FC<{
-  partnerFirstName: string
-  signInLink: string
-  supportEmail: string
-  supportPhoneNumber: string
+  partnerFirstName: string;
+  signInLink: string;
+  supportEmail: string;
+  supportPhoneNumber: string;
 }> = ({ partnerFirstName, signInLink, supportEmail, supportPhoneNumber }) => {
   const emailStyles = {
     lineHeight: "1.6",
-  }
+  };
 
   const contentStyles = {
     padding: "20px",
     listStyle: "none",
     display: "grid",
     gap: "10px",
-  }
+  };
 
   const buttonStyles = {
     backgroundColor: colors.lightBlue,
@@ -323,7 +378,7 @@ export const PartnerVerificationEmailComponent: React.FC<{
     borderRadius: "5px",
     textDecoration: "none",
     width: "max-content",
-  }
+  };
 
   return (
     <EmailTemplate subject="Verification Successful!">
@@ -364,18 +419,18 @@ export const PartnerVerificationEmailComponent: React.FC<{
         </div>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const PartnerOrderNotificationComponent: React.FC<{
-  partnerFirstName: string
-  customerFullName: string
-  orderNumber: string
-  itemsOrdered: any
-  totalAmount: string
-  customerAddress: string
-  orderTimestamp: string
-  orderLink: string
+  partnerFirstName: string;
+  customerFullName: string;
+  orderNumber: string;
+  itemsOrdered: any;
+  totalAmount: string;
+  customerAddress: string;
+  orderTimestamp: string;
+  orderLink: string;
 }> = ({
   partnerFirstName,
   customerFullName,
@@ -390,14 +445,14 @@ export const PartnerOrderNotificationComponent: React.FC<{
     fontFamily: "Arial, sans-serif",
     fontSize: "16px",
     lineHeight: "1.6",
-  }
+  };
 
   const contentStyles = {
     padding: "20px",
     listStyle: "none",
     display: "grid",
     gap: "10px",
-  }
+  };
 
   const listStyles = {
     padding: "20px",
@@ -407,7 +462,7 @@ export const PartnerOrderNotificationComponent: React.FC<{
     width: "auto",
     display: "grid",
     gap: "10px",
-  }
+  };
 
   const buttonStyles = {
     backgroundColor: colors.darkBlue,
@@ -416,23 +471,23 @@ export const PartnerOrderNotificationComponent: React.FC<{
     borderRadius: "5px",
     textDecoration: "none",
     width: "max-content",
-  }
+  };
 
   const tableStyles = {
     border: `2px solid ${colors.darkBlue}`, // Green border: ;
-
+   
     width: "100%", // Make the table take up 100% width
-  }
+  };
 
   const headerCellStyle = {
     // background: "#35f77f", // Header cell background color
     color: "#fff", // Header cell text color
     padding: "10px", // Header cell padding
-  }
+  };
 
   const cellStyle = {
     padding: "10px", // Cell padding
-  }
+  };
 
   return (
     <EmailTemplate subject=" New Order Received!!!">
@@ -515,18 +570,18 @@ export const PartnerOrderNotificationComponent: React.FC<{
         </div>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const AdminOrderNotificationComponent: React.FC<{
-  customerFullName: string
-  orderNumber: string
-  itemsOrdered: any
-  totalAmount: string
-  customerAddress: string
-  partnerFullName: string
-  orderTimestamp: string
-  adminDashboardLink: string
+  customerFullName: string;
+  orderNumber: string;
+  itemsOrdered: any;
+  totalAmount: string;
+  customerAddress: string;
+  partnerFullName: string;
+  orderTimestamp: string;
+  adminDashboardLink: string;
 }> = ({
   customerFullName,
   orderNumber,
@@ -539,14 +594,14 @@ export const AdminOrderNotificationComponent: React.FC<{
 }) => {
   const emailStyles = {
     lineHeight: "1.6",
-  }
+  };
 
   const contentStyles = {
     padding: "20px",
     listStyle: "none",
     display: "grid",
     gap: "10px",
-  }
+  };
 
   const listStyles = {
     padding: "20px",
@@ -556,7 +611,7 @@ export const AdminOrderNotificationComponent: React.FC<{
     width: "auto",
     display: "grid",
     gap: "10px",
-  }
+  };
 
   const buttonStyles = {
     backgroundColor: colors.lightBlue,
@@ -566,23 +621,23 @@ export const AdminOrderNotificationComponent: React.FC<{
     textDecoration: "none",
     width: "max-content",
     margin: "20px 0",
-  }
+  };
 
   const tableStyles = {
     border: `2px solid ${colors.darkBlue}`, // Green border: ;
-
+   
     width: "100%", // Make the table take up 100% width
-  }
+  };
 
   const headerCellStyle = {
     // background: "#35f77f", // Header cell background color
     color: "#fff", // Header cell text color
     padding: "10px", // Header cell padding
-  }
+  };
 
   const cellStyle = {
     padding: "10px", // Cell padding
-  }
+  };
 
   return (
     <EmailTemplate subject=" New Order Placed">
@@ -617,14 +672,14 @@ export const AdminOrderNotificationComponent: React.FC<{
                   </tr>
                 </thead>
                 <tbody>
-                  {/* {itemsOrdered.map((item: any) => (
+                  {itemsOrdered.map((item: any) => (
                     <tr key={item._id}>
                       <td style={cellStyle}>{item.title}</td>
                       <td style={cellStyle}>${item.price}</td>
                       <td style={cellStyle}>{item.quantity}</td>
                       <td style={cellStyle}>${item.total}</td>
                     </tr>
-                  ))} */}
+                  ))}
                 </tbody>
               </table>
             </li>
@@ -663,19 +718,19 @@ export const AdminOrderNotificationComponent: React.FC<{
         </div>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const AdminOrderCancelNotificationComponent: React.FC<{
-  orderNumber: string
-  customerFullName: string
-  itemsOrdered: any
-  totalAmount: string
-  customerAddress: string
-  partnerFullName: string
+  orderNumber: string;
+  customerFullName: string;
+  itemsOrdered: any;
+  totalAmount: string;
+  customerAddress: string;
+  partnerFullName: string;
   // cancellationReason: string;
-  orderTimestamp: string
-  adminDashboardLink: string
+  orderTimestamp: string;
+  adminDashboardLink: string;
 }> = ({
   orderNumber,
   customerFullName,
@@ -689,14 +744,14 @@ export const AdminOrderCancelNotificationComponent: React.FC<{
 }) => {
   const emailStyles = {
     lineHeight: "1.6",
-  }
+  };
 
   const contentStyles = {
     padding: "20px",
     listStyle: "none",
     display: "grid",
     gap: "10px",
-  }
+  };
 
   const listStyles = {
     padding: "20px",
@@ -706,7 +761,7 @@ export const AdminOrderCancelNotificationComponent: React.FC<{
     display: "grid",
     gap: "10px",
     // width: "max-content",
-  }
+  };
 
   const buttonStyles = {
     backgroundColor: colors.darkBlue,
@@ -715,23 +770,23 @@ export const AdminOrderCancelNotificationComponent: React.FC<{
     borderRadius: "5px",
     textDecoration: "none",
     width: "max-content",
-  }
+  };
 
   const tableStyles = {
     border: `2px solid ${colors.darkBlue}`, // Green border: ;
-
+   
     width: "100%", // Make the table take up 100% width
-  }
+  };
 
   const headerCellStyle = {
     // background: "#35f77f", // Header cell background color
     color: "#fff", // Header cell text color
     padding: "10px", // Header cell padding
-  }
+  };
 
   const cellStyle = {
     padding: "10px", // Cell padding
-  }
+  };
 
   return (
     <EmailTemplate subject=" Order Cancelled by Partner - Immediate Action Required">
@@ -816,18 +871,18 @@ export const AdminOrderCancelNotificationComponent: React.FC<{
         </div>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const PartnerOrderAssignmentNotificationComponent: React.FC<{
-  partnerFirstName: string
-  orderNumber: string
-  customerFullName: string
-  itemsOrdered: any
-  totalAmount: string
-  customerAddress: string
-  orderTimestamp: string
-  partnerDashboardLink: string
+  partnerFirstName: string;
+  orderNumber: string;
+  customerFullName: string;
+  itemsOrdered: any;
+  totalAmount: string;
+  customerAddress: string;
+  orderTimestamp: string;
+  partnerDashboardLink: string;
 }> = ({
   partnerFirstName,
   orderNumber,
@@ -842,7 +897,7 @@ export const PartnerOrderAssignmentNotificationComponent: React.FC<{
     fontFamily: "Arial, sans-serif",
     fontSize: "14px",
     lineHeight: "1.6",
-  }
+  };
 
   const buttonStyles = {
     backgroundColor: colors.lightBlue,
@@ -851,24 +906,25 @@ export const PartnerOrderAssignmentNotificationComponent: React.FC<{
     borderRadius: "5px",
     textDecoration: "none",
     margin: "20px 0",
-  }
+  };
 
   const tableStyles = {
     border: `2px solid ${colors.darkBlue}`, // Green border: ;
-
+   
     width: "100%", // Make the table take up 100% width
-  }
+  };
   const headerCellStyle = {
+    color: "#fff",
     padding: "10px",
-  }
+  };
 
   const cellStyle = {
     padding: "10px", // Cell padding
-  }
+  };
 
   return (
     <EmailTemplate subject=" New Order Assigned to You">
-      <div style={emailStyles} className="px-4 py-8">
+      <div style={emailStyles}>
         <p>
           Hello{" "}
           <strong style={{ textTransform: "capitalize" }}>
@@ -947,16 +1003,16 @@ export const PartnerOrderAssignmentNotificationComponent: React.FC<{
         <p>Warm Regards, Dibo Ruwa Operations</p>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const DispatchStatusNotificationComponent: React.FC<{
-  customerFirstName: string
-  orderNumber: string
-  itemsOrdered: any
-  totalAmount: string
-  estimatedDeliveryDate: string
-  contactNumber: string
+  customerFirstName: string;
+  orderNumber: string;
+  itemsOrdered: any;
+  totalAmount: string;
+  estimatedDeliveryDate: string;
+  contactNumber: string;
 }> = ({
   customerFirstName,
   orderNumber,
@@ -967,26 +1023,26 @@ export const DispatchStatusNotificationComponent: React.FC<{
 }) => {
   const emailStyles = {
     lineHeight: "1.6",
-  }
+  };
 
   const tableStyles = {
     border: `2px solid ${colors.darkBlue}`,
-
+   
     width: "100%",
-  }
+  };
 
   const headerCellStyle = {
     color: "#fff",
     padding: "10px",
-  }
+  };
 
   const cellStyle = {
     padding: "10px",
-  }
+  };
 
   return (
     <EmailTemplate subject={` Your Order #${orderNumber} Has Been Dispatched!`}>
-      <div style={emailStyles} className="px-4 py-8">
+      <div style={emailStyles}>
         <p>
           Dear{" "}
           <strong style={{ textTransform: "capitalize" }}>
@@ -1055,16 +1111,16 @@ export const DispatchStatusNotificationComponent: React.FC<{
         <p>Warm Regards, The Dibo Ruwa Team</p>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const DeliveredStatusNotificationComponent: React.FC<{
-  customerFirstName: string
-  orderNumber: string
-  itemsDelivered: any
-  totalAmount: string
-  deliveryDate: string
-  contactNumber: string
+  customerFirstName: string;
+  orderNumber: string;
+  itemsDelivered: any;
+  totalAmount: string;
+  deliveryDate: string;
+  contactNumber: string;
 }> = ({
   customerFirstName,
   orderNumber,
@@ -1075,7 +1131,7 @@ export const DeliveredStatusNotificationComponent: React.FC<{
 }) => {
   const emailStyles = {
     lineHeight: "1.6",
-  }
+  };
 
   const buttonStyles = {
     backgroundColor: colors.lightBlue,
@@ -1083,29 +1139,29 @@ export const DeliveredStatusNotificationComponent: React.FC<{
     padding: "10px 20px",
     borderRadius: "5px",
     textDecoration: "none",
-  }
+  };
 
   const tableStyles = {
     border: `2px solid ${colors.darkBlue}`, // Green border: ;
-
+  
     width: "100%",
-  }
+  };
 
   const headerCellStyle = {
     color: "#fff",
     padding: "10px",
-  }
+  };
 
   const cellStyle = {
     padding: "10px", // Cell padding
-  }
+  };
 
   return (
     <EmailTemplate
       subject={`Your Order #{orderNumber} Has Been
           Delivered!`}
     >
-      <div style={emailStyles} className="px-4 py-8">
+      <div style={emailStyles}>
         <p>
           Dear{" "}
           <strong style={{ textTransform: "capitalize" }}>
@@ -1121,7 +1177,7 @@ export const DeliveredStatusNotificationComponent: React.FC<{
 
         <h3>Order Details:</h3>
 
-        <ul style={{ listStyle: "none" }} className="py-2">
+        <ul style={{ listStyle: "none", margin: "5px 20px 20px" }}>
           <li>
             {" "}
             <strong>Order ID:</strong> #{orderNumber}
@@ -1153,7 +1209,7 @@ export const DeliveredStatusNotificationComponent: React.FC<{
               </tbody>
             </table>
           </li>
-          <li className="my-2">
+          <li>
             {" "}
             <strong>Total Amount:</strong> {totalAmount}
           </li>
@@ -1162,7 +1218,7 @@ export const DeliveredStatusNotificationComponent: React.FC<{
             <strong>Delivery Date:</strong> {deliveryDate}
           </li>
         </ul>
-        <p className="my-2">
+        <p>
           At Dibo Ruwa, we continuously strive to enhance our services. Your
           feedback is invaluable to us. If you could take a moment to share your
           experience, it would help us serve you better in the future.
@@ -1170,7 +1226,7 @@ export const DeliveredStatusNotificationComponent: React.FC<{
         <a href="#">
           <button style={buttonStyles}>Share Your Feedback</button>
         </a>
-        <p className="my-2">
+        <p>
           {" "}
           <strong>Note:</strong>{" "}
           <em>The button links directly to a feedback form or page.</em>{" "}
@@ -1187,16 +1243,16 @@ export const DeliveredStatusNotificationComponent: React.FC<{
         <p>Warmest Regards, The Dibo Ruwa Team</p>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const AdminQuoteRequestNotification: React.FC<{
-  fullName: string
-  userEmail: string
-  userContact: string
-  serviceType: string
-  description: string
-  timestamp: string
+  fullName: string;
+  userEmail: string;
+  userContact: string;
+  serviceType: string;
+  description: string;
+  timestamp: string;
 }> = ({
   fullName,
   userEmail,
@@ -1207,10 +1263,10 @@ export const AdminQuoteRequestNotification: React.FC<{
 }) => {
   const adminEmailStyle: React.CSSProperties = {
     lineHeight: "2",
-  }
+  };
   return (
     <EmailTemplate subject="New Quote request">
-      <div style={adminEmailStyle} className="px-4 py-8">
+      <div style={adminEmailStyle}>
         <strong>Admin Team,</strong>
         <p>
           We have received a new quote request for our{" "}
@@ -1249,16 +1305,16 @@ export const AdminQuoteRequestNotification: React.FC<{
         <p>Best Regards, Dibo Ruwa Operations Team</p>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const UserQuoteRequestConfirmation: React.FC<{
-  firstName: string
-  serviceType: string | undefined
-  description: string | undefined
-  timestamp: string
-  turnaroundTime: string
-  adminContact: string
+  firstName: string;
+  serviceType: string | undefined;
+  description: string | undefined;
+  timestamp: string;
+  turnaroundTime: string;
+  adminContact: string;
 }> = ({
   firstName,
   serviceType,
@@ -1269,11 +1325,12 @@ export const UserQuoteRequestConfirmation: React.FC<{
 }) => {
   const userEmailStyle: React.CSSProperties = {
     lineHeight: "2",
-  }
+  };
   return (
     <EmailTemplate subject="Request confirmation">
-      <div style={userEmailStyle} className="px-4 py-8">
+      <div style={userEmailStyle}>
         <p>
+         
           Hello{" "}
           <strong style={{ textTransform: "capitalize" }}>{firstName}</strong>,
         </p>
@@ -1283,7 +1340,7 @@ export const UserQuoteRequestConfirmation: React.FC<{
           reviewing the details.
         </p>
         <h3>Your Request Details:</h3>
-        <ul style={{ listStyle: "none" }}>
+        <ul style={{ listStyle: "none", margin: "5px 20px 20px" }}>
           <li>
             {" "}
             <strong>Service Type:</strong> {serviceType}
@@ -1314,16 +1371,16 @@ export const UserQuoteRequestConfirmation: React.FC<{
         <p>Warm Regards, The Dibo Ruwa Team</p>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const AdminLaundryQuoteRequest: React.FC<{
-  adminName: string
-  userName: string
-  userEmail: string
-  userContact: string
-  userAddress: string
-  laundryItems: any
+  adminName: string;
+  userName: string;
+  userEmail: string;
+  userContact: string;
+  userAddress: string;
+  laundryItems: any;
 }> = ({
   adminName,
   userName,
@@ -1334,10 +1391,10 @@ export const AdminLaundryQuoteRequest: React.FC<{
 }) => {
   const adminEmailStyle: React.CSSProperties = {
     lineHeight: "2",
-  }
+  };
   return (
     <EmailTemplate subject="New Laundry Request">
-      <div style={adminEmailStyle} className="px-4 py-8">
+      <div style={adminEmailStyle}>
         <p>
           Hello{" "}
           <strong style={{ textTransform: "capitalize" }}>{adminName}</strong>,
@@ -1347,7 +1404,7 @@ export const AdminLaundryQuoteRequest: React.FC<{
           {userName}, with the following details:
         </p>
         <h3>Customer Information:</h3>
-        <ul style={{ listStyle: "none" }}>
+        <ul style={{ listStyle: "none", margin: "5px 20px 20px" }}>
           <li>
             {" "}
             <strong>Name:</strong> {userName}
@@ -1379,16 +1436,16 @@ export const AdminLaundryQuoteRequest: React.FC<{
         <p>Warm regards,</p>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const AdminHomeCleaningQuoteRequest: React.FC<{
-  adminName: string
-  userName: string
-  userEmail: string
-  userContact: string
-  userAddress: string
-  homeCleaningAreas: any
+  adminName: string;
+  userName: string;
+  userEmail: string;
+  userContact: string;
+  userAddress: string;
+  homeCleaningAreas: any;
 }> = ({
   adminName,
   userName,
@@ -1399,11 +1456,11 @@ export const AdminHomeCleaningQuoteRequest: React.FC<{
 }) => {
   const adminEmailStyle: React.CSSProperties = {
     lineHeight: "2",
-  }
+  };
 
   return (
     <EmailTemplate subject="New Cleaning request">
-      <div style={adminEmailStyle} className="px-4 py-8">
+      <div style={adminEmailStyle}>
         <p>
           {" "}
           Hello{" "}
@@ -1414,7 +1471,7 @@ export const AdminHomeCleaningQuoteRequest: React.FC<{
           {userName}, with the following details:
         </p>
         <h3>Customer Information:</h3>
-        <ul style={{ listStyle: "none" }}>
+        <ul style={{ listStyle: "none", margin: "0 20px 20px" }}>
           <li>
             {" "}
             <strong>Name:</strong> {userName}
@@ -1433,7 +1490,7 @@ export const AdminHomeCleaningQuoteRequest: React.FC<{
           </li>
           <li>
             <strong>Areas/Items for Home Cleaning Quotation:</strong>
-            <ul style={{ listStyle: "none" }}>
+            <ul style={{ listStyle: "none", margin: "0 20px 10px" }}>
               {homeCleaningAreas.map((area: any, index: any) => (
                 <li key={index}>
                   {area.name} - {area.amount}
@@ -1450,19 +1507,19 @@ export const AdminHomeCleaningQuoteRequest: React.FC<{
         <p>Warm regards,</p>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const MovingRequestEmail: React.FC<{
-  customerName: string
-  customerEmail: string
-  customerPhone: string
-  currentAddress: string
-  destinationAddress: string
-  preferredDate: string
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  currentAddress: string;
+  destinationAddress: string;
+  preferredDate: string;
   // itemsForMoving: string[];
   // specialInstructions: string;
-  companyName: string
+  companyName: string;
 }> = ({
   customerName,
   customerEmail,
@@ -1478,17 +1535,17 @@ export const MovingRequestEmail: React.FC<{
     backgroundColor: "white", // Content background color
     padding: "20px",
     lineHeight: "2",
-  }
+  };
   return (
     <EmailTemplate subject={`New Moving Request from ${customerName}`}>
-      <div style={contentStyle} className="px-4 py-8">
+      <div style={contentStyle}>
         <p>Hello Admin,</p>
         <p>
           We have received a new moving request from the website. Please find
           the details below:
         </p>
         <h3>Customer Information:</h3>
-        <ul style={{ listStyle: "none" }}>
+        <ul style={{ listStyle: "none", margin: "5px 20px 20px" }}>
           <li>
             {" "}
             <strong>Name:</strong> {customerName}
@@ -1534,28 +1591,28 @@ export const MovingRequestEmail: React.FC<{
         <p>{companyName} Support Team</p>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
 export const SubscriptionConfirmationEmail: React.FC<{
-  customerName: string
-  serviceName: string
-  planName: string
-  startDate: string
-  endDate: string
+  customerName: string;
+  serviceName: string;
+  planName: string;
+  startDate: string;
+  endDate: string;
 }> = ({ customerName, serviceName, planName, startDate, endDate }) => {
   const contentStyle: React.CSSProperties = {
     lineHeight: "2",
-  }
+  };
   return (
     <EmailTemplate subject="  Your Subscription with Dibo Ruwa is Confirmed!">
-      <div style={contentStyle} className="px-4 py-8">
+      <div style={contentStyle}>
         <p>
           Hello{" "}
           <strong style={{ textTransform: "capitalize" }}>
             {customerName}
           </strong>
-          A ,
+          ,
         </p>
         <p>
           Great choice! We&#39;re thrilled to have you onboard. Your
@@ -1563,7 +1620,7 @@ export const SubscriptionConfirmationEmail: React.FC<{
           hassle-free and delightful experience.
         </p>
         <h3>Details:</h3>
-        <ul style={{ listStyle: "none" }}>
+        <ul style={{ listStyle: "none", margin: "5px 20px 20px" }}>
           <li>
             {" "}
             <strong>Service:</strong> {serviceName}
@@ -1581,19 +1638,19 @@ export const SubscriptionConfirmationEmail: React.FC<{
         <p>The Dibo Ruwa Team</p>
       </div>
     </EmailTemplate>
-  )
-}
+  );
+};
 
-export const DaysToSubscriptionExpiryEmail: React.FC<{
-  customerName: string
-  serviceName: string
-  daysToExpiry: number
+const DaysToSubscriptionExpiryEmail: React.FC<{
+  customerName: string;
+  serviceName: string;
+  daysToExpiry: number;
 }> = ({ customerName, serviceName, daysToExpiry }) => {
   const emailStyle: React.CSSProperties = {
     fontFamily: "Arial, sans-serif",
     backgroundColor: "#f0f0f0", // Background color
     padding: "20px",
-  }
+  };
 
   const headerStyle: React.CSSProperties = {
     backgroundColor: "#007bff", // Header background color
@@ -1602,12 +1659,12 @@ export const DaysToSubscriptionExpiryEmail: React.FC<{
     fontSize: "24px",
     fontWeight: "bold",
     textAlign: "center",
-  }
+  };
 
   const contentStyle: React.CSSProperties = {
     backgroundColor: "white", // Content background color
     padding: "20px",
-  }
+  };
   return (
     <div style={emailStyle}>
       <div style={headerStyle}>
@@ -1630,5 +1687,5 @@ export const DaysToSubscriptionExpiryEmail: React.FC<{
         <p>The Dibo Ruwa Team</p>
       </div>
     </div>
-  )
-}
+  );
+};
