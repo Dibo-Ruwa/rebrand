@@ -1,4 +1,3 @@
-/* EmailTemplate.module.css */
 
 .main {
   background-color: rgba(14, 252, 213, 0.329);
@@ -13,9 +12,7 @@
   margin: auto;
 }
 
-.logoContainer img {
-  /* Add styling for your logo here */
-}
+
 
 .container {
   background-color: white;
