@@ -28,8 +28,8 @@ const buttonStyle: React.CSSProperties = {
 };
 
 interface Props {
-  customerName?: string;
-  activationLink?: string;
+  customerName: string;
+  activationLink: string;
 }
 
 const ActivateAccount: React.FC<Props> = ({ customerName, activationLink }) => {
