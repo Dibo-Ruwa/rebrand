@@ -275,12 +275,7 @@ const AboutUsPage: React.FC = () => {
       <SecondSection>
         <SectionTitle>Who We Are</SectionTitle>
         <ParagraphText className="desc">
-          In a world that’s constantly moving, everyone seeks a touch of
-          convenience. At Dibo Ruwa, we believe in making lives easier by
-          providing services that let you focus on what truly matters. From
-          pristine laundry to spotless homes and delectable meals delivered
-          right to your door, we&#39;re not just another service provider —
-          we&#39;re your everyday companion.
+        We believe in making life easier, one service at a time. At Dibo Ruwa, we offer a range of convenient services that take care of the small details so you can focus on what truly matters. From dry cleaning and laundry to home delivery, we&#39;re here to make your life simpler and more enjoyable. Let us help you reclaim your time and energy. Discover how we can make your life easier today.
         </ParagraphText>
 
         <ThreeColumnSection>
@@ -288,12 +283,9 @@ const AboutUsPage: React.FC = () => {
             <div className="icon">
               <FaHammer />
             </div>
-            <ColumnTitle>Craftsmanship</ColumnTitle>
+            <ColumnTitle>Excellence</ColumnTitle>
             <ParagraphText>
-              Every garment we handle, every room we clean, and every meal we
-              prepare is a testament to our unmatched skill and dedication. Our
-              team&#39;s expertise ensures that each task we undertake is
-              executed with unparalleled finesse.
+            We take pride in providing services of the highest quality.
             </ParagraphText>
           </Column>
 
@@ -301,11 +293,9 @@ const AboutUsPage: React.FC = () => {
             <div className="icon">
               <FaHandshake />
             </div>
-            <ColumnTitle> Commitment</ColumnTitle>
+            <ColumnTitle> Punctuality</ColumnTitle>
             <ParagraphText>
-              Time is invaluable, and we respect yours. Our dedication to
-              punctuality means you never have to wait to experience the luxury
-              and convenience that Dibo Ruwa brings to your doorstep.
+            We respect your time and deliver on our promises without delay.
             </ParagraphText>
           </Column>
 
@@ -313,11 +303,9 @@ const AboutUsPage: React.FC = () => {
             <div className="icon">
               <FaHeart />
             </div>
-            <ColumnTitle>Care</ColumnTitle>
+            <ColumnTitle>Sustainability</ColumnTitle>
             <ParagraphText>
-              Beyond our services, we deeply care for our planet. With
-              eco-friendly practices at our core, we strive to make lives easier
-              while also ensuring a brighter, greener future for all.
+            We are committed to reducing our environmental impact and creating a more sustainable future.
             </ParagraphText>
           </Column>
         </ThreeColumnSection>
@@ -355,11 +343,7 @@ const AboutUsPage: React.FC = () => {
         <LeftColumn>
           <SectionTitle>Join Us</SectionTitle>
           <ParagraphText>
-            In our journey to simplify lives, we&rsquo;re always on the lookout
-            for passionate individuals who share our commitment to excellence,
-            care, and sustainability. If you&rsquo;re eager to make a real
-            impact and contribute to our mission of delivering unparalleled
-            service, we&rsquo;d love to hear from you.
+          Are you passionate about making a difference? We&#39;re looking for people who share our values of compassion, responsibility, and growth. At Dibo Ruwa, we strive to make a positive impact on the world through our commitment to sustainability and our dedication to our employees&#39; development. If you&#39;re ready to join a team that&#39;s passionate about making life easier, simpler, and more fulfilling, we&#39;d love to hear from you
           </ParagraphText>
           <Background></Background>
 

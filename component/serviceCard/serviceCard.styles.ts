@@ -12,11 +12,11 @@ export const ServiceCardContainer = styled.div<{ bg: string }>`
   align-items: flex-start;
   flex-direction: column;
   gap: 10px;
-  padding: 20px;
+  padding: 20px 30px;
   border-radius: 8px;
   background-color: ${(props) => `var(--${props.bg})`};
   width: 100%;
-  height: 320px;
+  height: 350px;
 
   max-width: 350px;
   z-index: 5;

@@ -92,22 +92,34 @@ const Footer = () => {
               }}
               className="logo"
             >
-              <Logo src="/logo.png"  fill={true} alt="Logo" />
+              <Logo src="/logo.png" fill={true} alt="Logo" />
             </div>
             <p style={{ color: "#ccc", marginBottom: "16px" }}>
-              10x-ing the quality of lifeon the continent.
+              Make life easier, one service at a time.
             </p>
             <div style={{ display: "flex", gap: "20px", marginTop: " 20px" }}>
-              <Link href="/" style={{ color: "var(--content)", fontSize: "28px" }}>
+              <Link
+                href="/"
+                style={{ color: "var(--content)", fontSize: "28px" }}
+              >
                 <FiFacebook />
               </Link>
-              <Link href="/" style={{ color: "var(--content)", fontSize: "28px" }}>
+              <Link
+                href="/"
+                style={{ color: "var(--content)", fontSize: "28px" }}
+              >
                 <FaTwitter />
               </Link>
-              <Link href="/" style={{ color: "var(--content)", fontSize: "28px" }}>
+              <Link
+                href="/"
+                style={{ color: "var(--content)", fontSize: "28px" }}
+              >
                 <FaInstagram />
               </Link>
-              <Link href="/" style={{ color: "var(--content)", fontSize: "28px" }}>
+              <Link
+                href="/"
+                style={{ color: "var(--content)", fontSize: "28px" }}
+              >
                 <FaLinkedin />
               </Link>
             </div>

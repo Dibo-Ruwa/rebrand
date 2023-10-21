@@ -1,4 +1,4 @@
-import logo from "./DIRO RUWA REBRAND.png";
+import logo from "./logo.png";
 import broom from "./mop (1) 1.svg";
 import chefHat from "./chef-hat 2.svg";
 import soap from "./laundry-detergent 2.svg";
@@ -7,7 +7,7 @@ import pattern1 from "./pattern1.svg";
 import pattern2 from "./patten2.svg";
 import testimonial from "./testimonial-placeholder.png";
 import cleaningImg from "./cleaning_hero.png";
-import favicon from "./FAVICON.png";
+import favicon from "./loader.png";
 import laundry_equipment from "./cleaning-cleaning-equipment-removebg-preview.png";
 import snpImg from './Component 19.svg'
 import washingmachine from './washing-machine-4-svgrepo-com (1) 2.svg'

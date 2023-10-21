@@ -1,0 +1,85 @@
+/* UTILITY CLASSES */
+.padmobile {
+  padding: 2rem 1rem;
+}
+
+/* EMAIL TEMPLATE STYLE */
+
+.template_container {
+  background-color: rgba(14, 252, 213, 0.329);
+  padding: 0 10%;
+}
+.logo {
+  padding: 2rem;
+}
+
+.template_content_wrapper {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.template_content_header {
+  background: #00a6cf;
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.template_content_body {
+  padding: 5%;
+}
+
+/* 
+const emailStyles = "text-[16px] leading-6 flex flex-col gap-[15px] w-full "
+  const contentStyles = "p-[20px] "
+  const listStyles =
+    "py-[20px] lg:p-[20px] lg:mx-[20px]  border-[2px] border-[rgba(53,247,127,0.37)] w-auto"
+*/
+
+/* ADMIN EMAIL COMPONENT STYLE */
+.admincomp_container {
+  line-height: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.admincomp_content {
+  padding: 20px;
+  margin-bottom: 1rem;
+}
+
+.admincomp_content_list {
+  padding: 20px;
+  margin: 0 1.5rem 20px;
+  border: 2px solid rgba(53, 247, 127, 0.37);
+  width: auto;
+}
+
+.admincomp_content_list_item {
+  /* flex items-center gap-4 */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.admincomp_content_list_item span {
+  font-weight: 600;
+}
+@media screen and (max-width: 720px) {
+  .template_container {
+    padding: 0 1rem;
+  }
+  .template_content_body {
+    padding: 0;
+  }
+  .admincomp_content_list {
+    padding: 10px 5px;
+    margin: 0;
+  }
+  .admincomp_content_list_item span {
+    font-weight: 500;
+  }
+}

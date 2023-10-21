@@ -4,8 +4,8 @@ import User from "@/utils/models/Users";
 import { connectDB, closeDB } from "@/utils/db";
 import { Cart } from "@/utils/models/Cart";
 import { generateToken } from "@/templates/authTemplates";
-import ActivateAccount from "@/emails/ActivateAccount";
 import sendEmail from "@/utils/resend";
+import ActivateAccount from "@/emails/ActivateAccount";
 
 export async function POST(req: Request, res: Response) {
   try {

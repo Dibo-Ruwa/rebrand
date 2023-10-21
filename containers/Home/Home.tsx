@@ -23,7 +23,6 @@ import Button from "@/component/ui/button/Button";
 import { FiPhoneCall } from "react-icons/fi";
 import { accordionData, services } from "@/constants";
 import ServiceCard from "@/component/serviceCard/ServiceCard";
-// import Image from "next/image";
 import { assets } from "@/public/assets";
 import Accordion from "@/component/ui/accordion/Accordion";
 import NewsletterForm from "@/component/NewsletterForm";
@@ -43,39 +42,34 @@ export default function Home() {
       <HeroContainer bg="primary-20">
         <motion.div className="hero__text">
           <div className="title">
-            Break free from mundane tasks that drains your time and energy
+            Live easy. Free yourself from laundry, cleaning and cooking
           </div>
-          {/* <p className="subtitle">
-            Experience premium services that seamlessly blend into your life. Whether it's a <span className="meal">meal</span>, a <span>clean home</span>, or <span>fresh clothes</span>  – we're here for you.
-          </p> */}
 
           <HeroList>
             <HeroListItem>
               <span className="dot" />
               <div className="text">
-                <strong>Tasty Meals Delivered:</strong>
-                <small>
-                  Savor delicious dishes without the dailycooking hassle.
-                </small>
+                <strong>Fresh clothes, always ready:</strong>
+                <small>Fresh clothes, ready when you are.</small>
               </div>
             </HeroListItem>
             <HeroListItem>
               <span className="dot" />
 
               <div className="text">
-                <strong>Fresh Clothes, Always Ready:</strong>
+                <strong>Sparkling clean homes:</strong>
                 <small>
-                  Forget laundry day, always have your favorite outfits ready.
+                  Step into a fresh, clean space every day, without lifting a
+                  finger.
                 </small>
               </div>
             </HeroListItem>
             <HeroListItem>
               <span className="dot" />
               <div className="text">
-                <strong>Sparkling Clean Homes:</strong>
+                <strong>Tasty meals delivered:</strong>
                 <small>
-                  Step into a fresh, clean space every day, without lifting a
-                  finger.
+                  Fresh, delicious meals delivered to you - no effort required.
                 </small>
               </div>
             </HeroListItem>
@@ -110,7 +104,7 @@ export default function Home() {
 
       <ServicesSection>
         <header>
-          <h3 className="title">Services</h3>
+          <h3 className="title">Our Services</h3>
           <p className="subtitle">
             Reliable convenience, always at your service.
           </p>
@@ -153,15 +147,28 @@ export default function Home() {
         </WhyChooseUsImageContainer>
 
         <WhyChooseUsText>
-          <WhyChooseUsColored>Why Choose us?</WhyChooseUsColored>
+          <WhyChooseUsColored>Why choose DiboRuwa?</WhyChooseUsColored>
           <WhyChooseUsTitle>
-            Your Happiness is Our <br /> First Priority
+            Because we&#39;re here to do the hard work for you.
           </WhyChooseUsTitle>
           <WhyChooseUsContent>
-            At Dibo Ruwa, we believe in making your life easier and more
-            enjoyable. Say goodbye to the mundane tasks that consume your time
-            and energy. We offer a range of services designed to transform your
-            daily routine and let you focus on what truly matters.
+            <li>
+              <span className="dot"></span>
+              <p>Your time is precious. You deserve to focus on what truly matters</p>
+           </li>
+           
+            <li>
+              <span className="dot"></span>
+              <p>We make it simple to transform your daily routine.</p>
+           </li>
+            <li>
+              <span className="dot"></span>
+              <p>Sit back, relax, and let us take care of the rest.</p>
+            </li>
+            <li>
+              <span className="dot"></span>
+              <p>With our services, you can have a clean, organized home without the hassle.</p>
+           </li>
           </WhyChooseUsContent>
           <Button
             size="large"

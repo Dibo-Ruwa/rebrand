@@ -69,7 +69,7 @@ export const services = [
     color: "color3",
     bg: "color3-20",
     content:
-      "Fresh and on schedule Delight in chef-cooked meals delivered to your doorstep.",
+      "Convenient, ready-to-eat meals delivered to your door. \nStress-free eating.",
     cta: {
       label: "Order Now",
       path: "/food",
@@ -83,9 +83,9 @@ export const services = [
     color: "color2",
     bg: "color2-20",
     content:
-      "Swift and fresh Your laundry, impeccably handled within 48 hours or less.",
+      "Let us do the laundry so you can reclaim your time.\n 24/7 laundry service for a stress-free life.",
     cta: {
-      label: "Order Now",
+      label: "Schedule Pickup",
       path: "/laundry",
     },
   },
@@ -96,9 +96,9 @@ export const services = [
     color: "primary",
     bg: "primary-20",
     content:
-      "Expert cleaning for those who appreciate the brilliance of a spotless space.",
+      "We make home cleaning easy. \n\ Book a cleaning session today and enjoy a spotless space. \n Scheduling is quick and hassle-free.",
     cta: {
-      label: "Order Now",
+      label: "Book Now",
       path: "/cleaning",
     },
   },
@@ -195,7 +195,6 @@ export const Wyg = [
 
 export const subscriptionPlans = [
   {
-  
     title: "One-Off Cleaning Plan",
     content: "For regular upkeep and a consistently clean home.",
     features: [
@@ -461,7 +460,7 @@ export const planDetails: PlanDetails = {
         "Ideal for weekend treats",
       ],
       total: 14980,
-      planCode: 'PLN_w988l6ia7g7dfq6'
+      planCode: "PLN_w988l6ia7g7dfq6",
     },
     {
       title: "Enterprise",
@@ -473,7 +472,7 @@ export const planDetails: PlanDetails = {
         "Perfect for workweek meals",
       ],
       total: 34970,
-      planCode: "PLN_pz6i6zhbcwvfdk7"
+      planCode: "PLN_pz6i6zhbcwvfdk7",
     },
     {
       title: "Gold",
@@ -486,7 +485,7 @@ export const planDetails: PlanDetails = {
         "A meal every day",
       ],
       total: 47960,
-      planCode: "PLN_f5nb851w9xpbtto"
+      planCode: "PLN_f5nb851w9xpbtto",
     },
   ],
   Laundry: [
@@ -501,7 +500,7 @@ export const planDetails: PlanDetails = {
         "Ideal for individual",
       ],
       total: 11960,
-      planCode: 'PLN_jjx1iqwxol2hch4'
+      planCode: "PLN_jjx1iqwxol2hch4",
     },
     {
       title: "Regular Laundry",
@@ -515,7 +514,7 @@ export const planDetails: PlanDetails = {
         "Ideal for family of two",
       ],
       total: 22100,
-      planCode: 'PLN_jd0nwcnhvifs0no'
+      planCode: "PLN_jd0nwcnhvifs0no",
     },
     {
       title: "Family",
@@ -530,7 +529,7 @@ export const planDetails: PlanDetails = {
         "Ideal for family of four",
       ],
       total: 36700,
-      planCode: 'PLN_d3km1qswvj8nbot'
+      planCode: "PLN_d3km1qswvj8nbot",
     },
   ],
   Cleaning: [
@@ -546,7 +545,7 @@ export const planDetails: PlanDetails = {
         "Once a week",
       ],
       total: 12900,
-      planCode: 'PLN_fw9vc36viohwk6l'
+      planCode: "PLN_fw9vc36viohwk6l",
     },
     {
       title: "Premium",
@@ -561,7 +560,7 @@ export const planDetails: PlanDetails = {
       ],
 
       total: 22750,
-      planCode: 'PLN_b361yykypop2gfz'
+      planCode: "PLN_b361yykypop2gfz",
     },
     {
       title: "Deep",
@@ -576,7 +575,7 @@ export const planDetails: PlanDetails = {
       ],
 
       total: 31900,
-      planCode: 'PLN_jsbrun8t72zsbiu'
+      planCode: "PLN_jsbrun8t72zsbiu",
     },
   ],
 };

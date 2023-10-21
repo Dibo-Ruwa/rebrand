@@ -2,6 +2,7 @@
 
 import React, { ReactNode } from "react"
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa"
+import classes from "./emails.module.css"
 
 const colors = {
   lightBlue: "#00afdb",
@@ -18,16 +19,16 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
   children,
 }) => {
   return (
-    <div className="bg-[rgba(14,252,213,0.329)] lg:px-[10%] px-4">
-      <div className=" p-8">{/* Logo should go here */}</div>
+    <div className={classes.template_container}>
+      <div className={classes.logo}>{/* Logo should go here */}</div>
 
-      <div className="bg-[white] rounded-[10px] ">
-        <div className="bg-[#00a6cf] py-[20px] px-[10px] text-center">
+      <div className={classes.template_content_wrapper}>
+        <div className={classes.template_content_header}>
           <h1 style={{ color: "white", margin: "0", fontSize: "24px" }}>
             {subject}
           </h1>
         </div>
-        <div className="lg:p-[5%] ">
+        <div className={classes.template_content_body}>
           {/* Specific Email Content Goes Here */}
           {children}
         </div>
@@ -138,7 +139,7 @@ export const PasswordRecoveryEmail: React.FC<{
   }
   return (
     <EmailTemplate subject="Password Recovery">
-      <div className="px-4 py-8">
+      <div style={{ padding: "2rem 1rem" }}>
         <p>Hello {userName},</p>
         <p>
           We received a request to reset your password for your Dibo Ruwa
@@ -182,15 +183,10 @@ export const AdminEmailComponent: React.FC<{
   adminEmail,
   yourName,
 }) => {
-  const emailStyles = "text-[16px] leading-6 flex flex-col gap-[15px] w-full "
-  const contentStyles = "p-[20px] "
-  const listStyles =
-    "py-[20px] lg:p-[20px] lg:mx-[20px]  border-[2px] border-[rgba(53,247,127,0.37)] w-auto"
-
   return (
     <EmailTemplate subject="  New Partner Notification!!!">
-      <div className={`${emailStyles}`}>
-        <div className={`${contentStyles} mb-4`}>
+      <div className={classes.admincomp_container}>
+        <div className={classes.admincomp_content}>
           <p>
             Hey <strong>{adminFirstName}</strong>,
           </p>
@@ -198,21 +194,21 @@ export const AdminEmailComponent: React.FC<{
             We have some exciting news to share - a new partner has registered
             with us! Here are the preliminary details:
           </p>
-          <ul className={`${listStyles} my-6`}>
-            <li className="flex items-center gap-4">
-              <strong> Partner Name:</strong>
+          <ul className={classes.admincomp_content_list}>
+            <li className={classes.admincomp_content_list_item}>
+              <span> Partner Name:</span>
               {partnerFullName}
             </li>
-            <li className="flex items-center gap-4">
-              <strong> Business Name:</strong>
+            <li className={classes.admincomp_content_list_item}>
+              <span> Business Name:</span>
               {partnerBusinessName}
             </li>
-            <li className="flex items-center gap-4">
-              <strong> Contact Information:</strong>
+            <li className={classes.admincomp_content_list_item}>
+              <span> Contact Information:</span>
               {partnerContactInfo}
             </li>
-            <li className="flex items-center gap-4">
-              <strong> Registration Date:</strong>
+            <li className={classes.admincomp_content_list_item}>
+              <span> Registration Date:</span>
               {registrationDate}
             </li>
           </ul>
@@ -986,7 +982,7 @@ export const DispatchStatusNotificationComponent: React.FC<{
 
   return (
     <EmailTemplate subject={` Your Order #${orderNumber} Has Been Dispatched!`}>
-      <div style={emailStyles} className="px-4 py-8">
+      <div style={emailStyles} className={classes.padmobile}>
         <p>
           Dear{" "}
           <strong style={{ textTransform: "capitalize" }}>
@@ -1121,7 +1117,7 @@ export const DeliveredStatusNotificationComponent: React.FC<{
 
         <h3>Order Details:</h3>
 
-        <ul style={{ listStyle: "none" }} className="py-2">
+        <ul style={{ listStyle: "none", padding: " 0.5rem 0" }}>
           <li>
             {" "}
             <strong>Order ID:</strong> #{orderNumber}
@@ -1153,7 +1149,7 @@ export const DeliveredStatusNotificationComponent: React.FC<{
               </tbody>
             </table>
           </li>
-          <li className="my-2">
+          <li style={{ margin: "0.5rem 0" }}>
             {" "}
             <strong>Total Amount:</strong> {totalAmount}
           </li>
@@ -1162,7 +1158,7 @@ export const DeliveredStatusNotificationComponent: React.FC<{
             <strong>Delivery Date:</strong> {deliveryDate}
           </li>
         </ul>
-        <p className="my-2">
+        <p style={{ margin: "0.5rem 0" }}>
           At Dibo Ruwa, we continuously strive to enhance our services. Your
           feedback is invaluable to us. If you could take a moment to share your
           experience, it would help us serve you better in the future.
@@ -1170,7 +1166,7 @@ export const DeliveredStatusNotificationComponent: React.FC<{
         <a href="#">
           <button style={buttonStyles}>Share Your Feedback</button>
         </a>
-        <p className="my-2">
+        <p style={{ margin: "0.5rem 0" }}>
           {" "}
           <strong>Note:</strong>{" "}
           <em>The button links directly to a feedback form or page.</em>{" "}
@@ -1210,7 +1206,7 @@ export const AdminQuoteRequestNotification: React.FC<{
   }
   return (
     <EmailTemplate subject="New Quote request">
-      <div style={adminEmailStyle} className="px-4 py-8">
+      <div style={adminEmailStyle} className={classes.padmobile}>
         <strong>Admin Team,</strong>
         <p>
           We have received a new quote request for our{" "}
@@ -1272,7 +1268,7 @@ export const UserQuoteRequestConfirmation: React.FC<{
   }
   return (
     <EmailTemplate subject="Request confirmation">
-      <div style={userEmailStyle} className="px-4 py-8">
+      <div style={userEmailStyle} className={classes.padmobile}>
         <p>
           Hello{" "}
           <strong style={{ textTransform: "capitalize" }}>{firstName}</strong>,
@@ -1337,7 +1333,7 @@ export const AdminLaundryQuoteRequest: React.FC<{
   }
   return (
     <EmailTemplate subject="New Laundry Request">
-      <div style={adminEmailStyle} className="px-4 py-8">
+      <div style={adminEmailStyle} className={classes.padmobile}>
         <p>
           Hello{" "}
           <strong style={{ textTransform: "capitalize" }}>{adminName}</strong>,
@@ -1403,7 +1399,7 @@ export const AdminHomeCleaningQuoteRequest: React.FC<{
 
   return (
     <EmailTemplate subject="New Cleaning request">
-      <div style={adminEmailStyle} className="px-4 py-8">
+      <div style={adminEmailStyle} className={classes.padmobile}>
         <p>
           {" "}
           Hello{" "}
@@ -1481,7 +1477,7 @@ export const MovingRequestEmail: React.FC<{
   }
   return (
     <EmailTemplate subject={`New Moving Request from ${customerName}`}>
-      <div style={contentStyle} className="px-4 py-8">
+      <div style={contentStyle} className={classes.padmobile}>
         <p>Hello Admin,</p>
         <p>
           We have received a new moving request from the website. Please find
@@ -1549,7 +1545,7 @@ export const SubscriptionConfirmationEmail: React.FC<{
   }
   return (
     <EmailTemplate subject="  Your Subscription with Dibo Ruwa is Confirmed!">
-      <div style={contentStyle} className="px-4 py-8">
+      <div style={contentStyle} className={classes.padmobile}>
         <p>
           Hello{" "}
           <strong style={{ textTransform: "capitalize" }}>

@@ -23,7 +23,6 @@ type Item = {
   amount: number;
 };
 
-
 export async function GET(req: Request, res: Response) {
   try {
     await connectDB();
@@ -40,7 +39,7 @@ export async function GET(req: Request, res: Response) {
       return NextResponse.json({ message: "User does not exist" });
     }
 
-    // Query the database for all quotes belonging to the user && fill user 
+    // Query the database for all quotes belonging to the user && fill user
     const quotes = await Request.find({ user: userId }).populate("user");
 
     // You can send the 'quotes' array as the response
@@ -110,7 +109,7 @@ export async function POST(req: Request, res: Response) {
 
     // if (data.type === "laundry") {
     //   await sendEmail(
-    //     "ibrahim.saliman.zainab@gmail.com",
+    //     "z3phyronsnides@gmail.com",
     //     "new Quote",
     //     AdminLaundryQuoteRequest({
     //       adminName: "Ibrahim",
@@ -123,7 +122,7 @@ export async function POST(req: Request, res: Response) {
     //   );
     // } else if (data.type === "cleaning") {
     //   await sendEmail(
-    //     "ibrahim.saliman.zainab@gmail.com",
+    //     "z3phyronsnides@gmail.com",
     //     "new Quote",
     //     AdminHomeCleaningQuoteRequest({
     //       adminName: "Ibrahim",
