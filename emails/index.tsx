@@ -2,6 +2,8 @@
 
 import React, { ReactNode } from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import styles from './mail.module.css'; // Import the CSS module
+
 
 
 const colors = {
@@ -19,95 +21,28 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
   children,
 }) => {
   return (
-    <div
-      style={{
-        backgroundColor: "rgba(14, 252, 213, 0.329)",
-        padding: "5% 10%",
-        minHeight: "100vh",
-      }}
-      className="main"
-    >
-      <div
-        className="logoContainer"
-        style={{
-          width: "100px",
-          height: "100px",
-          position: "relative",
-          margin: "auto",
-        }}
-      >
-        {/* <img
-          src={logo}
-          alt="Your Logo"
-          style={{ width: "100%", height: "100%", objectFit: "contain" }}
-        /> */}
+    <div className={styles.main}>
+      <div className={styles.logoContainer}>
+        {/* Your logo can be added here */}
       </div>
 
-      <div
-        style={{
-          backgroundColor: "white",
-          borderRadius: "12px",
-          overflow: "hidden",
-          margin: " 30px 0",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: colors.darkBlue,
-            padding: "20px",
-            textAlign: "center",
-          }}
-        >
-          <h1 style={{ color: "white", margin: "0", fontSize: "24px" }}>
-            {subject}
-          </h1>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h1>{subject}</h1>
         </div>
-        <div style={{ padding: "5%" }}>
-          {/* Specific Email Content Goes Here */}
+        <div className={styles.content}>
           {children}
         </div>
       </div>
-      <div
-        style={{
-          textAlign: "center",
-
-          padding: "10px",
-        }}
-        className="footer"
-      >
-        <div
-          className="contact"
-          style={{
-            textAlign: "center",
-            margin: "auto",
-            marginBottom: "20px",
-          }}
-        >
-          <p
-            style={{
-              textAlign: "center",
-              marginBottom: "20px",
-            }}
-          >
-            Follow us on:
-          </p>
-
-          <div
-            className="socials"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "20px",
-              fontSize: "20px",
-            }}
-          >
+      <div className={styles.footer}>
+        <div className={styles.contact}>
+          <p>Follow us on:</p>
+          <div className={styles.socials}>
             <a
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                color: colors.lightBlue,
-              }}
+              style={{ color: 'var(--lightBlue)' }}
             >
               <FaFacebook />
             </a>
@@ -115,9 +50,7 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                color: colors.lightBlue,
-              }}
+              style={{ color: 'var(--lightBlue)' }}
             >
               <FaTwitter />
             </a>
@@ -125,9 +58,7 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                color: colors.lightBlue,
-              }}
+              style={{ color: 'var(--lightBlue)' }}
             >
               <FaInstagram />
             </a>
@@ -135,27 +66,20 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                color: colors.lightBlue,
-              }}
+              style={{ color: 'var(--lightBlue)' }}
             >
               <FaLinkedin />
             </a>
           </div>
         </div>
-
-        <div
-          className="copyrighting"
-          style={{
-            color: "#949494",
-          }}
-        >
+        <div className={styles.copyrighting}>
           &copy; 2023 Your Company Name. All Rights Reserved.
         </div>
       </div>
     </div>
   );
 };
+
 
 export const PasswordRecoveryEmail: React.FC<{
   userName: string;
