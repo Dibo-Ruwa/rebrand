@@ -9,11 +9,13 @@ const colors = {
 const wrapperStyle: React.CSSProperties = {
   fontFamily: "Arial, sans-serif",
   padding: "20px",
+  maxWidth: "600px", // Set a maximum width for the content
+  margin: "0 auto", // Center the content horizontally
 };
 
 const messageStyle: React.CSSProperties = {
   color: "#121212",
-  lineHeight: "2",
+  lineHeight: "1.5", // Increase line height for better mobile readability
 };
 
 const buttonStyle: React.CSSProperties = {
@@ -25,6 +27,8 @@ const buttonStyle: React.CSSProperties = {
   cursor: "pointer",
   textDecoration: "none",
   margin: "20px 0",
+  display: "block", // Make the button a block element for better mobile display
+  width: "100%", // Make the button full-width on mobile
 };
 
 interface Props {
@@ -37,29 +41,21 @@ const ActivateAccount: React.FC<Props> = ({ customerName, activationLink }) => {
     <EmailTemplate subject="Welcome to Dibo Ruwa!">
       <div style={wrapperStyle}>
         <p style={messageStyle}>
-          Hello <strong style={{textTransform: "capitalize"}}>{customerName}</strong>,
+          Hello <strong style={{ textTransform: "capitalize" }}>{customerName}</strong>,
         </p>
         <p>
-          We&#39;re excited to have you on board. To activate your account and
-          start enjoying our services, simply click the button below:
+          We&#39;re excited to have you on board. To activate your account and start enjoying our services, simply click the button below:
         </p>
-        <a
-          href={activationLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ textDecoration: "none" }}
-        >
+        <a href={activationLink} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
           <button style={buttonStyle}>Activate Account</button>
         </a>
         <p style={messageStyle}>
-          If the button doesn&#39;t work, you can also copy and paste the
-          following link into your browser&#39;s address bar:
+          If the button doesn&#39;t work, you can also copy and paste the following link into your browser&#39;s address bar:
           <br />
         </p>
         <p style={messageStyle}>Welcome to the Dibo Ruwa family!</p>
         <p style={messageStyle}>
-          If you have any questions or need assistance, feel free to contact our
-          support team.
+          If you have any questions or need assistance, feel free to contact our support team.
         </p>
         <p style={messageStyle}>
           Best Regards, <br />
